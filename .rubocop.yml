@@ -1,0 +1,32 @@
+Documentation:
+  Enabled: false
+Rails:
+  Enabled: true
+AllCops:
+  DefaultFormatter: progress
+  Exclude:
+    - spec/rails_helper.rb
+    - spec/spec_helper.rb
+    - 'bin/**'
+    - 'config/**/*'
+    - 'db/**/*'
+    - 'script/**/*'
+    - 'lib/tasks/**/*'
+    # - '**/*.erb'
+
+Metrics/BlockLength:
+  Exclude:
+    - !ruby/regexp /.*_spec\.rb$/
+    - 'lib/tasks/*'
+
+Metrics/LineLength:
+  Max: 100
+  Exclude:
+  - !ruby/regexp /.*_spec\.rb$/
+Style/BlockDelimiters:
+  Exclude:
+    - !ruby/regexp /.*_spec\.rb$/
+Style/EmptyMethod:
+  EnforcedStyle: expanded
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline:       consistent_comma

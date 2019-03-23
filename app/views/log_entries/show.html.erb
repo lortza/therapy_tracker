@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Sets:</strong>
+  <%= @log_entry.sets %>
+</p>
+
+<p>
+  <strong>Reps:</strong>
+  <%= @log_entry.reps %>
+</p>
+
+<p>
+  <strong>Exercise name:</strong>
+  <%= @log_entry.exercise_name %>
+</p>
+
+<p>
+  <strong>Datetime exercised:</strong>
+  <%= @log_entry.datetime_exercised %>
+</p>
+
+<p>
+  <strong>Current pain level:</strong>
+  <%= @log_entry.current_pain_level %>
+</p>
+
+<p>
+  <strong>Current pain frequency:</strong>
+  <%= @log_entry.current_pain_frequency %>
+</p>
+
+<p>
+  <strong>Progress note:</strong>
+  <%= @log_entry.progress_note %>
+</p>
+
+<%= link_to 'Edit', edit_log_entry_path(@log_entry) %> |
+<%= link_to 'Back', log_entries_path %>
