@@ -2,9 +2,18 @@ require 'rails_helper'
 
 RSpec.describe LogEntry, type: :model do
   context "validations" do
-    subject { Cat.create(name: 'ABC') }
+    subject { build(:log_entry) }
 
-    it { should validate_presence_of(:name) }
-    it { should validate_uniqueness_of(:name).case_insensitive }
+    it { should validate_presence_of(:target_body_part) }
+    it { should validate_presence_of(:sets) }
+    it { should validate_presence_of(:reps) }
+    it { should validate_presence_of(:exercise_name) }
+    it { should validate_presence_of(:current_pain_level) }
+    it { should validate_presence_of(:current_pain_frequency) }
+
+    it { should validate_numericality_of(:sets) }
+    it { should validate_numericality_of(:reps) }
+    it { should validate_numericality_of(:current_pain_level) }
+
   end
 end
