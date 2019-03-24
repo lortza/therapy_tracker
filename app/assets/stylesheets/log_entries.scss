@@ -1,16 +1,14 @@
-.pull-right {
-  float: right;
-}
+@import 'variables';
+
 .btn-home {
   width: 100%;
   margin-bottom: 1rem;
 }
 .card--log-entry {
   margin-bottom: 1rem;
-  a { color: black; }
-
+  a { color: $default_text; }
   &:hover {
-    background-color: #f1f1f1;
+    background-color: $secondary;
     a { text-decoration: none; }
   }
   .card-header {
