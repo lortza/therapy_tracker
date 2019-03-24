@@ -11,20 +11,20 @@
 
   <div class="field">
     <%= form.label 'When' %><br>
-    <%= form.datetime_select :datetime_exercised, ampm: true, value: Date.today, class: 'form-control' %>
+    <%= form.datetime_select :datetime_exercised, ampm: true, minute_step: 15, value: Date.today, class: 'form-control' %>
   </div>
 
   <div class="form-row">
     <div class="col">
       <div class="field">
         <%= form.label :sets %>
-        <%= form.number_field :sets, class: 'form-control' %>
+        <%= form.number_field :sets, value: LogEntry.last.sets, class: 'form-control' %>
       </div>
     </div>
     <div class="col">
       <div class="field">
         <%= form.label :reps %>
-        <%= form.number_field :reps, class: 'form-control' %>
+        <%= form.number_field :reps, value: LogEntry.last.reps, class: 'form-control' %>
       </div>
     </div>
     <div class="col">

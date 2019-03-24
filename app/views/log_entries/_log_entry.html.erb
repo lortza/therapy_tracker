@@ -2,8 +2,7 @@
   <a href="<%= edit_log_entry_path(log_entry) %>">
     <div class="card-body">
       <h5 class="card-title"><%= format_time(log_entry) %></h5>
-      <p class="card-text"><strong><%= log_entry.target_body_part.titleize %>:</strong> <%= format_exercise(log_entry) %></p>
-      <p class="card-text">
+      <p class="card-text"><strong><%= log_entry.target_body_part.titleize %>:</strong> <%= format_exercise(log_entry) %><br>
         Current Pain: <%= log_entry.current_pain_level %>, <%= log_entry.current_pain_frequency %><br>
         <small class="text-muted">Progress: <%= log_entry.progress_note %></small>
       </p>
