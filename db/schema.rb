@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_24_200517) do
+ActiveRecord::Schema.define(version: 2019_03_24_230826) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "log_entries", force: :cascade do |t|
+  create_table "exercise_logs", force: :cascade do |t|
     t.integer "sets", default: 0
     t.integer "reps", default: 0
     t.string "exercise_name", default: ""
-    t.datetime "datetime_exercised"
+    t.datetime "datetime_occurred"
     t.integer "current_pain_level", default: 0
     t.string "current_pain_frequency", default: ""
     t.text "progress_note", default: ""
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2019_03_24_200517) do
     t.datetime "updated_at", null: false
     t.string "target_body_part"
     t.bigint "user_id"
-    t.index ["user_id"], name: "index_log_entries_on_user_id"
+    t.index ["user_id"], name: "index_exercise_logs_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -45,5 +45,5 @@ ActiveRecord::Schema.define(version: 2019_03_24_200517) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "log_entries", "users"
+  add_foreign_key "exercise_logs", "users"
 end

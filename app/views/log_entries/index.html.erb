@@ -1,7 +1,0 @@
-<h1>Exercises Logs</h1>
-<%= link_to 'New Entry', new_log_entry_path, class: 'btn btn-outline btn-primary btn-lg btn-home' %>
-
-<% @log_entries.each do |log_entry| %>
-  <%= render partial: 'log_entry', locals: { log_entry: log_entry } %>
-<% end %>
-<br>

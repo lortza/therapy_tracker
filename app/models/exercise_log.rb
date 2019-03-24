@@ -1,8 +1,8 @@
-class LogEntry < ApplicationRecord
+class ExerciseLog < ApplicationRecord
   belongs_to :user
 
   validates :target_body_part,
-            :datetime_exercised,
+            :datetime_occurred,
             :exercise_name,
             :current_pain_frequency,
             presence: true

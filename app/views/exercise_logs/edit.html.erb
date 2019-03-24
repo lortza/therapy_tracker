@@ -1,0 +1,5 @@
+<% content_for(:title, format_time(@exercise_log)) %>
+
+<h1>Editing <%= format_time(@exercise_log) %></h1>
+
+<%= render 'form', exercise_log: @exercise_log %>

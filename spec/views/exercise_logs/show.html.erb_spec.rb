@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe "log_entries/show", type: :view do
+RSpec.describe "exercise_logs/show", type: :view do
   before(:each) do
-    @log_entry = assign(:log_entry, LogEntry.create!(
-      :datetime_exercised => 'Sun, 24 Mar 2019 09:30:00 UTC +00:00',
+    @exercise_log = assign(:exercise_log, ExerciseLog.create!(
+      :datetime_occurred => 'Sun, 24 Mar 2019 09:30:00 UTC +00:00',
       :sets => 2,
       :reps => 3,
       :target_body_part => "Body Part Name",

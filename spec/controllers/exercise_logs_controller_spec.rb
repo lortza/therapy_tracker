@@ -23,10 +23,10 @@ require 'rails_helper'
 # removed from Rails core in Rails 5, but can be added back in via the
 # `rails-controller-testing` gem.
 
-RSpec.describe LogEntriesController, type: :controller do
+RSpec.describe ExerciseLogsController, type: :controller do
 
   # This should return the minimal set of attributes required to create a valid
-  # LogEntry. As you add validations to LogEntry, be sure to
+  # ExerciseLog. As you add validations to ExerciseLog, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
     skip("Add a hash of attributes valid for your model")
@@ -38,12 +38,12 @@ RSpec.describe LogEntriesController, type: :controller do
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
-  # LogEntriesController. Be sure to keep this updated too.
+  # ExerciseLogsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
   describe "GET #index" do
     it "returns a success response" do
-      LogEntry.create! valid_attributes
+      ExerciseLog.create! valid_attributes
       get :index, params: {}, session: valid_session
       expect(response).to be_successful
     end
@@ -51,8 +51,8 @@ RSpec.describe LogEntriesController, type: :controller do
 
   describe "GET #show" do
     it "returns a success response" do
-      log_entry = LogEntry.create! valid_attributes
-      get :show, params: {id: log_entry.to_param}, session: valid_session
+      exercise_log = ExerciseLog.create! valid_attributes
+      get :show, params: {id: exercise_log.to_param}, session: valid_session
       expect(response).to be_successful
     end
   end
@@ -66,29 +66,29 @@ RSpec.describe LogEntriesController, type: :controller do
 
   describe "GET #edit" do
     it "returns a success response" do
-      log_entry = LogEntry.create! valid_attributes
-      get :edit, params: {id: log_entry.to_param}, session: valid_session
+      exercise_log = ExerciseLog.create! valid_attributes
+      get :edit, params: {id: exercise_log.to_param}, session: valid_session
       expect(response).to be_successful
     end
   end
 
   describe "POST #create" do
     context "with valid params" do
-      it "creates a new LogEntry" do
+      it "creates a new ExerciseLog" do
         expect {
-          post :create, params: {log_entry: valid_attributes}, session: valid_session
-        }.to change(LogEntry, :count).by(1)
+          post :create, params: {exercise_log: valid_attributes}, session: valid_session
+        }.to change(ExerciseLog, :count).by(1)
       end
 
-      it "redirects to the created log_entry" do
-        post :create, params: {log_entry: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(LogEntry.last)
+      it "redirects to the created exercise_log" do
+        post :create, params: {exercise_log: valid_attributes}, session: valid_session
+        expect(response).to redirect_to(ExerciseLog.last)
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: {log_entry: invalid_attributes}, session: valid_session
+        post :create, params: {exercise_log: invalid_attributes}, session: valid_session
         expect(response).to be_successful
       end
     end
@@ -100,41 +100,41 @@ RSpec.describe LogEntriesController, type: :controller do
         skip("Add a hash of attributes valid for your model")
       }
 
-      it "updates the requested log_entry" do
-        log_entry = LogEntry.create! valid_attributes
-        put :update, params: {id: log_entry.to_param, log_entry: new_attributes}, session: valid_session
-        log_entry.reload
+      it "updates the requested exercise_log" do
+        exercise_log = ExerciseLog.create! valid_attributes
+        put :update, params: {id: exercise_log.to_param, exercise_log: new_attributes}, session: valid_session
+        exercise_log.reload
         skip("Add assertions for updated state")
       end
 
-      it "redirects to the log_entry" do
-        log_entry = LogEntry.create! valid_attributes
-        put :update, params: {id: log_entry.to_param, log_entry: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(log_entry)
+      it "redirects to the exercise_log" do
+        exercise_log = ExerciseLog.create! valid_attributes
+        put :update, params: {id: exercise_log.to_param, exercise_log: valid_attributes}, session: valid_session
+        expect(response).to redirect_to(exercise_log)
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'edit' template)" do
-        log_entry = LogEntry.create! valid_attributes
-        put :update, params: {id: log_entry.to_param, log_entry: invalid_attributes}, session: valid_session
+        exercise_log = ExerciseLog.create! valid_attributes
+        put :update, params: {id: exercise_log.to_param, exercise_log: invalid_attributes}, session: valid_session
         expect(response).to be_successful
       end
     end
   end
 
   describe "DELETE #destroy" do
-    it "destroys the requested log_entry" do
-      log_entry = LogEntry.create! valid_attributes
+    it "destroys the requested exercise_log" do
+      exercise_log = ExerciseLog.create! valid_attributes
       expect {
-        delete :destroy, params: {id: log_entry.to_param}, session: valid_session
-      }.to change(LogEntry, :count).by(-1)
+        delete :destroy, params: {id: exercise_log.to_param}, session: valid_session
+      }.to change(ExerciseLog, :count).by(-1)
     end
 
-    it "redirects to the log_entries list" do
-      log_entry = LogEntry.create! valid_attributes
-      delete :destroy, params: {id: log_entry.to_param}, session: valid_session
-      expect(response).to redirect_to(log_entries_url)
+    it "redirects to the exercise_logs list" do
+      exercise_log = ExerciseLog.create! valid_attributes
+      delete :destroy, params: {id: exercise_log.to_param}, session: valid_session
+      expect(response).to redirect_to(exercise_logs_url)
     end
   end
 

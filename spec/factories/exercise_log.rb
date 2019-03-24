@@ -1,8 +1,8 @@
 FactoryBot.define do
-  factory :log_entry do
+  factory :exercise_log do
     user
     sequence(:target_body_part) { |n| "Body part#{n}" }
-    datetime_exercised { "2019-03-23 14:08:03" }
+    datetime_occurred { "2019-03-23 14:08:03" }
     sets { 2 }
     reps { 10 }
     sequence(:exercise_name) { |n| "Exercise#{n}" }

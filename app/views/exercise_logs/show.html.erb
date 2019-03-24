@@ -1,0 +1,27 @@
+<% content_for(:title, format_time(@exercise_log)) %>
+
+<h2>
+  <%= format_exercise(@exercise_log) %>
+</h2>
+
+<p>
+  <%= format_time(@exercise_log) %>
+</p>
+
+<p>
+  <strong>For:</strong>
+  <%= @exercise_log.target_body_part %>
+</p>
+
+<p>
+  <strong>Current Pain:</strong><br>
+  <strong>Level:</strong> <%= @exercise_log.current_pain_level %>, <strong>Frequency:</strong> <%= @exercise_log.current_pain_frequency %>
+</p>
+
+<p>
+  <strong>Progress notes:</strong><br>
+  <%= @exercise_log.progress_note %>
+</p>
+
+<%= link_to 'Edit', edit_exercise_log_path(@exercise_log) %> |
+<%= link_to 'Back', exercise_log_path %>
