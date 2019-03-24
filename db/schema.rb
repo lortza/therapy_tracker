@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_10_175156) do
+ActiveRecord::Schema.define(version: 2019_03_24_155639) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "log_entries", force: :cascade do |t|
+    t.integer "sets", default: 0
+    t.integer "reps", default: 0
+    t.string "exercise_name", default: ""
+    t.datetime "datetime_exercised"
+    t.integer "current_pain_level", default: 0
+    t.string "current_pain_frequency", default: ""
+    t.text "progress_note", default: ""
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "target_body_part"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false

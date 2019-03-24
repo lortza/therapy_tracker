@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
-  resources :log_entries
   devise_for :users
-  root to: 'cats#index'
+  root to: 'log_entries#index'
 
-  resources :cats
+  resources :log_entries
 
   namespace :admin do
     resources :users, only: [:index, :show]

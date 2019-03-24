@@ -28,7 +28,7 @@ class LogEntriesController < ApplicationController
 
     respond_to do |format|
       if @log_entry.save
-        format.html { redirect_to @log_entry, notice: 'Log entry was successfully created.' }
+        format.html { redirect_to log_entries_url, notice: 'Log entry was successfully created.' }
         format.json { render :show, status: :created, location: @log_entry }
       else
         format.html { render :new }
@@ -69,6 +69,6 @@ class LogEntriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def log_entry_params
-      params.require(:log_entry).permit(:sets, :reps, :exercise_name, :datetime_exercised, :current_pain_level, :current_pain_frequency, :progress_note)
+      params.require(:log_entry).permit(:target_body_part, :sets, :reps, :exercise_name, :datetime_exercised, :current_pain_level, :current_pain_frequency, :progress_note)
     end
 end

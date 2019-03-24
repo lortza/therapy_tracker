@@ -1,52 +1,68 @@
 <%= form_with(model: log_entry, local: true) do |form| %>
-  <% if log_entry.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(log_entry.errors.count, "error") %> prohibited this log_entry from being saved:</h2>
+  <%= render partial: 'shared/errors', locals: {object: log_entry} %>
 
-      <ul>
-      <% log_entry.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <div class="field">
+    <%= form.label %>
+    <%= form.select :target_body_part,
+        options_for_select(LogEntry::BODY_PARTS, selected: LogEntry.last.target_body_part),
+        {include_blank: true},
+        class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label 'When' %><br>
+    <%= form.datetime_select :datetime_exercised, ampm: true, value: Date.today, class: 'form-control' %>
+  </div>
+
+  <div class="form-row">
+    <div class="col">
+      <div class="field">
+        <%= form.label :sets %>
+        <%= form.number_field :sets, class: 'form-control' %>
+      </div>
     </div>
-  <% end %>
+    <div class="col">
+      <div class="field">
+        <%= form.label :reps %>
+        <%= form.number_field :reps, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="col">
+      <div class="field">
+        <%= form.label 'Exercise' %>
+        <%= form.select :exercise_name,
+            options_for_select(LogEntry::EXERCISES, selected: LogEntry.last.exercise_name),
+            {include_blank: true},
+            class: 'form-control' %>
+      </div>
+    </div>
+  </div> <!-- row -->
 
-  <div class="field">
-    <%= form.label :sets %>
-    <%= form.number_field :sets %>
-  </div>
+  <div class="form-row">
+    <div class="col">
+      <div class="field">
+        <%= form.label :current_pain_level %>
+        <%= form.number_field :current_pain_level, class: 'form-control' %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= form.label :reps %>
-    <%= form.number_field :reps %>
-  </div>
-
-  <div class="field">
-    <%= form.label :exercise_name %>
-    <%= form.text_field :exercise_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :datetime_exercised %>
-    <%= form.datetime_select :datetime_exercised %>
-  </div>
-
-  <div class="field">
-    <%= form.label :current_pain_level %>
-    <%= form.number_field :current_pain_level %>
-  </div>
-
-  <div class="field">
-    <%= form.label :current_pain_frequency %>
-    <%= form.text_field :current_pain_frequency %>
-  </div>
+    <div class="col">
+      <div class="field">
+        <%= form.label :current_pain_frequency %>
+        <%= form.select :current_pain_frequency,
+            options_for_select(LogEntry::PAIN_FREQUENCY, selected: LogEntry.last.current_pain_frequency),
+            {include_blank: true},
+            class: 'form-control' %>
+      </div>
+    </div>
+  </div> <!-- row -->
 
   <div class="field">
     <%= form.label :progress_note %>
-    <%= form.text_area :progress_note %>
+    <%= form.text_area :progress_note, class: 'form-control' %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions mt-3 mb-3">
+    <%= form.submit class: button_class('success') %>
   </div>
 <% end %>
