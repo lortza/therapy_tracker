@@ -1,40 +1,25 @@
-<%# content_for(:title, @recipe.title) %>
+<% content_for(:title, format_time(@log_entry)) %>
 
-
-<p id="notice"><%= notice %></p>
+<h2>
+  <%= format_exercise(@log_entry) %>
+</h2>
 
 <p>
-  <strong>Sets:</strong>
-  <%= @log_entry.sets %>
+  <%= format_time(@log_entry) %>
 </p>
 
 <p>
-  <strong>Reps:</strong>
-  <%= @log_entry.reps %>
+  <strong>For:</strong>
+  <%= @log_entry.target_body_part %>
 </p>
 
 <p>
-  <strong>Exercise name:</strong>
-  <%= @log_entry.exercise_name %>
+  <strong>Current Pain:</strong><br>
+  <strong>Level:</strong> <%= @log_entry.current_pain_level %>, <strong>Frequency:</strong> <%= @log_entry.current_pain_frequency %>
 </p>
 
 <p>
-  <strong>Datetime exercised:</strong>
-  <%= @log_entry.datetime_exercised %>
-</p>
-
-<p>
-  <strong>Current pain level:</strong>
-  <%= @log_entry.current_pain_level %>
-</p>
-
-<p>
-  <strong>Current pain frequency:</strong>
-  <%= @log_entry.current_pain_frequency %>
-</p>
-
-<p>
-  <strong>Progress note:</strong>
+  <strong>Progress notes:</strong><br>
   <%= @log_entry.progress_note %>
 </p>
 
