@@ -2,7 +2,7 @@
   <%= render partial: 'shared/errors', locals: {object: log_entry} %>
 
   <div class="field">
-    <%= form.label %>
+    <%= form.label :target_body_part %>
     <%= form.select :target_body_part,
         options_for_select(LogEntry::BODY_PARTS, selected: LogEntry.last.target_body_part),
         {include_blank: true},
