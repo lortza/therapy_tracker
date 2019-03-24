@@ -4,7 +4,7 @@ class LogEntriesController < ApplicationController
   # GET /log_entries
   # GET /log_entries.json
   def index
-    @log_entries = LogEntry.all
+    @log_entries = LogEntry.all.order(datetime_exercised: 'DESC' )
   end
 
   # GET /log_entries/1
