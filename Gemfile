@@ -69,6 +69,8 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem "selenium-webdriver"
   gem "chromedriver-helper" # must be loaded after selenium-webdriver
+  gem 'seed_dump' # run with `rake db:seed:dump`
+
 end
 
 group :test do
