@@ -4,7 +4,7 @@ class LogEntriesController < ApplicationController
   # GET /log_entries
   # GET /log_entries.json
   def index
-    @log_entries = LogEntry.all.order(datetime_exercised: 'DESC' )
+    @log_entries = current_user.log_entries.order(datetime_exercised: 'DESC' )
   end
 
   # GET /log_entries/1
@@ -14,7 +14,7 @@ class LogEntriesController < ApplicationController
 
   # GET /log_entries/new
   def new
-    @log_entry = LogEntry.new
+    @log_entry = current_user.log_entries.new
   end
 
   # GET /log_entries/1/edit
@@ -24,7 +24,7 @@ class LogEntriesController < ApplicationController
   # POST /log_entries
   # POST /log_entries.json
   def create
-    @log_entry = LogEntry.new(log_entry_params)
+    @log_entry = current_user.log_entries.new(log_entry_params)
 
     respond_to do |format|
       if @log_entry.save
@@ -69,6 +69,6 @@ class LogEntriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def log_entry_params
-      params.require(:log_entry).permit(:target_body_part, :sets, :reps, :exercise_name, :datetime_exercised, :current_pain_level, :current_pain_frequency, :progress_note)
+      params.require(:log_entry).permit(:user_id, :target_body_part, :sets, :reps, :exercise_name, :datetime_exercised, :current_pain_level, :current_pain_frequency, :progress_note)
     end
 end

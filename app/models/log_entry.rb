@@ -1,4 +1,5 @@
 class LogEntry < ApplicationRecord
+  belongs_to :user
 
   validates :target_body_part,
             :datetime_exercised,
