@@ -1,4 +1,3 @@
-<li class="nav-item dropdown">
   <% if current_user %>
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -7,6 +6,7 @@
     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
       <%= link_to 'Log Exercise', new_exercise_log_path, class: 'dropdown-item' %>
       <%= link_to 'Log Pain', new_pain_log_path, class: 'dropdown-item' %>
+      <%= link_to 'Create New Exercise', new_exercise_path, class: 'dropdown-item' %>
     </div>
   </li>
 
@@ -20,6 +20,7 @@
     </div>
   </li>
 
+  <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <%= current_user.email %>
     </a>
@@ -27,7 +28,10 @@
       <%= link_to 'Edit My Profile', edit_user_registration_path, class: 'dropdown-item' %>
       <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
     </div>
+  </li>
+
   <% else %>
+  <li class="nav-item">
     <%= link_to 'Log In', new_user_session_path, class: 'nav-link' %>
+  </li>
   <% end %>
-</li>

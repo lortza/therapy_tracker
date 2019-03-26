@@ -8,7 +8,6 @@ RSpec.describe "exercise_logs/index", type: :view do
         :reps => 3,
         :datetime_occurred => 'Sun, 24 Mar 2019 09:30:00 UTC +00:00',
         :target_body_part => "Body Part Name",
-        :exercise_name => "Exercise Name",
         :current_pain_level => 4,
         :current_pain_frequency => "Current Pain Frequency",
         :progress_note => "MyText"
@@ -18,7 +17,6 @@ RSpec.describe "exercise_logs/index", type: :view do
         :reps => 3,
         :datetime_occurred => 'Sun, 24 Mar 2019 09:30:00 UTC +00:00',
         :target_body_part => "Body Part Name",
-        :exercise_name => "Exercise Name",
         :current_pain_level => 4,
         :current_pain_frequency => "Current Pain Frequency",
         :progress_note => "MyText"

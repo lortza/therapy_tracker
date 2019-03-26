@@ -4,7 +4,7 @@
   <div class="field">
     <%= form.label :target_body_part %>
     <%= form.select :target_body_part,
-        options_for_select(ExerciseLog::BODY_PARTS, selected: current_user.exercise_logs.last.target_body_part),
+        options_for_select(ExerciseLog::BODY_PARTS, selected: last_log(:exercise_logs, :target_body_part)),
         {include_blank: true},
         class: 'form-control' %>
   </div>
@@ -30,10 +30,7 @@
     <div class="col">
       <div class="field">
         <%= form.label 'Exercise' %>
-        <%= form.select :exercise_name,
-            options_for_select(ExerciseLog::EXERCISES, selected: last_log(:exercise_logs, :exercise_name)),
-            {include_blank: true},
-            class: 'form-control' %>
+        <%= form.collection_select :exercise_id, Exercise.all.order(:name), :id, :name, { include_blank: true }, class: 'form-control' %>
       </div>
     </div>
   </div> <!-- row -->

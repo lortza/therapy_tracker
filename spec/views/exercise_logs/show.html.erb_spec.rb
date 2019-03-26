@@ -7,7 +7,6 @@ RSpec.describe "exercise_logs/show", type: :view do
       :sets => 2,
       :reps => 3,
       :target_body_part => "Body Part Name",
-      :exercise_name => "Exercise Name",
       :current_pain_level => 4,
       :current_pain_frequency => "Current Pain Frequency",
       :progress_note => "MyText"

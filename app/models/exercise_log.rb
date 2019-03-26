@@ -1,9 +1,10 @@
 class ExerciseLog < ApplicationRecord
   belongs_to :user
+  belongs_to :exercise
 
   validates :target_body_part,
             :datetime_occurred,
-            :exercise_name,
+            :exercise_id,
             :current_pain_frequency,
             presence: true
 
@@ -12,6 +13,8 @@ class ExerciseLog < ApplicationRecord
             :current_pain_level,
             presence: true,
             numericality: true
+
+  delegate :name, to: :exercise, prefix: true
 
   EXERCISES = [
     'clam shells'

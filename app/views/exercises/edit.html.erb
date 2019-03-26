@@ -1,0 +1,6 @@
+<h1>Editing Exercise</h1>
+
+<%= render 'form', exercise: @exercise %>
+
+<hr>
+<%= link_to 'Delete Exercise', @exercise, method: :delete, data: { confirm: 'Are you sure?' }, class: button_class('danger') %>

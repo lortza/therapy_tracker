@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_26_011537) do
+ActiveRecord::Schema.define(version: 2019_03_26_025021) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 2019_03_26_011537) do
     t.text "target_body_part", default: ""
     t.integer "sets", default: 0
     t.integer "reps", default: 0
-    t.string "exercise_name", default: ""
     t.datetime "datetime_occurred"
     t.integer "current_pain_level", default: 0
     t.string "current_pain_frequency", default: ""
@@ -27,7 +26,18 @@ ActiveRecord::Schema.define(version: 2019_03_26_011537) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.bigint "exercise_id"
+    t.index ["exercise_id"], name: "index_exercise_logs_on_exercise_id"
     t.index ["user_id"], name: "index_exercise_logs_on_user_id"
+  end
+
+  create_table "exercises", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_exercises_on_user_id"
   end
 
   create_table "pain_logs", force: :cascade do |t|
@@ -57,6 +67,8 @@ ActiveRecord::Schema.define(version: 2019_03_26_011537) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "exercise_logs", "exercises"
   add_foreign_key "exercise_logs", "users"
+  add_foreign_key "exercises", "users"
   add_foreign_key "pain_logs", "users"
 end

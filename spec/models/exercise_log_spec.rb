@@ -10,7 +10,7 @@ RSpec.describe ExerciseLog, type: :model do
     it { should validate_presence_of(:datetime_occurred) }
     it { should validate_presence_of(:sets) }
     it { should validate_presence_of(:reps) }
-    it { should validate_presence_of(:exercise_name) }
+    it { should validate_presence_of(:exercise_id) }
     it { should validate_presence_of(:current_pain_level) }
     it { should validate_presence_of(:current_pain_frequency) }
 

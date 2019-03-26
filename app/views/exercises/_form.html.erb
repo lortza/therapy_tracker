@@ -1,0 +1,18 @@
+<%= form_with(model: exercise, local: true) do |form| %>
+  <%= render partial: 'shared/errors', locals: {object: exercise} %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, class: 'form-control' %>
+  </div>
+
+  <div class="actions mt-3 mb-3">
+    <%= form.submit class: button_class('success') %>
+    <%= link_to 'Cancel', exercises_path, class: button_class('primary pull-right') %>
+  </div>
+<% end %>

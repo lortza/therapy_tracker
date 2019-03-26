@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'exercise_logs#index'
 
+  resources :exercises
   resources :exercise_logs
   resources :pain_logs
 

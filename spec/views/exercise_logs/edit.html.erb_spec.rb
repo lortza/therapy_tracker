@@ -6,7 +6,6 @@ RSpec.describe "exercise_logs/edit", type: :view do
       :datetime_occurred => 'Sun, 24 Mar 2019 09:30:00 UTC +00:00',
       :sets => 1,
       :reps => 1,
-      :exercise_name => "MyString",
       :target_body_part => "Body Part Name",
       :current_pain_level => 1,
       :current_pain_frequency => "MyString",
@@ -24,8 +23,6 @@ RSpec.describe "exercise_logs/edit", type: :view do
       assert_select "input[name=?]", "exercise_log[sets]"
 
       assert_select "input[name=?]", "exercise_log[reps]"
-
-      assert_select "input[name=?]", "exercise_log[exercise_name]"
 
       assert_select "input[name=?]", "exercise_log[target_body_part]"
 
