@@ -1,16 +1,19 @@
 @import 'variables';
 
 .fal {
-  color: white;
-  background-color: $brand_main;
   padding: 0.5rem;
   border-radius: 50%;
   height: 40px;
   width: 40px;
-  border: 1px solid $brand_main;
   text-align:center;
   font-size: 20px;
   margin-right: 0.5rem;
+}
+
+.fa-notes-medical {
+  color: white;
+  background-color: $brand_main;
+  border: 1px solid $brand_main;
 }
 
 .pull-right {

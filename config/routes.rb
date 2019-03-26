@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :physical_therapy_sessions
   devise_for :users
   root to: 'exercise_logs#index'
 

@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :exercises, dependent: :destroy
   has_many :exercise_logs, dependent: :destroy
   has_many :pain_logs, dependent: :destroy
+  has_many :physical_therapy_sessions, dependent: :destroy
 
   def full_name
     "#{first_name} #{last_name}"

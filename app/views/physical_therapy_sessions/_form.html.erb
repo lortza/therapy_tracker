@@ -1,0 +1,36 @@
+<%= form_with(model: physical_therapy_session, local: true) do |form| %>
+  <%= render partial: 'shared/errors', locals: {object: physical_therapy_session} %>
+
+  <div class="field">
+    <%= form.label 'Body Part' %>
+    <%= form.select :target_body_part,
+        options_for_select(ExerciseLog::BODY_PARTS, selected: last_log(:physical_therapy_sessions, :target_body_part)),
+        {include_blank: true},
+        class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label 'When' %><br>
+    <%= form.datetime_select :datetime_occurred, ampm: true, minute_step: 15, value: Date.today, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :duration %>
+    <%= form.number_field :duration, placeholder: 'minutes', class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :exercise_notes %>
+    <%= form.text_area :exercise_notes, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :homework %>
+    <%= form.text_area :homework, class: 'form-control' %>
+  </div>
+
+  <div class="actions mt-3 mb-3">
+    <%= form.submit class: button_class('success') %>
+    <%= link_to 'Cancel', physical_therapy_sessions_path, class: button_class('primary pull-right') %>
+  </div>
+<% end %>

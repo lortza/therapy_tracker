@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @physical_therapy_session.user %>
+</p>
+
+<p>
+  <strong>Datetime occurred:</strong>
+  <%= @physical_therapy_session.datetime_occurred %>
+</p>
+
+<p>
+  <strong>Exercise notes:</strong>
+  <%= @physical_therapy_session.exercise_notes %>
+</p>
+
+<p>
+  <strong>Homework:</strong>
+  <%= @physical_therapy_session.homework %>
+</p>
+
+<p>
+  <strong>Duration:</strong>
+  <%= @physical_therapy_session.duration %>
+</p>
+
+<%= link_to 'Edit', edit_physical_therapy_session_path(@physical_therapy_session) %> |
+<%= link_to 'Back', physical_therapy_sessions_path %>

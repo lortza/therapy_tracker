@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_26_025021) do
+ActiveRecord::Schema.define(version: 2019_03_26_032928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,18 @@ ActiveRecord::Schema.define(version: 2019_03_26_025021) do
     t.index ["user_id"], name: "index_pain_logs_on_user_id"
   end
 
+  create_table "physical_therapy_sessions", force: :cascade do |t|
+    t.bigint "user_id"
+    t.datetime "datetime_occurred"
+    t.string "target_body_part", default: ""
+    t.text "exercise_notes", default: ""
+    t.text "homework", default: ""
+    t.integer "duration"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_physical_therapy_sessions_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -71,4 +83,5 @@ ActiveRecord::Schema.define(version: 2019_03_26_025021) do
   add_foreign_key "exercise_logs", "users"
   add_foreign_key "exercises", "users"
   add_foreign_key "pain_logs", "users"
+  add_foreign_key "physical_therapy_sessions", "users"
 end

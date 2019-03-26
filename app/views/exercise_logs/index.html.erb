@@ -2,6 +2,7 @@
 
 <%= link_to 'Log Exercise', new_exercise_log_path, class: 'btn btn-outline btn-primary btn-lg btn-home' %>
 <%= link_to 'Log Pain', new_pain_log_path, class: 'btn btn-outline btn-primary btn-lg btn-home' %>
+<%= link_to 'Log PT Session', new_physical_therapy_session_path, class: 'btn btn-outline btn-primary btn-lg btn-home' %>
 
 <% @exercise_logs.each do |exercise_log| %>
   <%= render partial: 'exercise_log', locals: { exercise_log: exercise_log } %>
