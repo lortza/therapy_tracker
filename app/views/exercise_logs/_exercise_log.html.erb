@@ -1,7 +1,7 @@
 <div class="card card--log-entry">
   <a href="<%= edit_exercise_log_path(exercise_log) %>">
     <div class="card-body">
-      <i class="fal fa-hospital-user pull-right"></i>
+      <i class="fal fa-dumbbell pull-right"></i>
       <h5 class="card-title"><%= format_time(exercise_log) %></h5>
       <p class="card-text"><strong><%= exercise_log.target_body_part.titleize %>:</strong> <%= format_exercise(exercise_log) %><br>
         Current Pain: <%= exercise_log.current_pain_level %>, <%= exercise_log.current_pain_frequency %><br>
