@@ -4,7 +4,7 @@
   <div class="field">
     <%= form.label :target_body_part %>
     <%= form.select :target_body_part,
-        options_for_select(ExerciseLog::BODY_PARTS, selected: ExerciseLog.last.target_body_part),
+        options_for_select(ExerciseLog::BODY_PARTS, selected: current_user.exercise_logs.last.target_body_part),
         {include_blank: true},
         class: 'form-control' %>
   </div>
@@ -18,20 +18,20 @@
     <div class="col">
       <div class="field">
         <%= form.label :sets %>
-        <%= form.number_field :sets, value: ExerciseLog.last.sets, class: 'form-control' %>
+        <%= form.number_field :sets, value: last_log(:exercise_logs, :sets), class: 'form-control' %>
       </div>
     </div>
     <div class="col">
       <div class="field">
         <%= form.label :reps %>
-        <%= form.number_field :reps, value: ExerciseLog.last.reps, class: 'form-control' %>
+        <%= form.number_field :reps, value: last_log(:exercise_logs, :reps), class: 'form-control' %>
       </div>
     </div>
     <div class="col">
       <div class="field">
         <%= form.label 'Exercise' %>
         <%= form.select :exercise_name,
-            options_for_select(ExerciseLog::EXERCISES, selected: ExerciseLog.last.exercise_name),
+            options_for_select(ExerciseLog::EXERCISES, selected: last_log(:exercise_logs, :exercise_name)),
             {include_blank: true},
             class: 'form-control' %>
       </div>
@@ -50,7 +50,7 @@
       <div class="field">
         <%= form.label :current_pain_frequency %>
         <%= form.select :current_pain_frequency,
-            options_for_select(ExerciseLog::PAIN_FREQUENCY, selected: ExerciseLog.last.current_pain_frequency),
+            options_for_select(ExerciseLog::PAIN_FREQUENCY, selected: last_log(:exercise_logs, :current_pain_frequency)),
             {include_blank: true},
             class: 'form-control' %>
       </div>

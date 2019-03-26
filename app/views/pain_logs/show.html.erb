@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @pain_log.user %>
+</p>
+
+<p>
+  <strong>Datetime occurred:</strong>
+  <%= @pain_log.datetime_occurred %>
+</p>
+
+<p>
+  <strong>Target body part:</strong>
+  <%= @pain_log.target_body_part %>
+</p>
+
+<p>
+  <strong>Pain level:</strong>
+  <%= @pain_log.pain_level %>
+</p>
+
+<p>
+  <strong>Pain description:</strong>
+  <%= @pain_log.pain_description %>
+</p>
+
+<p>
+  <strong>Trigger:</strong>
+  <%= @pain_log.trigger %>
+</p>
+
+<%= link_to 'Edit', edit_pain_log_path(@pain_log) %> |
+<%= link_to 'Back', pain_logs_path %>

@@ -1,9 +1,9 @@
-<h1>Exercise Logs</h1>
+<h1>Pain Logs</h1>
 
 <%= link_to 'Log Exercise', new_exercise_log_path, class: 'btn btn-outline btn-primary btn-lg btn-home' %>
 <%= link_to 'Log Pain', new_pain_log_path, class: 'btn btn-outline btn-primary btn-lg btn-home' %>
 
-<% @exercise_logs.each do |exercise_log| %>
-  <%= render partial: 'exercise_log', locals: { exercise_log: exercise_log } %>
+<% @pain_logs.each do |pain_log| %>
+  <%= render partial: 'pain_log', locals: { pain_log: pain_log } %>
 <% end %>
 <br>

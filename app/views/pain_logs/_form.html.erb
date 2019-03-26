@@ -1,0 +1,42 @@
+<%= form_with(model: pain_log, local: true) do |form| %>
+  <%= render partial: 'shared/errors', locals: {object: pain_log} %>
+
+  <div class="field">
+    <%= form.label :target_body_part %>
+    <%= form.select :target_body_part,
+        options_for_select(ExerciseLog::BODY_PARTS, selected: last_log(:pain_logs, :target_body_part)),
+        {include_blank: true},
+        class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label 'When' %><br>
+    <%= form.datetime_select :datetime_occurred, ampm: true, minute_step: 15, value: Date.today, class: 'form-control' %>
+  </div>
+
+  <div class="form-row">
+    <div class="col">
+      <div class="field">
+        <%= form.label :pain_level %>
+        <%= form.number_field :pain_level, selected: last_log(:pain_logs, :pain_level), class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="field">
+        <%= form.label :trigger %>
+        <%= form.text_area :trigger, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :pain_description %>
+    <%= form.text_area :pain_description, class: 'form-control' %>
+  </div>
+
+  <div class="actions mt-3 mb-3">
+    <%= form.submit class: button_class('success') %>
+    <%= link_to 'Cancel', pain_logs_path, class: button_class('primary pull-right') %>
+  </div>
+<% end %>

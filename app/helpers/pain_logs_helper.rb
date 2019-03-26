@@ -1,0 +1,2 @@
+module PainLogsHelper
+end

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: 'exercise_logs#index'
 
   resources :exercise_logs
+  resources :pain_logs
 
   namespace :admin do
     resources :users, only: [:index, :show]

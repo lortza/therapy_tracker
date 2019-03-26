@@ -1,5 +1,25 @@
 <li class="nav-item dropdown">
   <% if current_user %>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Log New
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <%= link_to 'Log Exercise', new_exercise_log_path, class: 'dropdown-item' %>
+      <%= link_to 'Log Pain', new_pain_log_path, class: 'dropdown-item' %>
+    </div>
+  </li>
+
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      History
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <%= link_to 'Exercise History', exercise_logs_path, class: 'dropdown-item' %>
+      <%= link_to 'Pain History', pain_logs_path, class: 'dropdown-item' %>
+    </div>
+  </li>
+
     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <%= current_user.email %>
     </a>

@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_24_230826) do
+ActiveRecord::Schema.define(version: 2019_03_26_011537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "exercise_logs", force: :cascade do |t|
+    t.text "target_body_part", default: ""
     t.integer "sets", default: 0
     t.integer "reps", default: 0
     t.string "exercise_name", default: ""
@@ -25,9 +26,20 @@ ActiveRecord::Schema.define(version: 2019_03_24_230826) do
     t.text "progress_note", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "target_body_part"
     t.bigint "user_id"
     t.index ["user_id"], name: "index_exercise_logs_on_user_id"
+  end
+
+  create_table "pain_logs", force: :cascade do |t|
+    t.bigint "user_id"
+    t.datetime "datetime_occurred"
+    t.string "target_body_part", default: ""
+    t.integer "pain_level"
+    t.text "pain_description", default: ""
+    t.text "trigger", default: ""
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_pain_logs_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -46,4 +58,5 @@ ActiveRecord::Schema.define(version: 2019_03_24_230826) do
   end
 
   add_foreign_key "exercise_logs", "users"
+  add_foreign_key "pain_logs", "users"
 end
