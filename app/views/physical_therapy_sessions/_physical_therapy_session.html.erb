@@ -4,6 +4,11 @@
       <i class="fal fa-hospital-user pull-right"></i>
       <h5 class="card-title"><%= format_time(physical_therapy_session) %></h5>
       <p class="card-text"><strong><%= physical_therapy_session.target_body_part.titleize %>:</strong> <%= physical_therapy_session.duration %> minutes<br></p>
+      <small class="text-muted">Homework: <br>
+        <ul>
+          <%= simple_format(physical_therapy_session.homework, {}, wrapper_tag: 'li') %>
+        </ul>
+      </small>
     </div>
   </a>
 </div>
