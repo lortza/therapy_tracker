@@ -3,6 +3,7 @@ puts 'Destroying all assets'
 Exercise.destroy_all
 ExerciseLog.destroy_all
 PainLog.destroy_all
+PhysicalTherapySession.destroy_all
 
 puts 'Building Users'
 # user = User.create!(first_name: 'Admin', last_name: 'McAdmins', email: 'admin@example.com', admin: true, password: 'password', password_confirmation: 'password')
@@ -27,5 +28,20 @@ ExerciseLog.create!([
 ])
 
 PainLog.create!([
-  { user_id: 1, datetime_occurred: 'Mon, 25 Mar 2019 19:30:00 UTC +00:00', target_body_part: "hip - right", pain_level: 3, pain_description: "lower back of hip felt dull and achey", trigger: "standing and cooking" },
+  { user_id: user.id, datetime_occurred: 'Mon, 25 Mar 2019 19:30:00 UTC +00:00', target_body_part: "hip - right", pain_level: 3, pain_description: "lower back of hip felt dull and achey", trigger: "standing and cooking" },
+])
+
+PhysicalTherapySession.create!([
+  { user_id: user.id,
+    datetime_occurred: 'Thur, 21 Mar 2019 14:00:00 UTC +00:00',
+    target_body_part: "hip - right",
+    exercise_notes: "clamshells: 3 sets 10 reps each side",
+    homework: "clamshells: 3 sets 10 reps each side",
+    duration: 60 },
+  { user_id: user.id,
+    datetime_occurred: 'Mon, 25 Mar 2019 08:00:00 UTC +00:00',
+    target_body_part: "hip - right",
+    exercise_notes: "clamshells + yellow band: 3 sets 10 reps each side\r\n\r\ncross body isometrics: 5 second push, 10 reps each leg\r\n\r\nbridges: 3 sets 10 reps, 10 second hold\r\n\r\nstrap stretch hams: 1 set 10 reps each leg. lift leg straight up with strap and hold for 10 sec\r\n\r\nstrap stretch quad: 10 set 10 reps hold for 10 seconds\r\n\r\ncrouch walk with band: 2 laps\r\n\r\nsquats on machine: 2 sets 10 reps",
+    homework: "clamshells: 3 sets 10 reps each side\r\n\r\ncross body isometrics: 5 second push, 10 reps each leg\r\n\r\nbridges: 3 sets 10 reps, 10 second hold",
+    duration: 90 },
 ])

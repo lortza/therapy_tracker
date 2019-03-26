@@ -1,12 +1,9 @@
 <div class="card card--log-entry">
-  <a href="<%= edit_physical_therapy_session_path(physical_therapy_session) %>">
+  <a href="<%= physical_therapy_session_path(physical_therapy_session) %>">
     <div class="card-body">
       <i class="fal fa-hospital-user pull-right"></i>
       <h5 class="card-title"><%= format_time(physical_therapy_session) %></h5>
-      <p class="card-text"><strong><%= physical_therapy_session.target_body_part.titleize %>:</strong> <%= physical_therapy_session.duration %> minutes<br>
-        Exercises: <%= physical_therapy_session.exercise_notes %><br>
-        <small class="text-muted">Homework: <%= physical_therapy_session.homework %></small>
-      </p>
+      <p class="card-text"><strong><%= physical_therapy_session.target_body_part.titleize %>:</strong> <%= physical_therapy_session.duration %> minutes<br></p>
     </div>
   </a>
 </div>

@@ -21,16 +21,16 @@
 
   <div class="field">
     <%= form.label :exercise_notes %>
-    <%= form.text_area :exercise_notes, class: 'form-control' %>
+    <%= form.text_area :exercise_notes, class: 'form-control textarea-large' %>
   </div>
 
   <div class="field">
     <%= form.label :homework %>
-    <%= form.text_area :homework, class: 'form-control' %>
+    <%= form.text_area :homework, class: 'form-control textarea-large' %>
   </div>
 
   <div class="actions mt-3 mb-3">
     <%= form.submit class: button_class('success') %>
-    <%= link_to 'Cancel', physical_therapy_sessions_path, class: button_class('primary pull-right') %>
+    <%= link_to 'Index', physical_therapy_sessions_path, class: button_class('primary pull-right') %>
   </div>
 <% end %>

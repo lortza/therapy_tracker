@@ -1,29 +1,14 @@
-<p id="notice"><%= notice %></p>
+<i class="fal fa-hospital-user pull-right"></i>
+<h5 class="card-title"><%= format_time(@physical_therapy_session) %></h5>
+<p class="card-text"><strong><%= @physical_therapy_session.target_body_part.titleize %>:</strong> <%= @physical_therapy_session.duration %> minutes<br></p>
+<ul>
+  <%= simple_format(@physical_therapy_session.exercise_notes, {}, wrapper_tag: 'li') %>
+</ul>
+<small class="text-muted">Homework: <br>
+  <ul>
+    <%= simple_format(@physical_therapy_session.homework, {}, wrapper_tag: 'li') %>
+  </ul>
+</small>
 
-<p>
-  <strong>User:</strong>
-  <%= @physical_therapy_session.user %>
-</p>
-
-<p>
-  <strong>Datetime occurred:</strong>
-  <%= @physical_therapy_session.datetime_occurred %>
-</p>
-
-<p>
-  <strong>Exercise notes:</strong>
-  <%= @physical_therapy_session.exercise_notes %>
-</p>
-
-<p>
-  <strong>Homework:</strong>
-  <%= @physical_therapy_session.homework %>
-</p>
-
-<p>
-  <strong>Duration:</strong>
-  <%= @physical_therapy_session.duration %>
-</p>
-
-<%= link_to 'Edit', edit_physical_therapy_session_path(@physical_therapy_session) %> |
-<%= link_to 'Back', physical_therapy_sessions_path %>
+<%= link_to 'Edit', edit_physical_therapy_session_path(@physical_therapy_session), class: button_class %>
+<%= link_to 'Back', physical_therapy_sessions_path, class: button_class %>
