@@ -2,7 +2,7 @@ class PhysicalTherapySessionsController < ApplicationController
   before_action :set_physical_therapy_session, only: [:show, :edit, :update, :destroy]
 
   def index
-    @physical_therapy_sessions = current_user.physical_therapy_sessions.all
+    @physical_therapy_sessions = current_user.physical_therapy_sessions.order(datetime_occurred: 'DESC' )
   end
 
   def show
