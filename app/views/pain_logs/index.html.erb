@@ -1,8 +1,6 @@
 <h1>Pain Logs</h1>
 
-<%= link_to 'Log Exercise', new_exercise_log_path, class: 'btn btn-outline btn-primary btn-lg btn-home' %>
-<%= link_to 'Log Pain', new_pain_log_path, class: 'btn btn-outline btn-primary btn-lg btn-home' %>
-<%= link_to 'Log PT Session', new_physical_therapy_session_path, class: 'btn btn-outline btn-primary btn-lg btn-home' %>
+<%= render partial: 'shared/add_log_buttons' %>
 
 <% @pain_logs.each do |pain_log| %>
   <%= render partial: 'pain_log', locals: { pain_log: pain_log } %>
