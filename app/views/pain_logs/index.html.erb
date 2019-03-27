@@ -1,6 +1,6 @@
 <h1>Pain Logs</h1>
 
-<%= render partial: 'shared/add_log_buttons' %>
+<%= link_to 'Log Pain', new_pain_log_path, class: 'btn btn-outline btn-info btn-lg btn-home' %>
 
 <% @pain_logs.each do |pain_log| %>
   <%= render partial: 'pain_log', locals: { pain_log: pain_log } %>

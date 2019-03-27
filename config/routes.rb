@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   resources :physical_therapy_sessions
   devise_for :users
-  root to: 'exercise_logs#index'
+  root to: 'logs#index'
 
   resources :exercises
+  resources :logs, only: [:index]
   resources :exercise_logs
   resources :pain_logs
 

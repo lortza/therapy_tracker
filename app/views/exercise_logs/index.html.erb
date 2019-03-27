@@ -1,6 +1,6 @@
 <h1>Exercise Logs</h1>
 
-<%= render partial: 'shared/add_log_buttons' %>
+<%= link_to 'Log Exercise', new_exercise_log_path, class: 'btn btn-outline btn-info btn-lg btn-home' %>
 
 <% @exercise_logs.each do |exercise_log| %>
   <%= render partial: 'exercise_log', locals: { exercise_log: exercise_log } %>

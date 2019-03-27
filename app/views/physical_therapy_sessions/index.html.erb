@@ -1,6 +1,6 @@
 <h1>Physical Therapy Sessions</h1>
 
-<%= render partial: 'shared/add_log_buttons' %>
+<%= link_to 'Log PT Session', new_physical_therapy_session_path, class: 'btn btn-outline btn-info btn-lg btn-home' %>
 
 <% @physical_therapy_sessions.each do |physical_therapy_session| %>
   <%= render partial: 'physical_therapy_session', locals: { physical_therapy_session: physical_therapy_session } %>
