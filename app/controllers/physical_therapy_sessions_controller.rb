@@ -20,7 +20,7 @@ class PhysicalTherapySessionsController < ApplicationController
 
     respond_to do |format|
       if @physical_therapy_session.save
-        format.html { redirect_to physical_therapy_sessions_url, notice: 'Physical therapy session was successfully created.' }
+        format.html { redirect_to root_url, notice: 'Physical therapy session was successfully created.' }
         format.json { render :show, status: :created, location: @physical_therapy_session }
       else
         format.html { render :new }
@@ -32,7 +32,7 @@ class PhysicalTherapySessionsController < ApplicationController
   def update
     respond_to do |format|
       if @physical_therapy_session.update(physical_therapy_session_params)
-        format.html { redirect_to physical_therapy_sessions_url, notice: 'Physical therapy session was successfully updated.' }
+        format.html { redirect_to root_url, notice: 'Physical therapy session was successfully updated.' }
         format.json { render :show, status: :ok, location: @physical_therapy_session }
       else
         format.html { render :edit }
@@ -44,7 +44,7 @@ class PhysicalTherapySessionsController < ApplicationController
   def destroy
     @physical_therapy_session.destroy
     respond_to do |format|
-      format.html { redirect_to physical_therapy_sessions_url, notice: 'Physical therapy session was successfully destroyed.' }
+      format.html { redirect_to root_url, notice: 'Physical therapy session was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

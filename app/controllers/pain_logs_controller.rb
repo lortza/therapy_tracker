@@ -20,7 +20,7 @@ class PainLogsController < ApplicationController
 
     respond_to do |format|
       if @pain_log.save
-        format.html { redirect_to pain_logs_url, notice: 'Pain log was successfully created.' }
+        format.html { redirect_to root_url, notice: 'Pain log was successfully created.' }
         format.json { render :show, status: :created, location: @pain_log }
       else
         format.html { render :new }
@@ -32,7 +32,7 @@ class PainLogsController < ApplicationController
   def update
     respond_to do |format|
       if @pain_log.update(pain_log_params)
-        format.html { redirect_to pain_logs_url, notice: 'Pain log was successfully updated.' }
+        format.html { redirect_to root_url, notice: 'Pain log was successfully updated.' }
         format.json { render :show, status: :ok, location: @pain_log }
       else
         format.html { render :edit }
@@ -44,7 +44,7 @@ class PainLogsController < ApplicationController
   def destroy
     @pain_log.destroy
     respond_to do |format|
-      format.html { redirect_to pain_logs_url, notice: 'Pain log was successfully destroyed.' }
+      format.html { redirect_to root_url, notice: 'Pain log was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
