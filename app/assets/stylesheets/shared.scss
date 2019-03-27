@@ -1,21 +1,23 @@
 @import 'variables';
 
 .fal {
-  padding: 0.5rem;
   border-radius: 50%;
   height: 40px;
   width: 40px;
   text-align:center;
   font-size: 20px;
-  margin-right: 0.5rem;
 }
 
 .fa-notes-medical {
   color: white;
   background-color: $brand_main;
   border: 1px solid $brand_main;
+  padding: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 .pull-right {
   float: right;
 }
+
+/* BOOTSTRAP OVERRIDES */
