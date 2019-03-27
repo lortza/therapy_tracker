@@ -1,3 +1,27 @@
-<%= link_to 'Log Exercise', new_exercise_log_path, class: 'btn btn-outline btn-info btn-lg btn-home' %>
-<%= link_to 'Log Pain', new_pain_log_path, class: 'btn btn-outline btn-info btn-lg btn-home' %>
-<%= link_to 'Log PT Session', new_physical_therapy_session_path, class: 'btn btn-outline btn-info btn-lg btn-home' %>
+<header class='add-log-buttons-container'>
+  <div class="row">
+    <div class="col">
+      <section class='add-log-button pain-button'>
+        <%= link_to '<i class="fal fa-user-injured fa-2x"></i><br>+Pain'.html_safe, new_pain_log_path %>
+      </section>
+    </div>
+
+    <div class="col">
+      <section class='add-log-button exercise-button'>
+        <%= link_to '<i class="fal fa-dumbbell fa-2x"></i><br>+Exercise'.html_safe, new_exercise_log_path %>
+      </section>
+    </div>
+
+    <div class="col">
+      <section class='add-log-button therapy-button'>
+        <%= link_to '<i class="fal fa-hospital-user fa-2x"></i><br>+Therapy'.html_safe, new_physical_therapy_session_path %>
+      </section>
+    </div>
+  </div>
+</header>
+
+
+
+<%#= link_to 'Log Exercise', new_exercise_log_path, class: 'btn btn-outline btn-info btn-lg btn-home' %>
+<%#= link_to 'Log Pain', new_pain_log_path, class: 'btn btn-outline btn-info btn-lg btn-home' %>
+<%#= link_to 'Log PT Session', new_physical_therapy_session_path, class: 'btn btn-outline btn-info btn-lg btn-home' %>

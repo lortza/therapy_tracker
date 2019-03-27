@@ -1,6 +1,8 @@
-<h1>Pain Logs</h1>
-
-<%= link_to 'Log Pain', new_pain_log_path, class: 'btn btn-outline btn-info btn-lg btn-home' %>
+<header class='add-log-buttons-container'>
+  <section class='add-log-button pain-button'>
+    <%= link_to '<i class="fal fa-user-injured fa-2x"></i><br>+Pain'.html_safe, new_pain_log_path %>
+  </section>
+</header>
 
 <% @pain_logs.each do |pain_log| %>
   <%= render partial: 'pain_log', locals: { pain_log: pain_log } %>

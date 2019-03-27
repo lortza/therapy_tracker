@@ -11,7 +11,23 @@
     background-color: $secondary;
     a { text-decoration: none; }
   }
-  .card-header {
-    display: flex;
-  }
+}
+.card--log-type {
+  float: right;
+  font-size: 0.8rem;
+}
+
+.log-type-pain {
+  color: $pain-color;
+}
+
+.log-type-exercise {
+  color: $exercise-color;
+}
+
+.log-type-therapy {
+  color: $therapy-color;
+}
+
+.card--pt-session i {
 }

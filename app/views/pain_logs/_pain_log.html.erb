@@ -1,8 +1,9 @@
 <div class="card card--log-entry">
   <a href="<%= edit_pain_log_path(pain_log) %>">
     <div class="card-body">
-      <i class="fal fa-user-injured pull-right"></i>
+      <span class='card--log-type log-type-pain'>Pain <i class="fal fa-user-injured"></i></span>
       <h5 class="card-title"><%= format_time(pain_log) %></h5>
+
       <p class="card-text"><strong><%= pain_log.target_body_part.titleize %>:</strong> Pain Level: <%= pain_log.pain_level %> <br>
         <%= pain_log.pain_description %><br>
         <small class="text-muted">Triggered by: <%= pain_log.trigger %></small>
