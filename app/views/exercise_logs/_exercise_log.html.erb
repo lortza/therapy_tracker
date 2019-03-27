@@ -1,7 +1,7 @@
-<div class="card card--log-entry">
+<div class="card card--log-entry log-type-exercise">
   <a href="<%= edit_exercise_log_path(exercise_log) %>">
     <div class="card-body">
-      <span class='card--log-type log-type-exercise'>Exercise <i class="fal fa-dumbbell"></i></span>
+      <span class='card--log-icon'>Exercise <i class="fal fa-dumbbell"></i></span>
       <h5 class="card-title"><%= format_time(exercise_log) %></h5>
 
       <p class="card-text"><strong><%= exercise_log.target_body_part.titleize %>:</strong> <%= format_exercise(exercise_log) %><br>

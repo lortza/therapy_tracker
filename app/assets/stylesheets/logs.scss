@@ -12,22 +12,28 @@
     a { text-decoration: none; }
   }
 }
-.card--log-type {
+.card--log-icon {
   float: right;
   font-size: 0.8rem;
 }
 
 .log-type-pain {
-  color: $pain-color;
+  border: 1px solid $pain-color;
+  .card--log-icon {
+    color: $pain-color;
+  }
 }
 
 .log-type-exercise {
-  color: $exercise-color;
+  border: 1px solid $exercise-color;
+  .card--log-icon {
+    color: $exercise-color;
+  }
 }
 
 .log-type-therapy {
-  color: $therapy-color;
-}
-
-.card--pt-session i {
+  border: 1px solid $therapy-color;
+  .card--log-icon {
+    color: $therapy-color;
+  }
 }

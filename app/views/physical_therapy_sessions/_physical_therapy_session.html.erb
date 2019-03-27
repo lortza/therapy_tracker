@@ -1,7 +1,7 @@
-<div class="card card--log-entry card--pt-session">
+<div class="card card--log-entry log-type-therapy">
   <a href="<%= physical_therapy_session_path(physical_therapy_session) %>">
     <div class="card-body">
-      <span class='card--log-type log-type-therapy'>Therapy <i class="fal fa-hospital-user"></i></span>
+      <span class='card--log-icon'>Therapy <i class="fal fa-hospital-user"></i></span>
       <h5><%= format_time(physical_therapy_session) %></h5>
 
       <p class="card-subtitle"><strong><%= physical_therapy_session.target_body_part.titleize %>:</strong> <%= physical_therapy_session.duration %> minutes<br></p>
