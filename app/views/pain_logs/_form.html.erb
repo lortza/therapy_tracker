@@ -5,7 +5,7 @@
     <%= form.label 'Body Part' %>
     <%= form.select :target_body_part,
         options_for_select(ExerciseLog::BODY_PARTS, selected: last_log(:pain_logs, :target_body_part)),
-        {include_blank: true},
+        { include_blank: false },
         class: 'form-control' %>
   </div>
 

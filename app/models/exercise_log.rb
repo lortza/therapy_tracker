@@ -17,7 +17,9 @@ class ExerciseLog < ApplicationRecord
   delegate :name, to: :exercise, prefix: true
 
   EXERCISES = [
-    'clam shells'
+    'clam shells',
+    'bridges',
+    'sample exercise'
   ]
 
   PAIN_FREQUENCY = [
