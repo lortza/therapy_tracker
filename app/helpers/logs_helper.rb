@@ -7,4 +7,8 @@ module LogsHelper
   def last_log(kollection, attr)
     current_user.send(kollection)[-2].send(attr) if current_user.send(kollection)[-2]
   end
+
+  def last_homework
+    PhysicalTherapySession.last&.homework
+  end
 end

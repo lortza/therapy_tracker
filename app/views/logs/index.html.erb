@@ -1,5 +1,9 @@
 <%= render partial: 'shared/add_log_buttons' %>
 
+<% if last_homework %>
+  <%= render partial: 'physical_therapy_sessions/homework', locals: { homework: last_homework } %>
+<% end %>
+
 <% @logs.each do |log| %>
   <%= render log %>
 <% end %>
