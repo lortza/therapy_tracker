@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_26_032928) do
+ActiveRecord::Schema.define(version: 2019_03_30_171601) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,13 +20,12 @@ ActiveRecord::Schema.define(version: 2019_03_26_032928) do
     t.integer "sets", default: 0
     t.integer "reps", default: 0
     t.datetime "datetime_occurred"
-    t.integer "current_pain_level", default: 0
-    t.string "current_pain_frequency", default: ""
     t.text "progress_note", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.bigint "exercise_id"
+    t.integer "rep_length", default: 0
     t.index ["exercise_id"], name: "index_exercise_logs_on_exercise_id"
     t.index ["user_id"], name: "index_exercise_logs_on_user_id"
   end

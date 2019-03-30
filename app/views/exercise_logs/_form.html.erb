@@ -14,6 +14,14 @@
     <%= form.datetime_select :datetime_occurred, ampm: true, minute_step: 15, value: Date.today, class: 'form-control' %>
   </div>
 
+  <div class="field">
+    <%= form.label 'Exercise' %>
+    <%= form.collection_select :exercise_id,
+    Exercise.all.order(:name), :id, :name,
+    { include_blank: false },
+    class: 'form-control' %>
+  </div>
+
   <div class="form-row">
     <div class="col">
       <div class="field">
@@ -29,30 +37,8 @@
     </div>
     <div class="col">
       <div class="field">
-        <%= form.label 'Exercise' %>
-        <%= form.collection_select :exercise_id,
-            Exercise.all.order(:name), :id, :name,
-            { include_blank: false },
-            class: 'form-control' %>
-      </div>
-    </div>
-  </div> <!-- row -->
-
-  <div class="form-row">
-    <div class="col">
-      <div class="field">
-        <%= form.label :current_pain_level %>
-        <%= form.number_field :current_pain_level, class: 'form-control' %>
-      </div>
-    </div>
-
-    <div class="col">
-      <div class="field">
-        <%= form.label :current_pain_frequency %>
-        <%= form.select :current_pain_frequency,
-            options_for_select(ExerciseLog::PAIN_FREQUENCY),
-            { include_blank: false },
-            class: 'form-control' %>
+        <%= form.label :rep_length %>
+        <%= form.number_field :rep_length, class: 'form-control' %>
       </div>
     </div>
   </div> <!-- row -->

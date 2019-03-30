@@ -5,12 +5,11 @@ class ExerciseLog < ApplicationRecord
   validates :target_body_part,
             :datetime_occurred,
             :exercise_id,
-            :current_pain_frequency,
             presence: true
 
   validates :sets,
             :reps,
-            :current_pain_level,
+            :rep_length,
             presence: true,
             numericality: true
 
