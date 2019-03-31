@@ -1,7 +1,5 @@
 <header class='add-log-buttons-container'>
-  <section class='add-log-button exercise-button'>
-    <%= link_to '<i class="fal fa-dumbbell fa-2x"></i><br>+Exercise'.html_safe, new_exercise_log_path %>
-  </section>
+  <%= render 'buttons/new_exercise_log' %>
 </header>
 
 <% @exercise_logs.each do |exercise_log| %>
