@@ -6,13 +6,13 @@ document.addEventListener('DOMContentLoaded', function () {
     event.preventDefault();
     button = event.target;
 
-    if(homeworkToggle.classList.contains('fa-caret-down')){
-      homeworkToggle.classList.add('fa-caret-right')
-      homeworkToggle.classList.remove('fa-caret-down')
-      homeworkList.classList.remove('hidden')
-    } else {
+    if(homeworkToggle.classList.contains('fa-caret-right')){
       homeworkToggle.classList.add('fa-caret-down')
       homeworkToggle.classList.remove('fa-caret-right')
+      homeworkList.classList.remove('hidden')
+    } else {
+      homeworkToggle.classList.add('fa-caret-right')
+      homeworkToggle.classList.remove('fa-caret-down')
       homeworkList.classList.add('hidden')
     }
   })

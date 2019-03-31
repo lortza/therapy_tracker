@@ -4,11 +4,8 @@
 <ul>
   <%= simple_format(@physical_therapy_session.exercise_notes, {}, wrapper_tag: 'li') %>
 </ul>
-<small class="text-muted">Homework: <br>
-  <ul>
-    <%= simple_format(@physical_therapy_session.homework, {}, wrapper_tag: 'li') %>
-  </ul>
-</small>
+
+<%= render partial: 'physical_therapy_sessions/homework', locals: { homework: @physical_therapy_session.homework } %>
 
 <%= link_to 'Edit', edit_physical_therapy_session_path(@physical_therapy_session), class: button_class %>
 <%= link_to 'Back', physical_therapy_sessions_path, class: button_class %>
