@@ -1,5 +1,7 @@
 class PainLogsController < ApplicationController
   before_action :set_pain_log, only: [:show, :edit, :update, :destroy]
+  layout 'no_white_container', only: [:index]
+
 
   def index
     @pain_logs = current_user.pain_logs.order(datetime_occurred: 'DESC' )

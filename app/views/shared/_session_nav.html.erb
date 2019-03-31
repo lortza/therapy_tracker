@@ -7,6 +7,7 @@
       <%= link_to 'Log Exercise', new_exercise_log_path, class: 'dropdown-item' %>
       <%= link_to 'Log Pain', new_pain_log_path, class: 'dropdown-item' %>
       <%= link_to 'Log PT Session', new_physical_therapy_session_path, class: 'dropdown-item' %>
+      <div class='dropdown-divider'></div>
       <%= link_to 'Create New Exercise', new_exercise_path, class: 'dropdown-item' %>
     </div>
   </li>
@@ -19,6 +20,8 @@
       <%= link_to 'Exercise History', exercise_logs_path, class: 'dropdown-item' %>
       <%= link_to 'Pain History', pain_logs_path, class: 'dropdown-item' %>
       <%= link_to 'PT History', physical_therapy_sessions_path, class: 'dropdown-item' %>
+      <div class='dropdown-divider'></div>
+      <%= link_to 'All Exercises', exercises_path, class: 'dropdown-item' %>
     </div>
   </li>
 

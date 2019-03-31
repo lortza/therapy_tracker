@@ -4,10 +4,8 @@
   <body>
     <%= render 'shared/navbar' %>
     <div class='container'>
-      <article class='white-container'>
-        <%= render 'shared/flashes' %>
-        <%= yield %>
-      </article>
+      <%= render 'shared/flashes' %>
+      <%= yield %>
     </div>
     <%= render 'layouts/scripts' %>
   </body>

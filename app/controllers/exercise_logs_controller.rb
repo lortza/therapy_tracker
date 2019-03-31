@@ -1,5 +1,6 @@
 class ExerciseLogsController < ApplicationController
   before_action :set_exercise_log, only: [:show, :edit, :update, :destroy]
+  layout 'no_white_container', only: [:index]
 
   def index
     @exercise_logs = current_user.exercise_logs.order(datetime_occurred: 'DESC' )
