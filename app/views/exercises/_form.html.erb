@@ -6,6 +6,27 @@
     <%= form.text_field :name, class: 'form-control' %>
   </div>
 
+  <div class="form-row">
+    <div class="col">
+      <div class="field">
+        <%= form.label :default_sets %>
+        <%= form.number_field :default_sets, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="col">
+      <div class="field">
+        <%= form.label :default_reps %>
+        <%= form.number_field :default_reps, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="col">
+      <div class="field">
+        <%= form.label :default_rep_length %>
+        <%= form.number_field :default_rep_length, class: 'form-control' %>
+      </div>
+    </div>
+  </div> <!-- row -->
+
   <div class="field">
     <%= form.label :description %>
     <%= form.text_area :description, class: 'form-control' %>

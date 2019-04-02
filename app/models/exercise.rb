@@ -4,5 +4,8 @@ class Exercise < ApplicationRecord
 
   validates :name,
             :description,
+            :default_sets,
+            :default_reps,
+            :default_rep_length,
             presence: true
 end
