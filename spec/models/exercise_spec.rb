@@ -8,5 +8,8 @@ RSpec.describe Exercise, type: :model do
   context "validations" do
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:description) }
+    it { should validate_presence_of(:default_sets) }
+    it { should validate_presence_of(:default_reps) }
+    it { should validate_presence_of(:default_rep_length) }
   end
 end
