@@ -14,14 +14,21 @@
 </p>
 
 <p>
-  <strong>Current Pain:</strong><br>
-  <strong>Level:</strong> <%= @exercise_log.current_pain_level %>, <strong>Frequency:</strong> <%= @exercise_log.current_pain_frequency %>
-</p>
-
-<p>
   <strong>Progress notes:</strong><br>
   <%= @exercise_log.progress_note %>
 </p>
 
-<%= link_to 'Edit', edit_exercise_log_path(@exercise_log) %> |
-<%= link_to 'Back', exercise_log_path %>
+<hr>
+
+<h3>Rep Counter</h3>
+<p>Coming soon...</p>
+
+<p>Set: 1</p>
+<p>Rep: 1</p>
+<p>Hold for 5</p>
+<%= link_to 'Start', '#', id: 'start_button', class: button_class('success') %>
+
+<hr>
+
+<%= link_to 'Edit', edit_exercise_log_path(@exercise_log), class: button_class %>
+<%= link_to 'Back', exercise_log_path, class: button_class('primary pull-right') %>
