@@ -1,6 +1,6 @@
 <% content_for(:title, format_time(@exercise_log)) %>
 
-<h1>Editing <%= format_time(@exercise_log) %></h1>
+<h1>Editing <%= @exercise_log.exercise_name %></h1>
 
 <%= render 'form', exercise_log: @exercise_log %>
 <%= link_to 'Delete Exercise Log', @exercise_log, method: :delete, data: { confirm: 'Are you sure?' }, class: button_class('danger') %>

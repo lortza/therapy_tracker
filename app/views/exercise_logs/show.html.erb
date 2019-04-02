@@ -20,15 +20,32 @@
 
 <hr>
 
-<h3>Rep Counter</h3>
-<p>Coming soon...</p>
+<h3>
+  Rep Counter
+  <span id='begin-finished-indicator' class='hidden pull-right'></span>
+</h3>
 
-<p>Set: 1</p>
-<p>Rep: 1</p>
-<p>Hold for 5</p>
+<div class="row">
+  <div class="col">
+    <p>Set: <span id='set'>0</span> of <%= @exercise_log.sets %></p>
+    <p></p>
+  </div>
+  <div class="col">
+    <p>Rep: <span id='rep'>0</span> of <%= @exercise_log.reps %><br>
+    (Hold for <%= @exercise_log.rep_length %>)</p>
+  </div>
+</div> <!-- row -->
+
+
 <%= link_to 'Start', '#', id: 'start_button', class: button_class('success') %>
+<%= link_to 'Stop', exercise_log_path(@exercise_log), id: 'stop_button', class: button_class('danger') %>
 
 <hr>
 
 <%= link_to 'Edit', edit_exercise_log_path(@exercise_log), class: button_class %>
 <%= link_to 'Back', exercise_log_path, class: button_class('primary pull-right') %>
+
+
+<script>
+  counter(<%= @exercise_log.sets %>, <%= @exercise_log.reps %>, <%= @exercise_log.rep_length %>)
+</script>
