@@ -10,6 +10,7 @@ class ExerciseLog < ApplicationRecord
   validates :sets,
             :reps,
             :rep_length,
+            :burn_rep,
             presence: true,
             numericality: true
 
