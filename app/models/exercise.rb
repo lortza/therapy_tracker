@@ -8,4 +8,11 @@ class Exercise < ApplicationRecord
             :default_reps,
             :default_rep_length,
             presence: true
+
+  def self.mapped
+    all.map do |exercise|
+      {id: exercise.id, sets: exercise.default_sets, reps: exercise.default_reps, rep_length: exercise.default_rep_length }
+    end
+  end
+
 end

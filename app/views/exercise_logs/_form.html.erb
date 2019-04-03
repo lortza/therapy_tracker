@@ -53,3 +53,7 @@
     <%= link_to 'Cancel', exercise_logs_path, class: button_class('primary pull-right') %>
   </div>
 <% end %>
+
+<script>
+  populateDefaultValues([<%= Exercise.mapped %>]);
+</script>
