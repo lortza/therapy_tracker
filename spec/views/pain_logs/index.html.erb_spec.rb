@@ -5,14 +5,14 @@ RSpec.describe "pain_logs/index", type: :view do
     assign(:pain_logs, [
       PainLog.create!(
         :user => nil,
-        :target_body_part => "Target Body Part",
+        :body_part_id => 1,
         :pain_level => 2,
         :pain_description => "MyText",
         :trigger => "MyText"
       ),
       PainLog.create!(
         :user => nil,
-        :target_body_part => "Target Body Part",
+        :body_part_id => 1,
         :pain_level => 2,
         :pain_description => "MyText",
         :trigger => "MyText"

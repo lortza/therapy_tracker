@@ -1,0 +1,23 @@
+<%= form_with(model: pain, local: true) do |form| %>
+  <% if pain.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(pain.errors.count, "error") %> prohibited this pain from being saved:</h2>
+
+      <ul>
+      <% pain.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="actions mt-3 mb-3">
+    <%= form.submit class: button_class('success') %>
+    <%= link_to 'Cancel', pains_path, class: button_class('primary pull-right') %>
+  </div>
+<% end %>

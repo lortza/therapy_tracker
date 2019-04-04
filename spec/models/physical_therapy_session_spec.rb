@@ -6,7 +6,7 @@ RSpec.describe PhysicalTherapySession, type: :model do
   end
 
   context "validations" do
-    it { should validate_presence_of(:target_body_part) }
+    it { should validate_presence_of(:body_part_id) }
     it { should validate_presence_of(:datetime_occurred) }
     it { should validate_presence_of(:exercise_notes) }
     it { should validate_presence_of(:homework) }

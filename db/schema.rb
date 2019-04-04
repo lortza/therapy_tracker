@@ -10,13 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_03_121140) do
+ActiveRecord::Schema.define(version: 2019_04_04_032539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "body_parts", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_body_parts_on_user_id"
+  end
+
   create_table "exercise_logs", force: :cascade do |t|
-    t.text "target_body_part", default: ""
     t.integer "sets", default: 0
     t.integer "reps", default: 0
     t.datetime "datetime_occurred"
@@ -27,6 +34,8 @@ ActiveRecord::Schema.define(version: 2019_04_03_121140) do
     t.bigint "exercise_id"
     t.integer "rep_length", default: 0
     t.float "burn_rep"
+    t.bigint "body_part_id"
+    t.index ["body_part_id"], name: "index_exercise_logs_on_body_part_id"
     t.index ["exercise_id"], name: "index_exercise_logs_on_exercise_id"
     t.index ["user_id"], name: "index_exercise_logs_on_user_id"
   end
@@ -46,24 +55,36 @@ ActiveRecord::Schema.define(version: 2019_04_03_121140) do
   create_table "pain_logs", force: :cascade do |t|
     t.bigint "user_id"
     t.datetime "datetime_occurred"
-    t.string "target_body_part", default: ""
     t.integer "pain_level"
     t.text "pain_description", default: ""
     t.text "trigger", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "pain_id"
+    t.bigint "body_part_id"
+    t.index ["body_part_id"], name: "index_pain_logs_on_body_part_id"
+    t.index ["pain_id"], name: "index_pain_logs_on_pain_id"
     t.index ["user_id"], name: "index_pain_logs_on_user_id"
+  end
+
+  create_table "pains", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_pains_on_user_id"
   end
 
   create_table "physical_therapy_sessions", force: :cascade do |t|
     t.bigint "user_id"
     t.datetime "datetime_occurred"
-    t.string "target_body_part", default: ""
     t.text "exercise_notes", default: ""
     t.text "homework", default: ""
     t.integer "duration"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "body_part_id"
+    t.index ["body_part_id"], name: "index_physical_therapy_sessions_on_body_part_id"
     t.index ["user_id"], name: "index_physical_therapy_sessions_on_user_id"
   end
 
@@ -82,9 +103,15 @@ ActiveRecord::Schema.define(version: 2019_04_03_121140) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "body_parts", "users"
+  add_foreign_key "exercise_logs", "body_parts"
   add_foreign_key "exercise_logs", "exercises"
   add_foreign_key "exercise_logs", "users"
   add_foreign_key "exercises", "users"
+  add_foreign_key "pain_logs", "body_parts"
+  add_foreign_key "pain_logs", "pains"
   add_foreign_key "pain_logs", "users"
+  add_foreign_key "pains", "users"
+  add_foreign_key "physical_therapy_sessions", "body_parts"
   add_foreign_key "physical_therapy_sessions", "users"
 end

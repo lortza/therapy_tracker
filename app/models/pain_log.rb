@@ -1,8 +1,11 @@
 class PainLog < ApplicationRecord
   belongs_to :user
+  belongs_to :body_part
+  belongs_to :pain
 
-  validates :target_body_part,
-            :datetime_occurred,
+  validates :datetime_occurred,
+            :body_part_id,
+            :pain_id,
             :pain_description,
             :trigger,
             presence: true
@@ -11,5 +14,6 @@ class PainLog < ApplicationRecord
             presence: true,
             numericality: true
 
-
+  delegate :name, to: :pain, prefix: true
+  delegate :name, to: :body_part, prefix: true
 end

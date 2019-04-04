@@ -4,7 +4,7 @@ RSpec.describe "pain_logs/show", type: :view do
   before(:each) do
     @pain_log = assign(:pain_log, PainLog.create!(
       :user => nil,
-      :target_body_part => "Target Body Part",
+      :body_part_id => 1,
       :pain_level => 2,
       :pain_description => "MyText",
       :trigger => "MyText"

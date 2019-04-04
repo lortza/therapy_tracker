@@ -2,11 +2,11 @@
   <%= render partial: 'shared/errors', locals: {object: pain_log} %>
 
   <div class="field">
-    <%= form.label 'Body Part' %>
-    <%= form.select :target_body_part,
-        options_for_select(ExerciseLog::BODY_PARTS, selected: last_log(:pain_logs, :target_body_part)),
-        { include_blank: false },
-        class: 'form-control' %>
+    <%= form.label 'Target Body Part' %>
+    <%= form.collection_select :body_part_id,
+    BodyPart.all.order(:name), :id, :name,
+    { include_blank: false },
+    class: 'form-control' %>
   </div>
 
   <div class="field">
@@ -24,10 +24,18 @@
 
     <div class="col">
       <div class="field">
-        <%= form.label :trigger %>
-        <%= form.text_area :trigger, class: 'form-control' %>
+        <%= form.label 'Pain Type' %>
+        <%= form.collection_select :pain_id,
+        Pain.all.order(:name), :id, :name,
+        { include_blank: false },
+        class: 'form-control' %>
       </div>
     </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :trigger %>
+    <%= form.text_area :trigger, class: 'form-control' %>
   </div>
 
   <div class="field">

@@ -1,8 +1,9 @@
 class PhysicalTherapySession < ApplicationRecord
   belongs_to :user
+  belongs_to :body_part
 
   validates :datetime_occurred,
-            :target_body_part,
+            :body_part_id,
             :exercise_notes,
             :homework,
             presence: true
@@ -10,6 +11,8 @@ class PhysicalTherapySession < ApplicationRecord
   validates :duration,
             presence: true,
             numericality: true
+
+  delegate :name, to: :body_part, prefix: true
 
   def exercise_notes_to_lines
     self.exercise_notes = exercise_notes.gsub(/\r/, "\n")
