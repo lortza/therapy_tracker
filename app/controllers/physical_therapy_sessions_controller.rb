@@ -56,6 +56,6 @@ class PhysicalTherapySessionsController < ApplicationController
     end
 
     def physical_therapy_session_params
-      params.require(:physical_therapy_session).permit(:user_id, :body_part_id, :datetime_occurred, :target_body_part, :exercise_notes, :homework, :duration)
+      params.require(:physical_therapy_session).permit(:user_id, :body_part_id, :datetime_occurred, :exercise_notes, :homework, :duration)
     end
 end

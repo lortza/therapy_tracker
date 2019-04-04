@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_04_015927) do
+ActiveRecord::Schema.define(version: 2019_04_04_032539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 2019_04_04_015927) do
   end
 
   create_table "exercise_logs", force: :cascade do |t|
-    t.text "target_body_part", default: ""
     t.integer "sets", default: 0
     t.integer "reps", default: 0
     t.datetime "datetime_occurred"
@@ -56,7 +55,6 @@ ActiveRecord::Schema.define(version: 2019_04_04_015927) do
   create_table "pain_logs", force: :cascade do |t|
     t.bigint "user_id"
     t.datetime "datetime_occurred"
-    t.string "target_body_part", default: ""
     t.integer "pain_level"
     t.text "pain_description", default: ""
     t.text "trigger", default: ""
@@ -80,7 +78,6 @@ ActiveRecord::Schema.define(version: 2019_04_04_015927) do
   create_table "physical_therapy_sessions", force: :cascade do |t|
     t.bigint "user_id"
     t.datetime "datetime_occurred"
-    t.string "target_body_part", default: ""
     t.text "exercise_notes", default: ""
     t.text "homework", default: ""
     t.integer "duration"

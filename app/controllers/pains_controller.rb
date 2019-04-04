@@ -1,30 +1,22 @@
 class PainsController < ApplicationController
   before_action :set_pain, only: [:show, :edit, :update, :destroy]
 
-  # GET /pains
-  # GET /pains.json
   def index
-    @pains = Pain.all
+    @pains = current_user.pains.all
   end
 
-  # GET /pains/1
-  # GET /pains/1.json
   def show
   end
 
-  # GET /pains/new
   def new
-    @pain = Pain.new
+    @pain = current_user.pains.new
   end
 
-  # GET /pains/1/edit
   def edit
   end
 
-  # POST /pains
-  # POST /pains.json
   def create
-    @pain = Pain.new(pain_params)
+    @pain = current_user.pains.new(pain_params)
 
     respond_to do |format|
       if @pain.save
@@ -37,8 +29,6 @@ class PainsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /pains/1
-  # PATCH/PUT /pains/1.json
   def update
     respond_to do |format|
       if @pain.update(pain_params)
@@ -51,8 +41,6 @@ class PainsController < ApplicationController
     end
   end
 
-  # DELETE /pains/1
-  # DELETE /pains/1.json
   def destroy
     @pain.destroy
     respond_to do |format|
@@ -62,12 +50,10 @@ class PainsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_pain
       @pain = Pain.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def pain_params
       params.require(:pain).permit(:name)
     end
