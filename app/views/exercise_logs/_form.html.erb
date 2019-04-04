@@ -2,11 +2,11 @@
   <%= render partial: 'shared/errors', locals: {object: exercise_log} %>
 
   <div class="field">
-    <%= form.label :target_body_part %>
-    <%= form.select :target_body_part,
-        options_for_select(ExerciseLog::BODY_PARTS, selected: last_log(:exercise_logs, :target_body_part)),
-        { include_blank: false },
-        class: 'form-control' %>
+    <%= form.label 'Target Body Part' %>
+    <%= form.collection_select :body_part_id,
+    BodyPart.all.order(:name), :id, :name,
+    { include_blank: false },
+    class: 'form-control' %>
   </div>
 
   <div class="field">

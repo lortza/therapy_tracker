@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Body Parts</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @body_parts.each do |body_part| %>
+      <tr>
+        <td><%= body_part.name %></td>
+        <td><%= link_to 'Show', body_part %></td>
+        <td><%= link_to 'Edit', edit_body_part_path(body_part) %></td>
+        <td><%= link_to 'Destroy', body_part, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Body Part', new_body_part_path %>

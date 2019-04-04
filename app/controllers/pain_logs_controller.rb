@@ -57,6 +57,6 @@ class PainLogsController < ApplicationController
     end
 
     def pain_log_params
-      params.require(:pain_log).permit(:user_id, :datetime_occurred, :target_body_part, :pain_level, :pain_description, :trigger)
+      params.require(:pain_log).permit(:user_id, :body_part_id, :pain_id, :datetime_occurred, :target_body_part, :pain_level, :pain_description, :trigger)
     end
 end

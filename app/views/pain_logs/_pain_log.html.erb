@@ -4,7 +4,7 @@
       <span class='card--log-icon'>Pain <i class="fal fa-user-injured"></i></span>
       <h5 class="card-title"><%= format_time(pain_log) %></h5>
 
-      <p class="card-text"><strong><%= pain_log.target_body_part.titleize %>:</strong> Pain Level: <%= pain_log.pain_level %> <br>
+      <p class="card-text"><strong><%= pain_log.body_part_name.titleize %>:</strong> Pain Level: <%= pain_log.pain_level %> <%= pain_log.pain_name %><br>
         <%= pain_log.pain_description %><br>
         <small class="text-muted">Triggered by: <%= pain_log.trigger %></small>
       </p>

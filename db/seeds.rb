@@ -4,6 +4,8 @@ Exercise.destroy_all
 ExerciseLog.destroy_all
 PainLog.destroy_all
 PhysicalTherapySession.destroy_all
+Pain.destroy_all
+BodyPart.destroy_all
 
 puts 'Building Users'
 # user = User.create!(first_name: 'Admin', last_name: 'McAdmins', email: 'admin@example.com', admin: true, password: 'password', password_confirmation: 'password')
@@ -14,6 +16,23 @@ puts 'Building Exercises'
 Exercise.create!([
   { user_id: user.id, default_sets: 3, default_reps: 10, default_rep_length: 2, name: 'clam shells', description: 'lie on one side with legs bent at knees' }
   { user_id: user.id, default_sets: 3, default_reps: 10, default_rep_length: 5, name: 'bridges', description: 'lie on back with legs bent at knees. lift butt up.' }
+])
+
+puts 'Building Body Parts'
+BodyPart.create!([
+  { user_id: user.id, name: 'hip - right' },
+  { user_id: user.id, name: 'hip - left' },
+  { user_id: user.id, name: 'knee - right' },
+  { user_id: user.id, name: 'knee - left' },
+])
+
+puts 'Building Pains'
+Pain.create!([
+  { user_id: user.id, name: 'aching' },
+  { user_id: user.id, name: 'burning' },
+  { user_id: user.id, name: 'tearing' },
+  { user_id: user.id, name: 'throbbing' },
+  { user_id: user.id, name: 'stabbing' },
 ])
 
 puts 'Building Logs'
