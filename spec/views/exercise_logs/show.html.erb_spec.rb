@@ -6,7 +6,7 @@ RSpec.describe "exercise_logs/show", type: :view do
       :datetime_occurred => 'Sun, 24 Mar 2019 09:30:00 UTC +00:00',
       :sets => 2,
       :reps => 3,
-      :target_body_part => "Body Part Name",
+      :body_part_id => 1,
       :current_pain_level => 4,
       :current_pain_frequency => "Current Pain Frequency",
       :progress_note => "MyText"

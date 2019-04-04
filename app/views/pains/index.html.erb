@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Pains</h1>
+
+<table class='table'>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pains.each do |pain| %>
+      <tr>
+        <td><%= pain.name %></td>
+        <td><%= link_to 'Show', pain %></td>
+        <td><%= link_to 'Edit', edit_pain_path(pain) %></td>
+        <td><%= link_to 'Destroy', pain, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Pain', new_pain_path %>
