@@ -26,5 +26,5 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-# Ignore Sandboxes
+# Ignore sandbox files
 sandbox.js
