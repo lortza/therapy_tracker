@@ -6,19 +6,17 @@ const populateDefaultValues = function(exercises) {
     const reps = document.getElementById('exercise_log_reps');
     const repLength = document.getElementById('exercise_log_rep_length');
 
+      // exercises.find(function(el){
+      //   return el[0] === 2
+      // })
+
+
     exerciseDropdown.addEventListener('change', function (event) {
       event.preventDefault();
       console.log(event.target.value);
 
-      //
-      //
-      // const selectExercise() = function (arr){
-      //   arr.find(function(el){
-      //     return el.id === 2
-      //   });
-      // }
-      //
-      // console.log(selectExercise(arr))
+
+
 
       // async function getExercises(url){
       //   const response = await fetch(url)
