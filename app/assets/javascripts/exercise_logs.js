@@ -15,6 +15,14 @@ let counter = function(setsInput, repsInput, repLengthInput){
     const repLengthDisplayer = document.getElementById('rep-length');
     const beginFinishedIndicator = document.getElementById('begin-finished-indicator');
 
+    const soundExerciseBegin = new Audio('/sounds/exercise_begin.wav');
+    var playButton = document.getElementById('play_button');
+
+    playButton.addEventListener('click', function (event) {
+      event.preventDefault();
+      soundExerciseBegin.play();
+    });
+
     function sleep(ms) {
       return new Promise(resolve => setTimeout(resolve, ms));
     }
