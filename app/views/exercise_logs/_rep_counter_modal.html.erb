@@ -1,0 +1,35 @@
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Rep Counter</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <h3>
+          <span id='begin-finished-indicator' class='hidden'></span>
+        </h3>
+        <div class='row'>
+          <div class='col'>
+            <p class='set-rep-row'>Set:<br>
+              <span id='set' class='counter-number-big'>0</span> of <%= @exercise_log.sets %>
+            </p>
+          </div>
+          <div class='col'>
+            <p class='set-rep-row'>Rep: (Hold for <%= @exercise_log.rep_length %>)<br>
+              <span id='rep' class='counter-number-big'>0</span> of <%= @exercise_log.reps %><br>
+            </p>
+          </div>
+        </div> <!-- row -->
+
+        <%= link_to 'Start', '#', id: 'start_button', class: button_class('success') %>
+        <%= link_to 'Stop', exercise_log_path(@exercise_log), id: 'stop_button', class: button_class('danger') %>
+
+      </div><!-- modal body -->
+    </div>
+  </div>
+</div>

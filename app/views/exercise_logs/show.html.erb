@@ -1,51 +1,39 @@
 <% content_for(:title, format_time(@exercise_log)) %>
+<p class='pull-right'>
+  <%= link_to 'Edit', edit_exercise_log_path(@exercise_log), class: button_class %>
+  <%= link_to 'Back', exercise_log_path, class: button_class('primary pull-right') %>
+</p>
 
 <h2>
-  <%= format_exercise(@exercise_log) %>
+  <%= @exercise_log.exercise_name.titleize %>
 </h2>
+
+<p>
+  <%= format_exercise_stats(@exercise_log) %>
+</p>
 
 <p>
   <%= format_time(@exercise_log) %>
 </p>
 
 <p>
-  <strong>For:</strong>
-  <%= @exercise_log.body_part_name %>
+  <strong>Describe 1 Rep:</strong><br>
+  <%= @exercise_log.exercise.description %>
 </p>
 
 <p>
   <strong>Progress notes:</strong><br>
+  For: <%= @exercise_log.body_part_name %> | Burn Rep: <%= @exercise_log.burn_rep %> <br>
   <%= @exercise_log.progress_note %>
 </p>
 
-<hr>
 
-<h3>
-  Rep Counter
-  <span id='begin-finished-indicator' class='hidden pull-right'></span>
-</h3>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal">
+  Launch Rep Counter
+</button>
 
-<div class="row">
-  <div class="col">
-    <p>Set: <span id='set'>0</span> of <%= @exercise_log.sets %></p>
-    <p></p>
-  </div>
-  <div class="col">
-    <p>Rep: <span id='rep'>0</span> of <%= @exercise_log.reps %><br>
-    (Hold for <%= @exercise_log.rep_length %>)</p>
-  </div>
-</div> <!-- row -->
-
-
-<button id='play_button' type="button" name="button">TEMP PLAY</button>
-<%= link_to 'Start', '#', id: 'start_button', class: button_class('success') %>
-<%= link_to 'Stop', exercise_log_path(@exercise_log), id: 'stop_button', class: button_class('danger') %>
-
-<hr>
-
-<%= link_to 'Edit', edit_exercise_log_path(@exercise_log), class: button_class %>
-<%= link_to 'Back', exercise_log_path, class: button_class('primary pull-right') %>
-
+<%= render partial: 'rep_counter_modal' %>
 
 <script>
   counter(<%= @exercise_log.sets %>, <%= @exercise_log.reps %>, <%= @exercise_log.rep_length %>)
