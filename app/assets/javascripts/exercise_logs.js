@@ -1,24 +1,28 @@
 // Need to add pause and stop buttons
 
 let counter = function(setsInput, repsInput, repLengthInput){
-
   document.addEventListener('DOMContentLoaded', function () {
+    // Default Values
     const sets = setsInput;
     const reps = repsInput;
     const minRepLength = 2;
     const repLength = repLengthInput === 0 ? minRepLength : repLengthInput;
     const setRest = 5;
 
+    // DOM Elements
     const startButton = document.getElementById('start_button');
     const setDisplayer = document.getElementById('set');
     const repDisplayer = document.getElementById('rep');
     const repLengthDisplayer = document.getElementById('rep-length');
     const beginFinishedIndicator = document.getElementById('begin-finished-indicator');
+
+    // Audio Files
     const soundExerciseBegin = new Audio('/sounds/exercise_begin.wav');
     const soundExerciseComplete = new Audio('/sounds/exercise_complete.m4a');
     const soundSetComplete = new Audio('/sounds/set_complete.m4a');
     const soundRep = new Audio('/sounds/rep.m4a');
 
+    
     function sleep(ms) {
       return new Promise(resolve => setTimeout(resolve, ms));
     }
