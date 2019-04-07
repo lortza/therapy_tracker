@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PainLogsController < ApplicationController
   before_action :set_pain_log, only: [:show, :edit, :update, :destroy]
   layout 'no_white_container', only: [:index]

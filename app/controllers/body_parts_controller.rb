@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BodyPartsController < ApplicationController
   before_action :set_body_part, only: [:show, :edit, :update, :destroy]
 

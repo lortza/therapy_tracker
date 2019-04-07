@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddRepLengthToExercises < ActiveRecord::Migration[5.2]
   def up
     add_column :exercise_logs, :rep_length, :integer, default: 0

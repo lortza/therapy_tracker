@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChangeLogEntryToExerciseLog < ActiveRecord::Migration[5.2]
   def self.up
     rename_table :log_entries, :exercise_logs

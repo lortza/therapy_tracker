@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module LogsHelper
   def format_time(log)
     # log.datetime_occurred.strftime("%a %m/%d/%y at %I:%M %p in %Z")

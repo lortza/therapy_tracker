@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 puts 'Destroying all assets'
 # User.destroy_all
 Exercise.destroy_all

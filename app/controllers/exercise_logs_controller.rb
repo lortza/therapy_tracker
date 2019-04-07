@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ExerciseLogsController < ApplicationController
   before_action :set_exercise_log, only: [:show, :edit, :update, :destroy]
   layout 'no_white_container', only: [:index]

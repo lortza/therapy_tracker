@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PainsController < ApplicationController
   before_action :set_pain, only: [:show, :edit, :update, :destroy]
 

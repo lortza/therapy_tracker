@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class LogsController < ApplicationController
   layout 'no_white_container'
 

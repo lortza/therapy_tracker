@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddDefaultsToExercises < ActiveRecord::Migration[5.2]
   def up
     add_column :exercises, :default_reps, :integer

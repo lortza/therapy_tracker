@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -70,7 +72,8 @@ group :development do
   gem "selenium-webdriver"
   gem "chromedriver-helper" # must be loaded after selenium-webdriver
   gem 'seed_dump' # run with `rake db:seed:dump`
-
+  gem 'rubocop', '~> 0.67.2', require: false
+  gem 'rubocop-performance' 
 end
 
 group :test do

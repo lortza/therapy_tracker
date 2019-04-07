@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PainLog < ApplicationRecord
   belongs_to :user
   belongs_to :body_part
