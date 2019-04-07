@@ -21,7 +21,7 @@ class ExerciseLogsController < ApplicationController
 
     respond_to do |format|
       if @exercise_log.save
-        format.html { redirect_to exercise_log_path(@exercise_log), notice: 'Log entry was successfully created.' }
+        format.html { redirect_to exercise_log_path(@exercise_log) }
         format.json { render :show, status: :created, location: @exercise_log }
       else
         format.html { render :new }
@@ -33,7 +33,7 @@ class ExerciseLogsController < ApplicationController
   def update
     respond_to do |format|
       if @exercise_log.update(exercise_log_params)
-        format.html { redirect_to exercise_log_path(@exercise_log), notice: 'Log entry was successfully updated.' }
+        format.html { redirect_to exercise_log_path(@exercise_log) }
         format.json { render :show, status: :ok, location: @exercise_log }
       else
         format.html { render :edit }

@@ -20,7 +20,7 @@ class PainsController < ApplicationController
 
     respond_to do |format|
       if @pain.save
-        format.html { redirect_to @pain, notice: 'Pain was successfully created.' }
+        format.html { redirect_to @pain }
         format.json { render :show, status: :created, location: @pain }
       else
         format.html { render :new }
@@ -32,7 +32,7 @@ class PainsController < ApplicationController
   def update
     respond_to do |format|
       if @pain.update(pain_params)
-        format.html { redirect_to @pain, notice: 'Pain was successfully updated.' }
+        format.html { redirect_to @pain }
         format.json { render :show, status: :ok, location: @pain }
       else
         format.html { render :edit }

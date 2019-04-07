@@ -1,49 +1,38 @@
-const populateDefaultValues = function(exercises) {
-  document.addEventListener('DOMContentLoaded', function () {
-    console.log(exercises)
-    const exerciseDropdown = document.getElementById('exercise_log_exercise_id');
-    const sets = document.getElementById('exercise_log_sets');
-    const reps = document.getElementById('exercise_log_reps');
-    const repLength = document.getElementById('exercise_log_rep_length');
+document.addEventListener('DOMContentLoaded', function () {
+  const exerciseDropdown = document.getElementById('exercise_log_exercise_id');
+  const initialExerciseId = exerciseDropdown.options[exerciseDropdown.selectedIndex].value;
 
-      // exercises.find(function(el){
-      //   return el[0] === 2
-      // })
+  const baseUrl = window.location.origin
+  const apiUrl = `${baseUrl}/exercises/${initialExerciseId}.json`
 
-
-    exerciseDropdown.addEventListener('change', function (event) {
-      event.preventDefault();
-      console.log(event.target.value);
+  const sets = document.getElementById('exercise_log_sets');
+  const reps = document.getElementById('exercise_log_reps');
+  const repLength = document.getElementById('exercise_log_rep_length');
 
 
+  function populateDOM(data) {
+    console.log(data);
+    sets.value = data.default_sets;
+    reps.value = data.default_reps;
+    repLength.value = data.default_rep_length;
+  }
 
+  function getExercise(url) {
+    fetch(url)
+      .then(response => response.json())
+      .then(populateDOM)
+      .catch(err => console.log(err));
+  }
 
-      // async function getExercises(url){
-      //   const response = await fetch(url)
-      //   const data = await response.json().body
-      //   return data
-      // }
-      // const api = 'http://localhost:3000/exercises'
-      // getExercises(api).then(exercises => console.log(exercises))
+  // Populate Default values on pageload
+  getExercise(apiUrl);
 
+  // Populate Default values on dropdown change
+  exerciseDropdown.addEventListener('change', function (event) {
+    event.preventDefault();
+    const selectedExerciseId = event.target.value;
+    const apiUrl = `${baseUrl}/exercises/${selectedExerciseId}.json`
 
-      // function getExercise(url) {
-      //   return new Promise((resolve, reject) => {
-      //     fetch(url)
-      //     .then(response => response)
-      //     .then(data => resolve(data))
-      //     .catch(err => reject(err));
-      //   });
-      // }
-      // const api = 'http://localhost:3000/exercises/1'
-      // getExercise(api).then(exercise => console.log(exercise))
-
-
-      // sets.value = 7;
-      // reps.value = 7;
-      // repLength.value = 7;
-    })
-
-  });
-
-}
+    getExercise(apiUrl);
+  })
+});
