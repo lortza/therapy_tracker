@@ -27,6 +27,11 @@
       <div class="field">
         <%= form.label :sets %>
         <%= form.number_field :sets, class: 'form-control' %>
+        <%#= form.select :sets,
+          options_for_select((1..5).to_a, selected: 0),
+          { include_blank: false },
+          class: 'form-control'
+        %>
       </div>
     </div>
     <div class="col">

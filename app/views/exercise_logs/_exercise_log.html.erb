@@ -1,10 +1,10 @@
 <div class="card card--log-entry log-type-exercise">
-  <a href="<%= edit_exercise_log_path(exercise_log) %>">
+  <a href="<%= exercise_log_path(exercise_log) %>">
     <div class="card-body">
       <span class='card--log-icon'>Exercise <i class="fal fa-dumbbell"></i></span>
       <h5 class="card-title"><%= format_time(exercise_log) %></h5>
 
-      <p class="card-text"><strong><%= exercise_log.body_part_name.titleize %>:</strong> <%= format_exercise(exercise_log) %><br>
+      <p class="card-text"><strong><%= exercise_log.body_part_name.titleize %>:</strong> <%= exercise_log.exercise_name.titleize %>: <%= format_exercise_stats(exercise_log) %><br>
         <% unless exercise_log.progress_note.blank? || exercise_log.burn_rep.blank? %>
           <small class="text-muted">Progress: exercise burn at <%= exercise_log.burn_rep %>. <%= exercise_log.progress_note %></small>
         <% end %>
