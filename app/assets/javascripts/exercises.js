@@ -25,7 +25,9 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // Populate Default values on pageload
-  getExercise(apiUrl);
+  if(!sets){
+    getExercise(apiUrl);
+  }
 
   // Populate Default values on dropdown change
   exerciseDropdown.addEventListener('change', function (event) {

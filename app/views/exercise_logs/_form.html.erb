@@ -18,7 +18,7 @@
     <%= form.label 'Exercise' %>
     <%= form.collection_select :exercise_id,
     Exercise.all.order(:name), :id, :name,
-    { include_blank: false },
+    { prompt: '--Select--' },
     class: 'form-control' %>
   </div>
 
