@@ -4,7 +4,7 @@ class PainsController < ApplicationController
   before_action :set_pain, only: [:show, :edit, :update, :destroy]
 
   def index
-    @pains = current_user.pains.all
+    @pains = current_user.pains.order(:name)
   end
 
   def show
