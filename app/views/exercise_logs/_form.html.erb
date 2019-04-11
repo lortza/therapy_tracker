@@ -49,11 +49,16 @@
 
     <div class="col">
       <div class="field">
-        <%= form.label 'Burn Rep #' %>
-        <%= form.text_field :burn_rep, placeholder: '2.7', class: 'form-control' %>
+        <%= form.label 'Per Leg?' %>
+        <%= form.check_box :per_side, class: 'form-control' %>
       </div>
     </div>
   </div> <!-- row -->
+
+  <div class="field">
+    <%= form.label 'Burn Rep #' %>
+    <%= form.text_field :burn_rep, placeholder: '2.7', class: 'form-control' %>
+  </div>
 
   <div class="field">
     <%= form.label :progress_note %>

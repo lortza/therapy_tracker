@@ -4,7 +4,7 @@ class ExercisesController < ApplicationController
   before_action :set_exercise, only: [:show, :edit, :update, :destroy]
 
   def index
-    @exercises = current_user.exercises
+    @exercises = current_user.exercises.order(:name)
   end
 
   def show
@@ -61,6 +61,6 @@ class ExercisesController < ApplicationController
     end
 
     def exercise_params
-      params.require(:exercise).permit(:user_id, :name, :default_sets, :default_reps, :default_rep_length, :description)
+      params.require(:exercise).permit(:user_id, :name, :default_sets, :default_reps, :default_rep_length, :description, :default_per_side)
     end
 end

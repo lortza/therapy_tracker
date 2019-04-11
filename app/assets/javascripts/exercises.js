@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const sets = document.getElementById('exercise_log_sets');
   const reps = document.getElementById('exercise_log_reps');
   const repLength = document.getElementById('exercise_log_rep_length');
+  const perSide = document.getElementById('exercise_log_per_side');
 
 
   function populateDOM(data) {
@@ -15,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
     sets.value = data.default_sets;
     reps.value = data.default_reps;
     repLength.value = data.default_rep_length;
+    perSide.checked = data.default_per_side;
   }
 
   function getExercise(url) {
