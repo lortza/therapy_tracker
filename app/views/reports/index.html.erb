@@ -1,0 +1,34 @@
+<h1>Reports</h1>
+
+<h2>Pain vs Exercise</h2>
+<%= line_chart [
+  {name: "Exercise Logs", data: ExerciseLog.group_by_day(:datetime_occurred).count},
+  {name: "Physical Therapy Sessions", data: PhysicalTherapySession.group_by_day(:datetime_occurred).count},
+  {name: "Pain Logs", data: PainLog.group_by_day(:datetime_occurred).count},
+] %>
+
+<hr>
+<h2>Frequency of Exercise by Type</h2>
+<ul>
+<% Exercise.all.each do |exercise| %>
+  <li><%= exercise.name %>: <%= exercise.id %></li>
+<% end %>
+</ul>
+
+<%= pie_chart ExerciseLog.group(:exercise_id).count %>
+<%= line_chart ExerciseLog.group(:exercise_id).group_by_week(:datetime_occurred).count %>
+
+<hr>
+
+<h2>Frequency of Pain by Type</h2>
+<ul>
+<% Pain.all.each do |pain| %>
+  <li><%= pain.name %>: <%= pain.id %></li>
+<% end %>
+</ul>
+<%= pie_chart PainLog.group(:pain_id).count %>
+
+<hr>
+
+<h2>Frequency of Pain By Day</h2>
+<%= line_chart PainLog.group_by_day(:datetime_occurred).count %>

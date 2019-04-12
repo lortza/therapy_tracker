@@ -4,10 +4,11 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'logs#index'
 
+  resources :reports, only: [:index]
   resources :exercises
   resources :pains
   resources :body_parts
-  
+
   resources :logs, only: [:index]
   resources :exercise_logs
   resources :pain_logs

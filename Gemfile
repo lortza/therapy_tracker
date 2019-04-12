@@ -41,6 +41,9 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'devise' # user authentication
 
+gem 'chartkick' # chart rendering for ruby data
+gem 'groupdate' # grouping by dates. goes with chartkick
+
 group :development, :test do
   gem 'awesome_print'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -73,7 +76,7 @@ group :development do
   gem "chromedriver-helper" # must be loaded after selenium-webdriver
   gem 'seed_dump' # run with `rake db:seed:dump`
   gem 'rubocop', '~> 0.67.2', require: false
-  gem 'rubocop-performance' 
+  gem 'rubocop-performance'
 end
 
 group :test do
