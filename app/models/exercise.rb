@@ -10,4 +10,8 @@ class Exercise < ApplicationRecord
             :default_reps,
             :default_rep_length,
             presence: true
+
+  def self.has_logs
+    joins(:exercise_logs).group('exercises.id').order(:id)
+  end
 end

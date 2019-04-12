@@ -10,8 +10,8 @@
 <hr>
 <h2>Frequency of Exercise by Type</h2>
 <ul>
-<% Exercise.all.each do |exercise| %>
-  <li><%= exercise.name %>: <%= exercise.id %></li>
+<% Exercise.has_logs.each do |exercise| %>
+  <li><%= exercise.id %>: <%= exercise.name %></li>
 <% end %>
 </ul>
 
@@ -22,8 +22,8 @@
 
 <h2>Frequency of Pain by Type</h2>
 <ul>
-<% Pain.all.each do |pain| %>
-  <li><%= pain.name %>: <%= pain.id %></li>
+<% Pain.has_logs.each do |pain| %>
+  <li><%= pain.id %>: <%= pain.name %></li>
 <% end %>
 </ul>
 <%= pie_chart PainLog.group(:pain_id).count %>
