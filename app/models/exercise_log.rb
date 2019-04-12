@@ -21,4 +21,12 @@ class ExerciseLog < ApplicationRecord
 
   delegate :name, to: :body_part, prefix: true
   delegate :name, to: :exercise, prefix: true
+
+  def self.total_minutes_spent
+    all.map(&:minutes_spent).reduce(:+)
+  end
+
+  def minutes_spent
+    sets * reps * rep_length / 60
+  end
 end
