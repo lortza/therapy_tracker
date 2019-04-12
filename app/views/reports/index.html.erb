@@ -1,6 +1,20 @@
 <h1>Reports</h1>
 
+<h2>Pain Instances & Levels</h2>
+<%= area_chart [
+  {name: "Pain Instances", data: PainLog.group_by_day(:datetime_occurred).count},
+  {name: "Pain Levels", data: PainLog.group_by_day(:datetime_occurred).sum(:pain_level)},
+] %>
+
+<hr>
 <h2>Pain vs Exercise</h2>
+<%= area_chart [
+  {name: "Exercise Sessions", data: ExerciseLog.group_by_day(:datetime_occurred).count},
+  {name: "Pain Levels", data: PainLog.group_by_day(:datetime_occurred).sum(:pain_level)},
+] %>
+
+<hr>
+<h2>Pain, Exercise, & Therapy</h2>
 <%= line_chart [
   {name: "Exercise Logs", data: ExerciseLog.group_by_day(:datetime_occurred).count},
   {name: "Physical Therapy Sessions", data: PhysicalTherapySession.group_by_day(:datetime_occurred).count},
@@ -16,7 +30,7 @@
 </ul>
 
 <%= pie_chart ExerciseLog.group(:exercise_id).count %>
-<%= line_chart ExerciseLog.group(:exercise_id).group_by_week(:datetime_occurred).count %>
+<%#= line_chart ExerciseLog.group(:exercise_id).group_by_week(:datetime_occurred).count %>
 
 <hr>
 
@@ -26,9 +40,10 @@
   <li><%= pain.id %>: <%= pain.name %></li>
 <% end %>
 </ul>
-<%= pie_chart PainLog.group(:pain_id).count %>
+<%= bar_chart PainLog.group(:pain_id).count %>
 
 <hr>
 
 <h2>Frequency of Pain By Day</h2>
 <%= line_chart PainLog.group_by_day(:datetime_occurred).count %>
+<%#= scatter_chart PainLog.pluck(:datetime_occurred, :pain_level), xtitle: "Date", ytitle: "Pain Level" %>

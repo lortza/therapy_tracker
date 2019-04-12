@@ -15,6 +15,7 @@
       History
     </a>
     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <%= link_to 'Reports', reports_path, class: 'dropdown-item' %>
       <%= link_to 'Exercise History', exercise_logs_path, class: 'dropdown-item' %>
       <%= link_to 'Pain History', pain_logs_path, class: 'dropdown-item' %>
       <%= link_to 'PT History', physical_therapy_sessions_path, class: 'dropdown-item' %>
