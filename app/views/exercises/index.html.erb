@@ -5,11 +5,7 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Sets</th>
-      <th>Reps</th>
-      <th>Rep Length</th>
-      <th>Per Side?</th>
+      <th>Exercise</th>
       <th>Description</th>
     </tr>
   </thead>
@@ -17,12 +13,10 @@
   <tbody>
     <% @exercises.each do |exercise| %>
       <tr>
-        <td><%= link_to exercise.name, edit_exercise_path(exercise) %></td>
-        <td><%= exercise.default_sets %></td>
-        <td><%= exercise.default_reps %></td>
-        <td><%= exercise.default_rep_length %></td>
-        <td><%= exercise.default_per_side %></td>
-        <td><%= exercise.description %></td>
+        <td><%= link_to exercise.name, edit_exercise_path(exercise) %>
+        <td><%= exercise.default_sets %> sets of <%= exercise.default_reps %> with <%= exercise.default_rep_length %> sec hold <%= 'per side' if exercise.default_per_side %><br>
+          <%= exercise.description %>
+      </td>
       </tr>
     <% end %>
   </tbody>
