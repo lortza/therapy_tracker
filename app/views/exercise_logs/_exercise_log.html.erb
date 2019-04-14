@@ -5,8 +5,8 @@
       <h5 class="card-title"><%= format_time(exercise_log) %></h5>
 
       <p class="card-text"><strong><%= exercise_log.body_part_name.titleize %>:</strong> <%= exercise_log.exercise_name.titleize %>: <%= format_exercise_stats(exercise_log) %><br>
-        <% unless exercise_log.progress_note.blank? || exercise_log.burn_rep.blank? %>
-          <small class="text-muted">Progress: exercise burn at <%= exercise_log.burn_rep %>. <%= exercise_log.progress_note %></small>
+        <% unless exercise_log.burn_rep.blank? && exercise_log.progress_note.blank? %>
+          <small class="text-muted">Progress: exercise burn at set <%= exercise_log.burn_set %>, rep <%= exercise_log.burn_rep %>. <%= exercise_log.progress_note %></small>
         <% end %>
       </p>
     </div>
