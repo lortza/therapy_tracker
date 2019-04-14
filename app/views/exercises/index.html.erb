@@ -14,7 +14,7 @@
     <% @exercises.each do |exercise| %>
       <tr>
         <td><%= link_to exercise.name, edit_exercise_path(exercise) %>
-        <td><%= exercise.default_sets %> sets of <%= exercise.default_reps %> with <%= exercise.default_rep_length %> sec hold <%= 'per side' if exercise.default_per_side %><br>
+        <td><strong><%= exercise.default_sets %> sets of <%= exercise.default_reps %> with <%= exercise.default_rep_length %> sec hold <%= 'per side' if exercise.default_per_side %></strong><br>
           <%= exercise.description %>
       </td>
       </tr>
