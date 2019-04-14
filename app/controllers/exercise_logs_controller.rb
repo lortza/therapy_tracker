@@ -2,7 +2,7 @@
 
 class ExerciseLogsController < ApplicationController
   before_action :set_exercise_log, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_exercise_log
+  before_action :authorize_exercise_log, only: [:show, :edit, :update, :destroy]
   layout 'no_white_container', only: [:index]
 
   def index

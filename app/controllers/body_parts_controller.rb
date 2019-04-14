@@ -2,7 +2,7 @@
 
 class BodyPartsController < ApplicationController
   before_action :set_body_part, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_body_part
+  before_action :authorize_body_part, only: [:show, :edit, :update, :destroy]
 
   def index
     @body_parts = current_user.body_parts.all

@@ -2,7 +2,7 @@
 
 class PhysicalTherapySessionsController < ApplicationController
   before_action :set_physical_therapy_session, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_physical_therapy_session
+  before_action :authorize_physical_therapy_session, only: [:show, :edit, :update, :destroy]
   layout 'no_white_container', only: [:index]
 
   def index

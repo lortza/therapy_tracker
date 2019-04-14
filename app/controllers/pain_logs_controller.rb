@@ -2,8 +2,8 @@
 
 class PainLogsController < ApplicationController
   before_action :set_pain_log, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_pain_log, only: [:show, :edit, :update, :destroy]
   layout 'no_white_container', only: [:index]
-  before_action :authorize_pain_log
 
 
   def index

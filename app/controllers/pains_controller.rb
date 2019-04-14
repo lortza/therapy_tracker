@@ -2,7 +2,7 @@
 
 class PainsController < ApplicationController
   before_action :set_pain, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_pain
+  before_action :authorize_pain, only: [:show, :edit, :update, :destroy]
 
   def index
     @pains = current_user.pains.order(:name)
