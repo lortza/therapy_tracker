@@ -2,5 +2,6 @@
 
 <%= render 'form', body_part: @body_part %>
 
-<%= link_to 'Show', @body_part %> |
-<%= link_to 'Back', body_parts_path %>
+<hr>
+
+<%= link_to 'Delete', @body_part, method: :delete, data: { confirm: 'Are you sure?' }, class: button_class('danger') %>

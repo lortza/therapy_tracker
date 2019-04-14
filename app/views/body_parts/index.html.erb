@@ -13,10 +13,7 @@
   <tbody>
     <% @body_parts.each do |body_part| %>
       <tr>
-        <td><%= body_part.name %></td>
-        <td><%= link_to 'Show', body_part %></td>
-        <td><%= link_to 'Edit', edit_body_part_path(body_part) %></td>
-        <td><%= link_to 'Destroy', body_part, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to body_part.name, edit_body_part_path(body_part) %></td>
       </tr>
     <% end %>
   </tbody>
