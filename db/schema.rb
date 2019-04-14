@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_14_213208) do
+ActiveRecord::Schema.define(version: 2019_04_14_224835) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2019_04_14_213208) do
     t.bigint "user_id"
     t.bigint "exercise_id"
     t.integer "rep_length", default: 0
-    t.float "burn_rep"
+    t.integer "burn_rep"
     t.bigint "body_part_id"
     t.boolean "per_side", default: false
     t.integer "burn_set"
