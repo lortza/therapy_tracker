@@ -2,5 +2,5 @@
 
 <%= render 'form', pain: @pain %>
 
-<%= link_to 'Show', @pain %> |
-<%= link_to 'Back', pains_path %>
+<hr>
+<%= link_to 'Delete Pain', @pain, method: :delete, data: { confirm: 'Are you sure?' }, class: button_class('danger') %>

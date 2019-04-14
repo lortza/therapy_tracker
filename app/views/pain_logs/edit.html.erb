@@ -1,4 +1,6 @@
 <h1>Editing Pain Log</h1>
 
 <%= render 'form', pain_log: @pain_log %>
+
+<hr>
 <%= link_to 'Delete Pain Log', @pain_log, method: :delete, data: { confirm: 'Are you sure?' }, class: button_class('danger') %>
