@@ -2,6 +2,7 @@
 
 class ExercisesController < ApplicationController
   before_action :set_exercise, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_exercise
 
   def index
     @exercises = current_user.exercises.order(:name)
@@ -62,5 +63,9 @@ class ExercisesController < ApplicationController
 
     def exercise_params
       params.require(:exercise).permit(:user_id, :name, :default_sets, :default_reps, :default_rep_length, :description, :default_per_side)
+    end
+
+    def authorize_exercise
+      redirect_to root_path, notice: "Whoops! You're not authorized to view that page." if @exercise.user_id != current_user.id
     end
 end

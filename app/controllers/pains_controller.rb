@@ -2,6 +2,7 @@
 
 class PainsController < ApplicationController
   before_action :set_pain, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_pain
 
   def index
     @pains = current_user.pains.order(:name)
@@ -58,5 +59,9 @@ class PainsController < ApplicationController
 
     def pain_params
       params.require(:pain).permit(:name)
+    end
+
+    def authorize_pain
+      redirect_to root_path, notice: "Whoops! You're not authorized to view that page." if @pain.user_id != current_user.id
     end
 end

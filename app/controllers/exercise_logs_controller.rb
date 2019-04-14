@@ -2,6 +2,7 @@
 
 class ExerciseLogsController < ApplicationController
   before_action :set_exercise_log, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_exercise_log
   layout 'no_white_container', only: [:index]
 
   def index
@@ -59,5 +60,9 @@ class ExerciseLogsController < ApplicationController
 
     def exercise_log_params
       params.require(:exercise_log).permit(:user_id, :body_part_id, :datetime_occurred, :exercise_id, :sets, :reps, :rep_length, :per_side, :burn_rep, :progress_note)
+    end
+
+    def authorize_exercise_log
+      redirect_to root_path, notice: "Whoops! You're not authorized to view that page." if @exercise_log.user_id != current_user.id
     end
 end

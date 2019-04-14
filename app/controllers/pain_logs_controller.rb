@@ -3,6 +3,7 @@
 class PainLogsController < ApplicationController
   before_action :set_pain_log, only: [:show, :edit, :update, :destroy]
   layout 'no_white_container', only: [:index]
+  before_action :authorize_pain_log
 
 
   def index
@@ -60,5 +61,9 @@ class PainLogsController < ApplicationController
 
     def pain_log_params
       params.require(:pain_log).permit(:user_id, :body_part_id, :pain_id, :datetime_occurred, :pain_level, :pain_description, :trigger)
+    end
+
+    def authorize_pain_log
+      redirect_to root_path, notice: "Whoops! You're not authorized to view that page." if @pain_log.user_id != current_user.id
     end
 end

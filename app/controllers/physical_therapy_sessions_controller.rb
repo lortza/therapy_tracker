@@ -2,6 +2,7 @@
 
 class PhysicalTherapySessionsController < ApplicationController
   before_action :set_physical_therapy_session, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_physical_therapy_session
   layout 'no_white_container', only: [:index]
 
   def index
@@ -59,5 +60,9 @@ class PhysicalTherapySessionsController < ApplicationController
 
     def physical_therapy_session_params
       params.require(:physical_therapy_session).permit(:user_id, :body_part_id, :datetime_occurred, :exercise_notes, :homework, :duration)
+    end
+
+    def authorize_physical_therapy_session
+      redirect_to root_path, notice: "Whoops! You're not authorized to view that page." if @physical_therapy_session.user_id != current_user.id
     end
 end
