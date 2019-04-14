@@ -9,6 +9,8 @@ FactoryBot.define do
     sets { 2 }
     reps { 10 }
     rep_length { 5 }
+    burn_set { 2 }
+    burn_rep { 5 }
     progress_note { 'progress note body' }
   end
 end

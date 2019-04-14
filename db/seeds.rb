@@ -70,3 +70,17 @@ PhysicalTherapySession.create!([
     homework: "clamshells: 3 sets 10 reps each side\r\n\r\ncross body isometrics: 5 second push, 10 reps each leg\r\n\r\nbridges: 3 sets 10 reps, 10 second hold",
     duration: 90 },
 ])
+
+ExerciseLog.all.each do |log|
+  if log.burn_rep == nil
+    log.burn_set = 0
+    log.burn_rep = 0
+  else
+    nums = log.burn_rep.to_s.split('.')
+    log.burn_set = nums.first.to_i
+    log.burn_rep = nums.last.to_i
+  end
+  log.save
+end
+
+[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3.7, 2.14, 0.0, 2.5, 2.5, 0.0, 0.0, 3.2, 2.13, 2.5, 0.0, 0.0, nil, 2.7, 2.5, 0.0, 3.5, 2.5, nil, nil, 2.7, nil, 0.0, 3.7, 2.8, 2.8, nil, 0.0, 0.0, 0.0, nil, 0.0, nil, 3.7, 2.8, nil, nil, nil, nil, nil, nil, nil, 0.0, nil, nil, nil, nil, nil, nil, 3.6, 0.0, 2.2, 0.0, nil, nil, nil, nil, nil, 0.0, nil, 0.0, 3.5, nil, nil, nil, nil, nil, nil, nil, nil, 0.0, 3.6, 2.5, nil, 1.6, nil, 0.0, 0.0, nil, 3.6, nil, nil, 0.0, 2.1, nil]

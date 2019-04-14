@@ -54,15 +54,15 @@ class ExerciseLogsController < ApplicationController
   end
 
   private
+    def authorize_exercise_log
+      redirect_to root_path, alert: "Whoops! You're not authorized to view that page." if @exercise_log.user_id != current_user.id
+    end
+
     def set_exercise_log
       @exercise_log = ExerciseLog.find(params[:id])
     end
 
     def exercise_log_params
-      params.require(:exercise_log).permit(:user_id, :body_part_id, :datetime_occurred, :exercise_id, :sets, :reps, :rep_length, :per_side, :burn_rep, :progress_note)
-    end
-
-    def authorize_exercise_log
-      redirect_to root_path, alert: "Whoops! You're not authorized to view that page." if @exercise_log.user_id != current_user.id
+      params.require(:exercise_log).permit(:user_id, :body_part_id, :datetime_occurred, :exercise_id, :sets, :reps, :rep_length, :per_side, :burn_rep, :burn_set, :progress_note)
     end
 end

@@ -16,8 +16,13 @@ class ExerciseLog < ApplicationRecord
             presence: true,
             numericality: true
 
-  validates_presence_of :burn_rep, on: :update
-  validates_numericality_of :burn_rep, on: :update
+  validates_presence_of :burn_set,
+                        :burn_rep,
+                        on: :update
+
+  validates_numericality_of :burn_set,
+                            :burn_rep,
+                            on: :update
 
   delegate :name, to: :body_part, prefix: true
   delegate :name, to: :exercise, prefix: true

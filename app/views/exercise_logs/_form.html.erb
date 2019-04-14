@@ -55,9 +55,20 @@
     </div>
   </div> <!-- row -->
 
-  <div class="field">
-    <%= form.label 'Burn Rep #' %>
-    <%= form.text_field :burn_rep, placeholder: '2.7', class: 'form-control' %>
+  <div class="form-row">
+    <div class="col">
+      <div class="field">
+        <%= form.label 'Burn Set #' %>
+        <%= form.text_field :burn_set, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="field">
+        <%= form.label 'Burn Rep #' %>
+        <%= form.text_field :burn_rep, class: 'form-control' %>
+      </div>
+    </div>
   </div>
 
   <div class="field">
