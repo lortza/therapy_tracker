@@ -66,6 +66,6 @@ class ExercisesController < ApplicationController
     end
 
     def authorize_exercise
-      redirect_to root_path, notice: "Whoops! You're not authorized to view that page." if @exercise.user_id != current_user.id
+      redirect_to root_path, alert: "Whoops! You're not authorized to view that page." if @exercise.user_id != current_user.id
     end
 end

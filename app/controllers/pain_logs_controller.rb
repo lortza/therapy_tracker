@@ -64,6 +64,6 @@ class PainLogsController < ApplicationController
     end
 
     def authorize_pain_log
-      redirect_to root_path, notice: "Whoops! You're not authorized to view that page." if @pain_log.user_id != current_user.id
+      redirect_to root_path, alert: "Whoops! You're not authorized to view that page." if @pain_log.user_id != current_user.id
     end
 end
