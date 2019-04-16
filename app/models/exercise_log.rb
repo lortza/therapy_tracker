@@ -27,11 +27,24 @@ class ExerciseLog < ApplicationRecord
   delegate :name, to: :body_part, prefix: true
   delegate :name, to: :exercise, prefix: true
 
-  def self.total_minutes_spent
-    all.map(&:minutes_spent).reduce(:+)
+  def self.minutes_spent_by_day
+    output = {}
+    all.each do |log|
+      if output[log.datetime_occurred.to_date] == nil
+        output[log.datetime_occurred.to_date] = log.minutes_spent.round(2)
+      else
+        output[log.datetime_occurred.to_date] += log.minutes_spent.round(2)
+      end
+    end
+    output
+  end
+
+  def seconds_spent
+    sets * reps * rep_length
   end
 
   def minutes_spent
-    sets * reps * rep_length / 60
+    (seconds_spent.to_f / 60)
   end
+
 end
