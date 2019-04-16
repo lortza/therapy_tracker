@@ -36,7 +36,7 @@ class ExerciseLog < ApplicationRecord
         output[log.datetime_occurred.to_date] += log.minutes_spent.round(2)
       end
     end
-    output
+    output.sort.to_h
   end
 
   def seconds_spent
