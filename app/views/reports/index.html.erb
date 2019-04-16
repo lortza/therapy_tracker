@@ -1,5 +1,5 @@
-<%= pie_chart({"Football" => 10, "Basketball" => 5}) %>
-<%= pie_chart [["Football", 10], ["Basketball", 5]] %>
+<%#= pie_chart({"Football" => 10, "Basketball" => 5}) %>
+<%#= pie_chart [["Football", 10], ["Basketball", 5]] %>
 
 <%#= line_chart [
   {name: "Series A", data: series_a},
@@ -24,7 +24,7 @@
 
 <%= bar_chart [
   {name: "Minutes Exercised", data: ExerciseLog.minutes_spent_by_day},
-  {name: "Pain Levels", data: PainLog.avg_pain_level_by_day},
+  {name: "Pain Levels", data: PainLog.group_by_day(:datetime_occurred).sum(:pain_level)},
 ] %>
 
 <hr>
