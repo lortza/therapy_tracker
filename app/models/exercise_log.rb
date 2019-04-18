@@ -40,7 +40,8 @@ class ExerciseLog < ApplicationRecord
   end
 
   def seconds_spent
-    sets * reps * rep_length
+    side_multiplier = per_side ? 2 : 1
+    sets * reps * rep_length * side_multiplier
   end
 
   def minutes_spent
