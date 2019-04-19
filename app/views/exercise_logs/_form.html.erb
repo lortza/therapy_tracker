@@ -27,19 +27,16 @@
       <div class="field">
         <%= form.label :sets %>
         <%= form.number_field :sets, class: 'form-control' %>
-        <%#= form.select :sets,
-          options_for_select((1..5).to_a, selected: 0),
-          { include_blank: false },
-          class: 'form-control'
-        %>
       </div>
     </div>
+    
     <div class="col">
       <div class="field">
         <%= form.label :reps %>
         <%= form.number_field :reps, class: 'form-control' %>
       </div>
     </div>
+
     <div class="col">
       <div class="field">
         <%= form.label :rep_length %>
@@ -57,14 +54,14 @@
 
   <div class="form-row">
     <div class="col">
-      <div class="field">
+      <div id='burn-set-container' class="field">
         <%= form.label 'Burn Set #' %>
         <%= form.text_field :burn_set, class: 'form-control' %>
       </div>
     </div>
 
     <div class="col">
-      <div class="field">
+      <div id='burn-rep-container' class="field">
         <%= form.label 'Burn Rep #' %>
         <%= form.text_field :burn_rep, class: 'form-control' %>
       </div>
