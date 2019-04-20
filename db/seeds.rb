@@ -1,72 +1,52 @@
 # frozen_string_literal: true
 
 puts 'Destroying all assets'
-# User.destroy_all
-Exercise.destroy_all
-ExerciseLog.destroy_all
-PainLog.destroy_all
-PhysicalTherapySession.destroy_all
-Pain.destroy_all
-BodyPart.destroy_all
+  ExerciseLog.destroy_all
+  PainLog.destroy_all
+  PhysicalTherapySession.destroy_all
+  Pain.destroy_all
+  BodyPart.destroy_all
+  Exercise.destroy_all
+  User.destroy_all
 
 puts 'Building Users'
-# user = User.create!(first_name: 'Admin', last_name: 'McAdmins', email: 'admin@example.com', admin: true, password: 'password', password_confirmation: 'password')
-# User.create!(first_name: 'User1First', last_name: 'User1Last', email: 'user1@example.com', admin: false, password: 'password', password_confirmation: 'password')
+  user = FactoryBot.create(:user, first_name: 'Admin', last_name: 'McAdmins', email: 'admin@example.com', admin: true)
 
-user = User.first
 puts 'Building Exercises'
-Exercise.create!([
-  { user_id: user.id, default_sets: 3, default_reps: 10, default_rep_length: 2, name: 'clam shells', description: 'lie on one side with legs bent at knees' }
-  { user_id: user.id, default_sets: 3, default_reps: 10, default_rep_length: 5, name: 'bridges', description: 'lie on back with legs bent at knees. lift butt up.' }
-])
+  FactoryBot.create(:exercise, user_id: user.id, name: 'clam shells', description: 'lie on one side with legs bent at knees', default_per_side: true )
+  FactoryBot.create(:exercise, user_id: user.id, name: 'bridges', description: 'lie on back with legs bent at knees. lift butt up.' )
 
 puts 'Building Body Parts'
-BodyPart.create!([
-  { user_id: user.id, name: 'hip - right' },
-  { user_id: user.id, name: 'hip - left' },
-  { user_id: user.id, name: 'knee - right' },
-  { user_id: user.id, name: 'knee - left' },
-])
-body_part = BodyPart.first
+  FactoryBot.create(:body_part, user_id: user.id, name: 'hip, right')
+  FactoryBot.create(:body_part, user_id: user.id, name: 'hip, left')
+  FactoryBot.create(:body_part, user_id: user.id, name: 'knee, right')
+  FactoryBot.create(:body_part, user_id: user.id, name: 'knee, left')
+  body_part = BodyPart.first
 
 puts 'Building Pains'
-Pain.create!([
-  { user_id: user.id, name: 'aching' },
-  { user_id: user.id, name: 'burning' },
-  { user_id: user.id, name: 'tearing' },
-  { user_id: user.id, name: 'throbbing' },
-  { user_id: user.id, name: 'stabbing' },
-])
-pain = Pain.sample
-
+  FactoryBot.create(:pain, user_id: user.id, name: 'aching')
+  FactoryBot.create(:pain, user_id: user.id, name: 'burning')
+  FactoryBot.create(:pain, user_id: user.id, name: 'throbbing')
+  FactoryBot.create(:pain, user_id: user.id, name: 'stabbing')
+  FactoryBot.create(:pain, user_id: user.id, name: 'stiffness')
+  pain = Pain.all.sample
 
 puts 'Building Logs'
-exercise = Exercise.first
-ExerciseLog.create!([
-  { user_id: user.id, sets: 3, reps: 10, exercise_id: exercise.id, datetime_occurred: "2019-03-23 19:29:00", rep_length: 2, progress_note: "hip generally feels more supported, but pain is still very present", body_part_id: body_part.id },
-  { user_id: user.id, sets: 3, reps: 10, exercise_id: exercise.id, datetime_occurred: "2019-03-24 09:30:00", rep_length: 2, progress_note: "feeling good this morning. hip cracked during exercise and that felt nice.", body_part_id: body_part.id },
-  { user_id: user.id, sets: 3, reps: 10, exercise_id: exercise.id, datetime_occurred: "2019-03-21 15:30:00", rep_length: 1, progress_note: "left hip feels weaker than right. Didn’t notice much of a difference after this session. walking to my car was kind of painful: 1.\r\n", body_part_id: body_part.id },
-  { user_id: user.id, sets: 3, reps: 10, exercise_id: exercise.id, datetime_occurred: "2019-03-21 18:00:00", rep_length: 2, progress_note: "Went for a walk right afterwards. We did 1 little loop and i was not feeling any(? much?) pain, so we did another small loop. Now I’d like to rest my hips. Stil feeling burning when sitting with feet on floor and with legs elevated.", body_part_id: body_part.id },
-  { user_id: user.id, sets: 3, reps: 10, exercise_id: exercise.id, datetime_occurred: "2019-03-22 06:30:00", rep_length: 3, progress_note: "left hip feels weaker than right also, hip is a little sore this morning in the joint. it doesn’t feel like workout sore. Usual pain in usual places, but i feel more confident and optimistic.", body_part_id: body_part.id },
-  { user_id: user.id, sets: 3, reps: 10, exercise_id: exercise.id, datetime_occurred: "2019-03-22 17:00:00", rep_length: 2, progress_note: "left hip still feels weaker than right. weird. no muscle soreness from exercise. Went for little walk around block right afterwards. My hip feels more supported than before, but i’m still kind of walking funny.", body_part_id: body_part.id },
-  { user_id: user.id, sets: 3, reps: 10, exercise_id: exercise.id, datetime_occurred: "2019-03-23 10:00:00", rep_length: 2, progress_note: "left hip feels weaker than right also, hip is a little sore this morning in the joint. it doesn’t feel like workout sore.", body_part_id: body_part.id }
-])
+  FactoryBot.create(:exercise_log, user_id: user.id, body_part_id: BodyPart.all.sample.id, exercise_id: Exercise.all.sample.id, datetime_occurred: '2019-03-23 19:29:00', progress_note: 'generally feels more supported, but pain is still very present')
+  FactoryBot.create(:exercise_log, user_id: user.id, body_part_id: BodyPart.all.sample.id, exercise_id: Exercise.all.sample.id, datetime_occurred: '2019-03-24 09:30:00', progress_note: 'feeling good this morning. hip cracked during exercise and that felt nice.')
+  FactoryBot.create(:exercise_log, user_id: user.id, body_part_id: BodyPart.all.sample.id, exercise_id: Exercise.all.sample.id, datetime_occurred: '2019-03-21 15:30:00', progress_note: 'feels weaker than other side. Didn’t notice much of a difference after this session.')
+  FactoryBot.create(:exercise_log, user_id: user.id, body_part_id: BodyPart.all.sample.id, exercise_id: Exercise.all.sample.id, datetime_occurred: '2019-03-21 18:00:00', progress_note: 'Went for a walk right afterwards. We did 1 little loop and i was not feeling much pain, so we did another small loop.')
+  FactoryBot.create(:exercise_log, user_id: user.id, body_part_id: BodyPart.all.sample.id, exercise_id: Exercise.all.sample.id, datetime_occurred: '2019-03-22 06:30:00', progress_note: 'feels weaker than right also, hip is a little sore this morning in the joint. it doesn’t feel like workout sore.')
+  FactoryBot.create(:exercise_log, user_id: user.id, body_part_id: BodyPart.all.sample.id, exercise_id: Exercise.all.sample.id, datetime_occurred: '2019-03-22 17:00:00', progress_note: 'still feels weaker than other side. weird. no muscle soreness from exercise.')
+  FactoryBot.create(:exercise_log, user_id: user.id, body_part_id: BodyPart.all.sample.id, exercise_id: Exercise.all.sample.id, datetime_occurred: '2019-03-23 10:00:00', progress_note: 'feels weaker than other side also, hip is a little sore this morning in the joint.')
 
-PainLog.create!([
-  { user_id: user.id, pain_id: pain.id, datetime_occurred: 'Mon, 25 Mar 2019 19:30:00 UTC +00:00', body_part_id: body_part.id, pain_level: 3, pain_description: "lower back of hip felt dull and achey", trigger: "standing and cooking" },
-])
+  FactoryBot.create(:pain_log, user_id: user.id, body_part_id: BodyPart.all.sample.id, pain_id: Pain.all.sample.id, datetime_occurred: '2019-03-23 10:45:00')
+  FactoryBot.create(:pain_log, user_id: user.id, body_part_id: BodyPart.all.sample.id, pain_id: Pain.all.sample.id, datetime_occurred: '2019-03-24 02:00:00')
+  FactoryBot.create(:pain_log, user_id: user.id, body_part_id: BodyPart.all.sample.id, pain_id: Pain.all.sample.id, datetime_occurred: '2019-03-25 06:15:00')
+  FactoryBot.create(:pain_log, user_id: user.id, body_part_id: BodyPart.all.sample.id, pain_id: Pain.all.sample.id, datetime_occurred: '2019-03-26 07:00:00')
+  FactoryBot.create(:pain_log, user_id: user.id, body_part_id: BodyPart.all.sample.id, pain_id: Pain.all.sample.id, datetime_occurred: '2019-03-27 10:00:00')
+  FactoryBot.create(:pain_log, user_id: user.id, body_part_id: BodyPart.all.sample.id, pain_id: Pain.all.sample.id, datetime_occurred: '2019-03-28 10:30:00')
 
-PhysicalTherapySession.create!([
-  { user_id: user.id,
-    datetime_occurred: 'Thur, 21 Mar 2019 14:00:00 UTC +00:00',
-    body_part_id: body_part.id,
-    exercise_notes: "clamshells: 3 sets 10 reps each side",
-    homework: "clamshells: 3 sets 10 reps each side",
-    duration: 60 },
-  { user_id: user.id,
-    datetime_occurred: 'Mon, 25 Mar 2019 08:00:00 UTC +00:00',
-    body_part_id: body_part.id,
-    exercise_notes: "clamshells + yellow band: 3 sets 10 reps each side\r\n\r\ncross body isometrics: 5 second push, 10 reps each leg\r\n\r\nbridges: 3 sets 10 reps, 10 second hold\r\n\r\nstrap stretch hams: 1 set 10 reps each leg. lift leg straight up with strap and hold for 10 sec\r\n\r\nstrap stretch quad: 10 set 10 reps hold for 10 seconds\r\n\r\ncrouch walk with band: 2 laps\r\n\r\nsquats on machine: 2 sets 10 reps",
-    homework: "clamshells: 3 sets 10 reps each side\r\n\r\ncross body isometrics: 5 second push, 10 reps each leg\r\n\r\nbridges: 3 sets 10 reps, 10 second hold",
-    duration: 90 },
-])
+  FactoryBot.create(:physical_therapy_session, user_id: user.id, body_part_id: BodyPart.all.sample.id, datetime_occurred: '2019-03-24 08:40:00', exercise_notes: 'clamshells + yellow band: 3 sets 10 reps each side, cross body isometrics: 5 second push, 10 reps each leg', homework: 'same as session')
+  FactoryBot.create(:physical_therapy_session, user_id: user.id, body_part_id: BodyPart.all.sample.id, datetime_occurred: '2019-03-26 05:30:00', exercise_notes: 'bridges: 3 sets 10 reps, 10 second hold, strap stretch hams: 1 set 10 reps each leg. lift leg straight up with strap and hold for 10 sec', homework: 'same as session')
+  FactoryBot.create(:physical_therapy_session, user_id: user.id, body_part_id: BodyPart.all.sample.id, datetime_occurred: '2019-03-28 04:30:00', exercise_notes: 'strap stretch quad: 10 set 10 reps hold for 10 seconds, crouch walk with band: 2 laps, squats on machine: 2 sets 10 reps', homework: 'same as session')
