@@ -63,6 +63,6 @@ class ExerciseLogsController < ApplicationController
     end
 
     def exercise_log_params
-      params.require(:exercise_log).permit(:user_id, :body_part_id, :datetime_occurred, :exercise_id, :sets, :reps, :rep_length, :per_side, :burn_rep, :burn_set, :progress_note)
+      params.require(:exercise_log).permit(:user_id, :body_part_id, :datetime_occurred, :exercise_id, :sets, :reps, :rep_length, :per_side, :burn_set, :burn_rep, :progress_note)
     end
 end
