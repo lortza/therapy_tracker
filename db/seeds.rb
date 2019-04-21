@@ -15,6 +15,8 @@ puts 'Building Users'
 puts 'Building Exercises'
   FactoryBot.create(:exercise, user_id: user.id, name: 'clam shells', description: 'lie on one side with legs bent at knees', default_per_side: true )
   FactoryBot.create(:exercise, user_id: user.id, name: 'bridges', description: 'lie on back with legs bent at knees. lift butt up.' )
+  FactoryBot.create(:exercise, user_id: user.id, name: 'cross-body isometrics', description: 'lie on back with legs bent at knees. bring right knee towards chest but push back with left hand. hold and engage core. alternate sides.' )
+  FactoryBot.create(:exercise, user_id: user.id, name: 'wall slides', description: 'lie on side with body flat against wall. raise leg up, sliding heel againt wall.' )
 
 puts 'Building Body Parts'
   FactoryBot.create(:body_part, user_id: user.id, name: 'hip, right')

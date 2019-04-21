@@ -5,6 +5,9 @@ require 'rails_helper'
 RSpec.describe PhysicalTherapySession, type: :model do
   context "associations" do
     it { should belong_to(:user) }
+    it { should belong_to(:body_part) }
+    it { should have_many(:homework_exercises) }
+    it { should have_many(:session_exercises) }
   end
 
   context "validations" do

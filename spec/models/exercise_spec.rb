@@ -5,6 +5,10 @@ require 'rails_helper'
 RSpec.describe Exercise, type: :model do
   context "associations" do
     it { should belong_to(:user) }
+    it { should have_many(:exercise_logs) }
+    it { should have_many(:logs) }
+    it { should have_many(:homework_exercises) }
+    it { should have_many(:session_exercises) }
   end
 
   context "validations" do

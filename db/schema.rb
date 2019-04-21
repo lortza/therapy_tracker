@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_14_224835) do
+ActiveRecord::Schema.define(version: 2019_04_21_151842) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,15 @@ ActiveRecord::Schema.define(version: 2019_04_14_224835) do
     t.index ["user_id"], name: "index_exercises_on_user_id"
   end
 
+  create_table "homework_exercises", force: :cascade do |t|
+    t.bigint "physical_therapy_session_id"
+    t.bigint "exercise_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exercise_id"], name: "index_homework_exercises_on_exercise_id"
+    t.index ["physical_therapy_session_id"], name: "index_homework_exercises_on_physical_therapy_session_id"
+  end
+
   create_table "pain_logs", force: :cascade do |t|
     t.bigint "user_id"
     t.datetime "datetime_occurred"
@@ -91,6 +100,15 @@ ActiveRecord::Schema.define(version: 2019_04_14_224835) do
     t.index ["user_id"], name: "index_physical_therapy_sessions_on_user_id"
   end
 
+  create_table "session_exercises", force: :cascade do |t|
+    t.bigint "physical_therapy_session_id"
+    t.bigint "exercise_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exercise_id"], name: "index_session_exercises_on_exercise_id"
+    t.index ["physical_therapy_session_id"], name: "index_session_exercises_on_physical_therapy_session_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -111,10 +129,14 @@ ActiveRecord::Schema.define(version: 2019_04_14_224835) do
   add_foreign_key "exercise_logs", "exercises"
   add_foreign_key "exercise_logs", "users"
   add_foreign_key "exercises", "users"
+  add_foreign_key "homework_exercises", "exercises"
+  add_foreign_key "homework_exercises", "physical_therapy_sessions"
   add_foreign_key "pain_logs", "body_parts"
   add_foreign_key "pain_logs", "pains"
   add_foreign_key "pain_logs", "users"
   add_foreign_key "pains", "users"
   add_foreign_key "physical_therapy_sessions", "body_parts"
   add_foreign_key "physical_therapy_sessions", "users"
+  add_foreign_key "session_exercises", "exercises"
+  add_foreign_key "session_exercises", "physical_therapy_sessions"
 end

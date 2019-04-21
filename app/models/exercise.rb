@@ -4,6 +4,8 @@ class Exercise < ApplicationRecord
   belongs_to :user
   has_many :exercise_logs
   has_many :logs, foreign_key: 'user_id', class_name: 'ExerciseLog'
+  has_many :homework_exercises
+  has_many :session_exercises
 
   validates :name,
             :description,

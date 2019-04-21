@@ -3,6 +3,8 @@
 class PhysicalTherapySession < ApplicationRecord
   belongs_to :user
   belongs_to :body_part
+  has_many :homework_exercises
+  has_many :session_exercises
 
   validates :datetime_occurred,
             :body_part_id,
