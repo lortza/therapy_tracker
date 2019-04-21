@@ -3,9 +3,9 @@
 class PtSession < ApplicationRecord
   belongs_to :user
   belongs_to :body_part
-  has_many :homework_exercises
+  # has_many :homework_exercises
   has_many :pt_session_exercises, dependent: :destroy
-  has_many :session_exercises, through: :pt_session_exercises
+  has_many :session_exercises, through: :pt_session_exercises, source: :exercise
 
   validates :datetime_occurred,
             :body_part_id,
