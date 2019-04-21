@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :logs, only: [:index]
   resources :exercise_logs
   resources :pain_logs
-  resources :physical_therapy_sessions
+  resources :pt_sessions
 
   namespace :admin do
     resources :users, only: [:index, :show]

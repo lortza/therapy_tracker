@@ -1,5 +1,5 @@
-<%= form_with(model: physical_therapy_session, local: true) do |form| %>
-  <%= render partial: 'shared/errors', locals: {object: physical_therapy_session} %>
+<%= form_with(model: pt_session, local: true) do |form| %>
+  <%= render partial: 'shared/errors', locals: {object: pt_session} %>
 
   <div class="field">
     <%= form.label 'Target Body Part' %>
@@ -24,6 +24,7 @@
     <%= form.text_area :exercise_notes, class: 'form-control textarea-large' %>
   </div>
 
+
   <div class="field">
     <%= form.label :homework %>
     <%= form.text_area :homework, class: 'form-control textarea-large' %>
@@ -31,6 +32,6 @@
 
   <div class="actions mt-3 mb-3">
     <%= form.submit class: button_class('success') %>
-    <%= link_to 'Index', physical_therapy_sessions_path, class: button_class('primary pull-right') %>
+    <%= link_to 'Index', pt_sessions_path, class: button_class('primary pull-right') %>
   </div>
 <% end %>

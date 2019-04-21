@@ -31,7 +31,7 @@
 <h2>Pain, Exercise, & Therapy</h2>
 <%= line_chart [
   {name: "Exercise Logs", data: ExerciseLog.group_by_day(:datetime_occurred).count},
-  {name: "Physical Therapy Sessions", data: PhysicalTherapySession.group_by_day(:datetime_occurred).count},
+  {name: "Physical Therapy Sessions", data: PtSession.group_by_day(:datetime_occurred).count},
   {name: "Pain Logs", data: PainLog.group_by_day(:datetime_occurred).count},
 ] %>
 

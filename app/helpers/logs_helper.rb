@@ -11,6 +11,6 @@ module LogsHelper
   end
 
   def last_homework
-    PhysicalTherapySession.last&.homework
+    PtSession.last&.homework
   end
 end

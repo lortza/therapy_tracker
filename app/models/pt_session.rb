@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
-class PhysicalTherapySession < ApplicationRecord
+class PtSession < ApplicationRecord
   belongs_to :user
   belongs_to :body_part
   has_many :homework_exercises
-  has_many :session_exercises
+  has_many :pt_session_exercises, dependent: :destroy
+  has_many :session_exercises, through: :pt_session_exercises
 
   validates :datetime_occurred,
             :body_part_id,

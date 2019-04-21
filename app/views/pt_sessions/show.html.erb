@@ -1,0 +1,11 @@
+<i class="fal fa-hospital-user pull-right"></i>
+<h5 class="card-title"><%= format_time(@pt_session) %></h5>
+<p class="card-text"><strong><%= @pt_session.body_part_name.titleize %>:</strong> <%= @pt_session.duration %> minutes<br></p>
+<ul>
+  <%= simple_format(@pt_session.exercise_notes, {}, wrapper_tag: 'li') %>
+</ul>
+
+<%= render partial: 'pt_sessions/homework', locals: { homework: @pt_session.homework } %>
+
+<%= link_to 'Edit', edit_pt_session_path(@pt_session), class: button_class %>
+<%= link_to 'Back', pt_sessions_path, class: button_class %>

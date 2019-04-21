@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe PhysicalTherapySession, type: :model do
+RSpec.describe PtSession, type: :model do
   context "associations" do
     it { should belong_to(:user) }
     it { should belong_to(:body_part) }

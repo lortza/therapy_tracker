@@ -2,9 +2,9 @@
 
 require 'rails_helper'
 
-RSpec.describe "physical_therapy_sessions/show", type: :view do
+RSpec.describe "pt_sessions/show", type: :view do
   before(:each) do
-    @physical_therapy_session = assign(:physical_therapy_session, PhysicalTherapySession.create!(
+    @pt_session = assign(:pt_session, PtSession.create!(
       :user => nil,
       :exercise_notes => "MyText",
       :homework => "MyText",

@@ -1,0 +1,11 @@
+<div class="card card--log-entry log-type-therapy">
+  <a href="<%= pt_session_path(pt_session) %>">
+    <div class="card-body">
+      <span class='card--log-icon'>Therapy <i class="fal fa-hospital-user"></i></span>
+      <h5><%= format_time(pt_session) %></h5>
+
+      <p class="card-subtitle"><strong><%= pt_session.body_part_name.titleize %>:</strong> <%= pt_session.duration %> minutes<br></p>
+      <%= render partial: 'pt_sessions/homework', locals: { homework: pt_session.homework } %>
+    </div>
+  </a>
+</div>

@@ -2,16 +2,16 @@
 
 require 'rails_helper'
 
-RSpec.describe "physical_therapy_sessions/index", type: :view do
+RSpec.describe "pt_sessions/index", type: :view do
   before(:each) do
-    assign(:physical_therapy_sessions, [
-      PhysicalTherapySession.create!(
+    assign(:pt_sessions, [
+      PtSession.create!(
         :user => nil,
         :exercise_notes => "MyText",
         :homework => "MyText",
         :duration => 2
       ),
-      PhysicalTherapySession.create!(
+      PtSession.create!(
         :user => nil,
         :exercise_notes => "MyText",
         :homework => "MyText",
@@ -20,7 +20,7 @@ RSpec.describe "physical_therapy_sessions/index", type: :view do
     ])
   end
 
-  it "renders a list of physical_therapy_sessions" do
+  it "renders a list of pt_sessions" do
     render
     assert_select 'tr>td', :text => nil.to_s, count: 2
     assert_select 'tr>td', text: 'MyText'.to_s, count: 2

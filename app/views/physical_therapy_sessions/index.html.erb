@@ -1,8 +1,0 @@
-<header class='add-log-buttons-container'>
-  <%= render 'buttons/new_physical_therapy_log' %>
-</header>
-
-<% @physical_therapy_sessions.each do |physical_therapy_session| %>
-  <%= render partial: 'physical_therapy_session', locals: { physical_therapy_session: physical_therapy_session } %>
-<% end %>
-<br>

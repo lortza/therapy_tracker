@@ -1,0 +1,6 @@
+<h1>Editing Physical Therapy Session</h1>
+
+<%= render 'form', pt_session: @pt_session %>
+
+<%= link_to 'Delete PT Session', @pt_session, method: :delete, data: { confirm: 'Are you sure?' }, class: button_class('danger') %>
+<%= link_to 'Cancel', pt_session_path(@pt_session), class: button_class('primary pull-right') %>
