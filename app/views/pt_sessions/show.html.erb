@@ -1,11 +1,21 @@
 <i class="fal fa-hospital-user pull-right"></i>
-<h5 class="card-title"><%= format_time(@pt_session) %></h5>
+<h5 class="card-title">Physical Therapy Session on <%= format_time(@pt_session) %></h5>
 <p class="card-text"><strong><%= @pt_session.body_part_name.titleize %>:</strong> <%= @pt_session.duration %> minutes<br></p>
+<h5>Session Notes</h5>
+<p><%= @pt_session.exercise_notes %></p>
 <ul>
-  <%= simple_format(@pt_session.exercise_notes, {}, wrapper_tag: 'li') %>
+  <% @pt_session.session_exercises.each do |exercise| %>
+    <li><%= exercise.name %></li>
+  <% end %>
 </ul>
 
-<%= render partial: 'pt_sessions/homework', locals: { homework: @pt_session.homework } %>
+<h5>Homework</h5>
+<p><%= @pt_session.homework %></p>
+<ul>
+  <%# @pt_session.homework_exercises.each do |exercise| %>
+  <li>[exercises coming soon]<%#= exercise.name %></li>
+  <%# end %>
+</ul>
 
 <%= link_to 'Edit', edit_pt_session_path(@pt_session), class: button_class %>
 <%= link_to 'Back', pt_sessions_path, class: button_class %>
