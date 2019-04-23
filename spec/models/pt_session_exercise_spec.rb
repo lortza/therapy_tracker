@@ -1,5 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe PtSessionExercise, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "associations" do
+    it { should belong_to(:pt_session) }
+    it { should belong_to(:exercise) }
+  end
+
+  context "validations" do
+    it { should validate_presence_of(:pt_session) }
+    it { should validate_presence_of(:exercise) }
+  end
 end

@@ -3,7 +3,7 @@
 class Pain < ApplicationRecord
   belongs_to :user
   has_many :pain_logs
-  has_many :logs, foreign_key: 'user_id', class_name: 'PainLog'
+  has_many :logs, foreign_key: 'pain_id', class_name: 'PainLog'
 
   validates :name, presence: true
 

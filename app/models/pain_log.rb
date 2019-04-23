@@ -18,4 +18,10 @@ class PainLog < ApplicationRecord
 
   delegate :name, to: :pain, prefix: true
   delegate :name, to: :body_part, prefix: true
+
+  # def self.avg_pain_level_by_day
+  #   x = PainLog.all.map do |log|
+  #     [log.datetime_occurred.to_date => log.pain_level]
+  #   end
+  # end
 end

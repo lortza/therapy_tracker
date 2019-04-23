@@ -19,4 +19,15 @@ RSpec.describe PainLog, type: :model do
 
     it { should validate_numericality_of(:pain_level) }
   end
+
+  xdescribe '#avg_pain_level_by_day' do
+    it 'returns the average pain level of minutes exercised per log' do
+      pain_log = build(:pain_log)
+      allow(pain_log).to receive(:seconds_spent).and_return(120)
+
+      expect(PainLog.avg_pain_level_by_day).to eq(2)
+    end
+
+
+  end
 end
