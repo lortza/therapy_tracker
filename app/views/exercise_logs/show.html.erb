@@ -24,6 +24,7 @@
 <p>
   <strong>Progress notes:</strong><br>
   For: <%= @exercise_log.body_part_name %> | Burn at Set <%= @exercise_log.burn_set %> / Rep <%= @exercise_log.burn_rep %> <br>
+  <%= format_resistance(@exercise_log) %><br>
   <%= @exercise_log.progress_note %>
 </p>
 
