@@ -7,8 +7,8 @@ module ExerciseLogsHelper
   end
 
   def format_resistance(log)
-    if log.resistance
-      " Resistance: #{log.resistance}. "
+    unless log.resistance.blank?
+      " | Resistance: #{log.resistance}. "
     end
   end
 end
