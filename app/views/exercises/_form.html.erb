@@ -34,6 +34,11 @@
   </div> <!-- row -->
 
   <div class="field">
+    <%= form.label 'Default Resistance Level' %>
+    <%= form.text_field :default_resistance, class: 'form-control' %>
+  </div>
+
+  <div class="field">
     <%= form.label :description %>
     <%= form.text_area :description, class: 'form-control' %>
   </div>

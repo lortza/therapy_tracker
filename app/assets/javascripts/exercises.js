@@ -10,6 +10,7 @@ function dropdownSwitcher() {
     const reps = document.getElementById('exercise_log_reps');
     const repLength = document.getElementById('exercise_log_rep_length');
     const perSide = document.getElementById('exercise_log_per_side');
+    const resistance = document.getElementById('exercise_log_resistance');
 
 
     function populateDOM(data) {
@@ -18,6 +19,7 @@ function dropdownSwitcher() {
       reps.value = data.default_reps;
       repLength.value = data.default_rep_length;
       perSide.checked = data.default_per_side;
+      resistance.value = data.default_resistance;
     }
 
     function getExercise(url) {

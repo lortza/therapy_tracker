@@ -6,7 +6,7 @@
 
       <p class="card-text"><strong><%= exercise_log.body_part_name.titleize %>:</strong> <%= exercise_log.exercise_name.titleize %>: <%= format_exercise_stats(exercise_log) %><br>
         <% unless exercise_log.burn_rep.blank? && exercise_log.progress_note.blank? %>
-          <small class="text-muted">Progress: exercise burn at Set <%= exercise_log.burn_set %> / Rep <%= exercise_log.burn_rep %>. <%= exercise_log.progress_note %></small>
+          <small class="text-muted">Progress: exercise burn at Set <%= exercise_log.burn_set %> / Rep <%= exercise_log.burn_rep %>.<%= format_resistance(exercise_log) %> <%= exercise_log.progress_note %></small>
         <% end %>
       </p>
     </div>

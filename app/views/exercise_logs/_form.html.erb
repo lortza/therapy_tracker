@@ -29,7 +29,7 @@
         <%= form.number_field :sets, class: 'form-control' %>
       </div>
     </div>
-    
+
     <div class="col">
       <div class="field">
         <%= form.label :reps %>
@@ -51,6 +51,11 @@
       </div>
     </div>
   </div> <!-- row -->
+
+  <div class="field">
+    <%= form.label 'Resistance Level' %>
+    <%= form.text_field :resistance, class: 'form-control' %>
+  </div>
 
   <div class="form-row">
     <div class="col">

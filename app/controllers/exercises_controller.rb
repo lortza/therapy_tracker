@@ -62,7 +62,7 @@ class ExercisesController < ApplicationController
     end
 
     def exercise_params
-      params.require(:exercise).permit(:user_id, :name, :default_sets, :default_reps, :default_rep_length, :description, :default_per_side)
+      params.require(:exercise).permit(:user_id, :name, :default_sets, :default_reps, :default_rep_length, :default_resistance, :description, :default_per_side)
     end
 
     def authorize_exercise
