@@ -4,10 +4,12 @@ class Exercise < ApplicationRecord
   belongs_to :user
   has_many :exercise_logs
   has_many :logs, foreign_key: 'user_id', class_name: 'ExerciseLog'
-  # has_many :homework_exercises
 
-  has_many :pt_session_exercises, dependent: :destroy
-  has_many :pt_sessions, through: :pt_session_exercises
+  has_many :pt_homework_exercises, dependent: :destroy  # the join table
+  has_many :pt_homework_sessions, through: :pt_homework_exercises, source: :pt_session
+
+  has_many :pt_session_exercises, dependent: :destroy  # the join table
+  has_many :pt_exercise_sessions, through: :pt_session_exercises, source: :pt_session
 
   validates :name,
             :description,

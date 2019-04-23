@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_21_215315) do
+ActiveRecord::Schema.define(version: 2019_04_23_002426) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,6 +78,15 @@ ActiveRecord::Schema.define(version: 2019_04_21_215315) do
     t.index ["user_id"], name: "index_pains_on_user_id"
   end
 
+  create_table "pt_homework_exercises", force: :cascade do |t|
+    t.bigint "pt_session_id"
+    t.bigint "exercise_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exercise_id"], name: "index_pt_homework_exercises_on_exercise_id"
+    t.index ["pt_session_id"], name: "index_pt_homework_exercises_on_pt_session_id"
+  end
+
   create_table "pt_session_exercises", force: :cascade do |t|
     t.bigint "pt_session_id"
     t.bigint "exercise_id"
@@ -124,6 +133,8 @@ ActiveRecord::Schema.define(version: 2019_04_21_215315) do
   add_foreign_key "pain_logs", "pains"
   add_foreign_key "pain_logs", "users"
   add_foreign_key "pains", "users"
+  add_foreign_key "pt_homework_exercises", "exercises"
+  add_foreign_key "pt_homework_exercises", "pt_sessions"
   add_foreign_key "pt_session_exercises", "exercises"
   add_foreign_key "pt_session_exercises", "pt_sessions"
   add_foreign_key "pt_sessions", "body_parts"

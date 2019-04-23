@@ -12,9 +12,9 @@
 <h5>Homework</h5>
 <p><%= @pt_session.homework %></p>
 <ul>
-  <%# @pt_session.homework_exercises.each do |exercise| %>
-  <li>[exercises coming soon]<%#= exercise.name %></li>
-  <%# end %>
+  <% @pt_session.homework_exercises.each do |exercise| %>
+  <li><%= exercise.name %></li>
+  <% end %>
 </ul>
 
 <%= link_to 'Edit', edit_pt_session_path(@pt_session), class: button_class %>

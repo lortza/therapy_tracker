@@ -1,5 +1,8 @@
 <small class='text-muted'>Homework <i id='homework-list-toggle' class='fal fa-caret-right'></i> <br>
   <ul id='homework-list' class='hidden'>
-    <%= simple_format(homework, {}, wrapper_tag: 'li') %>
+    <p><%= homework[:notes] %></p>
+    <% homework[:exercises].each do |exercise|  %>
+      <li><%= exercise.name %></li>
+    <% end %>
   </ul>
 </small>

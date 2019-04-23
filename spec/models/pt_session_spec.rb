@@ -6,7 +6,9 @@ RSpec.describe PtSession, type: :model do
   context "associations" do
     it { should belong_to(:user) }
     it { should belong_to(:body_part) }
-    # it { should have_many(:homework_exercises).through(pt_homework_exercises) }
+    it { should have_many(:pt_homework_exercises) }
+    it { should have_many(:homework_exercises).through(:pt_homework_exercises) }
+    it { should have_many(:pt_session_exercises) }
     it { should have_many(:session_exercises).through(:pt_session_exercises) }
   end
 

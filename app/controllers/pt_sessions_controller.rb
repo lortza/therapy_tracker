@@ -59,7 +59,7 @@ class PtSessionsController < ApplicationController
     end
 
     def pt_session_params
-      params.require(:pt_session).permit(:user_id, :body_part_id, :datetime_occurred, :exercise_notes, :homework, :duration, session_exercise_ids: [])
+      params.require(:pt_session).permit(:user_id, :body_part_id, :datetime_occurred, :exercise_notes, :homework, :duration, session_exercise_ids: [], homework_exercise_ids: [])
     end
 
     def authorize_pt_session

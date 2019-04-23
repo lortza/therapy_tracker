@@ -7,8 +7,10 @@ RSpec.describe Exercise, type: :model do
     it { should belong_to(:user) }
     it { should have_many(:exercise_logs) }
     it { should have_many(:logs) }
-    # it { should have_many(:homework_exercises).through(pt_homework_exercises) }
-    it { should have_many(:pt_sessions).through(:pt_session_exercises) }
+    it { should have_many(:pt_homework_exercises) }  # the join table
+    it { should have_many(:pt_homework_sessions).through(:pt_homework_exercises) }
+    it { should have_many(:pt_session_exercises) } # the join table
+    it { should have_many(:pt_exercise_sessions).through(:pt_session_exercises) }
   end
 
   context "validations" do

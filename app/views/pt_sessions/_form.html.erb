@@ -42,6 +42,19 @@
     <%= form.text_area :homework, class: 'form-control textarea-large' %>
   </div>
 
+  <div class="form-group row">
+    <div class="col-sm-12">
+    <%= form.label 'Homework Exercises' %>
+
+    <%= form.collection_check_boxes :homework_exercise_ids, current_user.exercises.by_name, :id, :name do |exercise| %>
+      <div class='form-check'>
+        <%= exercise.check_box class: 'form-check-input' %>
+        <%= exercise.label class: 'form-check-label' %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+
   <div class="actions mt-3 mb-3">
     <%= form.submit class: button_class('success') %>
     <%= link_to 'Index', pt_sessions_path, class: button_class('primary pull-right') %>

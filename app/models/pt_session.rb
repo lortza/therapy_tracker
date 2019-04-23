@@ -3,7 +3,10 @@
 class PtSession < ApplicationRecord
   belongs_to :user
   belongs_to :body_part
-  # has_many :homework_exercises
+
+  has_many :pt_homework_exercises, dependent: :destroy
+  has_many :homework_exercises, through: :pt_homework_exercises, source: :exercise
+
   has_many :pt_session_exercises, dependent: :destroy
   has_many :session_exercises, through: :pt_session_exercises, source: :exercise
 
