@@ -28,12 +28,12 @@
 <h3>All Time -- Grouped by Day</h3>
 <%= area_chart [
   {name: "Qty Exercises", data: ExerciseLog.group_by_day(:datetime_occurred).count},
-  {name: "Pain Levels", data: PainLog.group_by_day(:datetime_occurred).sum(:pain_level)},
+  {name: "Pain Levels Total", data: PainLog.group_by_day(:datetime_occurred).sum(:pain_level)},
 ] %>
 
 <%= bar_chart [
   {name: "Minutes Exercised", data: ExerciseLog.minutes_spent_by_day},
-  {name: "Pain Levels", data: PainLog.group_by_day(:datetime_occurred).sum(:pain_level)},
+  {name: "Pain Levels Total", data: PainLog.group_by_day(:datetime_occurred).sum(:pain_level)},
 ] %>
 
 <hr>
