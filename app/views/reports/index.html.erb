@@ -11,14 +11,14 @@
 
 <h2>Pain Instances & Levels</h2>
 <%= area_chart [
-  {name: "Pain Instances", data: PainLog.group_by_day(:datetime_occurred).count},
+  {name: "Qty Pain Instances", data: PainLog.group_by_day(:datetime_occurred).count},
   {name: "Pain Levels", data: PainLog.group_by_day(:datetime_occurred).sum(:pain_level)},
 ] %>
 
 <hr>
-<h2>Pain vs Exercise</h2>
+<h2>Exercises vs Pain</h2>
 <%= area_chart [
-  {name: "Exercise Sessions", data: ExerciseLog.group_by_day(:datetime_occurred).count},
+  {name: "Qty Exercises", data: ExerciseLog.group_by_day(:datetime_occurred).count},
   {name: "Pain Levels", data: PainLog.group_by_day(:datetime_occurred).sum(:pain_level)},
 ] %>
 
