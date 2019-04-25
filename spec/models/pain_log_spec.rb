@@ -20,6 +20,12 @@ RSpec.describe PainLog, type: :model do
     it { should validate_numericality_of(:pain_level) }
   end
 
+  describe 'self.past_two_weeks' do
+    xit 'returns only the logs between today and the past 14 days' do
+
+    end
+  end
+
   xdescribe '#avg_pain_level_by_day' do
     it 'returns the average pain level of minutes exercised per log' do
       pain_log = build(:pain_log)
