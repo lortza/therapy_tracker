@@ -25,4 +25,12 @@ class PtSession < ApplicationRecord
   def exercise_notes_to_lines
     self.exercise_notes = exercise_notes.gsub(/\r/, "\n")
   end
+
+  def self.exercise_counts
+    output = {}
+    all.order(:datetime_occurred).each do |session|
+      output[session.datetime_occurred.to_date] = session.pt_session_exercises.count
+    end
+    output
+  end
 end

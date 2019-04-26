@@ -37,6 +37,13 @@
 ] %>
 
 <hr>
+<h2>Home vs PT Exercises</h2>
+<%= area_chart [
+  {name: "Qty Pt Session Exercises", data: PtSession.exercise_counts},
+  {name: "Qty Home Exercises", data: ExerciseLog.group_by_day(:datetime_occurred).count},
+] %>
+
+<hr>
 <h2>Pain, Exercise, & Therapy</h2>
 <h3>All Time -- Grouped by Day</h3>
 <%= line_chart [
