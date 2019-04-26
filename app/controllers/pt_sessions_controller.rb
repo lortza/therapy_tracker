@@ -14,9 +14,11 @@ class PtSessionsController < ApplicationController
 
   def new
     @pt_session = current_user.pt_sessions.new
+    10.times { @pt_session.pt_session_exercises.build }
   end
 
   def edit
+    5.times { @pt_session.pt_session_exercises.build }
   end
 
   def create
@@ -59,7 +61,20 @@ class PtSessionsController < ApplicationController
     end
 
     def pt_session_params
-      params.require(:pt_session).permit(:user_id, :body_part_id, :datetime_occurred, :exercise_notes, :homework, :duration, session_exercise_ids: [], homework_exercise_ids: [])
+      params.require(:pt_session).permit(:user_id,
+                                         :body_part_id,
+                                         :datetime_occurred,
+                                         :exercise_notes,
+                                         :homework, :duration,
+                                         homework_exercise_ids: [],
+                                         pt_session_exercises_attributes: %i[
+                                           id
+                                           exercise_id
+                                           sets
+                                           reps
+                                           resistance
+                                           _destroy
+                                         ])
     end
 
     def authorize_pt_session
