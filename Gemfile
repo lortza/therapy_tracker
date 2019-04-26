@@ -48,11 +48,12 @@ group :development, :test do
   gem 'awesome_print'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'bullet' #detects N+1 queries via config/initializers/bullet.rb
+  gem 'bullet' # detects N+1 queries via config/initializers/bullet.rb
+  gem 'faker' # creates fake data for seeding
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'pry-awesome_print'
-  gem 'better_errors' #creates console in browser for errors
+  gem 'better_errors' # creates console in browser for errors
   gem 'binding_of_caller' #goes with better_errors
   gem 'lol_dba' # profiles app for performance
   gem 'rspec-rails', '~> 3.5'

@@ -11,6 +11,7 @@ FactoryBot.define do
     rep_length { 5 }
     burn_set { 2 }
     burn_rep { 5 }
+    resistance { ['', 'yellow band', 'green band'].sample }
     progress_note { 'progress note body' }
   end
 end
