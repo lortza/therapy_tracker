@@ -126,6 +126,6 @@ puts '... Exercise Logs'
     end
 
     exercise_multiplier.times do
-      log.session_exercises << Exercise.all.sample
+      FactoryBot.create(:pt_session_exercise, pt_session_id: log.id, exercise_id: Exercise.all.sample.id)
     end
   end
