@@ -10,4 +10,8 @@ RSpec.describe PtSessionExercise, type: :model do
     it { should validate_presence_of(:pt_session) }
     it { should validate_presence_of(:exercise) }
   end
+
+  context "delegations" do
+    it { should delegate_method(:name).to(:exercise).with_prefix }
+  end
 end
