@@ -20,9 +20,13 @@ RSpec.describe PainLog, type: :model do
     it { should validate_numericality_of(:pain_level) }
   end
 
+  context "delegations" do
+    it { should delegate_method(:name).to(:body_part).with_prefix }
+    it { should delegate_method(:name).to(:pain).with_prefix }
+  end
+
   describe 'self.past_two_weeks' do
     xit 'returns only the logs between today and the past 14 days' do
-
     end
   end
 

@@ -4,8 +4,8 @@
 <h5>Session Notes</h5>
 <p><%= @pt_session.exercise_notes %></p>
 <ul>
-  <% @pt_session.session_exercises.each do |exercise| %>
-    <li><%= exercise.name %></li>
+  <% @pt_session.pt_session_exercises.each do |session_exercise| %>
+    <li><%= display_exercise_stats(session_exercise) %></li>
   <% end %>
 </ul>
 

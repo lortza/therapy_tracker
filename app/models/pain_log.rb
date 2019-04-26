@@ -16,8 +16,8 @@ class PainLog < ApplicationRecord
             presence: true,
             numericality: true
 
-  delegate :name, to: :pain, prefix: true
   delegate :name, to: :body_part, prefix: true
+  delegate :name, to: :pain, prefix: true
 
   def self.past_two_weeks
     where('datetime_occurred >= ? AND datetime_occurred <= ?', (Date.today.to_datetime - 14.days), Date.today.to_datetime)

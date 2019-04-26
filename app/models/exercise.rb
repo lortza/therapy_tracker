@@ -9,7 +9,6 @@ class Exercise < ApplicationRecord
   has_many :pt_homework_sessions, through: :pt_homework_exercises, source: :pt_session
 
   has_many :pt_session_exercises, dependent: :destroy  # the join table
-  has_many :pt_exercise_sessions, through: :pt_session_exercises, source: :pt_session
 
   validates :description,
             :default_sets,
