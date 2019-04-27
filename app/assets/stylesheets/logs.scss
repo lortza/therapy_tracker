@@ -4,6 +4,11 @@
   width: 100%;
   margin-bottom: 1rem;
 }
+
+.card-body {
+  padding: 0.6rem;
+}
+
 .card--log-entry {
   margin-bottom: 1rem;
   a { color: $default_text; }
@@ -12,9 +17,22 @@
     a { text-decoration: none; }
   }
 }
+
 .card--log-icon {
   float: right;
   font-size: 0.8rem;
+}
+
+.card-title {
+  color: $secondary;
+  font-weight: normal;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-text {
+  font-size: 0.9rem;
+  line-height: 1rem;
 }
 
 .log-type-pain {

@@ -6,3 +6,5 @@
   <%= render partial: 'pt_session', locals: { pt_session: pt_session } %>
 <% end %>
 <br>
+
+<%= will_paginate @pt_sessions, :page_links => false %>

@@ -18,7 +18,7 @@ User.destroy_all
 #-------------------------------------------
 puts 'Building Users'
 user = FactoryBot.create(:user, first_name: 'Admin', last_name: 'McAdmins', email: 'admin@example.com', admin: true)
-
+# user = User.first
 #------------------------------------------
 puts 'Building Exercises'
 FactoryBot.create(:exercise, user_id: user.id, name: 'clam shells', description: 'lie on one side with legs bent at knees', default_per_side: true )
@@ -96,9 +96,9 @@ puts '... Exercise Logs'
   #------------------------------------------
   puts '... Physical Therapy Session Logs'
   exercise_note_opts = [
-    'clamshells + yellow band: 3 sets 10 reps each side, cross body isometrics: 5 second push, 10 reps each leg',
-    'bridges: 3 sets 10 reps, 10 second hold, strap stretch hams: 1 set 10 reps each leg. lift leg straight up with strap and hold for 10 sec',
-    'strap stretch quad: 10 set 10 reps hold for 10 seconds, crouch walk with band: 2 laps, squats on machine: 2 sets 10 reps',
+    'leveled up this time. used harder band. did one more set on most exercises',
+    'tried a new warmup this time. dr says flexibility is good, but need to do more. showed me 2 new stretches.',
+    'did strength testing for benchmarks. there is improvement since last week.',
   ]
 
   homework_notes = [

@@ -6,3 +6,5 @@
   <%= render partial: 'pain_log', locals: { pain_log: pain_log } %>
 <% end %>
 <br>
+
+<%= will_paginate @pain_logs, :page_links => false %>
