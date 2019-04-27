@@ -4,7 +4,7 @@ class LogsController < ApplicationController
   layout 'no_white_container'
 
   def index
-    @logs ||= integrated_logs
+    @logs = integrated_logs.paginate(:page => 2, :per_page => 25)
   end
 
   private
