@@ -43,7 +43,7 @@ gem 'devise' # user authentication
 
 gem 'chartkick' # chart rendering for ruby data
 gem 'groupdate' # grouping by dates. goes with chartkick
-gem 'will_paginate', '~> 3.1.0' # pagination
+gem 'will_paginate', '~> 3.1.0' # pagination. Styles: http://mislav.github.io/will_paginate/
 
 group :development, :test do
   gem 'awesome_print'
