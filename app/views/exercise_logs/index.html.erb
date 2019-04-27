@@ -6,3 +6,5 @@
   <%= render partial: 'exercise_log', locals: { exercise_log: exercise_log } %>
 <% end %>
 <br>
+
+<%= will_paginate @exercise_logs, :page_links => false %>
