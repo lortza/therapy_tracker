@@ -6,7 +6,7 @@ class PtSessionsController < ApplicationController
   layout 'no_white_container', only: [:index]
 
   def index
-    @pt_sessions = current_user.pt_sessions.order(datetime_occurred: 'DESC' ).paginate(page: params[:page], per_page: 10)
+    @logs = current_user.pt_sessions.order(datetime_occurred: 'DESC' ).paginate(page: params[:page], per_page: 10)
   end
 
   def show

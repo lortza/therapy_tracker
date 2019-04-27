@@ -2,9 +2,9 @@
   <%= render 'buttons/new_pain_log' %>
 </header>
 
-<% @pain_logs.each do |pain_log| %>
+<% @logs.each do |pain_log| %>
   <%= render partial: 'pain_log', locals: { pain_log: pain_log } %>
 <% end %>
 <br>
 
-<%= will_paginate @pain_logs, :page_links => false %>
+<%= will_paginate @logs, :page_links => false %>

@@ -7,7 +7,7 @@ class PainLogsController < ApplicationController
 
 
   def index
-    @pain_logs = current_user.pain_logs.order(datetime_occurred: 'DESC' ).paginate(page: params[:page], per_page: 25)
+    @logs = current_user.pain_logs.order(datetime_occurred: 'DESC' ).paginate(page: params[:page], per_page: 25)
   end
 
   def show

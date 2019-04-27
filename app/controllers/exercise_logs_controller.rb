@@ -6,7 +6,7 @@ class ExerciseLogsController < ApplicationController
   layout 'no_white_container', only: [:index]
 
   def index
-    @exercise_logs = current_user.exercise_logs.order(datetime_occurred: 'DESC' ).paginate(page: params[:page], per_page: 25)    
+    @logs = current_user.exercise_logs.order(datetime_occurred: 'DESC' ).paginate(page: params[:page], per_page: 25)
   end
 
   def show

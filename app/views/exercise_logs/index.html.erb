@@ -2,9 +2,9 @@
   <%= render 'buttons/new_exercise_log' %>
 </header>
 
-<% @exercise_logs.each do |exercise_log| %>
+<% @logs.each do |exercise_log| %>
   <%= render partial: 'exercise_log', locals: { exercise_log: exercise_log } %>
 <% end %>
 <br>
 
-<%= will_paginate @exercise_logs, :page_links => false %>
+<%= will_paginate @logs, :page_links => false %>

@@ -2,9 +2,9 @@
   <%= render 'buttons/new_pt_session' %>
 </header>
 
-<% @pt_sessions.each do |pt_session| %>
+<% @logs.each do |pt_session| %>
   <%= render partial: 'pt_session', locals: { pt_session: pt_session } %>
 <% end %>
 <br>
 
-<%= will_paginate @pt_sessions, :page_links => false %>
+<%= will_paginate @logs, :page_links => false %>
