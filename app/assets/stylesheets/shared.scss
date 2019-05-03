@@ -42,6 +42,15 @@ body { background-color: $dk-blue; }
   color: #CCC;
 }
 
+.clear_search {
+  font-size: 90%;
+  margin-bottom: 2em;
+  text-align: center;
+  a {
+    color: #CCC;
+  }
+}
+
 /* Pagination Links */
 /* modified digg_pagination from http://mislav.github.io/will_paginate/ */
 .pagination {
