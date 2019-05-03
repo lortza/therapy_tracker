@@ -2,6 +2,13 @@
 
 <h1>Exercises</h1>
 
+<%= form_tag(exercises_path, method: 'get', id: 'search-form', class: 'mb-3' ) do %>
+  <div class="col-xs-12">
+    <i class="fa fa-search search_icon"></i>
+    <%= text_field_tag :search, params[:search], placeholder: 'Search', class: 'form-control form-control-sm' %>
+  </div>
+<% end %>
+
 <table class="table">
   <thead>
     <tr>

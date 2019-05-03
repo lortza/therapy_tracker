@@ -20,17 +20,27 @@ class Exercise < ApplicationRecord
             presence: true,
             uniqueness: true
 
-  def self.by_name
-    order(:name)
-  end
+  class << self
+    def by_name
+      order(:name)
+    end
 
-  def self.has_logs
-    joins(:exercise_logs).group('exercises.id').order(:id)
-  end
+    def has_logs
+      joins(:exercise_logs).group('exercises.id').order(:id)
+    end
 
-  def self.log_count_by_name
-    exercises = has_logs.select do |exercise|
-      exercise.logs.count > 1
-    end.map { |e| [e.name, e.logs.count] }
+    def log_count_by_name
+      exercises = has_logs.select do |exercise|
+        exercise.logs.count > 1
+      end.map { |e| [e.name, e.logs.count] }
+    end
+
+    def search(terms)
+      if terms.blank?
+        all
+      else
+        where('name ILIKE ?', "%#{terms}%")
+      end
+    end
   end
 end
