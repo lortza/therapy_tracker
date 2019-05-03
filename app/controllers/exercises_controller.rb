@@ -5,7 +5,7 @@ class ExercisesController < ApplicationController
   before_action :authorize_exercise, only: [:show, :edit, :update, :destroy]
 
   def index
-    @exercises = current_user.exercises.order(:name)
+    @exercises = current_user.exercises.search(params[:search]).by_name
   end
 
   def show
