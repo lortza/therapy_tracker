@@ -6,4 +6,10 @@ class ReportsController < ApplicationController
   def index
   end
 
+  def past_week
+  end
+
+  def past_two_weeks
+  end
+
 end

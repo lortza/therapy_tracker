@@ -25,6 +25,14 @@ class PtSession < ApplicationRecord
 
   delegate :name, to: :body_part, prefix: true
 
+  def self.past_week
+    where('datetime_occurred >= ? AND datetime_occurred <= ?', (Date.today.to_datetime - 7.days), Date.today.to_datetime)
+  end
+
+  def self.past_two_weeks
+    where('datetime_occurred >= ? AND datetime_occurred <= ?', (Date.today.to_datetime - 14.days), Date.today.to_datetime)
+  end
+
   def exercise_notes_to_lines
     self.exercise_notes = exercise_notes.gsub(/\r/, "\n")
   end
