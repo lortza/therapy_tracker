@@ -27,6 +27,21 @@ class ExerciseLog < ApplicationRecord
   delegate :name, to: :body_part, prefix: true
   delegate :name, to: :exercise, prefix: true
 
+  def self.past_week
+    where('datetime_occurred >= ? AND datetime_occurred <= ?', (Date.today.to_datetime - 7.days), Date.today.to_datetime)
+  end
+
+  def self.past_two_weeks
+    where('datetime_occurred >= ? AND datetime_occurred <= ?', (Date.today.to_datetime - 14.days), Date.today.to_datetime)
+  end
+
+  def self.group_by_exercise_and_count
+    ex_ids_and_counts = group(:exercise_id).count
+    ex_ids_and_counts.map do |k, v|
+      [ Exercise.find(k).name, v ]
+    end
+  end
+
   def self.minutes_spent_by_day
     output = {}
     all.each do |log|

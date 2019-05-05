@@ -19,8 +19,19 @@ class PainLog < ApplicationRecord
   delegate :name, to: :body_part, prefix: true
   delegate :name, to: :pain, prefix: true
 
+  def self.past_week
+    where('datetime_occurred >= ? AND datetime_occurred <= ?', (Date.today.to_datetime - 7.days), Date.today.to_datetime)
+  end
+
   def self.past_two_weeks
     where('datetime_occurred >= ? AND datetime_occurred <= ?', (Date.today.to_datetime - 14.days), Date.today.to_datetime)
+  end
+
+  def self.group_by_pain_and_count
+    pain_ids_and_counts = group(:pain_id).count
+    pain_ids_and_counts.map do |k, v|
+      [ Pain.find(k).name, v ]
+    end
   end
   # def self.avg_pain_level_by_day
   #   x = PainLog.all.map do |log|

@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   root to: 'logs#index'
 
   resources :reports, only: [:index]
+  get '/reports/past_week', to: 'reports#past_week'
+  get '/reports/past_two_weeks', to: 'reports#past_two_weeks'
+
   resources :exercises
   resources :pains
   resources :body_parts
