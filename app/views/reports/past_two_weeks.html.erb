@@ -48,7 +48,7 @@
 <hr>
 
 <h2>Pain Logs by Type</h2>
-<%= bar_chart Pain.log_count_by_name %>
+<%= bar_chart PainLog.past_two_weeks.group_by_pain_and_count %>
 
 <hr>
 
