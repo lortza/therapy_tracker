@@ -2,7 +2,7 @@
   <%= render partial: 'shared/errors', locals: {object: pain_log} %>
 
   <div class="field">
-    <%= form.label 'Target Body Part' %>
+    <%= form.label 'Target Body Part', class: "required" %>
     <%= form.collection_select :body_part_id,
     BodyPart.all, :id, :name,
     { include_blank: false },
@@ -10,21 +10,21 @@
   </div>
 
   <div class="field">
-    <%= form.label 'When' %><br>
+    <%= form.label 'When', class: "required" %><br>
     <%= form.datetime_select :datetime_occurred, ampm: true, minute_step: 15, value: Date.today, class: 'form-control' %>
   </div>
 
   <div class="form-row">
     <div class="col">
       <div class="field">
-        <%= form.label 'Pain Level (0 = none, 10 = worst)' %>
+        <%= form.label 'Pain Level (0 = none, 10 = worst)', class: "required" %>
         <%= form.number_field :pain_level, selected: last_log(:pain_logs, :pain_level), class: 'form-control' %>
       </div>
     </div>
 
     <div class="col">
       <div class="field">
-        <%= form.label 'Pain Type' %>
+        <%= form.label 'Pain Type', class: "required" %>
         <%= form.collection_select :pain_id,
         Pain.all.order(:name), :id, :name,
         { include_blank: false },
@@ -34,12 +34,12 @@
   </div>
 
   <div class="field">
-    <%= form.label :trigger %>
+    <%= form.label :trigger, class: "required" %>
     <%= form.text_area :trigger, class: 'form-control' %>
   </div>
 
   <div class="field">
-    <%= form.label 'Describe Pain' %>
+    <%= form.label 'Describe Pain', class: "required" %>
     <%= form.text_area :pain_description, class: 'form-control' %>
   </div>
 

@@ -42,3 +42,5 @@
 .log-type-exercise { @include log-type-color($exercise-color); }
 
 .log-type-therapy { @include log-type-color($therapy-color); }
+
+label.required:after{content: " *"; color: red;}

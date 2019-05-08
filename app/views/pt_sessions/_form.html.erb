@@ -2,7 +2,7 @@
   <%= render partial: 'shared/errors', locals: {object: pt_session} %>
 
   <div class="field">
-    <%= form.label 'Target Body Part' %>
+    <%= form.label 'Target Body Part', class: "required" %>
     <%= form.collection_select :body_part_id,
     BodyPart.all, :id, :name,
     { include_blank: false },
@@ -10,17 +10,17 @@
   </div>
 
   <div class="field">
-    <%= form.label 'When' %><br>
+    <%= form.label 'When', class: "required" %><br>
     <%= form.datetime_select :datetime_occurred, ampm: true, minute_step: 15, value: Date.today, class: 'form-control' %>
   </div>
 
   <div class="field">
-    <%= form.label :duration %>
+    <%= form.label :duration, class: "required" %>
     <%= form.number_field :duration, placeholder: 'minutes', class: 'form-control' %>
   </div>
 
   <div class="field">
-    <%= form.label 'Exercise Notes' %>
+    <%= form.label 'Exercise Notes', class: "required" %>
     <%= form.text_area :exercise_notes, class: 'form-control textarea-large' %>
   </div>
 
@@ -61,7 +61,7 @@
   <% end %><!-- session exercise form -->
 
   <div class="field">
-    <%= form.label :homework %>
+    <%= form.label :homework, class: "required" %>
     <%= form.text_area :homework, class: 'form-control textarea-large' %>
   </div>
 

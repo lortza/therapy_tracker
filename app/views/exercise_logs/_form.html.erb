@@ -2,7 +2,7 @@
   <%= render partial: 'shared/errors', locals: {object: exercise_log} %>
 
   <div class="field">
-    <%= form.label 'Target Body Part' %>
+    <%= form.label 'Target Body Part', class: "required" %>
     <%= form.collection_select :body_part_id,
     BodyPart.all, :id, :name,
     { include_blank: false },
@@ -10,12 +10,12 @@
   </div>
 
   <div class="field">
-    <%= form.label 'When' %><br>
+    <%= form.label 'When', class: "required" %><br>
     <%= form.datetime_select :datetime_occurred, ampm: true, minute_step: 15, value: Date.today, class: 'form-control' %>
   </div>
 
   <div class="field">
-    <%= form.label 'Exercise' %>
+    <%= form.label 'Exercise', class: "required" %>
     <%= form.collection_select :exercise_id,
     Exercise.all.order(:name), :id, :name,
     { prompt: '--Select--' },
