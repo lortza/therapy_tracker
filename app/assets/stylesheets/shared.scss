@@ -33,6 +33,14 @@ body { background-color: $dk-blue; }
   padding: 1rem;
 }
 
+.modal-dismiss {
+  font-size: 0.75rem;
+  font-weight: normal;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
 /* Search bar */
 .search_icon {
   position: relative;
