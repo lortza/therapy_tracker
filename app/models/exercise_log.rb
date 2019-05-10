@@ -28,6 +28,14 @@ class ExerciseLog < ApplicationRecord
   delegate :name, to: :body_part, prefix: true
   delegate :name, to: :exercise, prefix: true
 
+  def self.at_home
+    where(pt_session_id: nil)
+  end
+
+  def self.at_pt
+    where.not(pt_session_id: nil)
+  end
+
   def self.past_week
     where('datetime_occurred >= ? AND datetime_occurred <= ?', (Date.today.to_datetime - 7.days), Date.today.to_datetime)
   end
