@@ -15,7 +15,9 @@ Rails.application.routes.draw do
   resources :logs, only: [:index]
   resources :exercise_logs
   resources :pain_logs
-  resources :pt_sessions
+  resources :pt_sessions do
+    resources :exercise_logs, controller: 'pt_sessions/exercise_logs', only: [:new, :create, :edit, :update, :destroy]
+  end
 
   namespace :admin do
     resources :users, only: [:index, :show]

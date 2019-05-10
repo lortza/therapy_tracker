@@ -3,6 +3,7 @@
 class PtSession < ApplicationRecord
   belongs_to :user
   belongs_to :body_part
+  has_many :exercise_logs
 
   has_many :pt_session_exercises, inverse_of: :pt_session, dependent: :destroy
   accepts_nested_attributes_for :pt_session_exercises,
