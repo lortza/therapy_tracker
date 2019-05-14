@@ -13,7 +13,7 @@ class LogsController < ApplicationController
     logs = [
       current_user.pt_sessions.to_a,
       current_user.pain_logs.to_a,
-      current_user.exercise_logs.to_a
+      current_user.exercise_logs.at_home.to_a
     ]
 
     logs.flatten.sort_by { |a| a[:datetime_occurred] }.reverse!
