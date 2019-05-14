@@ -4,8 +4,8 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Rep Counter</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Dismiss">
+          <span class="modal-dismiss">Close</span> <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
@@ -26,8 +26,8 @@
           </div>
         </div> <!-- row -->
 
-        <%= link_to 'Start', '#', id: 'start_button', class: button_class('success') %>
-        <%= link_to 'Stop', exercise_log_path(@exercise_log), id: 'stop_button', class: button_class('danger') %>
+        <%= link_to '<i class="fas fa-play"></i> Start Timer'.html_safe, '#', id: 'start_button', class: button_class('success') %>
+        <%= link_to '<i class="fas fa-stop"></i> Stop & Reset '.html_safe, exercise_log_path(@exercise_log), id: 'stop_button', class: button_class('danger pull-right') %>
 
       </div><!-- modal body -->
     </div>

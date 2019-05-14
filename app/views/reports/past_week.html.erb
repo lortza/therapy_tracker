@@ -8,49 +8,50 @@
 <h3>Grouped by Day</h3>
 
 <%= area_chart [
-  {name: "Qty Pain Instances", data: PainLog.past_week.group_by_day(:datetime_occurred).count},
-  {name: "Pain Levels", data: PainLog.past_week.group_by_day(:datetime_occurred).sum(:pain_level)},
+  {name: "Qty Pain Instances", data: current_user.pain_logs.past_week.group_by_day(:datetime_occurred).count},
+  {name: "Pain Levels", data: current_user.pain_logs.past_week.group_by_day(:datetime_occurred).sum(:pain_level)},
 ] %>
 
 <hr>
 <h2>Exercises vs Pain</h2>
 <%= area_chart [
-  {name: "Qty Exercises", data: ExerciseLog.past_week.group_by_day(:datetime_occurred).count},
-  {name: "Pain Levels Total", data: PainLog.past_week.group_by_day(:datetime_occurred).sum(:pain_level)},
+  {name: "Qty Exercises", data: current_user.exercise_logs.past_week.group_by_day(:datetime_occurred).count},
+  {name: "Pain Levels Total", data: current_user.pain_logs.past_week.group_by_day(:datetime_occurred).sum(:pain_level)},
 ] %>
 
 <%= bar_chart [
-  {name: "Minutes Exercised", data: ExerciseLog.past_week.minutes_spent_by_day},
-  {name: "Pain Levels Total", data: PainLog.past_week.group_by_day(:datetime_occurred).sum(:pain_level)},
+  {name: "Minutes Exercised", data: current_user.exercise_logs.past_week.minutes_spent_by_day},
+  {name: "Pain Levels Total", data: current_user.pain_logs.past_week.group_by_day(:datetime_occurred).sum(:pain_level)},
 ] %>
 
 <hr>
 <h2>Home vs PT Exercises</h2>
-<%= area_chart [
-  {name: "Qty Pt Session Exercises", data: PtSession.past_week.exercise_counts},
-  {name: "Qty Home Exercises", data: ExerciseLog.past_week.group_by_day(:datetime_occurred).count},
+WIP
+<%#= area_chart [
+  {name: "Qty Pt Session Exercises", data: current_user.exercise_logs.at_pt.past_week.group_by_day(:datetime_occurred).count},
+  {name: "Qty Home Exercises", data: current_user.exercise_logs.at_home.past_week.group_by_day(:datetime_occurred).count},
 ] %>
 
 <hr>
 <h2>Pain, Exercise, & Therapy</h2>
 <%= line_chart [
-  {name: "Exercise Logs", data: ExerciseLog.past_week.group_by_day(:datetime_occurred).count},
-  {name: "Physical Therapy Sessions", data: PtSession.past_week.group_by_day(:datetime_occurred).count},
-  {name: "Pain Logs", data: PainLog.past_week.group_by_day(:datetime_occurred).count},
+  {name: "Exercise Logs", data: current_user.exercise_logs.past_week.group_by_day(:datetime_occurred).count},
+  {name: "Physical Therapy Sessions", data: current_user.pt_sessions.past_week.group_by_day(:datetime_occurred).count},
+  {name: "Pain Logs", data: current_user.pain_logs.past_week.group_by_day(:datetime_occurred).count},
 ] %>
 
 <hr>
 <h2>Exercise Logs by Type</h2>
 
-<%= pie_chart ExerciseLog.past_week.group_by_exercise_and_count %>
+<%= pie_chart current_user.exercise_logs.past_week.group_by_exercise_and_count %>
 
 <hr>
 
 <h2>Pain Logs by Type</h2>
-<%= bar_chart PainLog.past_week.group_by_pain_and_count %>
+<%= bar_chart current_user.pain_logs.past_week.group_by_pain_and_count %>
 
 <hr>
 
 <h2>Frequency of Pain By Day</h2>
-<%= line_chart PainLog.past_week.group_by_day(:datetime_occurred).count %>
-<%#= scatter_chart PainLog.pluck(:datetime_occurred, :pain_level), xtitle: "Date", ytitle: "Pain Level" %>
+<%= line_chart current_user.pain_logs.past_week.group_by_day(:datetime_occurred).count %>
+<%#= scatter_chart current_user.pain_logs.pluck(:datetime_occurred, :pain_level), xtitle: "Date", ytitle: "Pain Level" %>
