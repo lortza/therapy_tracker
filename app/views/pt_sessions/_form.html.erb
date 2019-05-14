@@ -1,7 +1,7 @@
 <%= form_with(model: pt_session, local: true) do |form| %>
   <%= render partial: 'shared/errors', locals: {object: pt_session} %>
 
-  <div class="field">
+  <div class='field'>
     <%= form.label 'Target Body Part' %>
     <%= form.collection_select :body_part_id,
     BodyPart.all, :id, :name,
@@ -9,64 +9,64 @@
     class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class='field'>
     <%= form.label 'When' %><br>
     <%= form.datetime_select :datetime_occurred, ampm: true, minute_step: 15, value: Date.today, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class='field'>
     <%= form.label :duration %>
     <%= form.number_field :duration, placeholder: 'minutes', class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class='field'>
     <%= form.label 'Exercise Notes' %>
     <%= form.text_area :exercise_notes, class: 'form-control textarea-large' %>
   </div>
 
   <%= form.label 'Session Exercises' %>
-  <div class="row">
-    <div class="col"><%= form.label :exercise %></div>
-    <div class="col"><%= form.label :sets %></div>
-    <div class="col"><%= form.label :reps %></div>
-    <div class="col"><%= form.label :resistance %></div>
-    <div class="col"><%= form.label 'Delete?' %></div>
+  <div class='row'>
+    <div class='col'><%= form.label :exercise %></div>
+    <div class='col'><%= form.label :sets %></div>
+    <div class='col'><%= form.label :reps %></div>
+    <div class='col'><%= form.label :resistance %></div>
+    <div class='col'><%= form.label 'Delete?' %></div>
   </div> <!-- row -->
 
   <%= form.fields_for :pt_session_exercises do |f_session_exercise| %>
-    <div class="row mb-2">
-      <div class="col">
+    <div class='row mb-2'>
+      <div class='col'>
         <%= f_session_exercise.collection_select :exercise_id,
           current_user.exercises.by_name, :id, :name,
           { include_blank: true },
           class: 'form-control' %>
       </div>
 
-      <div class="col">
+      <div class='col'>
         <%= f_session_exercise.number_field :sets, class: 'form-control' %>
       </div>
 
-      <div class="col">
+      <div class='col'>
         <%= f_session_exercise.number_field :reps, class: 'form-control' %>
       </div>
 
-      <div class="col">
+      <div class='col'>
         <%= f_session_exercise.text_field :resistance, class: 'form-control' %>
       </div>
 
-      <div class="col">
+      <div class='col'>
         <%= f_session_exercise.check_box :_destroy %>
       </div>
     </div> <!-- row -->
   <% end %><!-- session exercise form -->
 
-  <div class="field">
+  <div class='field'>
     <%= form.label :homework %>
     <%= form.text_area :homework, class: 'form-control textarea-large' %>
   </div>
 
-  <div class="form-group row">
-    <div class="col-sm-12">
+  <div class='form-group row'>
+    <div class='col-sm-12'>
     <%= form.label 'Homework Exercises' %>
 
     <%= form.collection_check_boxes :homework_exercise_ids, current_user.exercises.by_name, :id, :name do |exercise| %>
@@ -78,7 +78,7 @@
     </div>
   </div>
 
-  <div class="actions mt-3 mb-3">
+  <div class='actions mt-3 mb-3'>
     <%= form.submit class: button_class('success') %>
     <%= link_to 'Index', pt_sessions_path, class: button_class('primary pull-right') %>
   </div>
