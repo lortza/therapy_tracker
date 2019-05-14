@@ -26,7 +26,8 @@
 
 <hr>
 <h2>Home vs PT Exercises</h2>
-<%= area_chart [
+WIP
+<%#= area_chart [
   {name: "Qty Pt Session Exercises", data: current_user.exercise_logs.at_pt.past_two_weeks.group_by_day(:datetime_occurred).count},
   {name: "Qty Home Exercises", data: current_user.exercise_logs.at_home.past_two_weeks.group_by_day(:datetime_occurred).count},
 ] %>

@@ -1,7 +1,7 @@
 <%= form_with(model: pain_log, local: true) do |form| %>
   <%= render partial: 'shared/errors', locals: {object: pain_log} %>
 
-  <div class="field">
+  <div class='field'>
     <%= form.label 'Target Body Part' %>
     <%= form.collection_select :body_part_id,
     BodyPart.all, :id, :name,
@@ -9,21 +9,21 @@
     class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class='field'>
     <%= form.label 'When' %><br>
     <%= form.datetime_select :datetime_occurred, ampm: true, minute_step: 15, value: Date.today, class: 'form-control' %>
   </div>
 
-  <div class="form-row">
-    <div class="col">
-      <div class="field">
+  <div class='form-row'>
+    <div class='col'>
+      <div class='field'>
         <%= form.label 'Pain Level (0 = none, 10 = worst)' %>
         <%= form.number_field :pain_level, selected: last_log(:pain_logs, :pain_level), class: 'form-control' %>
       </div>
     </div>
 
-    <div class="col">
-      <div class="field">
+    <div class='col'>
+      <div class='field'>
         <%= form.label 'Pain Type' %>
         <%= form.collection_select :pain_id,
         Pain.all.order(:name), :id, :name,
@@ -33,17 +33,17 @@
     </div>
   </div>
 
-  <div class="field">
+  <div class='field'>
     <%= form.label :trigger %>
     <%= form.text_area :trigger, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class='field'>
     <%= form.label 'Describe Pain' %>
     <%= form.text_area :pain_description, class: 'form-control' %>
   </div>
 
-  <div class="actions mt-3 mb-3">
+  <div class='actions mt-3 mb-3'>
     <%= form.submit class: button_class('success') %>
     <%= link_to 'Cancel', pain_logs_path, class: button_class('primary pull-right') %>
   </div>
