@@ -86,3 +86,10 @@ body { background-color: $dk-blue; }
     border-color: darken($brand_main, 5%);
   }
 }
+
+
+/* MEDIA QUERIES */
+
+@media (max-width: 576px) {
+  .btn-wide { width: 100%; }
+}
