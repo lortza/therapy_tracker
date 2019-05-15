@@ -9,7 +9,6 @@ RSpec.describe Exercise, type: :model do
     it { should have_many(:logs) }
     it { should have_many(:pt_homework_exercises) }  # the join table
     it { should have_many(:pt_homework_sessions).through(:pt_homework_exercises) }
-    it { should have_many(:pt_session_exercises) } # the join table
   end
 
   context "validations" do

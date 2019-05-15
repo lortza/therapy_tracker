@@ -6,9 +6,9 @@ RSpec.describe PtSession, type: :model do
   context "associations" do
     it { should belong_to(:user) }
     it { should belong_to(:body_part) }
+    it { should have_many(:exercise_logs) }
     it { should have_many(:pt_homework_exercises) }
     it { should have_many(:homework_exercises).through(:pt_homework_exercises) }
-    it { should have_many(:pt_session_exercises) }
   end
 
   context "validations" do
@@ -21,20 +21,22 @@ RSpec.describe PtSession, type: :model do
     it { should validate_numericality_of(:duration) }
   end
 
-  describe '#blank_stats?' do
-    it 'returns true if sets are blank' do
-      pt_session_exercise = build(:pt_session_exercise, sets: nil)
-      expect(pt_session_exercise.blank_stats?).to be true
-    end
+  context 'delegations' do
+    it { should delegate_method(:name).to(:body_part).with_prefix }
+  end
 
-    it 'returns true if reps are blank' do
-      pt_session_exercise = build(:pt_session_exercise, reps: nil)
-      expect(pt_session_exercise.blank_stats?).to be true
+  describe 'self.past_week' do
+    xit 'returns pt_sessions logged in the past week' do
     end
+  end
 
-    it 'returns false if there are both sets and reps' do
-      pt_session_exercise = build(:pt_session_exercise, sets: 1, reps: 1)
-      expect(pt_session_exercise.blank_stats?).to be false
+  describe 'self.past_two_weeks' do
+    xit 'returns pt_sessions logged in the past 2 weeks' do
+    end
+  end
+
+  describe 'self.exercise_counts' do
+    xit 'returns a count of all exercises grouped by date' do
     end
   end
 end

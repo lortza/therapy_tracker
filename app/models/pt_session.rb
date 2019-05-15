@@ -5,11 +5,6 @@ class PtSession < ApplicationRecord
   belongs_to :body_part
   has_many :exercise_logs
 
-  has_many :pt_session_exercises, inverse_of: :pt_session, dependent: :destroy
-  accepts_nested_attributes_for :pt_session_exercises,
-                                reject_if: :all_blank, # at least 1 exercise should be present
-                                allow_destroy: true # allows user to delete exercise via checkbox
-
   has_many :pt_homework_exercises, dependent: :destroy
   has_many :homework_exercises, through: :pt_homework_exercises, source: :exercise
 
@@ -41,7 +36,7 @@ class PtSession < ApplicationRecord
   def self.exercise_counts
     output = {}
     all.order(:datetime_occurred).each do |session|
-      output[session.datetime_occurred.to_date] = session.pt_session_exercises.count
+      output[session.datetime_occurred.to_date] = session.exercise_logs.count
     end
     output
   end

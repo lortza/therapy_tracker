@@ -33,6 +33,6 @@ namespace :data do
   end
 
   task :remove_old_session_ex => :environment do
-    # tbd
+    # handled via migrations. No need to remove additional data.
   end
 end
