@@ -9,7 +9,9 @@ namespace :data do
     puts "Current ExerciseLog.count: #{ex_log_count}"
     puts "Current PtSessionExercise.count: #{pt_ex_count}"
     PtSession.all.each do |pt_session|
+      puts pt_session
       pt_session.pt_session_exercises.each do |pt_ex|
+        puts pt_ex.exercise_name
         ExerciseLog.create!(
           user_id: pt_session.user_id,
           pt_session_id: pt_session.id,
@@ -22,6 +24,7 @@ namespace :data do
           per_side: pt_ex.exercise.default_per_side,
           resistance: pt_ex.resistance
         )
+        puts "ExerciseLog.count: #{ExerciseLog.count}"
       end
     end
 
