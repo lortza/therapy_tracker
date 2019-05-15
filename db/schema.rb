@@ -59,6 +59,15 @@ ActiveRecord::Schema.define(version: 2019_05_10_012011) do
     t.index ["user_id"], name: "index_exercises_on_user_id"
   end
 
+  create_table "homework_exercises", force: :cascade do |t|
+    t.bigint "physical_therapy_session_id"
+    t.bigint "exercise_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exercise_id"], name: "index_homework_exercises_on_exercise_id"
+    t.index ["physical_therapy_session_id"], name: "index_homework_exercises_on_physical_therapy_session_id"
+  end
+
   create_table "pain_logs", force: :cascade do |t|
     t.bigint "user_id"
     t.datetime "datetime_occurred"
@@ -99,8 +108,6 @@ ActiveRecord::Schema.define(version: 2019_05_10_012011) do
     t.integer "sets"
     t.integer "reps"
     t.string "resistance"
-    t.integer "rep_length"
-    t.boolean "per_side", default: false
     t.index ["exercise_id"], name: "index_pt_session_exercises_on_exercise_id"
     t.index ["pt_session_id"], name: "index_pt_session_exercises_on_pt_session_id"
   end
@@ -139,6 +146,8 @@ ActiveRecord::Schema.define(version: 2019_05_10_012011) do
   add_foreign_key "exercise_logs", "pt_sessions"
   add_foreign_key "exercise_logs", "users"
   add_foreign_key "exercises", "users"
+  add_foreign_key "homework_exercises", "exercises"
+  add_foreign_key "homework_exercises", "pt_sessions", column: "physical_therapy_session_id"
   add_foreign_key "pain_logs", "body_parts"
   add_foreign_key "pain_logs", "pains"
   add_foreign_key "pain_logs", "users"
