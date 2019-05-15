@@ -14,11 +14,9 @@ class PtSessionsController < ApplicationController
 
   def new
     @pt_session = current_user.pt_sessions.new
-    10.times { @pt_session.pt_session_exercises.build }
   end
 
   def edit
-    5.times { @pt_session.pt_session_exercises.build }
   end
 
   def create

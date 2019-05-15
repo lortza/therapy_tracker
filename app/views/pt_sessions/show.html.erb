@@ -3,20 +3,11 @@
 <p class="card-text"><strong><%= @pt_session.body_part_name.titleize %>:</strong> <%= @pt_session.duration %> minutes<br></p>
 <h5>Session Notes</h5>
 <p><%= @pt_session.exercise_notes %></p>
-<br>
 <%= link_to 'Log an Exercise', new_pt_session_exercise_log_path(@pt_session), class: button_class %>
-<br>
-pt_session_exercises (OLD)
-<ul>
-  <% @pt_session.pt_session_exercises.each do |exercise_log| %>
-    <li><%= link_to exercise_log.exercise_name, pt_session_exercise_log_path(@pt_session, exercise_log) %>: <%= display_exercise_stats(exercise_log) %> </li>
-  <% end %>
-</ul>
-exercise logs (NEW)
 <ul>
   <% @pt_session.exercise_logs.each do |exercise_log| %>
     <li>
-      <%= link_to exercise_log.exercise_name, pt_session_exercise_log_path(@pt_session, exercise_log) %>:
+      <%= link_to exercise_log.exercise_name, pt_session_exercise_log_path(@pt_session, exercise_log) %>: 
       <%= display_exercise_stats(exercise_log) %>
       <%= link_to 'edit', edit_pt_session_exercise_log_path(@pt_session, exercise_log) %>
     </li>
