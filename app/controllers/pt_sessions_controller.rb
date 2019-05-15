@@ -64,6 +64,7 @@ class PtSessionsController < ApplicationController
                                          :datetime_occurred,
                                          :exercise_notes,
                                          :homework, :duration,
+                                         :questions,
                                          homework_exercise_ids: [])
     end
 

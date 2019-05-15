@@ -20,6 +20,11 @@
   </div>
 
   <div class='field'>
+    <%= form.label 'Questions for Therapist' %>
+    <%= form.text_area :questions, class: 'form-control textarea-large' %>
+  </div>
+
+  <div class='field'>
     <%= form.label 'Exercise Notes', class: 'required' %>
     <%= form.text_area :exercise_notes, class: 'form-control textarea-large' %>
   </div>
