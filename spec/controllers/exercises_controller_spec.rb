@@ -26,7 +26,7 @@ require 'rails_helper'
 # `rails-controller-testing` gem.
 
 RSpec.describe ExercisesController, type: :controller do
-
+  login_user
   # This should return the minimal set of attributes required to create a valid
   # Exercise. As you add validations to Exercise, be sure to
   # adjust the attributes here as well.
@@ -38,15 +38,10 @@ RSpec.describe ExercisesController, type: :controller do
     skip("Add a hash of attributes invalid for your model")
   }
 
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # ExercisesController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
-
   describe "GET #index" do
     it "returns a success response" do
       Exercise.create! valid_attributes
-      get :index, params: {}, session: valid_session
+      get :index, params: {}
       expect(response).to be_successful
     end
   end
@@ -54,14 +49,14 @@ RSpec.describe ExercisesController, type: :controller do
   describe "GET #show" do
     it "returns a success response" do
       exercise = Exercise.create! valid_attributes
-      get :show, params: {id: exercise.to_param}, session: valid_session
+      get :show, params: {id: exercise.to_param}
       expect(response).to be_successful
     end
   end
 
   describe "GET #new" do
     it "returns a success response" do
-      get :new, params: {}, session: valid_session
+      get :new, params: {}
       expect(response).to be_successful
     end
   end
@@ -69,7 +64,7 @@ RSpec.describe ExercisesController, type: :controller do
   describe "GET #edit" do
     it "returns a success response" do
       exercise = Exercise.create! valid_attributes
-      get :edit, params: {id: exercise.to_param}, session: valid_session
+      get :edit, params: {id: exercise.to_param}
       expect(response).to be_successful
     end
   end
@@ -78,19 +73,19 @@ RSpec.describe ExercisesController, type: :controller do
     context "with valid params" do
       it "creates a new Exercise" do
         expect {
-          post :create, params: {exercise: valid_attributes}, session: valid_session
+          post :create, params: {exercise: valid_attributes}
         }.to change(Exercise, :count).by(1)
       end
 
       it "redirects to the created exercise" do
-        post :create, params: {exercise: valid_attributes}, session: valid_session
+        post :create, params: {exercise: valid_attributes}
         expect(response).to redirect_to(Exercise.last)
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: {exercise: invalid_attributes}, session: valid_session
+        post :create, params: {exercise: invalid_attributes}
         expect(response).to be_successful
       end
     end
@@ -104,14 +99,14 @@ RSpec.describe ExercisesController, type: :controller do
 
       it "updates the requested exercise" do
         exercise = Exercise.create! valid_attributes
-        put :update, params: {id: exercise.to_param, exercise: new_attributes}, session: valid_session
+        put :update, params: {id: exercise.to_param, exercise: new_attributes}
         exercise.reload
         skip("Add assertions for updated state")
       end
 
       it "redirects to the exercise" do
         exercise = Exercise.create! valid_attributes
-        put :update, params: {id: exercise.to_param, exercise: valid_attributes}, session: valid_session
+        put :update, params: {id: exercise.to_param, exercise: valid_attributes}
         expect(response).to redirect_to(exercise)
       end
     end
@@ -119,7 +114,7 @@ RSpec.describe ExercisesController, type: :controller do
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'edit' template)" do
         exercise = Exercise.create! valid_attributes
-        put :update, params: {id: exercise.to_param, exercise: invalid_attributes}, session: valid_session
+        put :update, params: {id: exercise.to_param, exercise: invalid_attributes}
         expect(response).to be_successful
       end
     end
@@ -129,13 +124,13 @@ RSpec.describe ExercisesController, type: :controller do
     it "destroys the requested exercise" do
       exercise = Exercise.create! valid_attributes
       expect {
-        delete :destroy, params: {id: exercise.to_param}, session: valid_session
+        delete :destroy, params: {id: exercise.to_param}
       }.to change(Exercise, :count).by(-1)
     end
 
     it "redirects to the exercises list" do
       exercise = Exercise.create! valid_attributes
-      delete :destroy, params: {id: exercise.to_param}, session: valid_session
+      delete :destroy, params: {id: exercise.to_param}
       expect(response).to redirect_to(exercises_url)
     end
   end

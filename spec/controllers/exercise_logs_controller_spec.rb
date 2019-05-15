@@ -26,7 +26,7 @@ require 'rails_helper'
 # `rails-controller-testing` gem.
 
 RSpec.describe ExerciseLogsController, type: :controller do
-
+  login_user
   # This should return the minimal set of attributes required to create a valid
   # ExerciseLog. As you add validations to ExerciseLog, be sure to
   # adjust the attributes here as well.
@@ -38,15 +38,10 @@ RSpec.describe ExerciseLogsController, type: :controller do
     skip("Add a hash of attributes invalid for your model")
   }
 
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # ExerciseLogsController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
-
   describe "GET #index" do
     it "returns a success response" do
       ExerciseLog.create! valid_attributes
-      get :index, params: {}, session: valid_session
+      get :index, params: {}
       expect(response).to be_successful
     end
   end
@@ -54,14 +49,14 @@ RSpec.describe ExerciseLogsController, type: :controller do
   describe "GET #show" do
     it "returns a success response" do
       exercise_log = ExerciseLog.create! valid_attributes
-      get :show, params: {id: exercise_log.to_param}, session: valid_session
+      get :show, params: {id: exercise_log.to_param}
       expect(response).to be_successful
     end
   end
 
   describe "GET #new" do
     it "returns a success response" do
-      get :new, params: {}, session: valid_session
+      get :new, params: {}
       expect(response).to be_successful
     end
   end
@@ -69,7 +64,7 @@ RSpec.describe ExerciseLogsController, type: :controller do
   describe "GET #edit" do
     it "returns a success response" do
       exercise_log = ExerciseLog.create! valid_attributes
-      get :edit, params: {id: exercise_log.to_param}, session: valid_session
+      get :edit, params: {id: exercise_log.to_param}
       expect(response).to be_successful
     end
   end
@@ -78,19 +73,19 @@ RSpec.describe ExerciseLogsController, type: :controller do
     context "with valid params" do
       it "creates a new ExerciseLog" do
         expect {
-          post :create, params: {exercise_log: valid_attributes}, session: valid_session
+          post :create, params: {exercise_log: valid_attributes}
         }.to change(ExerciseLog, :count).by(1)
       end
 
       it "redirects to the created exercise_log" do
-        post :create, params: {exercise_log: valid_attributes}, session: valid_session
+        post :create, params: {exercise_log: valid_attributes}
         expect(response).to redirect_to(ExerciseLog.last)
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: {exercise_log: invalid_attributes}, session: valid_session
+        post :create, params: {exercise_log: invalid_attributes}
         expect(response).to be_successful
       end
     end
@@ -104,14 +99,14 @@ RSpec.describe ExerciseLogsController, type: :controller do
 
       it "updates the requested exercise_log" do
         exercise_log = ExerciseLog.create! valid_attributes
-        put :update, params: {id: exercise_log.to_param, exercise_log: new_attributes}, session: valid_session
+        put :update, params: {id: exercise_log.to_param, exercise_log: new_attributes}
         exercise_log.reload
         skip("Add assertions for updated state")
       end
 
       it "redirects to the exercise_log" do
         exercise_log = ExerciseLog.create! valid_attributes
-        put :update, params: {id: exercise_log.to_param, exercise_log: valid_attributes}, session: valid_session
+        put :update, params: {id: exercise_log.to_param, exercise_log: valid_attributes}
         expect(response).to redirect_to(exercise_log)
       end
     end
@@ -119,7 +114,7 @@ RSpec.describe ExerciseLogsController, type: :controller do
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'edit' template)" do
         exercise_log = ExerciseLog.create! valid_attributes
-        put :update, params: {id: exercise_log.to_param, exercise_log: invalid_attributes}, session: valid_session
+        put :update, params: {id: exercise_log.to_param, exercise_log: invalid_attributes}
         expect(response).to be_successful
       end
     end
@@ -129,13 +124,13 @@ RSpec.describe ExerciseLogsController, type: :controller do
     it "destroys the requested exercise_log" do
       exercise_log = ExerciseLog.create! valid_attributes
       expect {
-        delete :destroy, params: {id: exercise_log.to_param}, session: valid_session
+        delete :destroy, params: {id: exercise_log.to_param}
       }.to change(ExerciseLog, :count).by(-1)
     end
 
     it "redirects to the exercise_logs list" do
       exercise_log = ExerciseLog.create! valid_attributes
-      delete :destroy, params: {id: exercise_log.to_param}, session: valid_session
+      delete :destroy, params: {id: exercise_log.to_param}
       expect(response).to redirect_to(exercise_logs_url)
     end
   end
