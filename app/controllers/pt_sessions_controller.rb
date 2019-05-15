@@ -66,15 +66,7 @@ class PtSessionsController < ApplicationController
                                          :datetime_occurred,
                                          :exercise_notes,
                                          :homework, :duration,
-                                         homework_exercise_ids: [],
-                                         pt_session_exercises_attributes: %i[
-                                           id
-                                           exercise_id
-                                           sets
-                                           reps
-                                           resistance
-                                           _destroy
-                                         ])
+                                         homework_exercise_ids: [])
     end
 
     def authorize_pt_session
