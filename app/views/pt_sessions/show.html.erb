@@ -1,5 +1,13 @@
-<i class="fal fa-hospital-user pull-right"></i>
-<h5 class="card-title">Physical Therapy Session on <%= format_time(@pt_session) %></h5>
+<%= render partial: 'pt_sessions/pt_session_header', locals: { log: @pt_session } %>
+
+<h2>
+  <span class='pull-right'>
+    <%= link_to 'Edit', edit_pt_session_path(@pt_session), class: button_class %>
+    <%= link_to 'Back', pt_sessions_path, class: button_class %>
+  </span>
+  Physical Therapy
+</h2>
+
 <p class="card-text"><strong><%= @pt_session.body_part_name.titleize %>:</strong> <%= @pt_session.duration %> minutes<br></p>
 <h5>Session Notes</h5>
 <p><%= @pt_session.exercise_notes %></p>
@@ -7,7 +15,7 @@
 <ul>
   <% @pt_session.exercise_logs.each do |exercise_log| %>
     <li>
-      <%= link_to exercise_log.exercise_name, pt_session_exercise_log_path(@pt_session, exercise_log) %>: 
+      <%= link_to exercise_log.exercise_name, pt_session_exercise_log_path(@pt_session, exercise_log) %>:
       <%= display_exercise_stats(exercise_log) %>
       <%= link_to 'edit', edit_pt_session_exercise_log_path(@pt_session, exercise_log) %>
     </li>
@@ -21,6 +29,3 @@
   <li><%= exercise.name %></li>
   <% end %>
 </ul>
-
-<%= link_to 'Edit', edit_pt_session_path(@pt_session), class: button_class %>
-<%= link_to 'Back', pt_sessions_path, class: button_class %>
