@@ -1,7 +1,7 @@
 <% content_for(:title, format_time(@exercise_log)) %>
 <p class='pull-right'>
-  <%= link_to 'Edit', edit_exercise_log_path(@exercise_log), class: button_class %>
-  <%= link_to 'Back', exercise_log_path, class: button_class('primary pull-right') %>
+  <%= link_to 'Edit', @pt_session ? edit_pt_session_exercise_log_path(@pt_session, @exercise_log) : edit_exercise_log_path(@exercise_log), class: button_class %>
+  <%= link_to 'Back', @pt_session ? pt_session_path(@pt_session) : exercise_log_path, class: button_class('primary pull-right') %>
 </p>
 
 <h2>
@@ -33,7 +33,7 @@
   <i class="far fa-stopwatch"></i> Launch Rep Counter
 </button>
 
-<%= render partial: 'rep_counter_modal' %>
+<%= render partial: 'exercise_logs/rep_counter_modal' %>
 
 <script>
   counter(<%= @exercise_log.sets %>, <%= @exercise_log.reps %>, <%= @exercise_log.rep_length %>)

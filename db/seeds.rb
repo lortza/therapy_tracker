@@ -110,7 +110,7 @@ puts '... Exercise Logs'
   ]
 
   LOG_MULTIPLIER.times do
-    log = FactoryBot.create(
+    pt_session = FactoryBot.create(
       :pt_session,
       user_id: user.id,
       body_part_id: BodyPart.all.sample.id,
@@ -122,10 +122,10 @@ puts '... Exercise Logs'
     exercise_multiplier = (1..(Exercise.count)).to_a.sample
 
     exercise_multiplier.times do
-      log.homework_exercises << Exercise.all.sample
+      pt_session.homework_exercises << Exercise.all.sample
     end
 
     exercise_multiplier.times do
-      FactoryBot.create(:pt_session_exercise, pt_session_id: log.id, exercise_id: Exercise.all.sample.id)
+      FactoryBot.create(:exercise_log, user_id: pt_session.user_id, pt_session_id: pt_session.id, exercise_id: Exercise.all.sample.id)
     end
   end

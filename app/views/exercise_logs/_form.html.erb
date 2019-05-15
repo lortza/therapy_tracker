@@ -1,4 +1,4 @@
-<%= form_with(model: exercise_log, local: true) do |form| %>
+<%= form_with(model: exercise_log, local: true, url: url) do |form| %>
   <%= render partial: 'shared/errors', locals: {object: exercise_log} %>
 
   <div class='field'>
@@ -80,6 +80,6 @@
 
   <div class='actions mt-3 mb-3'>
     <%= form.submit class: button_class('success') %>
-    <%= link_to 'Cancel', exercise_logs_path, class: button_class('primary pull-right') %>
+    <%= link_to 'Cancel',@pt_session ? pt_session_path(@pt_session) : exercise_logs_path, class: button_class('primary pull-right') %>
   </div>
 <% end %>

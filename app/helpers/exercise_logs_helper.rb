@@ -11,4 +11,8 @@ module ExerciseLogsHelper
       " | Resistance: #{log.resistance}. "
     end
   end
+
+  def destination_url(pt_session)
+    pt_session ? pt_session_exercise_log_path(pt_session, @exercise_log) : exercise_log_path(@exercise_log)
+  end
 end

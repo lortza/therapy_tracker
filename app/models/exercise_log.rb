@@ -4,6 +4,7 @@ class ExerciseLog < ApplicationRecord
   belongs_to :user
   belongs_to :exercise
   belongs_to :body_part
+  belongs_to :pt_session, optional: true
 
   validates :datetime_occurred,
             :exercise_id,
@@ -69,6 +70,10 @@ class ExerciseLog < ApplicationRecord
 
   def minutes_spent
     (seconds_spent.to_f / 60)
+  end
+
+  def blank_stats?
+    sets.blank? || reps.blank?
   end
 
 end

@@ -2,7 +2,8 @@
 
 <h1>Editing <%= @exercise_log.exercise_name %></h1>
 
-<%= render 'form', exercise_log: @exercise_log %>
+<%= render 'form', exercise_log: @exercise_log, url: exercise_log_path %>
+
 <%= link_to 'Delete Exercise Log', @exercise_log, method: :delete, data: { confirm: 'Are you sure?' }, class: button_class('danger') %>
 
 
