@@ -1,3 +1,6 @@
+# run task like:
+# rake data:session_ex_to_logs
+
 namespace :data do
   desc "move data from pt_session_exercises to exercise_logs"
   task :session_ex_to_logs => :environment do
@@ -13,8 +16,8 @@ namespace :data do
           body_part_id: pt_session.body_part_id,
           datetime_occurred: pt_ex.created_at,
           exercise_id: pt_ex.exercise_id,
-          sets: pt_ex.sets,
-          reps: pt_ex.reps,
+          sets: pt_ex.sets ? pt_ex.sets : pt_ex.exercise.default_sets,
+          reps: pt_ex.reps ? pt_ex.reps : pt_ex.exercise.default_reps,
           rep_length: pt_ex.exercise.default_rep_length,
           per_side: pt_ex.exercise.default_per_side,
           resistance: pt_ex.resistance
@@ -30,11 +33,3 @@ namespace :data do
     # tbd
   end
 end
-
-
-### in your console
-# show rake task
-# rake hello_world
-
-# rake hello_world
-# rake myapp:import_data
