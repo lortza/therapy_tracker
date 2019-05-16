@@ -1,8 +1,7 @@
-<div class="card card--log-entry log-type-exercise">
+<div class="card card--log-entry log-border-exercise">
   <a href="<%= exercise_log_path(exercise_log) %>">
     <div class="card-body">
-      <span class='card--log-icon'>Exercise <i class="fal fa-dumbbell"></i></span>
-      <h5 class="card-title"><%= format_time(exercise_log) %></h5>
+      <%= render partial: 'exercise_logs/exercise_log_header', locals: { log: exercise_log } %>
 
       <p class="card-text"><strong><%= exercise_log.body_part_name.titleize %>:</strong> <%= exercise_log.exercise_name.titleize %>: <%= format_exercise_stats(exercise_log) %><br>
         <% unless exercise_log.burn_rep.blank? && exercise_log.progress_note.blank? %>

@@ -1,5 +1,6 @@
 <% content_for(:title, format_time(@exercise_log)) %>
 
+<%= render partial: 'exercise_logs/exercise_log_header', locals: { log: @exercise_log } %>
 <h1>Editing <%= @exercise_log.exercise_name %></h1>
 
 <%= render 'form', exercise_log: @exercise_log, url: exercise_log_path %>

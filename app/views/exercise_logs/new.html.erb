@@ -1,3 +1,5 @@
+<%= render partial: 'exercise_logs/exercise_log_header', locals: { log: @exercise_log } %>
+
 <h1>Log an Exercise</h1>
 
 <%= render 'form', exercise_log: @exercise_log, url: exercise_logs_path %>

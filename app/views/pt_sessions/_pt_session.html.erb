@@ -1,11 +1,10 @@
-<div class="card card--log-entry log-type-therapy">
-  <a href="<%= pt_session_path(pt_session) %>">
-    <div class="card-body">
-      <span class='card--log-icon'>Therapy <i class="fal fa-hospital-user"></i></span>
-      <h5 class="card-title"><%= format_time(pt_session) %></h5>
+<div class='card card--log-entry log-border-therapy'>
+  <a href='<%= pt_session_path(pt_session) %>'>
+    <div class='card-body'>
+      <%= render partial: 'pt_sessions/pt_session_header', locals: { log: pt_session } %>
 
-      <p class="card-text"><strong><%= pt_session.body_part_name.titleize %>:</strong> <%= pt_session.duration %> minutes<br>
-        <small class="text-muted"><%= pt_session.exercise_notes %></small>
+      <p class='card-text'><strong><%= pt_session.body_part_name.titleize %>:</strong> <%= pt_session.duration %> minutes<br>
+        <small class='text-muted'><%= pt_session.exercise_notes %></small>
       </p>
     </div>
   </a>
