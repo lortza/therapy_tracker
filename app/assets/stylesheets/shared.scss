@@ -59,6 +59,16 @@ body { background-color: $dk-blue; }
   }
 }
 
+label.required:after {
+  content: ' *';
+  color: $error;
+}
+
+.field_with_errors .form-control {
+  border: 1px solid $error;
+  border-radius: 0.25rem;
+}
+
 /* Pagination Links */
 /* modified digg_pagination from http://mislav.github.io/will_paginate/ */
 .pagination {
@@ -85,11 +95,6 @@ body { background-color: $dk-blue; }
     color: darken($brand_main, 5%);
     border-color: darken($brand_main, 5%);
   }
-}
-
-label.required:after {
-  content: " *";
-  color: red;
 }
 
 /* MEDIA QUERIES */

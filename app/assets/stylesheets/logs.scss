@@ -16,7 +16,7 @@
   }
 }
 
-.card--log-icon {
+.log-icon {
   float: right;
   font-size: 0.8rem;
 }
@@ -31,21 +31,15 @@
   line-height: 1rem;
 }
 
-.field_with_errors .form-control {
-  border: 1px solid red;
-  border-radius: 0.25rem;
-}
-
 @mixin log-type-color($color) {
-  border: 1px solid $color;
-  .card--log-icon { color: $color; }
+  .log-icon { color: $color; }
   .card-title { color: $color; }
 }
 
 .log-type-pain { @include log-type-color($pain-color); }
-
 .log-type-exercise { @include log-type-color($exercise-color); }
-
 .log-type-therapy { @include log-type-color($therapy-color); }
 
-label.required:after{content: " *"; color: red;}
+.log-border-exercise { border: 1px solid $exercise-color; }
+.log-border-pain { border: 1px solid $pain-color; }
+.log-border-therapy { border: 1px solid $therapy-color; }
