@@ -2,26 +2,26 @@
   <%= render partial: 'shared/errors', locals: {object: exercise} %>
 
   <div class="field">
-    <%= form.label :name %>
+    <%= form.label :name, class: 'required' %>
     <%= form.text_field :name, class: 'form-control' %>
   </div>
 
   <div class="form-row">
     <div class="col">
       <div class="field">
-        <%= form.label :default_sets %>
+        <%= form.label :default_sets, class: 'required' %>
         <%= form.number_field :default_sets, class: 'form-control' %>
       </div>
     </div>
     <div class="col">
       <div class="field">
-        <%= form.label :default_reps %>
+        <%= form.label :default_reps, class: 'required' %>
         <%= form.number_field :default_reps, class: 'form-control' %>
       </div>
     </div>
     <div class="col">
       <div class="field">
-        <%= form.label :default_rep_length %>
+        <%= form.label :default_rep_length, class: 'required' %>
         <%= form.number_field :default_rep_length, placeholder: 'seconds', class: 'form-control' %>
       </div>
     </div>
@@ -39,7 +39,7 @@
   </div>
 
   <div class="field">
-    <%= form.label :description %>
+    <%= form.label :description, class: 'required' %>
     <%= form.text_area :description, class: 'form-control' %>
   </div>
 
