@@ -5,7 +5,7 @@
 <h2>
   <span class='pull-right'>
     <%= link_to 'Edit', @pt_session ? edit_pt_session_exercise_log_path(@pt_session, @exercise_log) : edit_exercise_log_path(@exercise_log), class: button_class %>
-    <%= link_to 'Back', @pt_session ? pt_session_path(@pt_session) : exercise_log_path, class: button_class %>
+    <%= link_to 'Back', @pt_session ? pt_session_path(@pt_session) : logs_path, class: button_class %>
   </span>
   <%= @exercise_log.exercise_name.titleize %>
 </h2>
