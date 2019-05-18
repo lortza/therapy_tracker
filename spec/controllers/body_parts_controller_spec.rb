@@ -26,27 +26,28 @@ require 'rails_helper'
 # `rails-controller-testing` gem.
 
 RSpec.describe BodyPartsController, type: :controller do
-
+  login_user
   # This should return the minimal set of attributes required to create a valid
   # BodyPart. As you add validations to BodyPart, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      :name => "elbow",
+      :user_id => subject.current_user.id
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+      :name => "",
+      :user_id => subject.current_user.id
+    }
   }
-
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # BodyPartsController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
 
   describe "GET #index" do
     it "returns a success response" do
       BodyPart.create! valid_attributes
-      get :index, params: {}, session: valid_session
+      get :index, params: {}
       expect(response).to be_successful
     end
   end
@@ -54,14 +55,14 @@ RSpec.describe BodyPartsController, type: :controller do
   describe "GET #show" do
     it "returns a success response" do
       body_part = BodyPart.create! valid_attributes
-      get :show, params: {id: body_part.to_param}, session: valid_session
+      get :show, params: {id: body_part.to_param}
       expect(response).to be_successful
     end
   end
 
   describe "GET #new" do
     it "returns a success response" do
-      get :new, params: {}, session: valid_session
+      get :new, params: {}
       expect(response).to be_successful
     end
   end
@@ -69,7 +70,7 @@ RSpec.describe BodyPartsController, type: :controller do
   describe "GET #edit" do
     it "returns a success response" do
       body_part = BodyPart.create! valid_attributes
-      get :edit, params: {id: body_part.to_param}, session: valid_session
+      get :edit, params: {id: body_part.to_param}
       expect(response).to be_successful
     end
   end
@@ -78,19 +79,19 @@ RSpec.describe BodyPartsController, type: :controller do
     context "with valid params" do
       it "creates a new BodyPart" do
         expect {
-          post :create, params: {body_part: valid_attributes}, session: valid_session
+          post :create, params: {body_part: valid_attributes}
         }.to change(BodyPart, :count).by(1)
       end
 
-      it "redirects to the created body_part" do
-        post :create, params: {body_part: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(BodyPart.last)
+      it "redirects to the body parts index" do
+        post :create, params: {body_part: valid_attributes}
+        expect(response).to redirect_to(BodyPart)
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'new' template)" do
-        post :create, params: {body_part: invalid_attributes}, session: valid_session
+        post :create, params: {body_part: invalid_attributes}
         expect(response).to be_successful
       end
     end
@@ -99,27 +100,27 @@ RSpec.describe BodyPartsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        { :name => "left elbow"}
       }
 
       it "updates the requested body_part" do
         body_part = BodyPart.create! valid_attributes
-        put :update, params: {id: body_part.to_param, body_part: new_attributes}, session: valid_session
+        put :update, params: {id: body_part.to_param, body_part: new_attributes}
         body_part.reload
-        skip("Add assertions for updated state")
+        body_part.name == new_attributes[:name]
       end
 
-      it "redirects to the body_part" do
+      it "redirects to the body_part index" do
         body_part = BodyPart.create! valid_attributes
-        put :update, params: {id: body_part.to_param, body_part: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(body_part)
+        put :update, params: {id: body_part.to_param, body_part: valid_attributes}
+        expect(response).to redirect_to(BodyPart)
       end
     end
 
     context "with invalid params" do
       it "returns a success response (i.e. to display the 'edit' template)" do
         body_part = BodyPart.create! valid_attributes
-        put :update, params: {id: body_part.to_param, body_part: invalid_attributes}, session: valid_session
+        put :update, params: {id: body_part.to_param, body_part: invalid_attributes}
         expect(response).to be_successful
       end
     end
@@ -129,13 +130,13 @@ RSpec.describe BodyPartsController, type: :controller do
     it "destroys the requested body_part" do
       body_part = BodyPart.create! valid_attributes
       expect {
-        delete :destroy, params: {id: body_part.to_param}, session: valid_session
+        delete :destroy, params: {id: body_part.to_param}
       }.to change(BodyPart, :count).by(-1)
     end
 
     it "redirects to the body_parts list" do
       body_part = BodyPart.create! valid_attributes
-      delete :destroy, params: {id: body_part.to_param}, session: valid_session
+      delete :destroy, params: {id: body_part.to_param}
       expect(response).to redirect_to(body_parts_url)
     end
   end
