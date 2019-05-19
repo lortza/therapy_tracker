@@ -11,7 +11,7 @@
   margin-bottom: 1rem;
   a { color: $default_text; }
   &:hover {
-    background-color: $light-gray;
+    background-color: $light_gray;
     a { text-decoration: none; }
   }
 }
@@ -36,10 +36,10 @@
   .card-title { color: $color; }
 }
 
-.log-type-pain { @include log-type-color($pain-color); }
-.log-type-exercise { @include log-type-color($exercise-color); }
-.log-type-therapy { @include log-type-color($therapy-color); }
+.log-type-pain { @include log-type-color($pain_color); }
+.log-type-exercise { @include log-type-color($exercise_color); }
+.log-type-therapy { @include log-type-color($therapy_color); }
 
-.log-border-exercise { border: 1px solid $exercise-color; }
-.log-border-pain { border: 1px solid $pain-color; }
-.log-border-therapy { border: 1px solid $therapy-color; }
+.log-border-exercise { border: 1px solid $exercise_color; }
+.log-border-pain { border: 1px solid $pain_color; }
+.log-border-therapy { border: 1px solid $therapy_color; }
