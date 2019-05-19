@@ -30,7 +30,7 @@ class PainLog < ApplicationRecord
   def self.group_by_pain_and_count
     pain_ids_and_counts = group(:pain_id).count
     pain_ids_and_counts.map do |k, v|
-      [ Pain.find(k).name, v ]
+      [Pain.find(k).name, v]
     end
   end
   # def self.avg_pain_level_by_day

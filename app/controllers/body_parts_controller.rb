@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class BodyPartsController < ApplicationController
-  before_action :set_body_part, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_body_part, only: [:show, :edit, :update, :destroy]
+  before_action :set_body_part, only: %i[show edit update destroy]
+  before_action :authorize_body_part, only: %i[show edit update destroy]
 
   def index
     @body_parts = current_user.body_parts.all.order(:name)
@@ -53,15 +53,16 @@ class BodyPartsController < ApplicationController
   end
 
   private
-    def set_body_part
-      @body_part = BodyPart.find(params[:id])
-    end
 
-    def body_part_params
-      params.require(:body_part).permit(:name)
-    end
+  def set_body_part
+    @body_part = BodyPart.find(params[:id])
+  end
 
-    def authorize_body_part
-      redirect_to root_path, alert: "Whoops! You're not authorized to view that page." if @body_part.user_id != current_user.id
-    end
+  def body_part_params
+    params.require(:body_part).permit(:name)
+  end
+
+  def authorize_body_part
+    redirect_to root_path, alert: "Whoops! You're not authorized to view that page." if @body_part.user_id != current_user.id
+  end
 end

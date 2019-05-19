@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 class PtSessionsController < ApplicationController
-  before_action :set_pt_session, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_pt_session, only: [:show, :edit, :update, :destroy]
+  before_action :set_pt_session, only: %i[show edit update destroy]
+  before_action :authorize_pt_session, only: %i[show edit update destroy]
   layout 'no_white_container', only: [:index]
 
   def index
-    @logs = current_user.pt_sessions.order(datetime_occurred: 'DESC' ).paginate(page: params[:page], per_page: 10)
+    @logs = current_user.pt_sessions.order(datetime_occurred: 'DESC').paginate(page: params[:page], per_page: 10)
   end
 
   def show
@@ -54,21 +54,22 @@ class PtSessionsController < ApplicationController
   end
 
   private
-    def set_pt_session
-      @pt_session = PtSession.find(params[:id])
-    end
 
-    def pt_session_params
-      params.require(:pt_session).permit(:user_id,
-                                         :body_part_id,
-                                         :datetime_occurred,
-                                         :exercise_notes,
-                                         :homework, :duration,
-                                         :questions,
-                                         homework_exercise_ids: [])
-    end
+  def set_pt_session
+    @pt_session = PtSession.find(params[:id])
+  end
 
-    def authorize_pt_session
-      redirect_to root_path, alert: "Whoops! You're not authorized to view that page." if @pt_session.user_id != current_user.id
-    end
+  def pt_session_params
+    params.require(:pt_session).permit(:user_id,
+                                       :body_part_id,
+                                       :datetime_occurred,
+                                       :exercise_notes,
+                                       :homework, :duration,
+                                       :questions,
+                                       homework_exercise_ids: [])
+  end
+
+  def authorize_pt_session
+    redirect_to root_path, alert: "Whoops! You're not authorized to view that page." if @pt_session.user_id != current_user.id
+  end
 end

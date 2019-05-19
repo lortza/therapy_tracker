@@ -47,14 +47,14 @@ class ExerciseLog < ApplicationRecord
   def self.group_by_exercise_and_count
     ex_ids_and_counts = group(:exercise_id).count
     ex_ids_and_counts.map do |k, v|
-      [ Exercise.find(k).name, v ]
+      [Exercise.find(k).name, v]
     end
   end
 
   def self.minutes_spent_by_day
     output = {}
-    all.each do |log|
-      if output[log.datetime_occurred.to_date] == nil
+    all.find_each do |log|
+      if output[log.datetime_occurred.to_date].nil?
         output[log.datetime_occurred.to_date] = log.minutes_spent.round(2)
       else
         output[log.datetime_occurred.to_date] += log.minutes_spent.round(2)
@@ -75,5 +75,4 @@ class ExerciseLog < ApplicationRecord
   def blank_stats?
     sets.blank? || reps.blank?
   end
-
 end

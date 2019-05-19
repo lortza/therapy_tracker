@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class PainsController < ApplicationController
-  before_action :set_pain, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_pain, only: [:show, :edit, :update, :destroy]
+  before_action :set_pain, only: %i[show edit update destroy]
+  before_action :authorize_pain, only: %i[show edit update destroy]
 
   def index
     @pains = current_user.pains.order(:name)
@@ -53,15 +53,16 @@ class PainsController < ApplicationController
   end
 
   private
-    def set_pain
-      @pain = Pain.find(params[:id])
-    end
 
-    def pain_params
-      params.require(:pain).permit(:name)
-    end
+  def set_pain
+    @pain = Pain.find(params[:id])
+  end
 
-    def authorize_pain
-      redirect_to root_path, alert: "Whoops! You're not authorized to view that page." if @pain.user_id != current_user.id
-    end
+  def pain_params
+    params.require(:pain).permit(:name)
+  end
+
+  def authorize_pain
+    redirect_to root_path, alert: "Whoops! You're not authorized to view that page." if @pain.user_id != current_user.id
+  end
 end

@@ -2,9 +2,9 @@
 
 class PtSessions::ExerciseLogsController < PtSessionsController
   before_action :set_pt_session
-  before_action :set_exercise_log, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_pt_session, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_exercise_log, only: [:show, :edit, :update, :destroy]
+  before_action :set_exercise_log, only: %i[show edit update destroy]
+  before_action :authorize_pt_session, only: %i[show edit update destroy]
+  before_action :authorize_exercise_log, only: %i[show edit update destroy]
   layout 'no_white_container', only: [:index]
 
   def new
@@ -54,23 +54,24 @@ class PtSessions::ExerciseLogsController < PtSessionsController
   end
 
   private
-    def authorize_exercise_log
-      redirect_to root_path, alert: "Whoops! You're not authorized to view that page." if @exercise_log.user_id != current_user.id
-    end
 
-    def authorize_pt_session
-      redirect_to root_path, alert: "Whoops! You're not authorized to view that page." if @pt_session.user_id != current_user.id
-    end
+  def authorize_exercise_log
+    redirect_to root_path, alert: "Whoops! You're not authorized to view that page." if @exercise_log.user_id != current_user.id
+  end
 
-    def set_exercise_log
-      @exercise_log = ExerciseLog.find(params[:id])
-    end
+  def authorize_pt_session
+    redirect_to root_path, alert: "Whoops! You're not authorized to view that page." if @pt_session.user_id != current_user.id
+  end
 
-    def set_pt_session
-      @pt_session = PtSession.find(params[:pt_session_id])
-    end
+  def set_exercise_log
+    @exercise_log = ExerciseLog.find(params[:id])
+  end
 
-    def exercise_log_params
-      params.require(:exercise_log).permit(:pt_session_id, :user_id, :body_part_id, :datetime_occurred, :exercise_id, :sets, :reps, :rep_length, :per_side, :resistance, :burn_set, :burn_rep, :progress_note)
-    end
+  def set_pt_session
+    @pt_session = PtSession.find(params[:pt_session_id])
+  end
+
+  def exercise_log_params
+    params.require(:exercise_log).permit(:pt_session_id, :user_id, :body_part_id, :datetime_occurred, :exercise_id, :sets, :reps, :rep_length, :per_side, :resistance, :burn_set, :burn_rep, :progress_note)
+  end
 end

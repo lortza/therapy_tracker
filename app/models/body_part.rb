@@ -7,5 +7,4 @@ class BodyPart < ApplicationRecord
   has_many :pt_sessions
 
   validates :name, presence: true
-
 end

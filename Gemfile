@@ -48,42 +48,42 @@ gem 'will_paginate', '~> 3.1.0' # pagination. Styles: http://mislav.github.io/wi
 group :development, :test do
   gem 'awesome_print'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'better_errors' # creates console in browser for errors
+  gem 'binding_of_caller' # goes with better_errors
   gem 'bullet' # detects N+1 queries via config/initializers/bullet.rb
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'capybara' # interacts with the browser
+  gem 'factory_bot_rails', '~> 4.0'
   gem 'faker' # creates fake data for seeding
+  gem 'guard-rspec', require: false # runs rspec automatically
+  gem 'launchy' # goes with capybara
+  gem 'letter_opener' # lets you send and open test emails via the app
+  gem 'lol_dba' # profiles app for performance
+  gem 'pry-awesome_print'
   gem 'pry-byebug'
   gem 'pry-rails'
-  gem 'pry-awesome_print'
-  gem 'better_errors' # creates console in browser for errors
-  gem 'binding_of_caller' #goes with better_errors
-  gem 'lol_dba' # profiles app for performance
   gem 'rspec-rails', '~> 3.5'
-  gem 'capybara' # interacts with the browser
-  gem 'launchy' # goes with capybara
-  gem 'factory_bot_rails', '~> 4.0'
-  gem 'guard-rspec', require: false # runs rspec automatically
-  gem 'letter_opener' # lets you send and open test emails via the app
 end
 
 group :development do
   gem 'rails-erd', require: false # generates ERD chart for your schema, run `bundle exec erd`
   gem 'rubycritic', require: false # provides feedback on complexity and churns for your codebase
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
-  gem "selenium-webdriver"
-  gem "chromedriver-helper" # must be loaded after selenium-webdriver
-  gem 'seed_dump' # run with `rake db:seed:dump`
+  gem 'chromedriver-helper' # must be loaded after selenium-webdriver
   gem 'rubocop', '~> 0.67.2', require: false
   gem 'rubocop-performance'
+  gem 'seed_dump' # run with `rake db:seed:dump`
+  gem 'selenium-webdriver'
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 group :test do
-  gem "shoulda-matchers"
+  gem 'shoulda-matchers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

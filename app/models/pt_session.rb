@@ -8,7 +8,6 @@ class PtSession < ApplicationRecord
   has_many :pt_homework_exercises, dependent: :destroy
   has_many :homework_exercises, through: :pt_homework_exercises, source: :exercise
 
-
   validates :datetime_occurred,
             :body_part_id,
             :exercise_notes,
