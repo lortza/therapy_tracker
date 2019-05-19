@@ -14,6 +14,7 @@ AllCops:
     - 'db/**/*'
     - 'script/**/*'
     - 'lib/tasks/**/*'
+    - 'vendor/**/*'
     # - '**/*.erb'
 
 Metrics/BlockLength:
@@ -22,7 +23,7 @@ Metrics/BlockLength:
     - 'lib/tasks/*'
 
 Metrics/LineLength:
-  Max: 100
+  Max: 120
   Exclude:
   - !ruby/regexp /.*_spec\.rb$/
 Style/BlockDelimiters:
@@ -31,4 +32,4 @@ Style/BlockDelimiters:
 Style/EmptyMethod:
   EnforcedStyle: expanded
 Style/TrailingCommaInArrayLiteral:
-  EnforcedStyleForMultiline:       consistent_comma
+  EnforcedStyleForMultiline: consistent_comma
