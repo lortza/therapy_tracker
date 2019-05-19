@@ -28,7 +28,7 @@ class Exercise < ApplicationRecord
     end
 
     def log_count_by_name
-      exercises = has_logs.select do |exercise|
+      has_logs.select do |exercise|
         exercise.logs.count > 2
       end.map { |e| [e.name, e.logs.count] }
     end

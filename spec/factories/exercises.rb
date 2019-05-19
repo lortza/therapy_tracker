@@ -14,8 +14,7 @@ FactoryBot.define do
 
   trait :with_3_exercise_logs do
     after :create do |exercise|
-      create_list :exercise_log, 3, exercise: exercise   # has_many
+      create_list :exercise_log, 3, exercise: exercise # has_many
     end
   end
-
 end

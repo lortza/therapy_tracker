@@ -11,7 +11,7 @@ module LogsHelper
   end
 
   def last_homework
-    homework = {
+    {
       notes: PtSession.last&.homework,
       exercises: PtSession.last&.homework_exercises
     }

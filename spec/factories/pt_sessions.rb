@@ -4,9 +4,9 @@ FactoryBot.define do
   factory :pt_session do
     user
     body_part
-    datetime_occurred { "2019-03-25 22:29:28" }
-    exercise_notes { "sample exercise notes" }
-    homework { "sample homework" }
+    datetime_occurred { '2019-03-25 22:29:28' }
+    exercise_notes { 'sample exercise notes' }
+    homework { 'sample homework' }
     duration { [45, 60, 90].sample }
   end
 
@@ -15,5 +15,4 @@ FactoryBot.define do
       create :homework_exercise, pt_session: pt_session, exercise: create(:exercise)
     end
   end
-
 end
