@@ -61,7 +61,7 @@ body { background-color: $dk-blue; }
 
 label.required:after {
   content: ' *';
-  color: $error;
+  font-size: 0.85rem;
 }
 
 .field_with_errors .form-control {

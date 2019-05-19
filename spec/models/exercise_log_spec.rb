@@ -133,6 +133,11 @@ RSpec.describe ExerciseLog, type: :model do
       expect(exercise_log.seconds_spent).to eq(100)
     end
 
+    it 'doubles the value if per_side is true' do
+      exercise_log = build(:exercise_log, sets: 2, reps: 10, rep_length: 5, per_side: true)
+      expect(exercise_log.seconds_spent).to eq(200)
+    end
+
     it 'handles 0s gracefully' do
       exercise_log = build(:exercise_log, sets: 0, reps: 0, rep_length: 5)
       expect(exercise_log.seconds_spent).to eq(0)

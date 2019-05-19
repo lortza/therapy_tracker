@@ -24,7 +24,7 @@ class PtSessions::ExerciseLogsController < PtSessionsController
 
     respond_to do |format|
       if @exercise_log.save
-        format.html { redirect_to pt_session_url(@pt_session) }
+        format.html { redirect_to pt_session_exercise_log_url(@pt_session, @exercise_log) }
         format.json { render :show, status: :created, location: @pt_session }
       else
         format.html { render :new }

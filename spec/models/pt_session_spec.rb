@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe PtSession, type: :model do
-  context "associations" do
+  context 'associations' do
     it { should belong_to(:user) }
     it { should belong_to(:body_part) }
     it { should have_many(:exercise_logs) }
@@ -11,7 +11,7 @@ RSpec.describe PtSession, type: :model do
     it { should have_many(:homework_exercises).through(:pt_homework_exercises) }
   end
 
-  context "validations" do
+  context 'validations' do
     it { should validate_presence_of(:body_part_id) }
     it { should validate_presence_of(:datetime_occurred) }
     it { should validate_presence_of(:exercise_notes) }
