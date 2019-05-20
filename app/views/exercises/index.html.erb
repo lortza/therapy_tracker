@@ -11,22 +11,17 @@
 
 <p class='clear_search'><%= link_to 'Clear Search', exercises_path %></p>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Exercise</th>
-      <th>Description</th>
-    </tr>
-  </thead>
+<section id='exercise-list'>
+  <% @exercises.each do |exercise| %>
+    <article class='exercise-list-item'>
+      <h3><%= link_to exercise.name, edit_exercise_path(exercise) %> <i class='exercise-description-toggle fal fa-chevron-down'></i></h3>
+      <p class='exercise-description hidden'><strong><%= exercise.default_sets %> sets of <%= exercise.default_reps %> with <%= exercise.default_rep_length %> sec hold <%= 'per side' if exercise.default_per_side %></strong><br>
+        <%= exercise.description %>
+      </p>
+    </article>
+  <% end %>
+</section>
 
-  <tbody>
-    <% @exercises.each do |exercise| %>
-      <tr>
-        <td><%= link_to exercise.name, edit_exercise_path(exercise) %>
-        <td><strong><%= exercise.default_sets %> sets of <%= exercise.default_reps %> with <%= exercise.default_rep_length %> sec hold <%= 'per side' if exercise.default_per_side %></strong><br>
-          <%= exercise.description %>
-      </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<script type="text/javascript">
+  listToggler();
+</script>

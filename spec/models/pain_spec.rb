@@ -30,7 +30,7 @@ RSpec.describe Pain, type: :model do
 
     it 'returns the pain name and the count of its logs as a nested array' do
       expected_output = [['pain1', 3], ['pain2', 3]]
-      expect(Pain.log_count_by_name).to eq(expected_output)
+      expect(Pain.log_count_by_name).to match_array(expected_output)
     end
   end
 end

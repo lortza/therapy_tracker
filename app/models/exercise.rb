@@ -20,7 +20,7 @@ class Exercise < ApplicationRecord
 
   class << self
     def by_name
-      order(:name)
+      order('lower(name) ASC')
     end
 
     def has_logs

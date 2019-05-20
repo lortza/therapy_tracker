@@ -26,12 +26,44 @@ RSpec.describe PtSession, type: :model do
   end
 
   describe 'self.past_week' do
-    xit 'returns pt_sessions logged in the past week' do
+    it 'returns only the logs that occurred between today and the past 7 days' do
+      pt_session = create(:pt_session, datetime_occurred: Date.today.to_datetime - 2.days)
+
+      expect(PtSession.past_week).to include(pt_session)
+    end
+
+    it 'does not return logs that occurred outside of 7 days' do
+      pt_session1 = create(:pt_session, datetime_occurred: Date.today.to_datetime - 8.days)
+      pt_session2 = create(:pt_session, datetime_occurred: Date.today.to_datetime + 2.days)
+
+      expect(PtSession.past_week).to_not include(pt_session1)
+      expect(PtSession.past_week).to_not include(pt_session2)
+    end
+
+    it 'returns an empty array if no logs occurred within the past 7 days' do
+      pt_session = create(:pt_session, datetime_occurred: Date.today.to_datetime - 8.days)
+      expect(PtSession.past_week).to eq([])
     end
   end
 
   describe 'self.past_two_weeks' do
-    xit 'returns pt_sessions logged in the past 2 weeks' do
+    it 'returns logs that occurred within the past 14 days' do
+      pt_session = create(:pt_session, datetime_occurred: Date.today.to_datetime - 12.days)
+
+      expect(PtSession.past_two_weeks).to include(pt_session)
+    end
+
+    it 'does not return logs that occurred outside of 14 days' do
+      pt_session1 = create(:pt_session, datetime_occurred: Date.today.to_datetime - 20.days)
+      pt_session2 = create(:pt_session, datetime_occurred: Date.today.to_datetime + 2.days)
+
+      expect(PtSession.past_two_weeks).to_not include(pt_session1)
+      expect(PtSession.past_two_weeks).to_not include(pt_session2)
+    end
+
+    it 'returns an empty array if no logs occurred within the past 14 days' do
+      pt_session = create(:pt_session, datetime_occurred: Date.today.to_datetime - 16.days)
+      expect(PtSession.past_two_weeks).to eq([])
     end
   end
 
