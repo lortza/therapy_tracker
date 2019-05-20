@@ -25,19 +25,52 @@ RSpec.describe PainLog, type: :model do
     it { should delegate_method(:name).to(:pain).with_prefix }
   end
 
+  describe 'self.past_week' do
+    it 'returns only the logs between today and the past 7 days' do
+      pain_log = create(:pain_log, datetime_occurred: Date.today.to_datetime - 2.days)
+
+      expect(PainLog.past_week.first).to eq pain_log
+    end
+
+    it 'returns empty if the datetime_occurreds are out of the range 7 days past' do
+      pain_log = create(:pain_log, datetime_occurred: Date.today.to_datetime - 8.days)
+      pain_log = create(:pain_log, datetime_occurred: Date.today.to_datetime + 2.days)
+
+      expect(PainLog.past_week).to be_empty
+    end
+  end
+
   describe 'self.past_two_weeks' do
-    xit 'returns only the logs between today and the past 14 days' do
+    it 'returns only the logs between today and the past 14 days' do
+      pain_log = create(:pain_log, datetime_occurred: Date.today.to_datetime - 12.days)
+
+      expect(PainLog.past_two_weeks.first).to eq pain_log
+    end
+
+    it 'returns empty if the datetime_occurreds are out of the range 14 days past' do
+      pain_log1 = create(:pain_log, datetime_occurred: Date.today.to_datetime - 20.days)
+      pain_log2 = create(:pain_log, datetime_occurred: Date.today.to_datetime + 2.days)
+
+      expect(PainLog.past_two_weeks).to be_empty
     end
   end
 
-  xdescribe '#avg_pain_level_by_day' do
-    it 'returns the average pain level of minutes exercised per log' do
-      pain_log = build(:pain_log)
-      allow(pain_log).to receive(:seconds_spent).and_return(120)
+  describe 'self.group_by_pain_and_count' do
+    let!(:pain1) { create(:pain, :with_3_pain_logs, name: 'pain1') }
+    let!(:pain2) { create(:pain, :with_3_pain_logs, name: 'pain2') }
 
-      expect(PainLog.avg_pain_level_by_day).to eq(2)
+    it 'returns the pain name and the count of its logs as a nested array' do
+      expected_output = [['pain2', 3], ['pain1', 3]]
+      expect(PainLog.group_by_pain_and_count).to match_array(expected_output)
     end
-
-
   end
+
+  # describe '#avg_pain_level_by_day' do
+  #   it 'returns the average pain level of minutes exercised per log' do
+  #     pain_log = build(:pain_log)
+  #     allow(pain_log).to receive(:seconds_spent).and_return(120)
+
+  #     expect(PainLog.avg_pain_level_by_day).to eq(2)
+  #   end
+  # end
 end
