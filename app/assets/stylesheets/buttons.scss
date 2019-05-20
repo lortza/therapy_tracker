@@ -34,3 +34,15 @@
   border: 1px solid darken($therapy_color, 10%);
   &:hover { background-color: darken($therapy_color, 10%) }
 }
+
+.btn-wide {
+  display: block;
+  margin-bottom: 1rem;
+  width: 250px;
+}
+
+/* MEDIA QUERIES */
+
+@media (max-width: 576px) {
+  .btn-wide { width: 100%; }
+}
