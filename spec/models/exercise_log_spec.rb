@@ -33,34 +33,45 @@ RSpec.describe ExerciseLog, type: :model do
   end
 
   describe 'self.at_home' do
-    it 'returns exercise_log if it doesn\'t belong to pt_session' do
+    it 'returns exercise_logs that are not associated with a pt_session' do
       exercise_log = create(:exercise_log, pt_session_id: nil)
 
-      expect(ExerciseLog.at_home.first).to eq exercise_log
+      expect(ExerciseLog.at_home).to include(exercise_log)
     end
 
-    it 'returns empty if exercise_logs belong to pt_sessions' do
-      user = create(:user)
-      pt_session = create(:pt_session, user_id: user.id)
+    it 'does not return exercise_logs that are associated with a pt_session' do
+      pt_session = create(:pt_session)
+      exercise_log = create(:exercise_log, pt_session_id: pt_session.id)
+
+      expect(ExerciseLog.at_home).to_not include(exercise_log)
+    end
+
+    it 'returns an empty array if all exercise_logs belong to pt_sessions' do
+      pt_session = create(:pt_session)
       exercise_log = build(:exercise_log, pt_session_id: pt_session.id)
 
-      expect(ExerciseLog.at_home).to be_empty
+      expect(ExerciseLog.at_home).to eq([])
     end
   end
 
   describe 'self.at_pt' do
-    it 'returns exercise_log if it belongs to pt_session' do
-      user = create(:user)
-      pt_session = create(:pt_session, user_id: user.id)
+    it 'returns exercise_logs that are associated with pt_sessions' do
+      pt_session = create(:pt_session)
       exercise_log = create(:exercise_log, pt_session_id: pt_session.id)
 
-      expect(ExerciseLog.at_pt.first).to eq exercise_log
+      expect(ExerciseLog.at_pt).to include(exercise_log)
     end
 
-    it 'returns empty if exercise_log it doesn\'t belong to pt_session' do
+    it 'does not return exercise_logs that are not associated with a pt_session' do
       exercise_log = create(:exercise_log, pt_session_id: nil)
 
-      expect(ExerciseLog.at_pt).to be_empty
+      expect(ExerciseLog.at_pt).to_not include(exercise_log)
+    end
+
+    it 'returns an empty array if no exercise_logs belong to a pt_session' do
+      exercise_log = build(:exercise_log, pt_session_id: nil)
+
+      expect(ExerciseLog.at_pt).to eq([])
     end
   end
 
@@ -161,7 +172,7 @@ RSpec.describe ExerciseLog, type: :model do
   end
 
   describe '#blank_stats?' do
-    it 'returns false if both sets and reps are not blank' do
+    it 'returns false if both sets and reps have values' do
       exercise_log = build(:exercise_log)
       allow(exercise_log).to receive(:sets).and_return(1)
       allow(exercise_log).to receive(:reps).and_return(2)
@@ -169,7 +180,7 @@ RSpec.describe ExerciseLog, type: :model do
       expect(exercise_log.blank_stats?).to eq false
     end
 
-    it 'returns true if sets is blank and reps is not blank' do
+    it 'returns true if reps has a value and sets does not' do
       exercise_log = build(:exercise_log)
       allow(exercise_log).to receive(:sets).and_return('')
       allow(exercise_log).to receive(:reps).and_return(2)
@@ -177,7 +188,7 @@ RSpec.describe ExerciseLog, type: :model do
       expect(exercise_log.blank_stats?).to eq true
     end
 
-    it 'returns true if sets is not blank and reps is blank' do
+    it 'returns true if sets has a value and reps does not' do
       exercise_log = build(:exercise_log)
       allow(exercise_log).to receive(:sets).and_return(1)
       allow(exercise_log).to receive(:reps).and_return('')

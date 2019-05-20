@@ -26,36 +26,30 @@ RSpec.describe PtSession, type: :model do
   end
 
   describe 'self.past_week' do
-    before(:each) do
-      @user = create(:user)
-    end
     it 'returns only the logs between today and the past 7 days' do
-      pt_session = create(:pt_session, datetime_occurred: Date.today.to_datetime - 2.days, user_id: @user.id)
+      pt_session = create(:pt_session, datetime_occurred: Date.today.to_datetime - 2.days)
 
       expect(PtSession.past_week.first).to eq pt_session
     end
 
     it 'returns empty if the datetime_occurreds are out of the range 7 days past' do
-      pt_session = create(:pt_session, datetime_occurred: Date.today.to_datetime - 8.days, user_id: @user.id)
-      pt_session = create(:pt_session, datetime_occurred: Date.today.to_datetime + 2.days, user_id: @user.id)
+      pt_session = create(:pt_session, datetime_occurred: Date.today.to_datetime - 8.days)
+      pt_session = create(:pt_session, datetime_occurred: Date.today.to_datetime + 2.days)
 
       expect(PtSession.past_week).to be_empty
     end
   end
 
   describe 'self.past_two_weeks' do
-    before(:each) do
-      @user = create(:user)
-    end
     it 'returns only the logs between today and the past 14 days' do
-      pt_session = create(:pt_session, datetime_occurred: Date.today.to_datetime - 12.days, user_id: @user.id)
+      pt_session = create(:pt_session, datetime_occurred: Date.today.to_datetime - 12.days)
 
       expect(PtSession.past_two_weeks.first).to eq pt_session
     end
 
     it 'returns empty if the datetime_occurreds are out of the range 14 days past' do
-      pt_session1 = create(:pt_session, datetime_occurred: Date.today.to_datetime - 20.days, user_id: @user.id)
-      pt_session2 = create(:pt_session, datetime_occurred: Date.today.to_datetime + 2.days, user_id: @user.id)
+      pt_session1 = create(:pt_session, datetime_occurred: Date.today.to_datetime - 20.days)
+      pt_session2 = create(:pt_session, datetime_occurred: Date.today.to_datetime + 2.days)
 
       expect(PtSession.past_two_weeks).to be_empty
     end
