@@ -76,32 +76,34 @@ RSpec.describe ExerciseLog, type: :model do
   end
 
   describe 'self.past_week' do
-    it 'returns only the logs between today and the past 7 days' do
+    it 'returns logs that occurred between today and the past 7 days' do
       exercise_log = create(:exercise_log, datetime_occurred: Date.today.to_datetime - 2.days)
 
-      expect(ExerciseLog.past_week.first).to eq exercise_log
+      expect(ExerciseLog.past_week).to include(exercise_log)
     end
 
-    it 'returns empty if the datetime_occurreds are out of the range 7 days past' do
+    it 'does not return logs that occurred outside of the past 7 days' do
       exercise_log1 = create(:exercise_log, datetime_occurred: Date.today.to_datetime - 8.days)
       exercise_log2 = create(:exercise_log, datetime_occurred: Date.today.to_datetime + 2.days)
 
-      expect(ExerciseLog.past_week).to be_empty
+      expect(ExerciseLog.past_week).to_not include(exercise_log1)
+      expect(ExerciseLog.past_week).to_not include(exercise_log2)
     end
   end
 
   describe 'self.past_two_weeks' do
-    it 'returns only the logs between today and the past 14 days' do
+    it 'returns logs that occurred between today and the past 14 days' do
       exercise_log = create(:exercise_log, datetime_occurred: Date.today.to_datetime - 12.days)
 
-      expect(ExerciseLog.past_two_weeks.first).to eq exercise_log
+      expect(ExerciseLog.past_two_weeks).to include(exercise_log)
     end
 
-    it 'returns empty if the datetime_occurreds are out of the range 14 days past' do
+    it 'does not include logs that occurred outside of the past 14 days' do
       exercise_log1 = create(:exercise_log, datetime_occurred: Date.today.to_datetime - 20.days)
       exercise_log2 = create(:exercise_log, datetime_occurred: Date.today.to_datetime + 2.days)
 
-      expect(ExerciseLog.past_two_weeks).to be_empty
+      expect(ExerciseLog.past_two_weeks).to_not include(exercise_log1)
+      expect(ExerciseLog.past_two_weeks).to_not include(exercise_log2)
     end
   end
 

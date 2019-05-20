@@ -26,32 +26,34 @@ RSpec.describe PtSession, type: :model do
   end
 
   describe 'self.past_week' do
-    it 'returns only the logs between today and the past 7 days' do
+    it 'returns only the logs that occurred between today and the past 7 days' do
       pt_session = create(:pt_session, datetime_occurred: Date.today.to_datetime - 2.days)
 
-      expect(PtSession.past_week.first).to eq pt_session
+      expect(PtSession.past_week).to include(pt_session)
     end
 
-    it 'returns empty if the datetime_occurreds are out of the range 7 days past' do
-      pt_session = create(:pt_session, datetime_occurred: Date.today.to_datetime - 8.days)
-      pt_session = create(:pt_session, datetime_occurred: Date.today.to_datetime + 2.days)
+    it 'does not return logs that occurred outside of 7 days' do
+      pt_session1 = create(:pt_session, datetime_occurred: Date.today.to_datetime - 8.days)
+      pt_session2 = create(:pt_session, datetime_occurred: Date.today.to_datetime + 2.days)
 
-      expect(PtSession.past_week).to be_empty
+      expect(PtSession.past_week).to_not include(pt_session1)
+      expect(PtSession.past_week).to_not include(pt_session2)
     end
   end
 
   describe 'self.past_two_weeks' do
-    it 'returns only the logs between today and the past 14 days' do
+    it 'returns logs that occurred within the past 14 days' do
       pt_session = create(:pt_session, datetime_occurred: Date.today.to_datetime - 12.days)
 
-      expect(PtSession.past_two_weeks.first).to eq pt_session
+      expect(PtSession.past_two_weeks).to include(pt_session)
     end
 
-    it 'returns empty if the datetime_occurreds are out of the range 14 days past' do
+    it 'does not return logs that occurred outside of 14 days' do
       pt_session1 = create(:pt_session, datetime_occurred: Date.today.to_datetime - 20.days)
       pt_session2 = create(:pt_session, datetime_occurred: Date.today.to_datetime + 2.days)
 
-      expect(PtSession.past_two_weeks).to be_empty
+      expect(PtSession.past_two_weeks).to_not include(pt_session1)
+      expect(PtSession.past_two_weeks).to_not include(pt_session2)
     end
   end
 

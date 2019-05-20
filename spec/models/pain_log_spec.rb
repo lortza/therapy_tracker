@@ -3,13 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe PainLog, type: :model do
-  context "associations" do
+  context 'associations' do
     it { should belong_to(:user) }
     it { should belong_to(:pain) }
     it { should belong_to(:body_part) }
   end
 
-  context "validations" do
+  context 'validations' do
     it { should validate_presence_of(:datetime_occurred) }
     it { should validate_presence_of(:body_part_id) }
     it { should validate_presence_of(:pain_id) }
@@ -20,38 +20,40 @@ RSpec.describe PainLog, type: :model do
     it { should validate_numericality_of(:pain_level) }
   end
 
-  context "delegations" do
+  context 'delegations' do
     it { should delegate_method(:name).to(:body_part).with_prefix }
     it { should delegate_method(:name).to(:pain).with_prefix }
   end
 
   describe 'self.past_week' do
-    it 'returns only the logs between today and the past 7 days' do
+    it 'returns logs that occurred between today and the past 7 days' do
       pain_log = create(:pain_log, datetime_occurred: Date.today.to_datetime - 2.days)
 
-      expect(PainLog.past_week.first).to eq pain_log
+      expect(PainLog.past_week).to include(pain_log)
     end
 
-    it 'returns empty if the datetime_occurreds are out of the range 7 days past' do
-      pain_log = create(:pain_log, datetime_occurred: Date.today.to_datetime - 8.days)
-      pain_log = create(:pain_log, datetime_occurred: Date.today.to_datetime + 2.days)
+    it 'does not return pain_logs whose datetime_occurred out of the past 7 days' do
+      pain_log1 = create(:pain_log, datetime_occurred: Date.today.to_datetime - 8.days)
+      pain_log2 = create(:pain_log, datetime_occurred: Date.today.to_datetime + 2.days)
 
-      expect(PainLog.past_week).to be_empty
+      expect(PainLog.past_week).to_not include(pain_log1)
+      expect(PainLog.past_week).to_not include(pain_log2)
     end
   end
 
   describe 'self.past_two_weeks' do
-    it 'returns only the logs between today and the past 14 days' do
+    it 'returns logs that occurred between today and the past 14 days' do
       pain_log = create(:pain_log, datetime_occurred: Date.today.to_datetime - 12.days)
 
-      expect(PainLog.past_two_weeks.first).to eq pain_log
+      expect(PainLog.past_two_weeks).to include(pain_log)
     end
 
-    it 'returns empty if the datetime_occurreds are out of the range 14 days past' do
+    it 'does not return pain_logs whose datetime_occurred out of the past 14 days' do
       pain_log1 = create(:pain_log, datetime_occurred: Date.today.to_datetime - 20.days)
       pain_log2 = create(:pain_log, datetime_occurred: Date.today.to_datetime + 2.days)
 
-      expect(PainLog.past_two_weeks).to be_empty
+      expect(PainLog.past_two_weeks).to_not include(pain_log1)
+      expect(PainLog.past_two_weeks).to_not include(pain_log2)
     end
   end
 
