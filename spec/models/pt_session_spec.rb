@@ -39,6 +39,11 @@ RSpec.describe PtSession, type: :model do
       expect(PtSession.past_week).to_not include(pt_session1)
       expect(PtSession.past_week).to_not include(pt_session2)
     end
+
+    it 'returns an empty array if no logs occurred within the past 7 days' do
+      pt_session = create(:pt_session, datetime_occurred: Date.today.to_datetime - 8.days)
+      expect(PtSession.past_week).to eq([])
+    end
   end
 
   describe 'self.past_two_weeks' do
@@ -54,6 +59,11 @@ RSpec.describe PtSession, type: :model do
 
       expect(PtSession.past_two_weeks).to_not include(pt_session1)
       expect(PtSession.past_two_weeks).to_not include(pt_session2)
+    end
+
+    it 'returns an empty array if no logs occurred within the past 14 days' do
+      pt_session = create(:pt_session, datetime_occurred: Date.today.to_datetime - 16.days)
+      expect(PtSession.past_two_weeks).to eq([])
     end
   end
 

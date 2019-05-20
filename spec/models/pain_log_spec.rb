@@ -39,6 +39,11 @@ RSpec.describe PainLog, type: :model do
       expect(PainLog.past_week).to_not include(pain_log1)
       expect(PainLog.past_week).to_not include(pain_log2)
     end
+
+    it 'returns an empty array if no logs occurred within the past 7 days' do
+      pain_log = create(:pain_log, datetime_occurred: Date.today.to_datetime - 8.days)
+      expect(PainLog.past_week).to eq([])
+    end
   end
 
   describe 'self.past_two_weeks' do
@@ -54,6 +59,11 @@ RSpec.describe PainLog, type: :model do
 
       expect(PainLog.past_two_weeks).to_not include(pain_log1)
       expect(PainLog.past_two_weeks).to_not include(pain_log2)
+    end
+
+    it 'returns an empty array if no logs occurred within the past 14 days' do
+      pain_log = create(:pain_log, datetime_occurred: Date.today.to_datetime - 16.days)
+      expect(PainLog.past_two_weeks).to eq([])
     end
   end
 

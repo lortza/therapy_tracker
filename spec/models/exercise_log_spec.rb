@@ -89,6 +89,11 @@ RSpec.describe ExerciseLog, type: :model do
       expect(ExerciseLog.past_week).to_not include(exercise_log1)
       expect(ExerciseLog.past_week).to_not include(exercise_log2)
     end
+
+    it 'returns an empty array if no logs occurred within the past 7 days' do
+      exercise_log = create(:exercise_log, datetime_occurred: Date.today.to_datetime - 8.days)
+      expect(ExerciseLog.past_week).to eq([])
+    end
   end
 
   describe 'self.past_two_weeks' do
@@ -104,6 +109,11 @@ RSpec.describe ExerciseLog, type: :model do
 
       expect(ExerciseLog.past_two_weeks).to_not include(exercise_log1)
       expect(ExerciseLog.past_two_weeks).to_not include(exercise_log2)
+    end
+
+    it 'returns an empty array if no logs occurred within the past 14 days' do
+      exercise_log = create(:exercise_log, datetime_occurred: Date.today.to_datetime - 16.days)
+      expect(ExerciseLog.past_two_weeks).to eq([])
     end
   end
 
