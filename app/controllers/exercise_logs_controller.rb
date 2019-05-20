@@ -56,7 +56,7 @@ class ExerciseLogsController < ApplicationController
   private
 
   def authorize_exercise_log
-    redirect_to root_path, alert: "Whoops! You're not authorized to view that page." if @exercise_log.user_id != current_user.id
+    redirect_to root_path, alert: "Whoops! You're not authorized to view that page." unless authorized_user?(@exercise_log)
   end
 
   def set_exercise_log
@@ -64,6 +64,17 @@ class ExerciseLogsController < ApplicationController
   end
 
   def exercise_log_params
-    params.require(:exercise_log).permit(:user_id, :body_part_id, :datetime_occurred, :exercise_id, :sets, :reps, :rep_length, :per_side, :resistance, :burn_set, :burn_rep, :progress_note)
+    params.require(:exercise_log).permit(:user_id,
+                                         :body_part_id,
+                                         :datetime_occurred,
+                                         :exercise_id,
+                                         :sets,
+                                         :reps,
+                                         :rep_length,
+                                         :per_side,
+                                         :resistance,
+                                         :burn_set,
+                                         :burn_rep,
+                                         :progress_note)
   end
 end

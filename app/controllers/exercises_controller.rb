@@ -62,11 +62,18 @@ class ExercisesController < ApplicationController
     @exercise = Exercise.find(params[:id])
   end
 
-  def exercise_params
-    params.require(:exercise).permit(:user_id, :name, :default_sets, :default_reps, :default_rep_length, :default_resistance, :description, :default_per_side)
+  def authorize_exercise
+    redirect_to root_path, alert: "Whoops! You're not authorized to view that page." unless authorized_user?(@exercise)
   end
 
-  def authorize_exercise
-    redirect_to root_path, alert: "Whoops! You're not authorized to view that page." if @exercise.user_id != current_user.id
+  def exercise_params
+    params.require(:exercise).permit(:user_id,
+                                     :name,
+                                     :default_sets,
+                                     :default_reps,
+                                     :default_rep_length,
+                                     :default_resistance,
+                                     :description,
+                                     :default_per_side)
   end
 end

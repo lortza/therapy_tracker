@@ -14,6 +14,10 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user_admin?
 
+  def authorized_user?(object)
+    object.user_id == current_user.id
+  end
+
   protected
 
   def configure_permitted_parameters

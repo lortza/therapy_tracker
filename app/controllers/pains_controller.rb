@@ -58,11 +58,11 @@ class PainsController < ApplicationController
     @pain = Pain.find(params[:id])
   end
 
-  def pain_params
-    params.require(:pain).permit(:name)
+  def authorize_pain
+    redirect_to root_path, alert: "Whoops! You're not authorized to view that page." unless authorized_user?(@pain)
   end
 
-  def authorize_pain
-    redirect_to root_path, alert: "Whoops! You're not authorized to view that page." if @pain.user_id != current_user.id
+  def pain_params
+    params.require(:pain).permit(:name)
   end
 end

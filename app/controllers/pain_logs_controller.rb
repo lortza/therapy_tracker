@@ -59,11 +59,17 @@ class PainLogsController < ApplicationController
     @pain_log = PainLog.find(params[:id])
   end
 
-  def pain_log_params
-    params.require(:pain_log).permit(:user_id, :body_part_id, :pain_id, :datetime_occurred, :pain_level, :pain_description, :trigger)
+  def authorize_pain_log
+    redirect_to root_path, alert: "Whoops! You're not authorized to view that page." unless authorized_user?(@pain_log)
   end
 
-  def authorize_pain_log
-    redirect_to root_path, alert: "Whoops! You're not authorized to view that page." if @pain_log.user_id != current_user.id
+  def pain_log_params
+    params.require(:pain_log).permit(:user_id,
+                                     :body_part_id,
+                                     :pain_id,
+                                     :datetime_occurred,
+                                     :pain_level,
+                                     :pain_description,
+                                     :trigger)
   end
 end

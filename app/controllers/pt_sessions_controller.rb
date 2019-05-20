@@ -59,6 +59,10 @@ class PtSessionsController < ApplicationController
     @pt_session = PtSession.find(params[:id])
   end
 
+  def authorize_pt_session
+    redirect_to root_path, alert: "Whoops! You're not authorized to view that page." unless authorized_user?(@pt_session)
+  end
+
   def pt_session_params
     params.require(:pt_session).permit(:user_id,
                                        :body_part_id,
@@ -67,9 +71,5 @@ class PtSessionsController < ApplicationController
                                        :homework, :duration,
                                        :questions,
                                        homework_exercise_ids: [])
-  end
-
-  def authorize_pt_session
-    redirect_to root_path, alert: "Whoops! You're not authorized to view that page." if @pt_session.user_id != current_user.id
   end
 end

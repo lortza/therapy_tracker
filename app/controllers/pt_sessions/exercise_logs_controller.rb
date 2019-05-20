@@ -56,11 +56,11 @@ class PtSessions::ExerciseLogsController < PtSessionsController
   private
 
   def authorize_exercise_log
-    redirect_to root_path, alert: "Whoops! You're not authorized to view that page." if @exercise_log.user_id != current_user.id
+    redirect_to root_path, alert: "Whoops! You're not authorized to view that page." unless authorized_user?(@exercise_log)
   end
 
   def authorize_pt_session
-    redirect_to root_path, alert: "Whoops! You're not authorized to view that page." if @pt_session.user_id != current_user.id
+    redirect_to root_path, alert: "Whoops! You're not authorized to view that page." unless authorized_user?(@pt_session)
   end
 
   def set_exercise_log
@@ -72,6 +72,18 @@ class PtSessions::ExerciseLogsController < PtSessionsController
   end
 
   def exercise_log_params
-    params.require(:exercise_log).permit(:pt_session_id, :user_id, :body_part_id, :datetime_occurred, :exercise_id, :sets, :reps, :rep_length, :per_side, :resistance, :burn_set, :burn_rep, :progress_note)
+    params.require(:exercise_log).permit(:pt_session_id,
+                                         :user_id,
+                                         :body_part_id,
+                                         :datetime_occurred,
+                                         :exercise_id,
+                                         :sets,
+                                         :reps,
+                                         :rep_length,
+                                         :per_side,
+                                         :resistance,
+                                         :burn_set,
+                                         :burn_rep,
+                                         :progress_note)
   end
 end
