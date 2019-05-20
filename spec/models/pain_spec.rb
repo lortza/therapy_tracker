@@ -3,18 +3,18 @@
 require 'rails_helper'
 
 RSpec.describe Pain, type: :model do
-  context "associations" do
+  context 'associations' do
     it { should belong_to(:user) }
     it { should have_many(:pain_logs) }
   end
 
-  context "validations" do
+  context 'validations' do
     it { should validate_presence_of(:name) }
   end
 
   describe 'self.has_logs' do
     it 'returns all pains that have logs' do
-      pain = create(:pain, :with_3_pain_logs )
+      pain = create(:pain, :with_3_pain_logs)
       expect(Pain.has_logs).to include(pain)
     end
 

@@ -3,7 +3,6 @@
 require 'rails_helper'
 
 xdescribe 'User creates an Exercise' do
-
   it 'successfully' do
     visit new_exercise_path
 

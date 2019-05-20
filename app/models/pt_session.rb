@@ -29,7 +29,7 @@ class PtSession < ApplicationRecord
   end
 
   def exercise_notes_to_lines
-    self.exercise_notes = exercise_notes.gsub(/\r/, "\n")
+    self.exercise_notes = exercise_notes.tr("\r", "\n")
   end
 
   def self.exercise_counts
