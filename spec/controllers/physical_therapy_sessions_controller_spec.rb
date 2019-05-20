@@ -30,13 +30,8 @@ RSpec.describe PtSessionsController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # PtSession. As you add validations to PtSession, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
-
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:valid_attributes) { build(:pt_session, user_id: subject.current_user.id).attributes }
+  let(:invalid_attributes) { build(:pt_session, user_id: subject.current_user.id, homework: '').attributes }
 
   describe "GET #index" do
     it "returns a success response" do
@@ -77,9 +72,9 @@ RSpec.describe PtSessionsController, type: :controller do
         }.to change(PtSession, :count).by(1)
       end
 
-      it "redirects to the created pt_session" do
-        post :create, params: {pt_session: valid_attributes}
-        expect(response).to redirect_to(PtSession.last)
+      it 'redirects to the home page' do
+        post :create, params: { pt_session: valid_attributes }
+        expect(response).to redirect_to(root_url)
       end
     end
 
@@ -93,21 +88,19 @@ RSpec.describe PtSessionsController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+      let(:new_attributes) { build(:pt_session, user_id: subject.current_user.id, homework: 'updated homework').attributes }
 
       it "updates the requested pt_session" do
         pt_session = PtSession.create! valid_attributes
         put :update, params: {id: pt_session.to_param, pt_session: new_attributes}
         pt_session.reload
-        skip("Add assertions for updated state")
+        expect(pt_session.homework).to eq(new_attributes['homework'])
       end
 
-      it "redirects to the pt_session" do
+      it 'redirects to the home page' do
         pt_session = PtSession.create! valid_attributes
         put :update, params: {id: pt_session.to_param, pt_session: valid_attributes}
-        expect(response).to redirect_to(pt_session)
+        expect(response).to redirect_to(root_url)
       end
     end
 
@@ -128,10 +121,10 @@ RSpec.describe PtSessionsController, type: :controller do
       }.to change(PtSession, :count).by(-1)
     end
 
-    it "redirects to the pt_sessions list" do
+    it 'redirects to the home page' do
       pt_session = PtSession.create! valid_attributes
       delete :destroy, params: {id: pt_session.to_param}
-      expect(response).to redirect_to(pt_sessions_url)
+      expect(response).to redirect_to(root_url)
     end
   end
 

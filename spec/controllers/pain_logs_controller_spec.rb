@@ -30,13 +30,8 @@ RSpec.describe PainLogsController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # PainLog. As you add validations to PainLog, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
-
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:valid_attributes) { build(:pain_log, user_id: subject.current_user.id).attributes }
+  let(:invalid_attributes) { build(:pain_log, user_id: subject.current_user.id, pain_level: '').attributes }
 
   describe "GET #index" do
     it "returns a success response" do
@@ -77,9 +72,9 @@ RSpec.describe PainLogsController, type: :controller do
         }.to change(PainLog, :count).by(1)
       end
 
-      it "redirects to the created pain_log" do
-        post :create, params: {pain_log: valid_attributes}
-        expect(response).to redirect_to(PainLog.last)
+      it 'redirects to the home page' do
+        post :create, params: { pain_log: valid_attributes }
+        expect(response).to redirect_to(root_url)
       end
     end
 
@@ -93,21 +88,19 @@ RSpec.describe PainLogsController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+      let(:new_attributes) { build(:pain_log, user_id: subject.current_user.id, pain_description: 'updated description').attributes }
 
       it "updates the requested pain_log" do
         pain_log = PainLog.create! valid_attributes
         put :update, params: {id: pain_log.to_param, pain_log: new_attributes}
         pain_log.reload
-        skip("Add assertions for updated state")
+        expect(pain_log.pain_description).to eq(new_attributes['pain_description'])
       end
 
-      it "redirects to the pain_log" do
+      it 'redirects to the home page' do
         pain_log = PainLog.create! valid_attributes
         put :update, params: {id: pain_log.to_param, pain_log: valid_attributes}
-        expect(response).to redirect_to(pain_log)
+        expect(response).to redirect_to(root_url)
       end
     end
 
@@ -128,10 +121,10 @@ RSpec.describe PainLogsController, type: :controller do
       }.to change(PainLog, :count).by(-1)
     end
 
-    it "redirects to the pain_logs list" do
+    it 'redirects to the home page' do
       pain_log = PainLog.create! valid_attributes
       delete :destroy, params: {id: pain_log.to_param}
-      expect(response).to redirect_to(pain_logs_url)
+      expect(response).to redirect_to(root_url)
     end
   end
 

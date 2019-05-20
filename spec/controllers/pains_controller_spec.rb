@@ -30,13 +30,8 @@ RSpec.describe PainsController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # Pain. As you add validations to Pain, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
-
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:valid_attributes) { build(:pain, user_id: subject.current_user.id).attributes }
+  let(:invalid_attributes) { build(:pain, user_id: subject.current_user.id, name: '').attributes }
 
   describe "GET #index" do
     it "returns a success response" do
@@ -77,9 +72,9 @@ RSpec.describe PainsController, type: :controller do
         }.to change(Pain, :count).by(1)
       end
 
-      it "redirects to the created pain" do
-        post :create, params: {pain: valid_attributes}
-        expect(response).to redirect_to(Pain.last)
+      it 'redirects to the pain index page' do
+        post :create, params: { pain: valid_attributes }
+        expect(response).to redirect_to(Pain)
       end
     end
 
@@ -93,21 +88,19 @@ RSpec.describe PainsController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+      let(:new_attributes) { build(:pain, user_id: subject.current_user.id, name: 'updated name').attributes }
 
       it "updates the requested pain" do
         pain = Pain.create! valid_attributes
-        put :update, params: {id: pain.to_param, pain: new_attributes}
+        put :update, params: { id: pain.to_param, pain: new_attributes }
         pain.reload
-        skip("Add assertions for updated state")
+        expect(pain.name).to eq(new_attributes['name'])
       end
 
-      it "redirects to the pain" do
+      it 'redirects to the pain index page' do
         pain = Pain.create! valid_attributes
-        put :update, params: {id: pain.to_param, pain: valid_attributes}
-        expect(response).to redirect_to(pain)
+        put :update, params: { id: pain.to_param, pain: valid_attributes }
+        expect(response).to redirect_to(Pain)
       end
     end
 
