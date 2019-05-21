@@ -4,4 +4,4 @@
 
 <hr>
 
-<%= link_to 'Delete', @body_part, method: :delete, data: { confirm: 'Are you sure?' }, class: button_class('danger') %>
+<%= link_to 'Delete', @body_part, method: :delete, data: { confirm: 'If you delete this body part, you will also delete all Exercise Logs, Pain Logs, and PT Sessions created for it. This cannot be undone. Consider renaming your body part instead.' }, class: button_class('danger') %>

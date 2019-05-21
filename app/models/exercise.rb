@@ -2,8 +2,8 @@
 
 class Exercise < ApplicationRecord
   belongs_to :user
-  has_many :exercise_logs
-  has_many :logs, foreign_key: 'exercise_id', class_name: 'ExerciseLog'
+  has_many :exercise_logs, dependent: :destroy
+  has_many :logs, foreign_key: 'exercise_id', class_name: 'ExerciseLog', dependent: :destroy
 
   has_many :pt_homework_exercises, dependent: :destroy # the join table
   has_many :pt_homework_sessions, through: :pt_homework_exercises, source: :pt_session
