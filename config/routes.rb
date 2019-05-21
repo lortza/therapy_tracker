@@ -8,9 +8,9 @@ Rails.application.routes.draw do
   get '/reports/past_week', to: 'reports#past_week'
   get '/reports/past_two_weeks', to: 'reports#past_two_weeks'
 
-  resources :body_parts
   resources :exercises, only: [:index, :new, :create, :edit, :update, :destroy]
   resources :pains, only: [:index, :new, :create, :edit, :update, :destroy]
+  resources :body_parts, only: [:index, :new, :create, :edit, :update, :destroy]
 
   resources :logs, only: [:index]
   resources :exercise_logs

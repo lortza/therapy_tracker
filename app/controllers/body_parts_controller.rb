@@ -1,14 +1,11 @@
 # frozen_string_literal: true
 
 class BodyPartsController < ApplicationController
-  before_action :set_body_part, only: %i[show edit update destroy]
-  before_action :authorize_body_part, only: %i[show edit update destroy]
+  before_action :set_body_part, only: %i[edit update destroy]
+  before_action :authorize_body_part, only: %i[edit update destroy]
 
   def index
     @body_parts = current_user.body_parts.all.order(:name)
-  end
-
-  def show
   end
 
   def new
@@ -18,29 +15,21 @@ class BodyPartsController < ApplicationController
   def edit
   end
 
-  def create # rubocop:disable Metrics/AbcSize
+  def create
     @body_part = current_user.body_parts.new(body_part_params)
 
-    respond_to do |format|
-      if @body_part.save
-        format.html { redirect_to body_parts_url }
-        format.json { render :show, status: :created, location: @body_part }
-      else
-        format.html { render :new }
-        format.json { render json: @body_part.errors, status: :unprocessable_entity }
-      end
+    if @body_part.save
+      redirect_to body_parts_url
+    else
+      render :new
     end
   end
 
   def update
-    respond_to do |format|
-      if @body_part.update(body_part_params)
-        format.html { redirect_to body_parts_url }
-        format.json { render :show, status: :ok, location: @body_part }
-      else
-        format.html { render :edit }
-        format.json { render json: @body_part.errors, status: :unprocessable_entity }
-      end
+    if @body_part.update(body_part_params)
+      redirect_to body_parts_url
+    else
+      render :edit
     end
   end
 

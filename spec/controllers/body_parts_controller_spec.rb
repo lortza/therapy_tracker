@@ -16,14 +16,6 @@ RSpec.describe BodyPartsController, type: :controller do
     end
   end
 
-  describe 'GET #show' do
-    it 'returns a success response' do
-      body_part = BodyPart.create! valid_attributes
-      get :show, params: { id: body_part.to_param }
-      expect(response).to be_successful
-    end
-  end
-
   describe 'GET #new' do
     it 'returns a success response' do
       get :new, params: {}

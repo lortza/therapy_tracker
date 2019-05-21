@@ -39,14 +39,6 @@ RSpec.describe ExercisesController, type: :controller do
     end
   end
 
-  describe 'GET #show' do
-    it 'returns a success response' do
-      exercise = Exercise.create! valid_attributes
-      get :show, params: { id: exercise.to_param }
-      expect(response).to be_successful
-    end
-  end
-
   describe 'GET #new' do
     it 'returns a success response' do
       get :new, params: {}

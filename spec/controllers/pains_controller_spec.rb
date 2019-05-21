@@ -46,14 +46,6 @@ RSpec.describe PainsController, type: :controller do
     end
   end
 
-  describe 'GET #show' do
-    it 'returns a success response' do
-      pain = Pain.create! valid_attributes
-      get :show, params: { id: pain.to_param }
-      expect(response).to be_successful
-    end
-  end
-
   describe 'GET #new' do
     it 'returns a success response' do
       get :new, params: {}
