@@ -26,43 +26,49 @@ RSpec.describe PainLog, type: :model do
   end
 
   describe 'self.past_week' do
-    it 'returns logs that occurred between today and the past 7 days' do
-      pain_log = create(:pain_log, datetime_occurred: Date.today.to_datetime - 2.days)
+    two_days_ago = Time.zone.today.to_datetime - 2.days
+    nine_days_ago = Time.zone.today.to_datetime - 9.days
+    two_days_from_now = Time.zone.today.to_datetime + 2.days
 
+    it 'returns logs that occurred between today and the past 7 days' do
+      pain_log = create(:pain_log, datetime_occurred: two_days_ago)
       expect(PainLog.past_week).to include(pain_log)
     end
 
     it 'does not return pain_logs whose datetime_occurred out of the past 7 days' do
-      pain_log1 = create(:pain_log, datetime_occurred: Date.today.to_datetime - 8.days)
-      pain_log2 = create(:pain_log, datetime_occurred: Date.today.to_datetime + 2.days)
+      pain_log1 = create(:pain_log, datetime_occurred: nine_days_ago)
+      pain_log2 = create(:pain_log, datetime_occurred: two_days_from_now)
 
       expect(PainLog.past_week).to_not include(pain_log1)
       expect(PainLog.past_week).to_not include(pain_log2)
     end
 
     it 'returns an empty array if no logs occurred within the past 7 days' do
-      pain_log = create(:pain_log, datetime_occurred: Date.today.to_datetime - 8.days)
+      create(:pain_log, datetime_occurred: nine_days_ago)
       expect(PainLog.past_week).to eq([])
     end
   end
 
   describe 'self.past_two_weeks' do
-    it 'returns logs that occurred between today and the past 14 days' do
-      pain_log = create(:pain_log, datetime_occurred: Date.today.to_datetime - 12.days)
+    twelve_days_ago = Time.zone.today.to_datetime - 12.days
+    sixteen_days_ago = Time.zone.today.to_datetime - 16.days
+    two_days_from_now = Time.zone.today.to_datetime + 2.days
 
+    it 'returns logs that occurred between today and the past 14 days' do
+      pain_log = create(:pain_log, datetime_occurred: twelve_days_ago)
       expect(PainLog.past_two_weeks).to include(pain_log)
     end
 
     it 'does not return pain_logs whose datetime_occurred out of the past 14 days' do
-      pain_log1 = create(:pain_log, datetime_occurred: Date.today.to_datetime - 20.days)
-      pain_log2 = create(:pain_log, datetime_occurred: Date.today.to_datetime + 2.days)
+      pain_log1 = create(:pain_log, datetime_occurred: sixteen_days_ago)
+      pain_log2 = create(:pain_log, datetime_occurred: two_days_from_now)
 
       expect(PainLog.past_two_weeks).to_not include(pain_log1)
       expect(PainLog.past_two_weeks).to_not include(pain_log2)
     end
 
     it 'returns an empty array if no logs occurred within the past 14 days' do
-      pain_log = create(:pain_log, datetime_occurred: Date.today.to_datetime - 16.days)
+      create(:pain_log, datetime_occurred: sixteen_days_ago)
       expect(PainLog.past_two_weeks).to eq([])
     end
   end
