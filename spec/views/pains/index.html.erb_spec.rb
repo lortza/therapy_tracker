@@ -4,14 +4,9 @@ require 'rails_helper'
 
 RSpec.describe 'pains/index', type: :view do
   before(:each) do
-    assign(:pains, [
-             Pain.create!(
-               name: 'Name'
-             ),
-             Pain.create!(
-               name: 'Name'
-             ),
-           ])
+    user = create(:user)
+    assign(:pains, [create(:pain, name: 'Name', user_id: user.id),
+                    create(:pain, name: 'Name', user_id: user.id),])
   end
 
   it 'renders a list of pains' do

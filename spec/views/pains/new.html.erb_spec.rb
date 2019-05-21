@@ -4,9 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'pains/new', type: :view do
   before(:each) do
-    assign(:pain, Pain.new(
-                    name: 'MyString'
-                  ))
+    assign(:pain, build(:pain))
   end
 
   it 'renders new pain form' do

@@ -1,14 +1,11 @@
 # frozen_string_literal: true
 
 class PainsController < ApplicationController
-  before_action :set_pain, only: %i[show edit update destroy]
-  before_action :authorize_pain, only: %i[show edit update destroy]
+  before_action :set_pain, only: %i[edit update destroy]
+  before_action :authorize_pain, only: %i[edit update destroy]
 
   def index
     @pains = current_user.pains.order(:name)
-  end
-
-  def show
   end
 
   def new
@@ -18,29 +15,21 @@ class PainsController < ApplicationController
   def edit
   end
 
-  def create # rubocop:disable Metrics/AbcSize
+  def create
     @pain = current_user.pains.new(pain_params)
 
-    respond_to do |format|
-      if @pain.save
-        format.html { redirect_to pains_url }
-        format.json { render :show, status: :created, location: @pain }
-      else
-        format.html { render :new }
-        format.json { render json: @pain.errors, status: :unprocessable_entity }
-      end
+    if @pain.save
+      redirect_to pains_url
+    else
+      render :new
     end
   end
 
   def update
-    respond_to do |format|
-      if @pain.update(pain_params)
-        format.html { redirect_to pains_url }
-        format.json { render :show, status: :ok, location: @pain }
-      else
-        format.html { render :edit }
-        format.json { render json: @pain.errors, status: :unprocessable_entity }
-      end
+    if @pain.update(pain_params)
+      redirect_to pains_url
+    else
+      render :edit
     end
   end
 

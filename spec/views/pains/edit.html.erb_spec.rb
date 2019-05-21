@@ -4,9 +4,8 @@ require 'rails_helper'
 
 RSpec.describe 'pains/edit', type: :view do
   before(:each) do
-    @pain = assign(:pain, Pain.create!(
-                            name: 'MyString'
-                          ))
+    pain = create(:pain)
+    @pain = assign(:pain, pain)
   end
 
   it 'renders the edit pain form' do
