@@ -19,7 +19,7 @@ class PtSessionsController < ApplicationController
   def edit
   end
 
-  def create
+  def create # rubocop:disable Metrics/AbcSize
     @pt_session = current_user.pt_sessions.new(pt_session_params)
 
     respond_to do |format|
@@ -60,7 +60,7 @@ class PtSessionsController < ApplicationController
   end
 
   def authorize_pt_session
-    redirect_to root_path, alert: "Whoops! You're not authorized to view that page." unless authorized_user?(@pt_session)
+    redirect_to root_path, alert: authorization_alert unless authorized_user?(@pt_session)
   end
 
   def pt_session_params

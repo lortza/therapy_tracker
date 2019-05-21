@@ -23,5 +23,5 @@ class Admin::UsersController < AdminController
                                  :admin,
                                  :password,
                                  :password_confirmation)
- end
+  end
 end

@@ -19,7 +19,7 @@ class PainLogsController < ApplicationController
   def edit
   end
 
-  def create
+  def create # rubocop:disable Metrics/AbcSize
     @pain_log = current_user.pain_logs.new(pain_log_params)
 
     respond_to do |format|
@@ -60,7 +60,7 @@ class PainLogsController < ApplicationController
   end
 
   def authorize_pain_log
-    redirect_to root_path, alert: "Whoops! You're not authorized to view that page." unless authorized_user?(@pain_log)
+    redirect_to root_path, alert: authorization_alert unless authorized_user?(@pain_log)
   end
 
   def pain_log_params

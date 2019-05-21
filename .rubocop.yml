@@ -29,6 +29,8 @@ Metrics/LineLength:
 Style/BlockDelimiters:
   Exclude:
     - !ruby/regexp /.*_spec\.rb$/
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
 Style/EmptyMethod:
   EnforcedStyle: expanded
 Style/TrailingCommaInArrayLiteral:

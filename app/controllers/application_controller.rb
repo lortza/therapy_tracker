@@ -18,6 +18,10 @@ class ApplicationController < ActionController::Base
     object.user_id == current_user.id
   end
 
+  def authorization_alert
+    "Whoops! You're not authorized to view that page."
+  end
+
   protected
 
   def configure_permitted_parameters

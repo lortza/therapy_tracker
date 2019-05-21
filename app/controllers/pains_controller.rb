@@ -18,7 +18,7 @@ class PainsController < ApplicationController
   def edit
   end
 
-  def create
+  def create # rubocop:disable Metrics/AbcSize
     @pain = current_user.pains.new(pain_params)
 
     respond_to do |format|
@@ -59,7 +59,7 @@ class PainsController < ApplicationController
   end
 
   def authorize_pain
-    redirect_to root_path, alert: "Whoops! You're not authorized to view that page." unless authorized_user?(@pain)
+    redirect_to root_path, alert: authorization_alert unless authorized_user?(@pain)
   end
 
   def pain_params

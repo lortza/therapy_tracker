@@ -18,7 +18,7 @@ class PtSessions::ExerciseLogsController < PtSessionsController
     render './exercise_logs/show'
   end
 
-  def create
+  def create # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
     @exercise_log = @pt_session.exercise_logs.new(exercise_log_params)
     @exercise_log.user_id = current_user.id
 
@@ -56,11 +56,11 @@ class PtSessions::ExerciseLogsController < PtSessionsController
   private
 
   def authorize_exercise_log
-    redirect_to root_path, alert: "Whoops! You're not authorized to view that page." unless authorized_user?(@exercise_log)
+    redirect_to root_path, alert: authorization_alert unless authorized_user?(@exercise_log)
   end
 
   def authorize_pt_session
-    redirect_to root_path, alert: "Whoops! You're not authorized to view that page." unless authorized_user?(@pt_session)
+    redirect_to root_path, alert: authorization_alert unless authorized_user?(@pt_session)
   end
 
   def set_exercise_log
@@ -71,7 +71,7 @@ class PtSessions::ExerciseLogsController < PtSessionsController
     @pt_session = PtSession.find(params[:pt_session_id])
   end
 
-  def exercise_log_params
+  def exercise_log_params # rubocop:disable Metrics/MethodLength
     params.require(:exercise_log).permit(:pt_session_id,
                                          :user_id,
                                          :body_part_id,

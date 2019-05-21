@@ -22,7 +22,7 @@ class ExercisesController < ApplicationController
   def edit
   end
 
-  def create
+  def create # rubocop:disable Metrics/AbcSize
     @exercise = current_user.exercises.new(exercise_params)
 
     respond_to do |format|
@@ -63,7 +63,7 @@ class ExercisesController < ApplicationController
   end
 
   def authorize_exercise
-    redirect_to root_path, alert: "Whoops! You're not authorized to view that page." unless authorized_user?(@exercise)
+    redirect_to root_path, alert: authorization_alert unless authorized_user?(@exercise)
   end
 
   def exercise_params

@@ -18,7 +18,7 @@ class BodyPartsController < ApplicationController
   def edit
   end
 
-  def create
+  def create # rubocop:disable Metrics/AbcSize
     @body_part = current_user.body_parts.new(body_part_params)
 
     respond_to do |format|
@@ -63,6 +63,6 @@ class BodyPartsController < ApplicationController
   end
 
   def authorize_body_part
-    redirect_to root_path, alert: "Whoops! You're not authorized to view that page." if @body_part.user_id != current_user.id
+    redirect_to root_path, alert: authorization_alert if @body_part.user_id != current_user.id
   end
 end
