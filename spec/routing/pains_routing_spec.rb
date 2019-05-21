@@ -12,10 +12,6 @@ RSpec.describe PainsController, type: :routing do
       expect(get: '/pains/new').to route_to('pains#new')
     end
 
-    it 'routes to #show' do
-      expect(get: '/pains/1').to route_to('pains#show', id: '1')
-    end
-
     it 'routes to #edit' do
       expect(get: '/pains/1/edit').to route_to('pains#edit', id: '1')
     end

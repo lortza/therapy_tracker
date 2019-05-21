@@ -12,10 +12,6 @@ RSpec.describe ExercisesController, type: :routing do
       expect(get: '/exercises/new').to route_to('exercises#new')
     end
 
-    it 'routes to #show' do
-      expect(get: '/exercises/1').to route_to('exercises#show', id: '1')
-    end
-
     it 'routes to #edit' do
       expect(get: '/exercises/1/edit').to route_to('exercises#edit', id: '1')
     end

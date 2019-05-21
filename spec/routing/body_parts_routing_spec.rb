@@ -12,10 +12,6 @@ RSpec.describe BodyPartsController, type: :routing do
       expect(get: '/body_parts/new').to route_to('body_parts#new')
     end
 
-    it 'routes to #show' do
-      expect(get: '/body_parts/1').to route_to('body_parts#show', id: '1')
-    end
-
     it 'routes to #edit' do
       expect(get: '/body_parts/1/edit').to route_to('body_parts#edit', id: '1')
     end
