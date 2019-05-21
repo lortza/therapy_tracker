@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class PtSession < ApplicationRecord
+  extend Log
+
   belongs_to :user
   belongs_to :body_part
   has_many :exercise_logs
@@ -20,23 +22,15 @@ class PtSession < ApplicationRecord
 
   delegate :name, to: :body_part, prefix: true
 
-  def self.past_week
-    where('datetime_occurred >= ? AND datetime_occurred <= ?', (Date.today.to_datetime - 7.days), Date.today.to_datetime)
-  end
-
-  def self.past_two_weeks
-    where('datetime_occurred >= ? AND datetime_occurred <= ?', (Date.today.to_datetime - 14.days), Date.today.to_datetime)
-  end
-
-  def exercise_notes_to_lines
-    self.exercise_notes = exercise_notes.tr("\r", "\n")
-  end
-
   def self.exercise_counts
     output = {}
     all.order(:datetime_occurred).each do |session|
       output[session.datetime_occurred.to_date] = session.exercise_logs.count
     end
     output
+  end
+
+  def exercise_notes_to_lines
+    self.exercise_notes = exercise_notes.tr("\r", "\n")
   end
 end

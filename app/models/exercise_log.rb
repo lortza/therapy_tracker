@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ExerciseLog < ApplicationRecord
+  extend Log
+
   belongs_to :user
   belongs_to :exercise
   belongs_to :body_part
@@ -28,39 +30,33 @@ class ExerciseLog < ApplicationRecord
   delegate :name, to: :body_part, prefix: true
   delegate :name, to: :exercise, prefix: true
 
-  def self.at_home
-    where(pt_session_id: nil)
-  end
-
-  def self.at_pt
-    where.not(pt_session_id: nil)
-  end
-
-  def self.past_week
-    where('datetime_occurred >= ? AND datetime_occurred <= ?', (Date.today.to_datetime - 7.days), Date.today.to_datetime)
-  end
-
-  def self.past_two_weeks
-    where('datetime_occurred >= ? AND datetime_occurred <= ?', (Date.today.to_datetime - 14.days), Date.today.to_datetime)
-  end
-
-  def self.group_by_exercise_and_count
-    ex_ids_and_counts = group(:exercise_id).count
-    ex_ids_and_counts.map do |k, v|
-      [Exercise.find(k).name, v]
+  class << self
+    def at_home
+      where(pt_session_id: nil)
     end
-  end
 
-  def self.minutes_spent_by_day
-    output = {}
-    all.find_each do |log|
-      if output[log.datetime_occurred.to_date].nil?
-        output[log.datetime_occurred.to_date] = log.minutes_spent.round(2)
-      else
-        output[log.datetime_occurred.to_date] += log.minutes_spent.round(2)
+    def at_pt
+      where.not(pt_session_id: nil)
+    end
+
+    def group_by_exercise_and_count
+      ex_ids_and_counts = group(:exercise_id).count
+      ex_ids_and_counts.map do |k, v|
+        [Exercise.find(k).name, v]
       end
     end
-    output.sort.to_h
+
+    def minutes_spent_by_day
+      output = {}
+      all.find_each do |log|
+        if output[log.datetime_occurred.to_date].nil?
+          output[log.datetime_occurred.to_date] = log.minutes_spent.round(2)
+        else
+          output[log.datetime_occurred.to_date] += log.minutes_spent.round(2)
+        end
+      end
+      output.sort.to_h
+    end
   end
 
   def seconds_spent
