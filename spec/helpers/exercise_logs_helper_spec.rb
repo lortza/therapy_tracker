@@ -2,16 +2,16 @@
 
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the ExerciseLogsHelper. For example:
-#
-# describe ExerciseLogsHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe ExerciseLogsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'should format exercise stats' do
+    log = build(:exercise_log, per_side: true, sets: 3, reps: 15, rep_length: 10)
+
+    expect(helper.format_exercise_stats(log)).to eq('3 sets / 15 reps at 10 seconds each per leg')
+  end
+
+  it 'should format resistance' do
+    log = build(:exercise_log, resistance: 'green band')
+
+    expect(helper.format_resistance(log)).to eq(' | Resistance: green band. ')
+  end
 end

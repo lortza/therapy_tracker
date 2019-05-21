@@ -7,12 +7,10 @@ module ExerciseLogsHelper
   end
 
   def format_resistance(log)
-    unless log.resistance.blank?
-      " | Resistance: #{log.resistance}. "
-    end
+    " | Resistance: #{log.resistance}. " if log.resistance.present?
   end
 
-  def destination_url(pt_session)
+  def destination_url(pt_session = nil)
     pt_session ? pt_session_exercise_log_path(pt_session, @exercise_log) : exercise_log_path(@exercise_log)
   end
 

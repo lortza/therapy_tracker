@@ -2,10 +2,10 @@
 
 class Exercise < ApplicationRecord
   belongs_to :user
-  has_many :exercise_logs
-  has_many :logs, foreign_key: 'exercise_id', class_name: 'ExerciseLog'
+  has_many :exercise_logs, dependent: :destroy
+  has_many :logs, foreign_key: 'exercise_id', class_name: 'ExerciseLog', dependent: :destroy
 
-  has_many :pt_homework_exercises, dependent: :destroy  # the join table
+  has_many :pt_homework_exercises, dependent: :destroy # the join table
   has_many :pt_homework_sessions, through: :pt_homework_exercises, source: :pt_session
 
   validates :description,
@@ -28,7 +28,7 @@ class Exercise < ApplicationRecord
     end
 
     def log_count_by_name
-      exercises = has_logs.select do |exercise|
+      has_logs.select do |exercise|
         exercise.logs.count > 2
       end.map { |e| [e.name, e.logs.count] }
     end

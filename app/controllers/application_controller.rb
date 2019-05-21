@@ -6,9 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def require_admin
-    unless current_user_admin?
-      redirect_to root_path, alert: 'Must be Admin to access this area'
-    end
+    redirect_to root_path, alert: 'Must be Admin to access this area' unless current_user_admin?
   end
 
   def current_user_admin?
@@ -16,9 +14,17 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user_admin?
 
+  def authorized_user?(object)
+    object.user_id == current_user.id
+  end
+
+  def authorization_alert
+    "Whoops! You're not authorized to view that page."
+  end
+
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :admin])
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[first_name last_name admin])
   end
 end

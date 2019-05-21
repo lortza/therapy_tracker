@@ -1,5 +1,11 @@
 # Therapy Tracker
 
+[![Build Status](https://travis-ci.com/lortza/therapy_tracker.svg?branch=master)](https://travis-ci.com/lortza/therapy_tracker)
+
+[![Maintainability](https://api.codeclimate.com/v1/badges/4f0468795ab338217d80/maintainability)](https://codeclimate.com/github/lortza/therapy_tracker/maintainability)
+
+[![Test Coverage](https://api.codeclimate.com/v1/badges/4f0468795ab338217d80/test_coverage)](https://codeclimate.com/github/lortza/therapy_tracker/test_coverage)
+
 This is an app to track physical therapy exercise logs.
 
 - Ruby: 2.5.3

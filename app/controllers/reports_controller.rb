@@ -11,5 +11,4 @@ class ReportsController < ApplicationController
 
   def past_two_weeks
   end
-
 end
