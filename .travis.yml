@@ -14,4 +14,5 @@ script:
   - bundle exec rake db:migrate
   - bundle exec rspec spec/models
   - bundle exec rspec spec/controllers
+  - bundle exec rspec spec/helpers
   - bundle exec rake db:seed

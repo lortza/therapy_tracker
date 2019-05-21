@@ -2,16 +2,10 @@
 
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the PtSessionsHelper. For example:
-#
-# describe PtSessionsHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe PtSessionsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "should display exercise stats" do
+    log = build(:exercise_log, resistance: 'yellow band')
+
+    expect(helper.display_exercise_stats(log)).to eq('2 sets of 10 reps with yellow band')
+  end
 end
