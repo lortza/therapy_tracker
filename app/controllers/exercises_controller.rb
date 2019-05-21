@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class ExercisesController < ApplicationController
-  before_action :set_exercise, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_exercise, only: [:show, :edit, :update, :destroy]
+  before_action :set_exercise, only: %i[show edit update destroy]
+  before_action :authorize_exercise, only: %i[show edit update destroy]
 
   def index
     @exercises = current_user.exercises.search(params[:search]).by_name
@@ -22,7 +22,7 @@ class ExercisesController < ApplicationController
   def edit
   end
 
-  def create
+  def create # rubocop:disable Metrics/AbcSize
     @exercise = current_user.exercises.new(exercise_params)
 
     respond_to do |format|
@@ -57,15 +57,23 @@ class ExercisesController < ApplicationController
   end
 
   private
-    def set_exercise
-      @exercise = Exercise.find(params[:id])
-    end
 
-    def exercise_params
-      params.require(:exercise).permit(:user_id, :name, :default_sets, :default_reps, :default_rep_length, :default_resistance, :description, :default_per_side)
-    end
+  def set_exercise
+    @exercise = Exercise.find(params[:id])
+  end
 
-    def authorize_exercise
-      redirect_to root_path, alert: "Whoops! You're not authorized to view that page." if @exercise.user_id != current_user.id
-    end
+  def authorize_exercise
+    redirect_to root_path, alert: authorization_alert unless authorized_user?(@exercise)
+  end
+
+  def exercise_params
+    params.require(:exercise).permit(:user_id,
+                                     :name,
+                                     :default_sets,
+                                     :default_reps,
+                                     :default_rep_length,
+                                     :default_resistance,
+                                     :description,
+                                     :default_per_side)
+  end
 end

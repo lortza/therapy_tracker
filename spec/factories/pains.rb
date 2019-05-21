@@ -8,8 +8,7 @@ FactoryBot.define do
 
   trait :with_3_pain_logs do
     after :create do |pain|
-      create_list :pain_log, 3, pain: pain   # has_many
+      create_list :pain_log, 3, pain: pain # has_many
     end
   end
-
 end

@@ -3,7 +3,7 @@
 module ControllerMacros
   def login_user
     before(:each) do
-      @request.env["devise.mapping"] = Devise.mappings[:user]
+      @request.env['devise.mapping'] = Devise.mappings[:user]
       user = FactoryBot.create(:user)
       sign_in user
     end
@@ -11,7 +11,7 @@ module ControllerMacros
 
   def login_admin
     before(:each) do
-      @request.env["devise.mapping"] = Devise.mappings[:user]
+      @request.env['devise.mapping'] = Devise.mappings[:user]
       user = FactoryBot.create(:user, :admin)
       sign_in user
     end
