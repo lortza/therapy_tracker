@@ -7,13 +7,15 @@ class Pain < ApplicationRecord
 
   validates :name, presence: true
 
-  def self.has_logs
-    joins(:pain_logs).group('pains.id').order(:id)
-  end
+  class << self
+    def has_logs
+      joins(:pain_logs).group('pains.id').order(:id)
+    end
 
-  def self.log_count_by_name
-    has_logs.map do |pain|
-      [pain.name, pain.pain_logs.count]
+    def log_count_by_name
+      has_logs.map do |pain|
+        [pain.name, pain.pain_logs.count]
+      end
     end
   end
 end
