@@ -7,12 +7,15 @@ Rails:
 AllCops:
   DefaultFormatter: progress
   Exclude:
-    - spec/rails_helper.rb
-    - spec/spec_helper.rb
+    - 'app/channels/**/*'
+    - 'app/helpers/*'
+    - 'app/models/*'
     - 'bin/**'
     - 'config/**/*'
     - 'db/**/*'
     - 'script/**/*'
+    - 'spec/rails_helper.rb'
+    - 'spec/spec_helper.rb'
     - 'lib/tasks/**/*'
     - 'vendor/**/*'
     # - '**/*.erb'
