@@ -49,6 +49,16 @@ RSpec.describe Exercise, type: :model do
     end
   end
 
+  describe 'self.by_name' do
+    it 'returns a list of exercises ordered by name, ascending' do
+      exercise1 = create(:exercise, name: 'a')
+      exercise2 = create(:exercise, name: 'b')
+      exercise3 = create(:exercise, name: 'c')
+
+      expect(Exercise.by_name).to match_array([exercise1, exercise2, exercise3])
+    end
+  end
+
   describe 'self.search()' do
     let!(:ex1) { create(:exercise, name: 'ex1') }
     let!(:ex2) { create(:exercise, name: 'ex2') }
@@ -63,7 +73,7 @@ RSpec.describe Exercise, type: :model do
       expect(Exercise.search(terms).count).to eq(2)
     end
 
-    it 'excludes items that have character that are not included' do
+    it 'excludes items that have characters that are not included' do
       terms = 'x1'
       expect(Exercise.search(terms).count).to eq(1)
       expect(Exercise.search(terms)).to include(ex1)
