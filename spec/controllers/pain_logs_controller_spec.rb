@@ -74,7 +74,7 @@ RSpec.describe PainLogsController, type: :controller do
 
       it 'redirects to the home page' do
         pain_log = PainLog.create! valid_attributes
-        put :update, params: {id: pain_log.to_param, pain_log: valid_attributes}
+        put :update, params: { id: pain_log.to_param, pain_log: valid_attributes }
         expect(response).to redirect_to(root_url)
       end
     end
@@ -98,7 +98,7 @@ RSpec.describe PainLogsController, type: :controller do
 
     it 'redirects to the home page' do
       pain_log = PainLog.create! valid_attributes
-      delete :destroy, params: {id: pain_log.to_param}
+      delete :destroy, params: { id: pain_log.to_param }
       expect(response).to redirect_to(root_url)
     end
   end

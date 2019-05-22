@@ -54,7 +54,7 @@ RSpec.describe PtSessionsController, type: :controller do
     end
 
     context 'with invalid params' do
-      it 'returns a success response (i.e. to display the 'new' template)' do
+      it 'returns a success response (i.e. to display the new pt session template)' do
         post :create, params: { pt_session: invalid_attributes }
         expect(response).to be_successful
       end
@@ -80,7 +80,7 @@ RSpec.describe PtSessionsController, type: :controller do
     end
 
     context 'with invalid params' do
-      it 'returns a success response (i.e. to display the 'edit' template)' do
+      it 'returns a success response (i.e. to display the edit pt session template)' do
         pt_session = PtSession.create! valid_attributes
         put :update, params: { id: pt_session.to_param, pt_session: invalid_attributes }
         expect(response).to be_successful

@@ -46,7 +46,7 @@ RSpec.describe PainsController, type: :controller do
     end
 
     context 'with invalid params' do
-      it 'returns a success response (i.e. to display the 'new' template)' do
+      it 'returns a success response (i.e. to display the new pain template)' do
         post :create, params: { pain: invalid_attributes }
         expect(response).to be_successful
       end
@@ -72,7 +72,7 @@ RSpec.describe PainsController, type: :controller do
     end
 
     context 'with invalid params' do
-      it 'returns a success response (i.e. to display the 'edit' template)' do
+      it 'returns a success response (i.e. to display the edit pain template)' do
         pain = Pain.create! valid_attributes
         put :update, params: { id: pain.to_param, pain: invalid_attributes }
         expect(response).to be_successful
