@@ -5,7 +5,7 @@ class BodyPartsController < ApplicationController
   before_action :authorize_body_part, only: %i[edit update destroy]
 
   def index
-    @body_parts = current_user.body_parts.all.order(:name)
+    @body_parts = current_user.body_parts.search(params[:search]).by_name
   end
 
   def new

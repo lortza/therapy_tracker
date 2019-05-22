@@ -2,18 +2,11 @@
 
 <h1>Exercises</h1>
 
-<%= form_tag(exercises_path, method: 'get', id: 'search-form' ) do %>
-  <div class="col-xs-12">
-    <i class="fa fa-search search_icon"></i>
-    <%= text_field_tag :search, params[:search], placeholder: 'Search', class: 'form-control form-control-sm' %>
-  </div>
-<% end %>
-
-<p class='clear_search'><%= link_to 'Clear Search', exercises_path %></p>
+<%= render partial: 'shared/search_form', locals: { url: exercises_path } %>
 
 <section id='exercise-list'>
   <% @exercises.each do |exercise| %>
-    <article class='exercise-list-item'>
+    <article class='index-list-item'>
       <h3><%= link_to exercise.name, edit_exercise_path(exercise) %> <i class='exercise-description-toggle fal fa-chevron-down'></i></h3>
       <p class='exercise-description hidden'><strong><%= exercise.default_sets %> sets of <%= exercise.default_reps %> with <%= exercise.default_rep_length %> sec hold <%= 'per side' if exercise.default_per_side %></strong><br>
         <%= exercise.description %>

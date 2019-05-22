@@ -1,0 +1,8 @@
+<%= form_tag(url, method: 'get', id: 'search-form' ) do %>
+  <div class="col-xs-12">
+    <i class="fa fa-search search_icon"></i>
+    <%= text_field_tag :search, params[:search], placeholder: 'Search', class: 'form-control form-control-sm' %>
+  </div>
+<% end %>
+
+<p class='clear_search'><%= link_to 'Clear Search', url %></p>

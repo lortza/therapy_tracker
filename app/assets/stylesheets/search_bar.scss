@@ -1,0 +1,29 @@
+@import 'variables';
+
+/* Search bar */
+.search_icon {
+  position: relative;
+  float: right;
+  top: 25px;
+  right: 14px;
+  color: #CCC;
+}
+
+.clear_search {
+  font-size: 90%;
+  margin-bottom: 2em;
+  text-align: center;
+  a {
+    color: #CCC;
+  }
+}
+
+label.required:after {
+  content: ' *';
+  font-size: 0.85rem;
+}
+
+.field_with_errors .form-control {
+  border: 1px solid $error;
+  border-radius: 0.25rem;
+}

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Exercise < ApplicationRecord
+  extend SharedParentMethods
+
   belongs_to :user
   has_many :exercise_logs, dependent: :destroy
   has_many :logs, foreign_key: 'exercise_id', class_name: 'ExerciseLog', dependent: :destroy
@@ -19,10 +21,6 @@ class Exercise < ApplicationRecord
             uniqueness: true
 
   class << self
-    def by_name
-      order('lower(name) ASC')
-    end
-
     def has_logs
       joins(:exercise_logs).group('exercises.id').order(:id)
     end
@@ -31,14 +29,6 @@ class Exercise < ApplicationRecord
       has_logs.select do |exercise|
         exercise.logs.count > 2
       end.map { |e| [e.name, e.logs.count] }
-    end
-
-    def search(terms)
-      if terms.blank?
-        all
-      else
-        where('name ILIKE ?', "%#{terms}%")
-      end
     end
   end
 end
