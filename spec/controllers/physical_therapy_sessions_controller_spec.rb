@@ -74,7 +74,7 @@ RSpec.describe PtSessionsController, type: :controller do
 
       it 'redirects to the home page' do
         pt_session = PtSession.create! valid_attributes
-        put :update, params: {id: pt_session.to_param, pt_session: valid_attributes}
+        put :update, params: { id: pt_session.to_param, pt_session: valid_attributes }
         expect(response).to redirect_to(root_url)
       end
     end
@@ -98,7 +98,7 @@ RSpec.describe PtSessionsController, type: :controller do
 
     it 'redirects to the home page' do
       pt_session = PtSession.create! valid_attributes
-      delete :destroy, params: {id: pt_session.to_param}
+      delete :destroy, params: { id: pt_session.to_param }
       expect(response).to redirect_to(root_url)
     end
   end
