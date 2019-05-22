@@ -1,6 +1,6 @@
 @import 'variables';
 
-body { background-color: $dk-blue; }
+body { background-color: $dk_blue; }
 
 .fa-nav {
   border-radius: 50%;
@@ -95,10 +95,4 @@ label.required:after {
     color: darken($brand_main, 5%);
     border-color: darken($brand_main, 5%);
   }
-}
-
-/* MEDIA QUERIES */
-
-@media (max-width: 576px) {
-  .btn-wide { width: 100%; }
 }

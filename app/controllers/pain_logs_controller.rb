@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 
 class PainLogsController < ApplicationController
-  before_action :set_pain_log, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_pain_log, only: [:show, :edit, :update, :destroy]
+  before_action :set_pain_log, only: %i[show edit update destroy]
+  before_action :authorize_pain_log, only: %i[show edit update destroy]
   layout 'no_white_container', only: [:index]
 
-
   def index
-    @logs = current_user.pain_logs.order(datetime_occurred: 'DESC' ).paginate(page: params[:page], per_page: 25)
+    @logs = current_user.pain_logs.order(datetime_occurred: 'DESC').paginate(page: params[:page], per_page: 25)
   end
 
   def show
@@ -20,7 +19,7 @@ class PainLogsController < ApplicationController
   def edit
   end
 
-  def create
+  def create # rubocop:disable Metrics/AbcSize
     @pain_log = current_user.pain_logs.new(pain_log_params)
 
     respond_to do |format|
@@ -55,15 +54,22 @@ class PainLogsController < ApplicationController
   end
 
   private
-    def set_pain_log
-      @pain_log = PainLog.find(params[:id])
-    end
 
-    def pain_log_params
-      params.require(:pain_log).permit(:user_id, :body_part_id, :pain_id, :datetime_occurred, :pain_level, :pain_description, :trigger)
-    end
+  def set_pain_log
+    @pain_log = PainLog.find(params[:id])
+  end
 
-    def authorize_pain_log
-      redirect_to root_path, alert: "Whoops! You're not authorized to view that page." if @pain_log.user_id != current_user.id
-    end
+  def authorize_pain_log
+    redirect_to root_path, alert: authorization_alert unless authorized_user?(@pain_log)
+  end
+
+  def pain_log_params
+    params.require(:pain_log).permit(:user_id,
+                                     :body_part_id,
+                                     :pain_id,
+                                     :datetime_occurred,
+                                     :pain_level,
+                                     :pain_description,
+                                     :trigger)
+  end
 end

@@ -48,7 +48,7 @@ RSpec.describe ExerciseLog, type: :model do
 
     it 'returns an empty array if all exercise_logs belong to pt_sessions' do
       pt_session = create(:pt_session)
-      exercise_log = build(:exercise_log, pt_session_id: pt_session.id)
+      build(:exercise_log, pt_session_id: pt_session.id)
 
       expect(ExerciseLog.at_home).to eq([])
     end
@@ -64,44 +64,60 @@ RSpec.describe ExerciseLog, type: :model do
 
     it 'does not return exercise_logs that are not associated with a pt_session' do
       exercise_log = create(:exercise_log, pt_session_id: nil)
-
       expect(ExerciseLog.at_pt).to_not include(exercise_log)
     end
 
     it 'returns an empty array if no exercise_logs belong to a pt_session' do
-      exercise_log = build(:exercise_log, pt_session_id: nil)
-
+      build(:exercise_log, pt_session_id: nil)
       expect(ExerciseLog.at_pt).to eq([])
     end
   end
 
   describe 'self.past_week' do
-    it 'returns only the logs between today and the past 7 days' do
-      exercise_log = create(:exercise_log, datetime_occurred: Date.today.to_datetime - 2.days)
+    two_days_ago = Time.zone.today.to_datetime - 2.days
+    nine_days_ago = Time.zone.today.to_datetime - 9.days
+    two_days_from_now = Time.zone.today.to_datetime + 2.days
 
-      expect(ExerciseLog.past_week.first).to eq exercise_log
+    it 'returns logs that occurred between today and the past 7 days' do
+      exercise_log = create(:exercise_log, datetime_occurred: two_days_ago)
+      expect(ExerciseLog.past_week).to include(exercise_log)
     end
 
-    it 'returns empty if the datetime_occurreds are out of the range 7 days past' do
-      exercise_log1 = create(:exercise_log, datetime_occurred: Date.today.to_datetime - 8.days)
-      exercise_log2 = create(:exercise_log, datetime_occurred: Date.today.to_datetime + 2.days)
+    it 'does not return logs that occurred outside of the past 7 days' do
+      exercise_log1 = create(:exercise_log, datetime_occurred: nine_days_ago)
+      exercise_log2 = create(:exercise_log, datetime_occurred: two_days_from_now)
 
-      expect(ExerciseLog.past_week).to be_empty
+      expect(ExerciseLog.past_week).to_not include(exercise_log1)
+      expect(ExerciseLog.past_week).to_not include(exercise_log2)
+    end
+
+    it 'returns an empty array if no logs occurred within the past 7 days' do
+      create(:exercise_log, datetime_occurred: nine_days_ago)
+      expect(ExerciseLog.past_week).to eq([])
     end
   end
 
   describe 'self.past_two_weeks' do
-    it 'returns only the logs between today and the past 14 days' do
-      exercise_log = create(:exercise_log, datetime_occurred: Date.today.to_datetime - 12.days)
+    twelve_days_ago = Time.zone.today.to_datetime - 12.days
+    sixteen_days_ago = Time.zone.today.to_datetime - 16.days
+    two_days_from_now = Time.zone.today.to_datetime + 2.days
 
-      expect(ExerciseLog.past_two_weeks.first).to eq exercise_log
+    it 'returns logs that occurred between today and the past 14 days' do
+      exercise_log = create(:exercise_log, datetime_occurred: twelve_days_ago)
+      expect(ExerciseLog.past_two_weeks).to include(exercise_log)
     end
 
-    it 'returns empty if the datetime_occurreds are out of the range 14 days past' do
-      exercise_log1 = create(:exercise_log, datetime_occurred: Date.today.to_datetime - 20.days)
-      exercise_log2 = create(:exercise_log, datetime_occurred: Date.today.to_datetime + 2.days)
+    it 'does not include logs that occurred outside of the past 14 days' do
+      exercise_log1 = create(:exercise_log, datetime_occurred: sixteen_days_ago)
+      exercise_log2 = create(:exercise_log, datetime_occurred: two_days_from_now)
 
-      expect(ExerciseLog.past_two_weeks).to be_empty
+      expect(ExerciseLog.past_two_weeks).to_not include(exercise_log1)
+      expect(ExerciseLog.past_two_weeks).to_not include(exercise_log2)
+    end
+
+    it 'returns an empty array if no logs occurred within the past 14 days' do
+      create(:exercise_log, datetime_occurred: sixteen_days_ago)
+      expect(ExerciseLog.past_two_weeks).to eq([])
     end
   end
 
@@ -110,24 +126,24 @@ RSpec.describe ExerciseLog, type: :model do
     let!(:exercise2) { create(:exercise, :with_3_exercise_logs, name: 'clam shells') }
 
     it 'returns the exercise name and the count of its logs as a nested array' do
-      expected_output = [['cross-body isometrics', 3],['clam shells', 3]]
+      expected_output = [['cross-body isometrics', 3], ['clam shells', 3]]
       expect(ExerciseLog.group_by_exercise_and_count).to match_array(expected_output)
     end
   end
 
   describe 'self.minutes_spent_by_day' do
     it 'returns a hash of dates and total minutes' do
-      exercise_log1 = create(:exercise_log,
-                             datetime_occurred: '2019-12-30',
-                             sets: 1, reps: 1, rep_length: 120)
+      create(:exercise_log,
+             datetime_occurred: '2019-12-30',
+             sets: 1, reps: 1, rep_length: 120)
 
-      exercise_log2 = create(:exercise_log,
-                             datetime_occurred: '2019-12-30',
-                             sets: 1, reps: 1, rep_length: 120)
+      create(:exercise_log,
+             datetime_occurred: '2019-12-30',
+             sets: 1, reps: 1, rep_length: 120)
 
-      exercise_log3 = create(:exercise_log,
-                             datetime_occurred: '2019-12-31',
-                             sets: 1, reps: 1, rep_length: 60)
+      create(:exercise_log,
+             datetime_occurred: '2019-12-31',
+             sets: 1, reps: 1, rep_length: 60)
 
       expected_output = {
         'Mon, 30 Dec 2019'.to_date => 4,

@@ -1,12 +1,15 @@
 # frozen_string_literal: true
 
 class ExerciseLogsController < ApplicationController
-  before_action :set_exercise_log, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_exercise_log, only: [:show, :edit, :update, :destroy]
+  before_action :set_exercise_log, only: %i[show edit update destroy]
+  before_action :authorize_exercise_log, only: %i[show edit update destroy]
   layout 'no_white_container', only: [:index]
 
   def index
-    @logs = current_user.exercise_logs.at_home.order(datetime_occurred: 'DESC' ).paginate(page: params[:page], per_page: 25)
+    @logs = current_user.exercise_logs
+                        .at_home
+                        .order(datetime_occurred: 'DESC')
+                        .paginate(page: params[:page], per_page: 25)
   end
 
   def show
@@ -19,7 +22,7 @@ class ExerciseLogsController < ApplicationController
   def edit
   end
 
-  def create
+  def create # rubocop:disable Metrics/AbcSize
     @exercise_log = current_user.exercise_logs.new(exercise_log_params)
 
     respond_to do |format|
@@ -54,15 +57,27 @@ class ExerciseLogsController < ApplicationController
   end
 
   private
-    def authorize_exercise_log
-      redirect_to root_path, alert: "Whoops! You're not authorized to view that page." if @exercise_log.user_id != current_user.id
-    end
 
-    def set_exercise_log
-      @exercise_log = ExerciseLog.find(params[:id])
-    end
+  def authorize_exercise_log
+    redirect_to root_path, alert: authorization_alert unless authorized_user?(@exercise_log)
+  end
 
-    def exercise_log_params
-      params.require(:exercise_log).permit(:user_id, :body_part_id, :datetime_occurred, :exercise_id, :sets, :reps, :rep_length, :per_side, :resistance, :burn_set, :burn_rep, :progress_note)
-    end
+  def set_exercise_log
+    @exercise_log = ExerciseLog.find(params[:id])
+  end
+
+  def exercise_log_params # rubocop:disable Metrics/MethodLength
+    params.require(:exercise_log).permit(:user_id,
+                                         :body_part_id,
+                                         :datetime_occurred,
+                                         :exercise_id,
+                                         :sets,
+                                         :reps,
+                                         :rep_length,
+                                         :per_side,
+                                         :resistance,
+                                         :burn_set,
+                                         :burn_rep,
+                                         :progress_note)
+  end
 end

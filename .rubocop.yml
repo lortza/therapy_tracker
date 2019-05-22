@@ -7,13 +7,17 @@ Rails:
 AllCops:
   DefaultFormatter: progress
   Exclude:
-    - spec/rails_helper.rb
-    - spec/spec_helper.rb
+    - 'app/channels/**/*'
+    - 'app/helpers/*'
+    - 'app/models/*'
     - 'bin/**'
     - 'config/**/*'
     - 'db/**/*'
     - 'script/**/*'
+    - 'spec/rails_helper.rb'
+    - 'spec/spec_helper.rb'
     - 'lib/tasks/**/*'
+    - 'vendor/**/*'
     # - '**/*.erb'
 
 Metrics/BlockLength:
@@ -22,13 +26,15 @@ Metrics/BlockLength:
     - 'lib/tasks/*'
 
 Metrics/LineLength:
-  Max: 100
+  Max: 120
   Exclude:
   - !ruby/regexp /.*_spec\.rb$/
 Style/BlockDelimiters:
   Exclude:
     - !ruby/regexp /.*_spec\.rb$/
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
 Style/EmptyMethod:
   EnforcedStyle: expanded
 Style/TrailingCommaInArrayLiteral:
-  EnforcedStyleForMultiline:       consistent_comma
+  EnforcedStyleForMultiline: consistent_comma
