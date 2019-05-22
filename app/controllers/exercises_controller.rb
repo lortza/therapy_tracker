@@ -1,11 +1,15 @@
 # frozen_string_literal: true
 
 class ExercisesController < ApplicationController
-  before_action :set_exercise, only: %i[edit update destroy]
-  before_action :authorize_exercise, only: %i[edit update destroy]
+  before_action :set_exercise, only: %i[show edit update destroy]
+  before_action :authorize_exercise, only: %i[show edit update destroy]
 
   def index
     @exercises = current_user.exercises.search(params[:search]).by_name
+  end
+
+  def show
+    render json: @exercise, status: :ok
   end
 
   def new
