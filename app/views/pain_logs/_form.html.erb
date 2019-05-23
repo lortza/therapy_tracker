@@ -17,18 +17,18 @@
   <div class='form-row'>
     <div class='col'>
       <div class='field'>
-        <%= form.label 'Pain Level (0 = none, 10 = worst)', class: 'required' %>
-        <%= form.number_field :pain_level, selected: last_log(:pain_logs, :pain_level), class: 'form-control' %>
-      </div>
-    </div>
-
-    <div class='col'>
-      <div class='field'>
         <%= form.label 'Pain Type', class: 'required' %>
         <%= form.collection_select :pain_id,
         Pain.all.order(:name), :id, :name,
         { include_blank: false },
         class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class='col'>
+      <div class='field'>
+        <%= form.label 'Pain Level (0 = none, 10 = worst)', class: 'required' %>
+        <%= form.number_field :pain_level, selected: last_log(:pain_logs, :pain_level), class: 'form-control' %>
       </div>
     </div>
   </div>
