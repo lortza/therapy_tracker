@@ -21,7 +21,7 @@ function listToggler() {
 }
 
 
-function dropdownSwitcher() {
+function exerciseDropdownSwitcher() {
   document.addEventListener('DOMContentLoaded', function () {
     const exerciseDropdown = document.getElementById('exercise_log_exercise_id');
     const initialExerciseId = exerciseDropdown.options[exerciseDropdown.selectedIndex].value;
