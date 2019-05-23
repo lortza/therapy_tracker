@@ -13,8 +13,5 @@ script:
   - bundle exec rubocop
   - bundle exec rake db:create
   - bundle exec rake db:migrate
-  - bundle exec rspec spec/models
-  - bundle exec rspec spec/controllers
-  - bundle exec rspec spec/routing
   - bundle exec rake db:seed
   - bundle exec rspec --exclude-pattern "**/views/*/*_spec.rb, **/requests/*_spec.rb"
