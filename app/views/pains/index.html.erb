@@ -2,20 +2,10 @@
 
 <h1>Pains</h1>
 
-<table class='table'>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
+<%= render partial: 'shared/search_form', locals: { url: pains_path } %>
 
-  <tbody>
-    <% @pains.each do |pain| %>
-      <tr>
-        <td><%= link_to pain.name, edit_pain_path(pain) %></td>
-        <td><%= link_to 'Edit', edit_pain_path(pain), class: button_class %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<% @pains.each do |pain| %>
+  <article class='index-list-item'>
+    <h3><%= link_to pain.name, edit_pain_path(pain) %></h3>
+  </article>
+<% end %>

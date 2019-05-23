@@ -41,58 +41,17 @@ body { background-color: $dk_blue; }
   vertical-align: middle;
 }
 
-/* Search bar */
-.search_icon {
-  position: relative;
-  float: right;
-  top: 25px;
-  right: 14px;
-  color: #CCC;
-}
 
-.clear_search {
-  font-size: 90%;
-  margin-bottom: 2em;
-  text-align: center;
-  a {
-    color: #CCC;
+/* Index Pages */
+article.index-list-item {
+  border-top: 1px solid $light_gray;
+  color: $default_text;
+  padding: 0.6rem;
+  h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0px;
+    a { color: $default_text; }
+    i { float: right; }
   }
-}
-
-label.required:after {
-  content: ' *';
-  font-size: 0.85rem;
-}
-
-.field_with_errors .form-control {
-  border: 1px solid $error;
-  border-radius: 0.25rem;
-}
-
-/* Pagination Links */
-/* modified digg_pagination from http://mislav.github.io/will_paginate/ */
-.pagination {
-  cursor: default;
-  display: flex;
-  justify-content: space-between;
-  height: 100%;
-  margin-top: -1rem;
-  margin-bottom: 1.5rem;
-  a,  span,  em {
-    padding: 0.2em 0.5em;
-    display: block;
-    border-radius: 5px;
-  }
-  .disabled {
-    visibility: hidden;
-  }
-  a {
-    text-decoration: none;
-    color: $brand_main;
-    border: 1px solid $brand_main;
-  }
-  a:hover,  a:focus {
-    color: darken($brand_main, 5%);
-    border-color: darken($brand_main, 5%);
-  }
+  p.exercise-description { margin-bottom: 0px; }
 }

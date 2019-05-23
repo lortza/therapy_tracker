@@ -5,7 +5,7 @@ class PainsController < ApplicationController
   before_action :authorize_pain, only: %i[edit update destroy]
 
   def index
-    @pains = current_user.pains.order(:name)
+    @pains = current_user.pains.search(params[:search]).by_name
   end
 
   def new
