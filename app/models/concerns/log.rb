@@ -2,6 +2,16 @@
 
 module Log
   # class methods for querying logs
+  def self.all(user)
+    logs = [
+      user.pt_sessions.to_a,
+      user.pain_logs.to_a,
+      user.exercise_logs.at_home.to_a,
+    ]
+
+    logs.flatten.sort_by { |a| a[:datetime_occurred] }.reverse!
+  end
+
   def past_week
     where('datetime_occurred >= ? AND datetime_occurred <= ?', (today - 7.days), today)
   end
