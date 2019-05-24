@@ -24,8 +24,13 @@ RSpec.describe Log, type: :module do
 
     it 'is ordered by datetime_occurred in descending order' do
       user = create(:user)
-      first_log = create(:exercise_log, user_id: user.id)
-      last_log = create(:exercise_log, user_id: user.id)
+      first_log = create(:exercise_log,
+                         user_id: user.id,
+                         datetime_occurred: '2019-01-01 1:00:00')
+
+      last_log = create(:exercise_log,
+                        user_id: user.id,
+                        datetime_occurred: '2019-01-01 2:00:00')
 
       expect(Log.all(user).first).to eq(last_log)
       expect(Log.all(user).last).to eq(first_log)
