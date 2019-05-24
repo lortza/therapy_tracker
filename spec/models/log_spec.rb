@@ -3,7 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe Log, type: :module do
-
   describe 'self.all' do
     it 'returns a list of logs for a specific user' do
       user = create(:user)
