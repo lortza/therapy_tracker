@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Pain < ApplicationRecord
-  extend SharedParentMethods
+  extend Nameable
 
   belongs_to :user
   has_many :pain_logs, dependent: :destroy

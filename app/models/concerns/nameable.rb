@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module SharedParentMethods
+module Nameable
   # class methods for Exercise/Pain/BodyPart models
   def by_name
     order('lower(name) ASC')

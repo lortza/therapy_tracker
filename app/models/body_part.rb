@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class BodyPart < ApplicationRecord
-  extend SharedParentMethods
+  extend Nameable
 
   belongs_to :user
   has_many :exercise_logs, dependent: :destroy
