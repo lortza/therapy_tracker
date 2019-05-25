@@ -12,19 +12,12 @@ function painLevelDropdownSwitcher() {
       trigger.select();
     }
 
-    function resetData() {
-      painLevel.value = null;
-      description.value = '';
-    }
-
     painDropdown.addEventListener('change', function (event) {
       const selectedPainItem = painDropdown.options[painDropdown.selectedIndex].text.toLowerCase();
       event.preventDefault();
 
       if (selectedPainItem === 'none') {
         populateNoPainData();
-      } else {
-        resetData();
       }
     })
   });
