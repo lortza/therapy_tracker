@@ -73,7 +73,6 @@ RSpec.describe ExerciseLog, type: :model do
         expect(ExerciseLog.at_pt).to eq([])
       end
     end
-
   end
 
   describe 'chronologically' do
