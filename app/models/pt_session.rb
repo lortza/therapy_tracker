@@ -29,8 +29,4 @@ class PtSession < ApplicationRecord
     end
     output
   end
-
-  def exercise_notes_to_lines
-    self.exercise_notes = exercise_notes.tr("\r", "\n")
-  end
 end

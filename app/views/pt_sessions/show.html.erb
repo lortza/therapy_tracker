@@ -11,10 +11,11 @@
 <p class="card-text"><strong><%= @pt_session.body_part_name.titleize %>:</strong> <%= @pt_session.duration %> minutes<br></p>
 
 <h5>Questions for Therapist</h5>
-<p><%= @pt_session.questions %></p>
+<%= simple_format(@pt_session.questions, {}, wrapper_tag: 'p') %>
+
 
 <h5>Session Notes</h5>
-<p><%= @pt_session.exercise_notes %></p>
+<%= simple_format(@pt_session.exercise_notes, {}, wrapper_tag: 'p') %>
 
 <%= link_to 'Log an Exercise', new_pt_session_exercise_log_path(@pt_session), class: button_class %>
 <ul>
@@ -28,7 +29,7 @@
 </ul>
 
 <h5>Homework</h5>
-<p><%= @pt_session.homework %></p>
+<%= simple_format(@pt_session.homework, {}, wrapper_tag: 'p') %>
 <ul>
   <% @pt_session.homework_exercises.each do |exercise| %>
   <li><%= exercise.name %></li>
