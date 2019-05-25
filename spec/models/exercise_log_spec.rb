@@ -73,6 +73,22 @@ RSpec.describe ExerciseLog, type: :model do
     end
   end
 
+  describe 'chronologically' do
+    it 'is ordered by datetime_occurred in ascending order' do
+      user = create(:user)
+      first_log = create(:exercise_log,
+                         user_id: user.id,
+                         datetime_occurred: '2019-01-01 1:00:00')
+
+      last_log = create(:exercise_log,
+                        user_id: user.id,
+                        datetime_occurred: '2019-01-01 2:00:00')
+
+      expect(ExerciseLog.chronologically.first).to eq(first_log)
+      expect(ExerciseLog.chronologically.last).to eq(last_log)
+    end
+  end
+
   describe 'self.past_week' do
     two_days_ago = Time.zone.today.to_datetime - 2.days
     nine_days_ago = Time.zone.today.to_datetime - 9.days

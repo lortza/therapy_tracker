@@ -18,7 +18,7 @@
 
 <%= link_to 'Log an Exercise', new_pt_session_exercise_log_path(@pt_session), class: button_class %>
 <ul>
-  <% @pt_session.exercise_logs.each do |exercise_log| %>
+  <% @pt_session.exercise_logs.chronologically.each do |exercise_log| %>
     <li>
       <%= link_to exercise_log.exercise_name, pt_session_exercise_log_path(@pt_session, exercise_log) %>:
       <%= display_exercise_stats(exercise_log) %>

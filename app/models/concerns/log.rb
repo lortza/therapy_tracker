@@ -12,6 +12,10 @@ module Log
     logs.flatten.sort_by { |a| a[:datetime_occurred] }.reverse!
   end
 
+  def chronologically
+    all.order(:datetime_occurred)
+  end
+
   def past_week
     where('datetime_occurred >= ? AND datetime_occurred <= ?', (today - 7.days), today)
   end
