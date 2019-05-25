@@ -30,15 +30,10 @@ class ExerciseLog < ApplicationRecord
   delegate :name, to: :body_part, prefix: true
   delegate :name, to: :exercise, prefix: true
 
+  scope :at_home, -> { where(pt_session_id: nil) }
+  scope :at_pt, -> { where.not(pt_session_id: nil) }
+
   class << self
-    def at_home
-      where(pt_session_id: nil)
-    end
-
-    def at_pt
-      where.not(pt_session_id: nil)
-    end
-
     def group_by_exercise_and_count
       ex_ids_and_counts = group(:exercise_id).count
       ex_ids_and_counts.map do |k, v|
