@@ -4,7 +4,7 @@
   <div class='field'>
     <%= form.label 'Target Body Part', class: 'required' %>
     <%= form.collection_select :body_part_id,
-    BodyPart.all, :id, :name,
+    current_user.body_parts, :id, :name,
     { include_blank: false },
     class: 'form-control' %>
   </div>
@@ -19,7 +19,7 @@
       <div class='field'>
         <%= form.label 'Pain Type', class: 'required' %>
         <%= form.collection_select :pain_id,
-        Pain.all.order(:name), :id, :name,
+        current_user.pains.by_name, :id, :name,
         { include_blank: false },
         class: 'form-control' %>
       </div>
