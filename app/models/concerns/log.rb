@@ -27,6 +27,6 @@ module Log
   private
 
   def today
-    Time.zone.today.to_datetime
+    Time.zone.now
   end
 end
