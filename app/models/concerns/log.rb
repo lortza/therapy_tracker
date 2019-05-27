@@ -16,8 +16,8 @@ module Log
     all.order(:datetime_occurred)
   end
 
-  def for_past_n_days(n)
-    where('datetime_occurred >= ? AND datetime_occurred <= ?', n.days.ago, today)
+  def for_past_n_days(qty_days)
+    where('datetime_occurred >= ? AND datetime_occurred <= ?', qty_days.days.ago, today)
   end
 
   def for_body_part(id)

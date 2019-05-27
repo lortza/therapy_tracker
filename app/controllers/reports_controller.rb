@@ -9,7 +9,7 @@ class ReportsController < ApplicationController
       timeframe: params[:timeframe],
       body_part_id: params[:body_part_id]
     }
-    
+
     @report = Report.new(filter_params)
   end
 end
