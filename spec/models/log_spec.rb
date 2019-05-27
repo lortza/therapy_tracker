@@ -37,11 +37,11 @@ RSpec.describe Log, type: :module do
     end
   end
 
-  describe 'past_week' do
+  describe 'for_past_n_days' do
     # This is tested within the individual _log specs
   end
 
-  describe 'past_two_weeks' do
+  describe 'for_body_part' do
     # This is tested within the individual _log specs
   end
 end

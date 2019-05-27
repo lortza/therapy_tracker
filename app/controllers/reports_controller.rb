@@ -4,11 +4,12 @@ class ReportsController < ApplicationController
   # layout 'no_white_container'
 
   def index
-  end
+    filter_params = {
+      user: current_user,
+      timeframe: params[:timeframe],
+      body_part_id: params[:body_part_id]
+    }
 
-  def past_week
-  end
-
-  def past_two_weeks
+    @report = Report.new(filter_params)
   end
 end
