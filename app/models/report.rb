@@ -20,5 +20,4 @@ class Report
     logs = logs.for_past_n_days(@filter_params[:timeframe].to_i) if @filter_params[:timeframe].present?
     logs
   end
-
 end
