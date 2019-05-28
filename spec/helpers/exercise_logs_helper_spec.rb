@@ -6,7 +6,7 @@ RSpec.describe ExerciseLogsHelper, type: :helper do
   it 'should format exercise stats' do
     log = build(:exercise_log, per_side: true, sets: 3, reps: 15, rep_length: 10)
 
-    expect(helper.format_exercise_stats(log)).to eq('3 sets / 15 reps at 10 seconds each per leg')
+    expect(helper.format_exercise_stats(log)).to eq('3 sets / 15 reps at 10 seconds each per side')
   end
 
   it 'should format resistance' do
