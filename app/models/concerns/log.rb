@@ -16,12 +16,12 @@ module Log
     all.order(:datetime_occurred)
   end
 
-  def past_week
-    where('datetime_occurred >= ? AND datetime_occurred <= ?', (today - 7.days), today)
+  def for_past_n_days(qty_days)
+    where('datetime_occurred >= ? AND datetime_occurred <= ?', qty_days.days.ago, today)
   end
 
-  def past_two_weeks
-    where('datetime_occurred >= ? AND datetime_occurred <= ?', (today - 14.days), today)
+  def for_body_part(id)
+    where(body_part_id: id)
   end
 
   private
