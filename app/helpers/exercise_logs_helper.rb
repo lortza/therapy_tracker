@@ -2,7 +2,7 @@
 
 module ExerciseLogsHelper
   def format_exercise_stats(log)
-    per_side = log.per_side ? 'each per leg' : 'each'
+    per_side = log.per_side ? 'each per side' : 'each'
     "#{log.sets} sets / #{log.reps} reps at #{log.rep_length} seconds #{per_side}"
   end
 

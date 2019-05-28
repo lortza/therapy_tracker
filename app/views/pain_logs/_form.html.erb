@@ -4,7 +4,7 @@
   <div class='field'>
     <%= form.label 'Target Body Part', class: 'required' %>
     <%= form.collection_select :body_part_id,
-    BodyPart.all, :id, :name,
+    current_user.body_parts, :id, :name,
     { include_blank: false },
     class: 'form-control' %>
   </div>
@@ -17,18 +17,18 @@
   <div class='form-row'>
     <div class='col'>
       <div class='field'>
-        <%= form.label 'Pain Level (0 = none, 10 = worst)', class: 'required' %>
-        <%= form.number_field :pain_level, selected: last_log(:pain_logs, :pain_level), class: 'form-control' %>
+        <%= form.label 'Pain Type', class: 'required' %>
+        <%= form.collection_select :pain_id,
+        current_user.pains.by_name, :id, :name,
+        { include_blank: false },
+        class: 'form-control' %>
       </div>
     </div>
 
     <div class='col'>
       <div class='field'>
-        <%= form.label 'Pain Type', class: 'required' %>
-        <%= form.collection_select :pain_id,
-        Pain.all.order(:name), :id, :name,
-        { include_blank: false },
-        class: 'form-control' %>
+        <%= form.label 'Pain Level (0 = none, 10 = worst)', class: 'required' %>
+        <%= form.number_field :pain_level, selected: last_log(:pain_logs, :pain_level), class: 'form-control' %>
       </div>
     </div>
   </div>

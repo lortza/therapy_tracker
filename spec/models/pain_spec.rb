@@ -10,6 +10,7 @@ RSpec.describe Pain, type: :model do
 
   context 'validations' do
     it { should validate_presence_of(:name) }
+    it { should validate_uniqueness_of(:name).case_insensitive }
   end
 
   describe 'self.has_logs' do
@@ -31,6 +32,43 @@ RSpec.describe Pain, type: :model do
     it 'returns the pain name and the count of its logs as a nested array' do
       expected_output = [['pain1', 3], ['pain2', 3]]
       expect(Pain.log_count_by_name).to match_array(expected_output)
+    end
+  end
+
+  describe 'self.by_name' do
+    it 'returns a list of pains ordered by name, ascending' do
+      pain1 = create(:pain, name: 'a')
+      pain2 = create(:pain, name: 'b')
+      pain3 = create(:pain, name: 'c')
+
+      expect(Pain.by_name).to match_array([pain1, pain2, pain3])
+    end
+  end
+
+  describe 'self.search()' do
+    let!(:pain1) { create(:pain, name: 'pain1') }
+    let!(:pain2) { create(:pain, name: 'pain2') }
+
+    it 'returns all pains if no argument is supplied' do
+      terms = ''
+      expect(Pain.search(terms).count).to eq(2)
+    end
+
+    it 'returns all matches for partial string matches' do
+      terms = 'pai'
+      expect(Pain.search(terms).count).to eq(2)
+    end
+
+    it 'excludes items that have characters that are not included' do
+      terms = 'n1'
+      expect(Pain.search(terms).count).to eq(1)
+      expect(Pain.search(terms)).to include(pain1)
+      expect(Pain.search(terms)).to_not include(pain2)
+    end
+
+    it 'returns an empty array if there are no matches' do
+      terms = 'x'
+      expect(Pain.search(terms)).to eq([])
     end
   end
 end

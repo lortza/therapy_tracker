@@ -32,92 +32,96 @@ RSpec.describe ExerciseLog, type: :model do
     it { should delegate_method(:name).to(:exercise).with_prefix }
   end
 
-  describe 'self.at_home' do
-    it 'returns exercise_logs that are not associated with a pt_session' do
-      exercise_log = create(:exercise_log, pt_session_id: nil)
+  describe 'scopes' do
+    describe 'at_home' do
+      it 'returns exercise_logs that are not associated with a pt_session' do
+        exercise_log = create(:exercise_log, pt_session_id: nil)
 
-      expect(ExerciseLog.at_home).to include(exercise_log)
+        expect(ExerciseLog.at_home).to include(exercise_log)
+      end
+
+      it 'does not return exercise_logs that are associated with a pt_session' do
+        pt_session = create(:pt_session)
+        exercise_log = create(:exercise_log, pt_session_id: pt_session.id)
+
+        expect(ExerciseLog.at_home).to_not include(exercise_log)
+      end
+
+      it 'returns an empty array if all exercise_logs belong to pt_sessions' do
+        pt_session = create(:pt_session)
+        build(:exercise_log, pt_session_id: pt_session.id)
+
+        expect(ExerciseLog.at_home).to eq([])
+      end
     end
 
-    it 'does not return exercise_logs that are associated with a pt_session' do
-      pt_session = create(:pt_session)
-      exercise_log = create(:exercise_log, pt_session_id: pt_session.id)
+    describe 'at_pt' do
+      it 'returns exercise_logs that are associated with pt_sessions' do
+        pt_session = create(:pt_session)
+        exercise_log = create(:exercise_log, pt_session_id: pt_session.id)
 
-      expect(ExerciseLog.at_home).to_not include(exercise_log)
-    end
+        expect(ExerciseLog.at_pt).to include(exercise_log)
+      end
 
-    it 'returns an empty array if all exercise_logs belong to pt_sessions' do
-      pt_session = create(:pt_session)
-      build(:exercise_log, pt_session_id: pt_session.id)
+      it 'does not return exercise_logs that are not associated with a pt_session' do
+        exercise_log = create(:exercise_log, pt_session_id: nil)
+        expect(ExerciseLog.at_pt).to_not include(exercise_log)
+      end
 
-      expect(ExerciseLog.at_home).to eq([])
-    end
-  end
-
-  describe 'self.at_pt' do
-    it 'returns exercise_logs that are associated with pt_sessions' do
-      pt_session = create(:pt_session)
-      exercise_log = create(:exercise_log, pt_session_id: pt_session.id)
-
-      expect(ExerciseLog.at_pt).to include(exercise_log)
-    end
-
-    it 'does not return exercise_logs that are not associated with a pt_session' do
-      exercise_log = create(:exercise_log, pt_session_id: nil)
-      expect(ExerciseLog.at_pt).to_not include(exercise_log)
-    end
-
-    it 'returns an empty array if no exercise_logs belong to a pt_session' do
-      build(:exercise_log, pt_session_id: nil)
-      expect(ExerciseLog.at_pt).to eq([])
-    end
-  end
-
-  describe 'self.past_week' do
-    two_days_ago = Time.zone.today.to_datetime - 2.days
-    nine_days_ago = Time.zone.today.to_datetime - 9.days
-    two_days_from_now = Time.zone.today.to_datetime + 2.days
-
-    it 'returns logs that occurred between today and the past 7 days' do
-      exercise_log = create(:exercise_log, datetime_occurred: two_days_ago)
-      expect(ExerciseLog.past_week).to include(exercise_log)
-    end
-
-    it 'does not return logs that occurred outside of the past 7 days' do
-      exercise_log1 = create(:exercise_log, datetime_occurred: nine_days_ago)
-      exercise_log2 = create(:exercise_log, datetime_occurred: two_days_from_now)
-
-      expect(ExerciseLog.past_week).to_not include(exercise_log1)
-      expect(ExerciseLog.past_week).to_not include(exercise_log2)
-    end
-
-    it 'returns an empty array if no logs occurred within the past 7 days' do
-      create(:exercise_log, datetime_occurred: nine_days_ago)
-      expect(ExerciseLog.past_week).to eq([])
+      it 'returns an empty array if no exercise_logs belong to a pt_session' do
+        build(:exercise_log, pt_session_id: nil)
+        expect(ExerciseLog.at_pt).to eq([])
+      end
     end
   end
 
-  describe 'self.past_two_weeks' do
-    twelve_days_ago = Time.zone.today.to_datetime - 12.days
-    sixteen_days_ago = Time.zone.today.to_datetime - 16.days
-    two_days_from_now = Time.zone.today.to_datetime + 2.days
+  describe 'chronologically' do
+    it 'is ordered by datetime_occurred in ascending order' do
+      user = create(:user)
+      first_log = create(:exercise_log,
+                         user_id: user.id,
+                         datetime_occurred: '2019-01-01 1:00:00')
 
-    it 'returns logs that occurred between today and the past 14 days' do
-      exercise_log = create(:exercise_log, datetime_occurred: twelve_days_ago)
-      expect(ExerciseLog.past_two_weeks).to include(exercise_log)
+      last_log = create(:exercise_log,
+                        user_id: user.id,
+                        datetime_occurred: '2019-01-01 2:00:00')
+
+      expect(ExerciseLog.chronologically.first).to eq(first_log)
+      expect(ExerciseLog.chronologically.last).to eq(last_log)
+    end
+  end
+
+  describe 'self.for_past_n_days' do
+    it 'returns logs that occurred between today and the past n days' do
+      exercise_log = create(:exercise_log, datetime_occurred: 2.days.ago)
+      expect(ExerciseLog.for_past_n_days(7)).to include(exercise_log)
     end
 
-    it 'does not include logs that occurred outside of the past 14 days' do
-      exercise_log1 = create(:exercise_log, datetime_occurred: sixteen_days_ago)
-      exercise_log2 = create(:exercise_log, datetime_occurred: two_days_from_now)
+    it 'does not return logs that occurred outside of the past n days' do
+      exercise_log1 = create(:exercise_log, datetime_occurred: 9.days.ago)
+      exercise_log2 = create(:exercise_log, datetime_occurred: 2.days.from_now)
 
-      expect(ExerciseLog.past_two_weeks).to_not include(exercise_log1)
-      expect(ExerciseLog.past_two_weeks).to_not include(exercise_log2)
+      expect(ExerciseLog.for_past_n_days(7)).to_not include(exercise_log1)
+      expect(ExerciseLog.for_past_n_days(7)).to_not include(exercise_log2)
     end
 
-    it 'returns an empty array if no logs occurred within the past 14 days' do
-      create(:exercise_log, datetime_occurred: sixteen_days_ago)
-      expect(ExerciseLog.past_two_weeks).to eq([])
+    it 'returns an empty array if no logs occurred within the past n days' do
+      create(:exercise_log, datetime_occurred: 9.days.ago)
+      expect(ExerciseLog.for_past_n_days(7)).to eq([])
+    end
+  end
+
+  describe 'self.for_body_part' do
+    it 'returns logs for the given body part' do
+      user = create(:user)
+      arm = create(:body_part, name: 'arm', user_id: user.id)
+      leg = create(:body_part, name: 'leg', user_id: user.id)
+      arm_log1 = create(:exercise_log, body_part_id: arm.id, user_id: user.id)
+      arm_log2 = create(:exercise_log, body_part_id: arm.id, user_id: user.id)
+      leg_log = create(:exercise_log, body_part_id: leg.id, user_id: user.id)
+
+      expect(ExerciseLog.for_body_part(arm.id)).to include(arm_log1, arm_log2)
+      expect(ExerciseLog.for_body_part(arm.id)).to_not include(leg_log)
     end
   end
 

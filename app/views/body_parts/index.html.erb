@@ -2,20 +2,10 @@
 
 <h1>Body Parts</h1>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
+<%= render partial: 'shared/search_form', locals: { url: body_parts_path } %>
 
-  <tbody>
-    <% @body_parts.each do |body_part| %>
-      <tr>
-        <td><%= link_to body_part.name, edit_body_part_path(body_part) %></td>
-        <td><%= link_to 'Edit', edit_body_part_path(body_part), class: button_class %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<% @body_parts.each do |body_part| %>
+  <article class='index-list-item'>
+    <h3><%= link_to body_part.name, edit_body_part_path(body_part) %></h3>
+  </article>
+<% end %>

@@ -4,7 +4,7 @@
   <div class='field'>
     <%= form.label 'Target Body Part', class: 'required' %>
     <%= form.collection_select :body_part_id,
-    BodyPart.all, :id, :name,
+    current_user.body_parts, :id, :name,
     { include_blank: false },
     class: 'form-control' %>
   </div>
@@ -17,7 +17,7 @@
   <div class='field'>
     <%= form.label 'Exercise', class: 'required' %>
     <%= form.collection_select :exercise_id,
-    Exercise.all.order(:name), :id, :name,
+    current_user.exercises.by_name, :id, :name,
     { prompt: '--Select--' },
     class: 'form-control' %>
   </div>
@@ -46,7 +46,7 @@
 
     <div class='col'>
       <div class='field'>
-        <%= form.label 'Per Leg?' %>
+        <%= form.label 'Per Side?' %>
         <%= form.check_box :per_side, class: 'form-control' %>
       </div>
     </div>
