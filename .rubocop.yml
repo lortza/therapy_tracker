@@ -29,9 +29,11 @@ Metrics/LineLength:
   Max: 120
   Exclude:
   - !ruby/regexp /.*_spec\.rb$/
+
 Style/BlockDelimiters:
   Exclude:
     - !ruby/regexp /.*_spec\.rb$/
+    
 Style/ClassAndModuleChildren:
   EnforcedStyle: compact
 Style/EmptyMethod:
