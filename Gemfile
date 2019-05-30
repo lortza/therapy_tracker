@@ -45,9 +45,22 @@ gem 'chartkick' # chart rendering for ruby data
 gem 'groupdate' # grouping by dates. goes with chartkick
 gem 'will_paginate', '~> 3.1.0' # pagination. Styles: http://mislav.github.io/will_paginate/
 
+group :development do
+  gem 'rails-erd', require: false # generates ERD chart for your schema, run `bundle exec erd`
+  gem 'rubycritic', require: false # provides feedback on complexity and churns for your codebase
+  # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
+  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'web-console', '>= 3.3.0'
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'rubocop', '~> 0.67.2', require: false
+  gem 'rubocop-performance'
+  gem 'seed_dump' # run with `rake db:seed:dump`
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
 group :development, :test do
   gem 'awesome_print'
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'better_errors' # creates console in browser for errors
   gem 'binding_of_caller' # goes with better_errors
   gem 'bullet' # detects N+1 queries via config/initializers/bullet.rb
@@ -63,22 +76,8 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'rspec-rails', '~> 3.5'
-end
-
-group :development do
-  gem 'rails-erd', require: false # generates ERD chart for your schema, run `bundle exec erd`
-  gem 'rubycritic', require: false # provides feedback on complexity and churns for your codebase
-  # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'listen', '>= 3.0.5', '< 3.2'
-  gem 'web-console', '>= 3.3.0'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'chromedriver-helper' # must be loaded after selenium-webdriver
-  gem 'rubocop', '~> 0.67.2', require: false
-  gem 'rubocop-performance'
-  gem 'seed_dump' # run with `rake db:seed:dump`
   gem 'selenium-webdriver'
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'webdrivers', '~> 4.0'
 end
 
 group :test do
