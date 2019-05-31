@@ -1,0 +1,30 @@
+<div class='white-container'>
+  <h1>Welcome to Therapy Tracker!</h1>
+  <p>Get started tracking your physical therapy progress:</p>
+  <ol>
+    <li>Build some body parts! Start with the Target Body Part you're working on:<br>
+      <%= link_to 'Build Body Parts', new_body_part_path, class: button_class('primary btn-wide') %>
+    </li>
+    <li>
+      Create Common Pains. Enter the types of pains you usually experience:
+      <%= link_to 'Create Pains', new_pain_path, class: button_class('primary btn-wide') %>
+    </li>
+    <li>
+      Enter the Exercises you'll be doing.
+      <%= link_to 'Build Body Parts', new_body_part_path, class: button_class('primary btn-wide') %>
+    </li>
+    <li>
+      Log Something! <br>
+      <%#= render partial: 'shared/add_log_buttons' %>
+
+      Pain: You can create a log for any time you experience a pain. It's important to log pain to help you track your progress.
+      <%= link_to 'Log a Pain', new_pain_log_path, class: button_class('primary btn-wide') %>
+
+      Exercise: Each time you exercise, log it! This will help your therapist to know what's working for you.
+      <%= link_to 'Log an Exercise', new_exercise_log_path, class: button_class('primary btn-wide') %>
+
+      Physical Therapy Session:
+      <%= link_to 'Log a PT Session', new_pt_session_path, class: button_class('primary btn-wide') %>
+    </li>
+  </ol>
+</div><!-- white-container -->
