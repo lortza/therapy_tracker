@@ -12,7 +12,7 @@ RSpec.describe BodyPart, type: :model do
 
   context 'validations' do
     it { should validate_presence_of(:name) }
-    it { should validate_uniqueness_of(:name) }
+    it { should validate_uniqueness_of(:name).case_insensitive.scoped_to(:user_id) }
   end
 
   describe 'self.by_name' do

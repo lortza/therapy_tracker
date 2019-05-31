@@ -7,7 +7,10 @@ class Pain < ApplicationRecord
   has_many :pain_logs, dependent: :destroy
   has_many :logs, foreign_key: 'pain_id', class_name: 'PainLog', dependent: :destroy
 
-  validates :name, presence: true, uniqueness: { case_sensitive: false }
+  validates :name, presence: true,
+                   uniqueness: {
+                     case_sensitive: false,
+                     scope: :user_id }
 
   class << self
     def has_logs

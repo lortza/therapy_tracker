@@ -8,5 +8,9 @@ class BodyPart < ApplicationRecord
   has_many :pain_logs, dependent: :destroy
   has_many :pt_sessions, dependent: :destroy
 
-  validates :name, presence: true, uniqueness: true
+  validates :name,
+            presence: true,
+            uniqueness: {
+              case_sensitive: false,
+              scope: :user_id }
 end

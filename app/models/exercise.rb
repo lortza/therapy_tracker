@@ -18,7 +18,9 @@ class Exercise < ApplicationRecord
 
   validates :name,
             presence: true,
-            uniqueness: true
+            uniqueness: {
+              case_sensitive: false,
+              scope: :user_id }
 
   class << self
     def has_logs
