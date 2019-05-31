@@ -2,10 +2,16 @@
 
 <h1>Body Parts</h1>
 
-<%= render partial: 'shared/search_form', locals: { url: body_parts_path } %>
+<% if @body_parts.present? %>
+  <%= render partial: 'shared/search_form', locals: { url: body_parts_path } %>
 
-<% @body_parts.each do |body_part| %>
-  <article class='index-list-item'>
-    <h3><%= link_to body_part.name, edit_body_part_path(body_part) %></h3>
-  </article>
+  <% @body_parts.each do |body_part| %>
+    <article class='index-list-item'>
+      <h3><%= link_to body_part.name, edit_body_part_path(body_part) %></h3>
+    </article>
+  <% end %>
+  
+<% else %>
+  <p>Create a New Body Part</p>
+  <%= link_to 'New Body Part', new_body_part_path, class: button_class('primary btn-wide') %>
 <% end %>
