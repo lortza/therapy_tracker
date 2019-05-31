@@ -5,47 +5,29 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.3'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.2'
-# Use postgresql as the database for Active Record
-gem 'pg', '>= 0.18', '< 2.0'
-# Use Puma as the app server
-gem 'puma', '~> 3.11'
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
-# gem 'momentjs-rails', '>= 2.9.0'
-# gem 'bootstrap3-datetimepicker-rails', '~> 4.14.30'
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'mini_racer', platforms: :ruby
-
-# Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.2'
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-# gem 'turbolinks', '~> 5'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.5'
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
-# Reduces boot times through caching; required in config/boot.rb
+gem 'autoprefixer-rails'
 gem 'bootsnap', '>= 1.1.0', require: false
-gem 'devise' # user authentication
-
 gem 'chartkick' # chart rendering for ruby data
+gem 'coffee-rails', '~> 4.2' # Use CoffeeScript for .coffee assets and views
+gem 'devise' # user authentication
 gem 'groupdate' # grouping by dates. goes with chartkick
+gem 'jbuilder', '~> 2.5' # https://github.com/rails/jbuilder
+gem 'pg', '>= 0.18', '< 2.0' # Use postgresql as the database for Active Record
+gem 'puma', '~> 3.11' # Use Puma as the app server
+gem 'rails', '~> 5.2.2' # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'sass-rails', '~> 5.0' # Use SCSS for stylesheets
+gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
 gem 'will_paginate', '~> 3.1.0' # pagination. Styles: http://mislav.github.io/will_paginate/
+# gem 'bcrypt', '~> 3.1.7' # Use ActiveModel has_secure_password
+# gem 'bootstrap3-datetimepicker-rails', '~> 4.14.30'
+# gem 'mini_magick', '~> 4.8' # Use ActiveStorage variant
+# gem 'mini_racer', platforms: :ruby # https://github.com/rails/execjs#readme
+# gem 'momentjs-rails', '>= 2.9.0'
+# gem 'redis', '~> 4.0' # Use Redis adapter to run Action Cable in production
+# gem 'turbolinks', '~> 5' # https://github.com/turbolinks/turbolinks
 
 group :development do
+  # gem 'capistrano-rails' # Use Capistrano for deployment
   gem 'rails-erd', require: false # generates ERD chart for your schema, run `bundle exec erd`
   gem 'rubycritic', require: false # provides feedback on complexity and churns for your codebase
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
