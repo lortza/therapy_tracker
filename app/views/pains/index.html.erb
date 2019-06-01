@@ -2,7 +2,7 @@
 
 <h1>Pains</h1>
 
-<% if @pains.present? %>
+<% if current_user.pains.any? %>
   <%= render partial: 'shared/search_form', locals: { url: pains_path } %>
 
   <% @pains.each do |pain| %>

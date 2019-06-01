@@ -2,7 +2,7 @@
 
 <h1>Exercises</h1>
 
-<% if @exercises.present? %>
+<% if current_user.exercises.any? %>
   <%= render partial: 'shared/search_form', locals: { url: exercises_path } %>
 
   <section id='exercise-list'>

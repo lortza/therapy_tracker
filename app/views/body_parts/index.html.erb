@@ -2,7 +2,7 @@
 
 <h1>Body Parts</h1>
 
-<% if @body_parts.present? %>
+<% if current_user.body_parts.any? %>
   <%= render partial: 'shared/search_form', locals: { url: body_parts_path } %>
 
   <% @body_parts.each do |body_part| %>
@@ -10,7 +10,7 @@
       <h3><%= link_to body_part.name, edit_body_part_path(body_part) %></h3>
     </article>
   <% end %>
-  
+
 <% else %>
   <p>Create a New Body Part</p>
   <%= link_to 'New Body Part', new_body_part_path, class: button_class('primary btn-wide') %>
