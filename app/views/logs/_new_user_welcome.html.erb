@@ -1,0 +1,53 @@
+<div class='white-container'>
+  <h1>Welcome to Therapy Tracker!</h1>
+  <p>Get started tracking your physical therapy progress.</p>
+
+  <% if user_has_all_required_data(current_user) %>
+    <h3>Log Something!</h3>
+    <%= render partial: 'shared/add_log_buttons' %>
+
+    <h4>Pain:</h4> You can create a log for any time you experience a pain. It's important to log pain to help you track your progress.
+    <h4>Exercise:</h4> Each time you exercise, log it! This will help your therapist to know what's working for you.
+    <h4>Physical Therapy Session:</h4> Track notes, progress, exercises, and homework for your physical therapy sessions.
+  <% else %>
+
+    <% if user_needs_data_for_section(current_user, 'body_parts') %>
+    <div class='row'>
+      <div class='col-6'>
+        <h3>What Body Part are you Targeting?</h3>
+        <p>Start with the Target Body Part you're working on.</p>
+      </div>
+
+      <div class='col-6'>
+        <%= link_to 'Create Body Part', new_body_part_path, class: button_class('primary btn-wide') %>
+      </div>
+    </div> <!-- row -->
+    <% end %>
+
+    <% if user_needs_data_for_section(current_user, 'pains') %>
+    <div class='row'>
+      <div class='col-6'>
+        <h3>What Kind of Pain do You Feel?</h3>
+        <p>Stabbing? Dull? Achey? Enter the types of pains you usually experience.</p>
+      </div>
+
+      <div class='col-6'>
+        <%= link_to 'Create a Pain Type', new_pain_path, class: button_class('primary btn-wide') %>
+      </div>
+    </div> <!-- row -->
+    <% end %>
+
+    <% if user_needs_data_for_section(current_user, 'exercises') %>
+    <div class='row'>
+      <div class='col-6'>
+        <h3>Input the Exercise Types You're Doing</h3>
+        <p>Leg lifts? Arm raises? Maybe you're doing "wall angels" like everyone with desk jobs does. Enter them here!</p>
+      </div>
+
+      <div class='col-6'>
+        <%= link_to 'Build Exercise', new_exercise_path, class: button_class('primary btn-wide') %>
+      </div>
+    </div> <!-- row -->
+    <% end %>
+  <% end %><!-- if user_has_all_required_data -->
+</div><!-- white-container -->
