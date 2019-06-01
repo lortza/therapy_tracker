@@ -15,6 +15,15 @@ RSpec.describe BodyPart, type: :model do
     it { should validate_uniqueness_of(:name).case_insensitive.scoped_to(:user_id) }
   end
 
+  context 'attributes' do
+    it 'should have all of its attributes' do
+      expected_attributes = %w[id user_id name created_at updated_at]
+      actual_attributes = build(:body_part).attributes.keys
+
+      expect(expected_attributes).to match_array(actual_attributes)
+    end
+  end
+
   describe 'self.by_name' do
     it 'returns a list of body_parts ordered by name, ascending' do
       body_part1 = create(:body_part, name: 'a')

@@ -32,6 +32,29 @@ RSpec.describe ExerciseLog, type: :model do
     it { should delegate_method(:name).to(:exercise).with_prefix }
   end
 
+  context 'attributes' do
+    it 'should have all of its attributes' do
+      expected_attributes = %w[id
+                               body_part_id
+                               burn_rep
+                               burn_set
+                               datetime_occurred
+                               exercise_id
+                               per_side
+                               progress_note
+                               pt_session_id
+                               rep_length
+                               reps
+                               resistance
+                               sets
+                               user_id
+                               created_at updated_at]
+      actual_attributes = build(:exercise_log).attributes.keys
+
+      expect(expected_attributes).to match_array(actual_attributes)
+    end
+  end
+
   describe 'scopes' do
     describe 'at_home' do
       it 'returns exercise_logs that are not associated with a pt_session' do

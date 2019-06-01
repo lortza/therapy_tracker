@@ -25,6 +25,23 @@ RSpec.describe PtSession, type: :model do
     it { should delegate_method(:name).to(:body_part).with_prefix }
   end
 
+  context 'attributes' do
+    it 'should have all of its attributes' do
+      expected_attributes = %w[id
+                               body_part_id
+                               datetime_occurred
+                               duration
+                               exercise_notes
+                               homework
+                               questions
+                               user_id
+                               created_at updated_at]
+      actual_attributes = build(:pt_session).attributes.keys
+
+      expect(expected_attributes).to match_array(actual_attributes)
+    end
+  end
+
   describe 'self.for_past_n_days' do
     it 'returns logs that occurred between today and the past n days' do
       pt_session = create(:pt_session, datetime_occurred: 2.days.ago)
