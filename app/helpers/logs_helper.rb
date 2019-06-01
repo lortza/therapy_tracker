@@ -12,10 +12,18 @@ module LogsHelper
 
   def last_homework
     return false if current_user.pt_sessions.last.nil?
-    
+
     {
       notes: current_user.pt_sessions.last&.homework,
       exercises: current_user.pt_sessions.last&.homework_exercises
     }
+  end
+
+  def user_has_all_required_data(user)
+    user.body_parts.any? && user.pains.any? && user.exercises.any?
+  end
+
+  def user_needs_data_for_section(user, attr)
+    user.send(attr).empty?
   end
 end
