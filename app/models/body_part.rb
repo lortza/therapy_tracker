@@ -13,4 +13,8 @@ class BodyPart < ApplicationRecord
             uniqueness: {
               case_sensitive: false,
               scope: :user_id }
+
+  def self.active
+    where(archived: false)
+  end
 end

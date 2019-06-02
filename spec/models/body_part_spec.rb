@@ -28,7 +28,18 @@ RSpec.describe BodyPart, type: :model do
     end
   end
 
+  describe 'self.active' do
+    it 'returns a list of all non-archived body parts' do
+      active_body_part = create(:body_part, archived: false)
+      archived_body_part = create(:body_part, archived: true)
 
+      expect(BodyPart.active).to include(active_body_part)
+      expect(BodyPart.active).to_not include(archived_body_part)
+    end
+
+    it 'returns an empty array if there are no active body parts' do
+      create(:body_part, archived: true)
+      expect(BodyPart.active).to eq([])
     end
   end
 
