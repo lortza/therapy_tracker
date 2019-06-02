@@ -15,6 +15,34 @@ RSpec.describe BodyPart, type: :model do
     it { should validate_uniqueness_of(:name).case_insensitive.scoped_to(:user_id) }
   end
 
+  context 'attributes' do
+    it 'should have all of its attributes' do
+      expected_attributes = %w[id
+                               archived
+                               name
+                               user_id
+                               created_at updated_at]
+      actual_attributes = build(:body_part).attributes.keys
+
+      expect(actual_attributes).to match_array(expected_attributes)
+    end
+  end
+
+  describe 'self.active' do
+    it 'returns a list of all non-archived body parts' do
+      active_body_part = create(:body_part, archived: false)
+      archived_body_part = create(:body_part, archived: true)
+
+      expect(BodyPart.active).to include(active_body_part)
+      expect(BodyPart.active).to_not include(archived_body_part)
+    end
+
+    it 'returns an empty array if there are no active body parts' do
+      create(:body_part, archived: true)
+      expect(BodyPart.active).to eq([])
+    end
+  end
+
   describe 'self.by_name' do
     it 'returns a list of body_parts ordered by name, ascending' do
       body_part1 = create(:body_part, name: 'a')

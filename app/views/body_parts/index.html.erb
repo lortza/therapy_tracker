@@ -7,7 +7,12 @@
 
   <% @body_parts.each do |body_part| %>
     <article class='index-list-item'>
-      <h3><%= link_to body_part.name, edit_body_part_path(body_part) %></h3>
+      <h3>
+        <%= link_to body_part.name, edit_body_part_path(body_part) %>
+        <% if body_part.archived? %>
+          <span class='text-subtle'>(archived)</span>
+        <% end %>
+      </h3>
     </article>
   <% end %>
 

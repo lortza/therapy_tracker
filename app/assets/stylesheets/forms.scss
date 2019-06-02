@@ -1,0 +1,20 @@
+@import 'variables';
+
+.field {
+  label {
+    font-weight: bold;
+    text-transform: capitalize;
+    margin-top: 1rem;
+  }
+}
+
+label.required:after {
+  content: ' *';
+  font-size: 0.85rem;
+  color: $pain_color;
+}
+
+.field_with_errors .form-control {
+  border: 1px solid $error;
+  border-radius: 0.25rem;
+}

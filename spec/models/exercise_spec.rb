@@ -21,6 +21,24 @@ RSpec.describe Exercise, type: :model do
     it { should validate_presence_of(:default_rep_length) }
   end
 
+  context 'attributes' do
+    it 'should have all of its attributes' do
+      expected_attributes = %w[id
+                               default_per_side
+                               default_rep_length
+                               default_reps
+                               default_resistance
+                               default_sets
+                               description
+                               name
+                               user_id
+                               created_at updated_at]
+      actual_attributes = build(:exercise).attributes.keys
+
+      expect(actual_attributes).to match_array(expected_attributes)
+    end
+  end
+
   describe 'self.has_logs' do
     it 'returns all exercises that have logs' do
       exercise = create(:exercise, :with_3_exercise_logs)
