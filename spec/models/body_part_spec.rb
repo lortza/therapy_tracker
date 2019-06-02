@@ -17,10 +17,18 @@ RSpec.describe BodyPart, type: :model do
 
   context 'attributes' do
     it 'should have all of its attributes' do
-      expected_attributes = %w[id user_id name created_at updated_at]
+      expected_attributes = %w[id
+                               archived
+                               name
+                               user_id
+                               created_at updated_at]
       actual_attributes = build(:body_part).attributes.keys
 
-      expect(expected_attributes).to match_array(actual_attributes)
+      expect(actual_attributes).to match_array(expected_attributes)
+    end
+  end
+
+
     end
   end
 

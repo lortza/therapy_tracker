@@ -21,7 +21,7 @@ RSpec.describe PtHomeworkExercise, type: :model do
                                created_at updated_at]
       actual_attributes = build(:pt_homework_exercise).attributes.keys
 
-      expect(expected_attributes).to match_array(actual_attributes)
+      expect(actual_attributes).to match_array(expected_attributes)
     end
   end
 end

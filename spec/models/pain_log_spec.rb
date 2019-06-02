@@ -38,7 +38,7 @@ RSpec.describe PainLog, type: :model do
                                created_at updated_at]
       actual_attributes = build(:pain_log).attributes.keys
 
-      expect(expected_attributes).to match_array(actual_attributes)
+      expect(actual_attributes).to match_array(expected_attributes)
     end
   end
 
