@@ -3,26 +3,26 @@
 
   <div class="field">
     <%= form.label :name, class: 'required' %>
-    <%= form.text_field :name, class: 'form-control' %>
+    <%= form.text_field :name, required: true, class: 'form-control' %>
   </div>
 
   <div class="form-row">
     <div class="col">
       <div class="field">
         <%= form.label :default_sets, class: 'required' %>
-        <%= form.number_field :default_sets, class: 'form-control' %>
+        <%= form.number_field :default_sets, required: true, class: 'form-control' %>
       </div>
     </div>
     <div class="col">
       <div class="field">
         <%= form.label :default_reps, class: 'required' %>
-        <%= form.number_field :default_reps, class: 'form-control' %>
+        <%= form.number_field :default_reps, required: true, class: 'form-control' %>
       </div>
     </div>
     <div class="col">
       <div class="field">
         <%= form.label :default_rep_length, class: 'required' %>
-        <%= form.number_field :default_rep_length, placeholder: 'seconds', class: 'form-control' %>
+        <%= form.number_field :default_rep_length, placeholder: 'seconds', required: true, class: 'form-control' %>
       </div>
     </div>
     <div class="col">
@@ -40,7 +40,7 @@
 
   <div class="field">
     <%= form.label :description, class: 'required' %>
-    <%= form.text_area :description, class: 'form-control' %>
+    <%= form.text_area :description, required: true, class: 'form-control' %>
   </div>
 
   <div class="actions mt-3 mb-3">
