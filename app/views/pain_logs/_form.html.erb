@@ -4,8 +4,8 @@
   <div class='field'>
     <%= form.label 'Target Body Part', class: 'required' %>
     <%= form.collection_select :body_part_id,
-    current_user.body_parts, :id, :name,
     { include_blank: false },
+    current_user.body_parts.active, :id, :name,
     class: 'form-control' %>
   </div>
 
