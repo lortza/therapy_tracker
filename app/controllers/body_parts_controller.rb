@@ -48,7 +48,7 @@ class BodyPartsController < ApplicationController
   end
 
   def body_part_params
-    params.require(:body_part).permit(:name)
+    params.require(:body_part).permit(:archived, :name)
   end
 
   def authorize_body_part

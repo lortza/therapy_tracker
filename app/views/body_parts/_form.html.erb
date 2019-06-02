@@ -16,6 +16,12 @@
     <%= form.text_field :name, class: 'form-control' %>
   </div>
 
+  <div class='field'>
+    <%= form.label 'Archive this Body Part' %>
+    <p>Checking this box will hide this body part from dropdown menus.</p>
+    <%= form.check_box :archived, class: 'form-control' %>
+  </div>
+
   <div class='actions mt-3 mb-3'>
     <%= form.submit class: button_class('success') %>
     <%= link_to 'Cancel', body_parts_path, class: button_class('primary pull-right') %>
