@@ -4,6 +4,6 @@ FactoryBot.define do
   factory :body_part do
     user
     sequence(:name) { |n| "body_part#{n}" }
-    # active { true }
+    archived { false }
   end
 end
