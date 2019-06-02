@@ -6,7 +6,7 @@
   float: right;
   top: 25px;
   right: 14px;
-  color: #CCC;
+  color: $medium_gray;
 }
 
 .clear_search {
@@ -14,16 +14,6 @@
   margin-bottom: 2em;
   text-align: center;
   a {
-    color: #CCC;
+    color: $medium_gray;
   }
-}
-
-label.required:after {
-  content: ' *';
-  font-size: 0.85rem;
-}
-
-.field_with_errors .form-control {
-  border: 1px solid $error;
-  border-radius: 0.25rem;
 }

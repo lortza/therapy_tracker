@@ -41,6 +41,10 @@ body { background-color: $dk_blue; }
   vertical-align: middle;
 }
 
+.text-subtle {
+  font-style: italic;
+  color: $medium_gray;
+}
 
 /* Index Pages */
 article.index-list-item {
