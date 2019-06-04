@@ -3,18 +3,18 @@
 .field {
   label {
     font-weight: bold;
-    text-transform: capitalize;
     margin-top: 1rem;
+    text-transform: capitalize;
   }
 }
 
 label.required:after {
+  color: $pain-color;
   content: ' *';
-  font-size: 0.85rem;
-  color: $pain_color;
+  font-size: .85rem;
 }
 
 .field_with_errors .form-control {
   border: 1px solid $error;
-  border-radius: 0.25rem;
+  border-radius: .25rem;
 }
