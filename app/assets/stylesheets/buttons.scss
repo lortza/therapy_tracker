@@ -12,6 +12,7 @@
   padding-top: .6rem;
   text-align: center;
   vertical-align: middle;
+
   a {
     color: $white;
     text-decoration: none;
@@ -21,19 +22,19 @@
 .pain-button {
   background-color: $pain-color;
   border: 1px solid darken($pain-color, 10%);
-  &:hover { background-color: darken($pain-color, 10%) }
+  &:hover { background-color: darken($pain-color, 10%); }
 }
 
 .exercise-button {
   background-color: $exercise-color;
   border: 1px solid darken($exercise-color, 10%);
-  &:hover { background-color: darken($exercise-color, 10%) }
+  &:hover { background-color: darken($exercise-color, 10%); }
 }
 
 .therapy-button {
   background-color: $therapy-color;
   border: 1px solid darken($therapy-color, 10%);
-  &:hover { background-color: darken($therapy-color, 10%) }
+  &:hover { background-color: darken($therapy-color, 10%); }
 }
 
 .btn-wide {

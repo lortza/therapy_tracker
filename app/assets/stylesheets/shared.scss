@@ -47,15 +47,17 @@ body { background-color: $dk-blue; }
 }
 
 // Index Pages
-article.index-list-item {
+.index-list-item {
   border-top: 1px solid $light-gray;
   color: $default-text;
   padding: .6rem;
+
   h3 {
     font-size: 1.25rem;
     margin-bottom: 0;
     a { color: $default-text; }
     i { float: right; }
   }
-  p.exercise-description { margin-bottom: 0; }
+
+  .exercise-description { margin-bottom: 0; }
 }
