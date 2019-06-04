@@ -11,6 +11,7 @@ before_script:
   - sh -e /etc/init.d/xvfb start
 script:
   - bundle exec rubocop
+  - bundle exec scss-lint app/assets/stylesheets/**.scss
   - bundle exec rake db:create
   - bundle exec rake db:migrate
   - bundle exec rake db:seed
