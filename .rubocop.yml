@@ -7,9 +7,6 @@ Rails:
 AllCops:
   DefaultFormatter: progress
   Exclude:
-    - 'app/channels/**/*'
-    - 'app/helpers/*'
-    - 'app/models/*'
     - 'bin/**'
     - 'config/**/*'
     - 'db/**/*'
@@ -33,7 +30,7 @@ Metrics/LineLength:
 Style/BlockDelimiters:
   Exclude:
     - !ruby/regexp /.*_spec\.rb$/
-    
+
 Style/ClassAndModuleChildren:
   EnforcedStyle: compact
 Style/EmptyMethod:
