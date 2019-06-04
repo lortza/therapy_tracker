@@ -10,6 +10,6 @@ class ReportsController < ApplicationController
       body_part_id: params[:body_part_id]
     }
 
-    @report = Report.new(filter_params)
+    @report ||= Report.build_report(filter_params)
   end
 end
