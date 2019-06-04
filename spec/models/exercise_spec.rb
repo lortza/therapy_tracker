@@ -39,15 +39,15 @@ RSpec.describe Exercise, type: :model do
     end
   end
 
-  describe 'self.has_logs' do
+  describe 'self.logs?' do
     it 'returns all exercises that have logs' do
       exercise = create(:exercise, :with_3_exercise_logs)
-      expect(Exercise.has_logs).to include(exercise)
+      expect(Exercise.logs?).to include(exercise)
     end
 
     it 'does not include exercises that do not have logs' do
       exercise = create(:exercise)
-      expect(Exercise.has_logs).not_to include(exercise)
+      expect(Exercise.logs?).not_to include(exercise)
     end
   end
 

@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 class Report
   attr_reader :exercise_logs, :pain_logs, :pt_sessions, :pains, :exercises, :body_parts
+
   def initialize(args)
     @filter_params = args
     @exercise_logs ||= query_logs('exercise_logs')
@@ -11,6 +14,7 @@ class Report
   end
 
   private
+
   def query_logs(log_type)
     logs = log_type.classify
                    .constantize
