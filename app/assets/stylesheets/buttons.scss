@@ -15,6 +15,11 @@
   text-decoration: none;
 }
 
+.add-log-button:hover {
+  color: white;
+  text-decoration: none;
+}
+
 .pain-button {
   background-color: $pain_color;
   border: 1px solid darken($pain_color, 10%);
