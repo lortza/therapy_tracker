@@ -4,17 +4,15 @@
   margin: 1rem 0rem;
 }
 .add-log-button {
+  display: block;
   margin: 0px;
   height: 80px;
   min-width: 75px;
   border-radius: 15px;
   text-align: center;
   padding-top: 0.6rem;
-  vertical-align: middle;
-  a {
-    color: white;
-    text-decoration: none;
-  }
+  color: white;
+  text-decoration: none;
 }
 
 .pain-button {
