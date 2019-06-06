@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class ReportsController < ApplicationController
-  # layout 'no_white_container'
-
   def index
     filter_params = {
       user: current_user,
