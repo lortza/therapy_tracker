@@ -1,21 +1,21 @@
 @import 'variables';
 
-body { background-color: $dk_blue; }
+body { background-color: $dk-blue; }
 
 .fa-nav {
   border-radius: 50%;
   font-size: 20px;
   height: 40px;
-  text-align:center;
+  text-align: center;
   width: 40px;
 }
 
 .fa-notes-medical {
-  background-color: $brand_main;
-  border: 1px solid $brand_main;
-  color: white;
-  margin-right: 0.5rem;
-  padding: 0.5rem;
+  background-color: $brand-main;
+  border: 1px solid $brand-main;
+  color: $white;
+  margin-right: .5rem;
+  padding: .5rem;
 }
 
 .pull-right {
@@ -27,14 +27,14 @@ body { background-color: $dk_blue; }
 }
 
 .white-container {
-  background-color: white;
+  background-color: $white;
   border-radius: 10px;
   margin-top: 20px;
   padding: 1rem;
 }
 
 .modal-dismiss {
-  font-size: 0.75rem;
+  font-size: .75rem;
   font-weight: normal;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -42,20 +42,22 @@ body { background-color: $dk_blue; }
 }
 
 .text-subtle {
+  color: $medium-gray;
   font-style: italic;
-  color: $medium_gray;
 }
 
-/* Index Pages */
-article.index-list-item {
-  border-top: 1px solid $light_gray;
-  color: $default_text;
-  padding: 0.6rem;
+// Index Pages
+.index-list-item {
+  border-top: 1px solid $light-gray;
+  color: $default-text;
+  padding: .6rem;
+
   h3 {
     font-size: 1.25rem;
-    margin-bottom: 0px;
-    a { color: $default_text; }
+    margin-bottom: 0;
+    a { color: $default-text; }
     i { float: right; }
   }
-  p.exercise-description { margin-bottom: 0px; }
+
+  .exercise-description { margin-bottom: 0; }
 }

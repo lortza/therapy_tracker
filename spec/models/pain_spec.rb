@@ -25,15 +25,15 @@ RSpec.describe Pain, type: :model do
     end
   end
 
-  describe 'self.has_logs' do
+  describe 'self.logs?' do
     it 'returns all pains that have logs' do
       pain = create(:pain, :with_3_pain_logs)
-      expect(Pain.has_logs).to include(pain)
+      expect(Pain.logs?).to include(pain)
     end
 
     it 'does not include pains that do not have logs' do
       pain = create(:pain)
-      expect(Pain.has_logs).not_to include(pain)
+      expect(Pain.logs?).not_to include(pain)
     end
   end
 
