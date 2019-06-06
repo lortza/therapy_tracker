@@ -1,22 +1,22 @@
 @import 'variables';
 
-.add-log-buttons-container {
-  margin: 1rem 0;
-}
+.add-log-buttons-container { margin: 1rem 0; }
 
 .add-log-button {
   border-radius: 15px;
+  color: $white;
+  display: block;
   height: 80px;
   margin: 0;
   min-width: 75px;
   padding-top: .6rem;
   text-align: center;
-  vertical-align: middle;
+  text-decoration: none;
+}
 
-  a {
-    color: $white;
-    text-decoration: none;
-  }
+.add-log-button:hover {
+  color: $white;
+  text-decoration: none;
 }
 
 .pain-button {
