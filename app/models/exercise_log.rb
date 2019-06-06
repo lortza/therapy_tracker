@@ -44,10 +44,12 @@ class ExerciseLog < ApplicationRecord
     def minutes_spent_by_day
       output = {}
       all.find_each do |log|
-        if output[log.datetime_occurred.to_date].nil?
-          output[log.datetime_occurred.to_date] = log.minutes_spent.round(2)
+        occurred = log.datetime_occurred.to_date
+
+        if output[occurred].nil?
+          output[occurred] = log.minutes_spent.round(2)
         else
-          output[log.datetime_occurred.to_date] += log.minutes_spent.round(2)
+          output[occurred] += log.minutes_spent.round(2)
         end
       end
       output.sort.to_h
