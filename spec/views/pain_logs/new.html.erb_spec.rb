@@ -4,22 +4,27 @@ require 'rails_helper'
 
 RSpec.describe 'pain_logs/new', type: :view do
   before(:each) do
-    assign(:pain_log, PainLog.new(
-                        user: nil,
-                        body_part_id: 1,
-                        pain_level: 1,
-                        pain_description: 'MyText',
-                        trigger: 'MyText'
-                      ))
+    @user = create(:user)
+    @body_part = create(:body_part)
+    @pain = create(:pain)
+
+    @pain_log = assign(:pain_log, PainLog.new(
+                                    user_id: @user.id,
+                                    body_part_id: @body_part.id,
+                                    pain_id: @pain.id,
+                                    pain_level: 1,
+                                    pain_description: 'MyText',
+                                    trigger: 'MyText',
+                                    datetime_occurred: Time.now
+                                  ))
   end
 
   it 'renders new pain_log form' do
+    allow(view).to receive(:current_user).and_return(@user)
     render
 
     assert_select 'form[action=?][method=?]', pain_logs_path, 'post' do
-      assert_select 'input[name=?]', 'pain_log[user_id]'
-
-      assert_select 'input[name=?]', 'pain_log[body_part_id]'
+      assert_select 'select[name=?]', 'pain_log[body_part_id]'
 
       assert_select 'input[name=?]', 'pain_log[pain_level]'
 

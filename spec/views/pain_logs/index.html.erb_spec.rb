@@ -4,30 +4,17 @@ require 'rails_helper'
 
 RSpec.describe 'pain_logs/index', type: :view do
   before(:each) do
-    assign(:pain_logs, [
-             PainLog.create!(
-               user: nil,
-               body_part_id: 1,
-               pain_level: 2,
-               pain_description: 'MyText',
-               trigger: 'MyText'
-             ),
-             PainLog.create!(
-               user: nil,
-               body_part_id: 1,
-               pain_level: 2,
-               pain_description: 'MyText',
-               trigger: 'MyText'
-             ),
-           ])
+    @user = create(:user)
+    @body_part = create(:body_part)
+    @pain = create(:pain)
+
+    create(:pain_log, user_id: @user.id, body_part_id: @body_part.id, pain_id: @pain.id)
+    create(:pain_log, user_id: @user.id, body_part_id: @body_part.id, pain_id: @pain.id)
+    @logs = @user.pain_logs.paginate(page: params[:page], per_page: 25)
   end
 
   it 'renders a list of pain_logs' do
     render
-    assert_select 'tr>td', text: nil.to_s, count: 2
-    assert_select 'tr>td', text: 'Target Body Part'.to_s, count: 2
-    assert_select 'tr>td', text: 2.to_s, count: 2
-    assert_select 'tr>td', text: 'MyText'.to_s, count: 2
-    assert_select 'tr>td', text: 'MyText'.to_s, count: 2
+    assert_select 'div.card-body>p', count: 2
   end
 end
