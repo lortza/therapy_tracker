@@ -15,7 +15,7 @@ RSpec.describe 'pain_logs/edit', type: :view do
                                     pain_level: 1,
                                     pain_description: 'MyText',
                                     trigger: 'MyText',
-                                    datetime_occurred: Time.now
+                                    datetime_occurred: Time.now.in_time_zone
                                   ))
   end
 
