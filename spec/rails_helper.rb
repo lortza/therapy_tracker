@@ -60,6 +60,8 @@ RSpec.configure do |config|
   end
 
   config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Devise::Test::IntegrationHelpers, type: :request
+
   config.extend ControllerMacros, type: :controller
 
   # RSpec Rails can automatically mix in different behaviours to your tests

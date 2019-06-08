@@ -1,33 +1,33 @@
 @import 'variables';
 
 .btn-home {
-  width: 100%;
   margin-bottom: 1rem;
+  width: 100%;
 }
 
-.card-body { padding: 0.6rem; }
+.card-body { padding: .6rem; }
 
 .card--log-entry {
   margin-bottom: 1rem;
-  a { color: $default_text; }
+  a { color: $default-text; }
   &:hover {
-    background-color: $light_gray;
+    background-color: $light-gray;
     a { text-decoration: none; }
   }
 }
 
 .log-icon {
   float: right;
-  font-size: 0.8rem;
+  font-size: .8rem;
 }
 
 .card-title {
   font-size: 1rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: .5rem;
 }
 
 .card-text {
-  font-size: 0.9rem;
+  font-size: .9rem;
   line-height: 1rem;
 }
 
@@ -36,10 +36,10 @@
   .card-title { color: $color; }
 }
 
-.log-type-pain { @include log-type-color($pain_color); }
-.log-type-exercise { @include log-type-color($exercise_color); }
-.log-type-therapy { @include log-type-color($therapy_color); }
+.log-type-pain { @include log-type-color($pain-color); }
+.log-type-exercise { @include log-type-color($exercise-color); }
+.log-type-therapy { @include log-type-color($therapy-color); }
 
-.log-border-exercise { border: 1px solid $exercise_color; }
-.log-border-pain { border: 1px solid $pain_color; }
-.log-border-therapy { border: 1px solid $therapy_color; }
+.log-border-exercise { border: 1px solid $exercise-color; }
+.log-border-pain { border: 1px solid $pain-color; }
+.log-border-therapy { border: 1px solid $therapy-color; }

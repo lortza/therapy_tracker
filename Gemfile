@@ -16,6 +16,7 @@ gem 'pg', '>= 0.18', '< 2.0' # Use postgresql as the database for Active Record
 gem 'puma', '~> 3.11' # Use Puma as the app server
 gem 'rails', '~> 5.2.2' # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'sass-rails', '~> 5.0' # Use SCSS for stylesheets
+gem 'scss_lint', require: false
 gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
 gem 'will_paginate', '~> 3.1.0' # pagination. Styles: http://mislav.github.io/will_paginate/
 # gem 'bcrypt', '~> 3.1.7' # Use ActiveModel has_secure_password
@@ -64,6 +65,7 @@ end
 
 group :test do
   gem 'database_cleaner'
+  gem 'rails-controller-testing'
   gem 'shoulda-matchers'
 end
 

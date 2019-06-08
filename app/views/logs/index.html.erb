@@ -1,12 +1,16 @@
-<%= render partial: 'shared/add_log_buttons' %>
+<% if @logs.present? %>
+  <%= render partial: 'shared/add_log_buttons' %>
 
-<% if last_homework %>
-  <%= render partial: 'pt_sessions/homework', locals: { homework: last_homework } %>
+  <% if last_homework %>
+    <%= render partial: 'pt_sessions/homework', locals: { homework: last_homework } %>
+  <% end %>
+
+  <% @logs.each do |log| %>
+    <%= render log %>
+  <% end %>
+  <br>
+  <%= will_paginate @logs, :page_links => false %>
+
+<% else %>
+  <%= render 'new_user_welcome' %>
 <% end %>
-
-<% @logs.each do |log| %>
-  <%= render log %>
-<% end %>
-<br>
-
-<%= will_paginate @logs, :page_links => false %>

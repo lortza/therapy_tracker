@@ -10,18 +10,30 @@ RSpec.describe Pain, type: :model do
 
   context 'validations' do
     it { should validate_presence_of(:name) }
-    it { should validate_uniqueness_of(:name).case_insensitive }
+    it { should validate_uniqueness_of(:name).case_insensitive.scoped_to(:user_id) }
   end
 
-  describe 'self.has_logs' do
+  context 'attributes' do
+    it 'should have all of its attributes' do
+      expected_attributes = %w[id
+                               name
+                               user_id
+                               created_at updated_at]
+      actual_attributes = build(:pain).attributes.keys
+
+      expect(actual_attributes).to match_array(expected_attributes)
+    end
+  end
+
+  describe 'self.logs?' do
     it 'returns all pains that have logs' do
       pain = create(:pain, :with_3_pain_logs)
-      expect(Pain.has_logs).to include(pain)
+      expect(Pain.logs?).to include(pain)
     end
 
     it 'does not include pains that do not have logs' do
       pain = create(:pain)
-      expect(Pain.has_logs).not_to include(pain)
+      expect(Pain.logs?).not_to include(pain)
     end
   end
 

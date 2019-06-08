@@ -2,10 +2,15 @@
 
 <h1>Pains</h1>
 
-<%= render partial: 'shared/search_form', locals: { url: pains_path } %>
+<% if current_user.pains.any? %>
+  <%= render partial: 'shared/search_form', locals: { url: pains_path } %>
 
-<% @pains.each do |pain| %>
-  <article class='index-list-item'>
-    <h3><%= link_to pain.name, edit_pain_path(pain) %></h3>
-  </article>
+  <% @pains.each do |pain| %>
+    <article class='index-list-item'>
+      <h3><%= link_to pain.name, edit_pain_path(pain) %></h3>
+    </article>
+  <% end %>
+<% else %>
+  <p>Create a New Pain</p>
+  <%= link_to 'New Pain', new_pain_path, class: button_class('primary btn-wide') %>
 <% end %>

@@ -16,9 +16,13 @@ module ExerciseLogsHelper
 
   def new_exercise_log_button
     if @pt_session
-      link_to '<i class="fal fa-hospital-user"></i> Log Another PT Exercise'.html_safe, new_pt_session_exercise_log_path(@pt_session), class: 'btn btn-outline btn-wide btn-info'
+      link_to '<i class="fal fa-hospital-user"></i> Log Another PT Exercise'.html_safe,
+              new_pt_session_exercise_log_path(@pt_session),
+              class: 'btn btn-outline btn-wide btn-info'
     else
-      link_to '<i class="fal fa-dumbbell"></i> Log Another Exercise'.html_safe, new_exercise_log_path, class: 'btn btn-outline btn-wide btn-success'
+      link_to '<i class="fal fa-dumbbell"></i> Log Another Exercise'.html_safe,
+              new_exercise_log_path,
+              class: 'btn btn-outline btn-wide btn-success'
     end
   end
 end

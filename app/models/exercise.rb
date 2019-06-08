@@ -5,7 +5,7 @@ class Exercise < ApplicationRecord
 
   belongs_to :user
   has_many :exercise_logs, dependent: :destroy
-  has_many :logs, foreign_key: 'exercise_id', class_name: 'ExerciseLog', dependent: :destroy
+  has_many :logs, foreign_key: 'exercise_id', class_name: 'ExerciseLog', dependent: :destroy, inverse_of: :exercise
 
   has_many :pt_homework_exercises, dependent: :destroy # the join table
   has_many :pt_homework_sessions, through: :pt_homework_exercises, source: :pt_session
@@ -18,17 +18,22 @@ class Exercise < ApplicationRecord
 
   validates :name,
             presence: true,
-            uniqueness: true
+            uniqueness: {
+              case_sensitive: false,
+              scope: :user_id
+            }
 
   class << self
-    def has_logs
+    def logs?
       joins(:exercise_logs).group('exercises.id').order(:id)
     end
 
     def log_count_by_name
-      has_logs.select do |exercise|
+      qualifying_logs = logs?.select do |exercise|
         exercise.logs.count > 2
-      end.map { |e| [e.name, e.logs.count] }
+      end
+
+      qualifying_logs.map { |e| [e.name, e.logs.count] }
     end
   end
 end

@@ -1,38 +1,40 @@
 @import 'variables';
 
-.add-log-buttons-container {
-  margin: 1rem 0rem;
-}
+.add-log-buttons-container { margin: 1rem 0; }
+
 .add-log-button {
-  margin: 0px;
-  height: 80px;
-  min-width: 75px;
   border-radius: 15px;
+  color: $white;
+  display: block;
+  height: 80px;
+  margin: 0;
+  min-width: 75px;
+  padding-top: .6rem;
   text-align: center;
-  padding-top: 0.6rem;
-  vertical-align: middle;
-  a {
-    color: white;
-    text-decoration: none;
-  }
+  text-decoration: none;
+}
+
+.add-log-button:hover {
+  color: $white;
+  text-decoration: none;
 }
 
 .pain-button {
-  background-color: $pain_color;
-  border: 1px solid darken($pain_color, 10%);
-  &:hover { background-color: darken($pain_color, 10%) }
+  background-color: $pain-color;
+  border: 1px solid darken($pain-color, 10%);
+  &:hover { background-color: darken($pain-color, 10%); }
 }
 
 .exercise-button {
-  background-color: $exercise_color;
-  border: 1px solid darken($exercise_color, 10%);
-  &:hover { background-color: darken($exercise_color, 10%) }
+  background-color: $exercise-color;
+  border: 1px solid darken($exercise-color, 10%);
+  &:hover { background-color: darken($exercise-color, 10%); }
 }
 
 .therapy-button {
-  background-color: $therapy_color;
-  border: 1px solid darken($therapy_color, 10%);
-  &:hover { background-color: darken($therapy_color, 10%) }
+  background-color: $therapy-color;
+  border: 1px solid darken($therapy-color, 10%);
+  &:hover { background-color: darken($therapy-color, 10%); }
 }
 
 .btn-wide {
@@ -41,8 +43,7 @@
   width: 250px;
 }
 
-/* MEDIA QUERIES */
-
+// MEDIA QUERIES
 @media (max-width: 576px) {
   .btn-wide { width: 100%; }
 }

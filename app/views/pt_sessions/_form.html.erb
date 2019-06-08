@@ -4,19 +4,19 @@
   <div class='field'>
     <%= form.label 'Target Body Part', class: 'required' %>
     <%= form.collection_select :body_part_id,
-    current_user.body_parts, :id, :name,
-    { include_blank: false },
+    current_user.body_parts.active, :id, :name,
+    { include_blank: false, required: true },
     class: 'form-control' %>
   </div>
 
   <div class='field'>
     <%= form.label 'When', class: 'required' %><br>
-    <%= form.datetime_select :datetime_occurred, ampm: true, minute_step: 15, value: Date.today, class: 'form-control' %>
+    <%= form.datetime_select :datetime_occurred, ampm: true, minute_step: 15, value: Date.today, required: true, class: 'form-control' %>
   </div>
 
   <div class='field'>
     <%= form.label :duration, class: 'required' %>
-    <%= form.number_field :duration, placeholder: 'minutes', class: 'form-control' %>
+    <%= form.number_field :duration, placeholder: 'minutes', required: true, class: 'form-control' %>
   </div>
 
   <div class='field'>
@@ -26,18 +26,19 @@
 
   <div class='field'>
     <%= form.label 'Session Notes', class: 'required' %>
-    <%= form.text_area :exercise_notes, class: 'form-control textarea-large' %>
+    <%= form.text_area :exercise_notes, required: true, class: 'form-control textarea-large' %>
   </div>
 
   <div class='field'>
     <%= form.label 'Homework Notes', class: 'required' %>
-    <%= form.text_area :homework, class: 'form-control textarea-large' %>
+    <%= form.text_area :homework, required: true, class: 'form-control textarea-large' %>
   </div>
 
   <div class='form-group row'>
     <div class='col-sm-12'>
-    <%= form.label 'Homework Exercises' %>
-
+      <div class='field'>
+        <%= form.label 'Homework Exercises' %>
+      </div>
     <%= form.collection_check_boxes :homework_exercise_ids, current_user.exercises.by_name, :id, :name do |exercise| %>
       <div class='form-check'>
         <%= exercise.check_box class: 'form-check-input' %>

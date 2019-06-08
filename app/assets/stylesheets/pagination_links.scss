@@ -1,29 +1,34 @@
 @import 'variables';
 
-/* Pagination Links */
-/* modified digg_pagination from http://mislav.github.io/will_paginate/ */
+// Pagination Links
+// modified digg_pagination from http://mislav.github.io/will_paginate/
 .pagination {
   cursor: default;
   display: flex;
-  justify-content: space-between;
   height: 100%;
-  margin-top: -1rem;
+  justify-content: space-between;
   margin-bottom: 1.5rem;
-  a,  span,  em {
-    padding: 0.2em 0.5em;
-    display: block;
+  margin-top: -1rem;
+
+  a,
+  span,
+  em {
     border-radius: 5px;
+    display: block;
+    padding: .2em .5em;
   }
-  .disabled {
-    visibility: hidden;
-  }
+
+  .disabled { visibility: hidden; }
+
   a {
+    border: 1px solid $brand-main;
+    color: $brand-main;
     text-decoration: none;
-    color: $brand_main;
-    border: 1px solid $brand_main;
   }
-  a:hover,  a:focus {
-    color: darken($brand_main, 5%);
-    border-color: darken($brand_main, 5%);
+
+  a:hover,
+  a:focus {
+    border-color: darken($brand-main, 5%);
+    color: darken($brand-main, 5%);
   }
 }

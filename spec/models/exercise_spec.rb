@@ -12,7 +12,7 @@ RSpec.describe Exercise, type: :model do
   end
 
   context 'validations' do
-    it { should validate_uniqueness_of(:name) }
+    it { should validate_uniqueness_of(:name).case_insensitive.scoped_to(:user_id) }
 
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:description) }
@@ -21,15 +21,33 @@ RSpec.describe Exercise, type: :model do
     it { should validate_presence_of(:default_rep_length) }
   end
 
-  describe 'self.has_logs' do
+  context 'attributes' do
+    it 'should have all of its attributes' do
+      expected_attributes = %w[id
+                               default_per_side
+                               default_rep_length
+                               default_reps
+                               default_resistance
+                               default_sets
+                               description
+                               name
+                               user_id
+                               created_at updated_at]
+      actual_attributes = build(:exercise).attributes.keys
+
+      expect(actual_attributes).to match_array(expected_attributes)
+    end
+  end
+
+  describe 'self.logs?' do
     it 'returns all exercises that have logs' do
       exercise = create(:exercise, :with_3_exercise_logs)
-      expect(Exercise.has_logs).to include(exercise)
+      expect(Exercise.logs?).to include(exercise)
     end
 
     it 'does not include exercises that do not have logs' do
       exercise = create(:exercise)
-      expect(Exercise.has_logs).not_to include(exercise)
+      expect(Exercise.logs?).not_to include(exercise)
     end
   end
 

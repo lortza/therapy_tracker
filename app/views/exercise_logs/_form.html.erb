@@ -4,14 +4,14 @@
   <div class='field'>
     <%= form.label 'Target Body Part', class: 'required' %>
     <%= form.collection_select :body_part_id,
-    current_user.body_parts, :id, :name,
-    { include_blank: false },
+    current_user.body_parts.active, :id, :name,
+    { include_blank: false, required: true },
     class: 'form-control' %>
   </div>
 
   <div class='field'>
     <%= form.label 'When', class: 'required' %><br>
-    <%= form.datetime_select :datetime_occurred, ampm: true, minute_step: 15, value: Date.today, class: 'form-control' %>
+    <%= form.datetime_select :datetime_occurred, ampm: true, minute_step: 15, value: Date.today, required: true, class: 'form-control' %>
   </div>
 
   <div class='field'>
@@ -19,6 +19,7 @@
     <%= form.collection_select :exercise_id,
     current_user.exercises.by_name, :id, :name,
     { prompt: '--Select--' },
+    required: true,
     class: 'form-control' %>
   </div>
 
@@ -26,21 +27,21 @@
     <div class='col'>
       <div class='field'>
         <%= form.label :sets, class: 'required' %>
-        <%= form.number_field :sets, class: 'form-control' %>
+        <%= form.number_field :sets, required: true, class: 'form-control' %>
       </div>
     </div>
 
     <div class='col'>
       <div class='field'>
         <%= form.label :reps, class: 'required' %>
-        <%= form.number_field :reps, class: 'form-control' %>
+        <%= form.number_field :reps, required: true, class: 'form-control' %>
       </div>
     </div>
 
     <div class='col'>
       <div class='field'>
         <%= form.label :rep_length, class: 'required' %>
-        <%= form.number_field :rep_length, class: 'form-control' %>
+        <%= form.number_field :rep_length, required: true, class: 'form-control' %>
       </div>
     </div>
 

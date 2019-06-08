@@ -4,14 +4,14 @@
   <div class='field'>
     <%= form.label 'Target Body Part', class: 'required' %>
     <%= form.collection_select :body_part_id,
-    current_user.body_parts, :id, :name,
-    { include_blank: false },
+    current_user.body_parts.active, :id, :name,
+    { include_blank: false, required: true },
     class: 'form-control' %>
   </div>
 
   <div class='field'>
     <%= form.label 'When', class: 'required' %><br>
-    <%= form.datetime_select :datetime_occurred, ampm: true, minute_step: 15, value: Date.today, class: 'form-control' %>
+    <%= form.datetime_select :datetime_occurred, ampm: true, minute_step: 15, value: Date.today, required: true, class: 'form-control' %>
   </div>
 
   <div class='form-row'>
@@ -20,7 +20,7 @@
         <%= form.label 'Pain Type', class: 'required' %>
         <%= form.collection_select :pain_id,
         current_user.pains.by_name, :id, :name,
-        { include_blank: false },
+        { include_blank: false, required: true },
         class: 'form-control' %>
       </div>
     </div>
@@ -28,19 +28,19 @@
     <div class='col'>
       <div class='field'>
         <%= form.label 'Pain Level (0 = none, 10 = worst)', class: 'required' %>
-        <%= form.number_field :pain_level, selected: last_log(:pain_logs, :pain_level), class: 'form-control' %>
+        <%= form.number_field :pain_level, selected: last_log(:pain_logs, :pain_level), required: true, class: 'form-control' %>
       </div>
     </div>
   </div>
 
   <div class='field'>
     <%= form.label :trigger, class: 'required' %>
-    <%= form.text_area :trigger, class: 'form-control' %>
+    <%= form.text_area :trigger, required: true, class: 'form-control' %>
   </div>
 
   <div class='field'>
     <%= form.label 'Describe Pain', class: 'required' %>
-    <%= form.text_area :pain_description, class: 'form-control' %>
+    <%= form.text_area :pain_description, required: true, class: 'form-control' %>
   </div>
 
   <div class='actions mt-3 mb-3'>

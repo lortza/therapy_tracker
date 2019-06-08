@@ -1,0 +1,22 @@
+@import 'variables';
+
+.field {
+  label {
+    font-weight: bold;
+    margin-top: 1rem;
+    text-transform: capitalize;
+  }
+}
+
+.required::after {
+  color: $pain-color;
+  content: ' *';
+  font-size: .85rem;
+}
+
+// scss-lint:disable SelectorFormat
+.field_with_errors .form-control {
+  border: 1px solid $error;
+  border-radius: .25rem;
+}
+// scss-lint:enable SelectorFormat
