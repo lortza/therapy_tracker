@@ -13,7 +13,7 @@
 
   <div class='field'>
     <%= form.label :name, class: 'required' %>
-    <%= form.text_field :name, required: true, class: 'form-control' %>
+    <%= form.text_field sanitize("#{:name}"), required: true, class: 'form-control' %>
   </div>
 
   <div class='field'>
