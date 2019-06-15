@@ -1,5 +1,6 @@
-require: rubocop-rails
-require: rubocop-performance
+require:
+  - rubocop-rails
+  - rubocop-performance
 
 Documentation:
   Enabled: false

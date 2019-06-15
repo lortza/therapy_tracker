@@ -36,7 +36,7 @@
 </button>
 
 <%= render partial: 'exercise_logs/rep_counter_modal' %>
-<%= new_exercise_log_button %>
+<%= new_exercise_log_button(@pt_session) %>
 
 <script>
   counter(<%= @exercise_log.sets %>, <%= @exercise_log.reps %>, <%= @exercise_log.rep_length %>)

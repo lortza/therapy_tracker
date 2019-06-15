@@ -27,7 +27,7 @@
         </div> <!-- row -->
 
         <%= link_to '<i class="fas fa-play"></i> Start Timer'.html_safe, '#', id: 'start_button', class: button_class('success') %>
-        <%= link_to '<i class="fas fa-stop"></i> Stop & Reset '.html_safe, destination_url(@pt_session), id: 'stop_button', class: button_class('danger pull-right') %>
+        <%= link_to '<i class="fas fa-stop"></i> Stop & Reset '.html_safe, destination_url(@exercise_log, @pt_session), id: 'stop_button', class: button_class('danger pull-right') %>
 
       </div><!-- modal body -->
     </div>
