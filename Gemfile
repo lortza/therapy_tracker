@@ -7,7 +7,7 @@ ruby '2.5.3'
 
 gem 'autoprefixer-rails'
 gem 'bootsnap', '>= 1.1.0', require: false
-gem 'chartkick' # chart rendering for ruby data
+gem 'chartkick', '>= 3.2.0' # chart rendering for ruby data
 gem 'coffee-rails', '~> 4.2' # Use CoffeeScript for .coffee assets and views
 gem 'devise' # user authentication
 gem 'groupdate' # grouping by dates. goes with chartkick
