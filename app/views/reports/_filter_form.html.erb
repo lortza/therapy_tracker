@@ -10,7 +10,7 @@
 
     <div class='col-4'>
       <%= select_tag :timeframe,
-      options_for_select([['Past Week',7], ['Past Two Weeks', 14], ['Past Month', 30]], params[:timeframe]),
+      options_for_select(Report::TIMEFRAMES, params[:timeframe]),
       include_blank: 'All Time',
       class: 'form-control'
       %>
