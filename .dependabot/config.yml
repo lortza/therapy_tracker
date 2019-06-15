@@ -1,0 +1,14 @@
+version: 1
+
+update_configs:
+  - package_manager: "ruby:bundler"
+    directory: "/common"
+    update_schedule: "live"
+    default_reviewers:
+    - lortza
+    default_labels:
+    - "dependency-update"
+
+  - package_manager: "javascript"
+    directory: "/npm_and_yarn/helpers"
+    update_schedule: "live"

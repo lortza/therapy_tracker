@@ -13,6 +13,7 @@ This is an app to track physical therapy exercise logs.
 - Postgres: '>= 0.18', '< 2.0'
 - Devise
 - RSpec
+- [Dependabot](https://app.dependabot.com/accounts/lortza/) dependency manager
 - Admin namespace for Users
 
 ## Dev Setup
