@@ -35,7 +35,7 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'rubocop', '~> 0.67.2', require: false
+  gem 'rubocop', '~> 0.71.0', require: false
   gem 'rubocop-performance'
   gem 'seed_dump' # run with `rake db:seed:dump`
   gem 'spring'
