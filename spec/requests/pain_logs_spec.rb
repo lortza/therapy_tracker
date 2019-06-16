@@ -4,7 +4,12 @@ require 'rails_helper'
 
 RSpec.describe 'PainLogs', type: :request do
   let!(:user) { create(:user) }
-  let!(:pain_log) { create(:pain_log, user_id: user.id) }
+  let!(:pain_log) {
+    create(:pain_log,
+           user_id: user.id,
+           body_part_id: create(:body_part).id,
+           pain_id: create(:pain).id)
+  }
 
   describe 'Public access to pain_logs' do
     it 'denies access to pain_logs#new' do
@@ -72,6 +77,10 @@ RSpec.describe 'PainLogs', type: :request do
     it 'renders pain_logs#create' do
       sign_in(user)
       pain_log_attributes = build(:pain_log, user_id: user.id).attributes
+      pain_log_attributes = build(:pain_log,
+                                  user_id: user.id,
+                                  body_part_id: create(:body_part).id,
+                                  pain_id: create(:pain).id).attributes
 
       expect {
         post pain_logs_path(pain_log: pain_log_attributes)

@@ -5,8 +5,20 @@ require 'rails_helper'
 RSpec.describe ExerciseLogsController, type: :controller do
   login_user
 
-  let(:valid_attributes) { build(:exercise_log, user_id: subject.current_user.id).attributes }
-  let(:invalid_attributes) { build(:exercise_log, user_id: subject.current_user.id, sets: nil).attributes }
+  let(:valid_attributes) {
+    build(:exercise_log,
+          user_id: subject.current_user.id,
+          exercise_id: create(:exercise).id,
+          body_part_id: create(:body_part).id).attributes
+  }
+
+  let(:invalid_attributes) {
+    build(:exercise_log,
+          user_id: subject.current_user.id,
+          exercise_id: create(:exercise).id,
+          body_part_id: create(:body_part).id,
+          sets: nil).attributes
+  }
 
   describe 'GET #index' do
     it 'returns a success response' do

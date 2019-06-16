@@ -4,7 +4,12 @@ require 'rails_helper'
 
 RSpec.describe 'ExerciseLogs', type: :request do
   let!(:user) { create(:user) }
-  let!(:exercise_log) { create(:exercise_log, user_id: user.id) }
+  let!(:exercise_log) {
+    create(:exercise_log,
+           user_id: user.id,
+           exercise_id: create(:exercise).id,
+           body_part_id: create(:body_part).id)
+  }
 
   describe 'Public access to exercise_logs' do
     it 'denies access to exercise_logs#new' do
@@ -71,7 +76,10 @@ RSpec.describe 'ExerciseLogs', type: :request do
 
     it 'renders exercise_logs#create' do
       sign_in(user)
-      exercise_log_attributes = build(:exercise_log, user_id: user.id).attributes
+      exercise_log_attributes = build(:exercise_log,
+                                      user_id: user.id,
+                                      exercise_id: create(:exercise).id,
+                                      body_part_id: create(:body_part).id).attributes
 
       expect {
         post exercise_logs_path(exercise_log: exercise_log_attributes)

@@ -4,7 +4,11 @@ require 'rails_helper'
 
 RSpec.describe 'PtSessions', type: :request do
   let!(:user) { create(:user) }
-  let!(:pt_session) { create(:pt_session, user_id: user.id) }
+  let!(:pt_session) {
+    create(:pt_session,
+           user_id: user.id,
+           body_part_id: create(:body_part).id)
+  }
 
   describe 'Public access to pt_sessions' do
     it 'denies access to pt_sessions#new' do
@@ -71,7 +75,9 @@ RSpec.describe 'PtSessions', type: :request do
 
     it 'renders pt_sessions#create' do
       sign_in(user)
-      pt_session_attributes = build(:pt_session, user_id: user.id).attributes
+      pt_session_attributes = build(:pt_session,
+                                    user_id: user.id,
+                                    body_part_id: create(:body_part).id).attributes
 
       expect {
         post pt_sessions_path(pt_session: pt_session_attributes)
