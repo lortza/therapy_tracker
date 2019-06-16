@@ -5,8 +5,18 @@ require 'rails_helper'
 RSpec.describe PtSessionsController, type: :controller do
   login_user
 
-  let(:valid_attributes) { build(:pt_session, user_id: subject.current_user.id).attributes }
-  let(:invalid_attributes) { build(:pt_session, user_id: subject.current_user.id, homework: '').attributes }
+  let(:valid_attributes) {
+    build(:pt_session,
+          user_id: subject.current_user.id,
+          body_part_id: create(:body_part).id).attributes
+  }
+
+  let(:invalid_attributes) {
+    build(:pt_session,
+          user_id: subject.current_user.id,
+          body_part_id: create(:body_part).id,
+          homework: '').attributes
+  }
 
   describe 'GET #index' do
     it 'returns a success response' do
@@ -63,7 +73,12 @@ RSpec.describe PtSessionsController, type: :controller do
 
   describe 'PUT #update' do
     context 'with valid params' do
-      let(:new_attributes) { build(:pt_session, user_id: subject.current_user.id, homework: 'updated homework').attributes }
+      let(:new_attributes) {
+        build(:pt_session,
+              user_id: subject.current_user.id,
+              body_part_id: create(:body_part).id,
+              homework: 'updated homework').attributes
+      }
 
       it 'updates the requested pt_session' do
         pt_session = PtSession.create! valid_attributes

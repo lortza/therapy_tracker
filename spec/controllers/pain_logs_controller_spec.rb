@@ -5,8 +5,20 @@ require 'rails_helper'
 RSpec.describe PainLogsController, type: :controller do
   login_user
 
-  let(:valid_attributes) { build(:pain_log, user_id: subject.current_user.id).attributes }
-  let(:invalid_attributes) { build(:pain_log, user_id: subject.current_user.id, pain_level: '').attributes }
+  let(:valid_attributes) {
+    build(:pain_log,
+          user_id: subject.current_user.id,
+          body_part_id: create(:body_part).id,
+          pain_id: create(:pain).id).attributes
+  }
+
+  let(:invalid_attributes) {
+    build(:pain_log,
+          user_id: subject.current_user.id,
+          body_part_id: create(:body_part).id,
+          pain_id: create(:pain).id,
+          pain_level: '').attributes
+  }
 
   describe 'GET #index' do
     it 'returns a success response' do
@@ -63,7 +75,13 @@ RSpec.describe PainLogsController, type: :controller do
 
   describe 'PUT #update' do
     context 'with valid params' do
-      let(:new_attributes) { build(:pain_log, user_id: subject.current_user.id, pain_description: 'updated description').attributes }
+      let(:new_attributes) {
+        build(:pain_log,
+              user_id: subject.current_user.id,
+              body_part_id: create(:body_part).id,
+              pain_id: create(:pain).id,
+              pain_description: 'updated description').attributes
+      }
 
       it 'updates the requested pain_log' do
         pain_log = PainLog.create! valid_attributes
