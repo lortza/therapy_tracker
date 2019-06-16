@@ -4,25 +4,19 @@ require 'rails_helper'
 
 RSpec.describe 'exercise_logs/show', type: :view do
   before(:each) do
-    @exercise_log = assign(:exercise_log, ExerciseLog.create!(
-                                            datetime_occurred: 'Sun, 24 Mar 2019 09:30:00 UTC +00:00',
-                                            sets: 2,
-                                            reps: 3,
-                                            body_part_id: 1,
-                                            current_pain_level: 4,
-                                            current_pain_frequency: 'Current Pain Frequency',
-                                            progress_note: 'MyText'
-                                          ))
+    @user = create(:user)
+    @exercise_log = create(:exercise_log, user_id: @user.id)
   end
 
-  it 'renders attributes in <p>' do
+  it 'renders attributes in <div>' do
+    allow(view).to receive(:current_user).and_return(@user)
     render
-    expect(rendered).to match(/2/)
-    expect(rendered).to match(/3/)
-    expect(rendered).to match(/Body Part Name/)
-    expect(rendered).to match(/Exercise Name/)
-    expect(rendered).to match(/4/)
-    expect(rendered).to match(/Current Pain Frequency/)
-    expect(rendered).to match(/MyText/)
+    expect(rendered).to match(%r{2 sets / 10 reps at 5 seconds each})
+    expect(rendered).to match(%r{Sat 03/23/19 at 02:08PM})
+    expect(rendered).to match(/exercise\d/)
+    expect(rendered).to match(/description of exercise\d/)
+    expect(rendered).to match(/body_part\d/)
+    expect(rendered).to match(/Burn at Set 2, Rep 5/)
+    expect(rendered).to match(/progress note body/)
   end
 end

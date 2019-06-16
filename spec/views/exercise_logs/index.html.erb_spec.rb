@@ -12,6 +12,7 @@ RSpec.describe 'exercise_logs/index', type: :view do
   end
 
   it 'renders a list of exercise_logs' do
+    allow(view).to receive(:current_user).and_return(@user)
     render
     assert_select 'div.card-body>p', count: 2
   end
