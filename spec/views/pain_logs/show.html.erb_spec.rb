@@ -4,21 +4,18 @@ require 'rails_helper'
 
 RSpec.describe 'pain_logs/show', type: :view do
   before(:each) do
-    @pain_log = assign(:pain_log, PainLog.create!(
-                                    user: nil,
-                                    body_part_id: 1,
-                                    pain_level: 2,
-                                    pain_description: 'MyText',
-                                    trigger: 'MyText'
-                                  ))
+    @user = create(:user)
+    @pain_log = create(:pain_log, user_id: @user.id)
   end
 
-  it 'renders attributes in <p>' do
+  it 'renders attributes in <div>' do
+    allow(view).to receive(:current_user).and_return(@user)
     render
-    expect(rendered).to match(//)
-    expect(rendered).to match(/Target Body Part/)
-    expect(rendered).to match(/2/)
-    expect(rendered).to match(/MyText/)
-    expect(rendered).to match(/MyText/)
+    expect(rendered).to match(/user\d+@example.com/)
+    expect(rendered).to match(/2019-03-25 20:15:37 UTC/)
+    expect(rendered).to match(/body_part\d/)
+    expect(rendered).to match(/\d/)
+    expect(rendered).to match(/sample pain description/)
+    expect(rendered).to match(/sample pain trigger/)
   end
 end
