@@ -23,6 +23,14 @@ Run `rails db:setup` to create and seed your database.
 Run `rails s` to start your Rails server.
 Visit localhost:3000 on your browser!
 
+### Linters
+This project uses [rubocop](https://github.com/rubocop-hq/rubocop) and [scss-lint](https://github.com/sds/scss-lint). Run them locally on your machine like this:
+```
+bundle exec rubocop
+
+bundle exec scss-lint app/assets/stylesheets/**.scss
+```
+
 ## Placeholder Tones
 
 Placeholder tones used are from [https://freesound.org/](https://freesound.org/) licensed under the Attribution Noncommercial License.
