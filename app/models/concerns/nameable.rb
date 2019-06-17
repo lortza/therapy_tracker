@@ -3,7 +3,7 @@
 module Nameable
   # class methods for Exercise/Pain/BodyPart models
   def by_name
-    order('name ASC')
+    order(Arel.sql('lower(name) ASC'))
   end
 
   def search(terms)
