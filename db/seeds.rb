@@ -6,7 +6,7 @@
 puts 'Destroying all assets'
 ExerciseLog.destroy_all
 PainLog.destroy_all
-PtSession.destroy_all
+PtSessionLog.destroy_all
 Pain.destroy_all
 BodyPart.destroy_all
 Exercise.destroy_all
@@ -110,8 +110,8 @@ puts '... Exercise Logs'
   ]
 
   LOG_MULTIPLIER.times do
-    pt_session = FactoryBot.create(
-      :pt_session,
+    pt_session_log = FactoryBot.create(
+      :pt_session_log,
       user_id: user.id,
       body_part_id: BodyPart.all.sample.id,
       datetime_occurred: generate_datetime,
@@ -122,10 +122,10 @@ puts '... Exercise Logs'
     exercise_multiplier = (1..(Exercise.count)).to_a.sample
 
     exercise_multiplier.times do
-      pt_session.homework_exercises << Exercise.all.sample
+      pt_session_log.homework_exercises << Exercise.all.sample
     end
 
     exercise_multiplier.times do
-      FactoryBot.create(:exercise_log, user_id: pt_session.user_id, pt_session_id: pt_session.id, exercise_id: Exercise.all.sample.id)
+      FactoryBot.create(:exercise_log, user_id: pt_session_log.user_id, pt_session_log_id: pt_session_log.id, exercise_id: Exercise.all.sample.id)
     end
   end

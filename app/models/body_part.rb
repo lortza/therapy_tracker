@@ -6,7 +6,7 @@ class BodyPart < ApplicationRecord
   belongs_to :user
   has_many :exercise_logs, dependent: :destroy
   has_many :pain_logs, dependent: :destroy
-  has_many :pt_sessions, dependent: :destroy
+  has_many :pt_session_logs, dependent: :destroy
 
   validates :name,
             presence: true,

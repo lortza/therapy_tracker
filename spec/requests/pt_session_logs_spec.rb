@@ -76,8 +76,8 @@ RSpec.describe 'PtSessionLogs', type: :request do
     it 'renders pt_session_logs#create' do
       sign_in(user)
       pt_session_log_attributes = build(:pt_session_log,
-                                    user_id: user.id,
-                                    body_part_id: create(:body_part).id).attributes
+                                        user_id: user.id,
+                                        body_part_id: create(:body_part).id).attributes
 
       expect {
         post pt_session_logs_path(pt_session_log: pt_session_log_attributes)

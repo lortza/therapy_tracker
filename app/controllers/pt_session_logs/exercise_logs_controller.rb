@@ -48,7 +48,7 @@ class PtSessionLogs::ExerciseLogsController < PtSessionLogsController
   def destroy
     @exercise_log.destroy
     respond_to do |format|
-      format.html { redirect_to pt_session_log_path(@pt_session_log), notice: "#{@exercise_log.exercise_name} was deleted." }
+      format.html { redirect_to pt_session_log_path(@pt_session_log), notice: 'Exercise log was deleted.' }
       format.json { head :no_content }
     end
   end

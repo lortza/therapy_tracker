@@ -13,7 +13,7 @@ class ExerciseLogsController < ApplicationController
   end
 
   def show
-    @pt_session = nil
+    @pt_session_log = nil
   end
 
   def new

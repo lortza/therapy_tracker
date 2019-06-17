@@ -1,5 +1,5 @@
 <%= form_with(model: pt_session_log, local: true) do |form| %>
-  <%= render partial: 'shared/errors', locals: {object: pt_session} %>
+  <%= render partial: 'shared/errors', locals: {object: pt_session_log} %>
 
   <div class='field'>
     <%= form.label 'Target Body Part', class: 'required' %>
@@ -50,6 +50,6 @@
 
   <div class='actions mt-3 mb-3'>
     <%= form.submit class: button_class('success') %>
-    <%= link_to 'Index', pt_session_logs_path, class: button_class('primary pull-right') %>
+    <%= link_to 'Cancel', pt_session_logs_path, class: button_class('primary pull-right') %>
   </div>
 <% end %>

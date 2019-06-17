@@ -1,9 +1,9 @@
 <header class='add-log-buttons-container'>
-  <%= render 'buttons/new_pt_session' %>
+  <%= render 'buttons/new_pt_session_log' %>
 </header>
 
-<% @logs.each do |pt_session| %>
-  <%= render partial: 'pt_session', locals: { pt_session: pt_session } %>
+<% @logs.each do |pt_session_log| %>
+  <%= render partial: 'pt_session_log', locals: { pt_session_log: pt_session_log } %>
 <% end %>
 <br>
 

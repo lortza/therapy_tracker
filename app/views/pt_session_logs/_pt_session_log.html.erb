@@ -1,10 +1,10 @@
 <div class='card card--log-entry log-border-therapy'>
   <a href='<%= pt_session_log_path(pt_session_log) %>'>
     <div class='card-body'>
-      <%= render partial: 'pt_session_logs/pt_session_header', locals: { log: pt_session } %>
+      <%= render partial: 'pt_session_logs/pt_session_log_header', locals: { log: pt_session_log } %>
 
-      <p class='card-text'><strong><%= pt_session.body_part_name.titleize %>:</strong> <%= pt_session.duration %> minutes<br>
-        <small class='text-muted'><%= pt_session.exercise_notes %></small>
+      <p class='card-text'><strong><%= pt_session_log.body_part_name.titleize %>:</strong> <%= pt_session_log.duration %> minutes<br>
+        <small class='text-muted'><%= pt_session_log.exercise_notes %></small>
       </p>
     </div>
   </a>

@@ -18,8 +18,8 @@ class Report
     @pain_logs ||= query_logs(PainLog)
   end
 
-  def pt_sessions
-    @pt_sessions ||= query_logs(PtSession)
+  def pt_session_logs
+    @pt_session_logs ||= query_logs(PtSessionLog)
   end
 
   def pains

@@ -7,7 +7,7 @@ RSpec.describe BodyPart, type: :model do
     it { should belong_to(:user) }
     it { should have_many(:pain_logs) }
     it { should have_many(:exercise_logs) }
-    it { should have_many(:pt_sessions) }
+    it { should have_many(:pt_session_logs) }
   end
 
   context 'validations' do

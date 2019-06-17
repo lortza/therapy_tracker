@@ -13,8 +13,8 @@ Rails.application.routes.draw do
   resources :logs, only: [:index]
   resources :exercise_logs
   resources :pain_logs
-  resources :pt_sessions do
-    resources :exercise_logs, controller: 'pt_sessions/exercise_logs', only: [:new, :create, :show, :edit, :update, :destroy]
+  resources :pt_session_logs do
+    resources :exercise_logs, controller: 'pt_session_logs/exercise_logs', only: [:new, :create, :show, :edit, :update, :destroy]
   end
 
   namespace :admin do

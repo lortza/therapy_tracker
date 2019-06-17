@@ -8,7 +8,7 @@ class Exercise < ApplicationRecord
   has_many :logs, foreign_key: 'exercise_id', class_name: 'ExerciseLog', dependent: :destroy, inverse_of: :exercise
 
   has_many :pt_homework_exercises, dependent: :destroy # the join table
-  has_many :pt_homework_sessions, through: :pt_homework_exercises, source: :pt_session
+  has_many :pt_homework_sessions, through: :pt_homework_exercises, source: :pt_session_log
 
   validates :description,
             :default_sets,

@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :pt_homework_exercise do
-    pt_session { nil }
+    pt_session_log { nil }
     exercise { nil }
   end
 end

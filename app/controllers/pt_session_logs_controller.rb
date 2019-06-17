@@ -48,7 +48,7 @@ class PtSessionLogsController < ApplicationController
   def destroy
     @pt_session_log.destroy
     respond_to do |format|
-      format.html { redirect_to root_url, notice: 'Physical therapy session was successfully destroyed.' }
+      format.html { redirect_to root_url, notice: 'PT log was successfully deleted.' }
       format.json { head :no_content }
     end
   end
@@ -65,11 +65,11 @@ class PtSessionLogsController < ApplicationController
 
   def pt_session_log_params
     params.require(:pt_session_log).permit(:user_id,
-                                       :body_part_id,
-                                       :datetime_occurred,
-                                       :exercise_notes,
-                                       :homework, :duration,
-                                       :questions,
-                                       homework_exercise_ids: [])
+                                           :body_part_id,
+                                           :datetime_occurred,
+                                           :exercise_notes,
+                                           :homework, :duration,
+                                           :questions,
+                                           homework_exercise_ids: [])
   end
 end
