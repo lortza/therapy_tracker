@@ -2,10 +2,10 @@
 
 require 'rails_helper'
 
-RSpec.describe 'pt_sessions/show', type: :view do
+RSpec.describe 'pt_session_logs/show', type: :view do
   before(:each) do
     @user = create(:user)
-    @pt_session = create(:pt_session, user_id: @user.id)
+    @pt_session_log = create(:pt_session_log, user_id: @user.id)
   end
 
   it 'renders attributes in <div>' do

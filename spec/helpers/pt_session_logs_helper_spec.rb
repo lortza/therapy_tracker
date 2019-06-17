@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe PtSessionsHelper, type: :helper do
+RSpec.describe PtSessionLogsHelper, type: :helper do
   it 'should display exercise stats' do
     log = build(:exercise_log, resistance: 'yellow band')
 

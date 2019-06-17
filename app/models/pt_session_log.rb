@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class PtSession < ApplicationRecord
+class PtSessionLog < ApplicationRecord
   extend Log
 
   belongs_to :user

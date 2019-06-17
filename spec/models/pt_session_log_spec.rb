@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe PtSession, type: :model do
+RSpec.describe PtSessionLog, type: :model do
   context 'associations' do
     it { should belong_to(:user) }
     it { should belong_to(:body_part) }
@@ -36,7 +36,7 @@ RSpec.describe PtSession, type: :model do
                                questions
                                user_id
                                created_at updated_at]
-      actual_attributes = build(:pt_session).attributes.keys
+      actual_attributes = build(:pt_session_log).attributes.keys
 
       expect(actual_attributes).to match_array(expected_attributes)
     end
@@ -44,21 +44,21 @@ RSpec.describe PtSession, type: :model do
 
   describe 'self.for_past_n_days' do
     it 'returns logs that occurred between today and the past n days' do
-      pt_session = create(:pt_session, datetime_occurred: 2.days.ago)
-      expect(PtSession.for_past_n_days(7)).to include(pt_session)
+      pt_session_log = create(:pt_session_log, datetime_occurred: 2.days.ago)
+      expect(PtSessionLog.for_past_n_days(7)).to include(pt_session_log)
     end
 
     it 'does not return logs that occurred outside of the past n days' do
-      pt_session1 = create(:pt_session, datetime_occurred: 9.days.ago)
-      pt_session2 = create(:pt_session, datetime_occurred: 2.days.from_now)
+      pt_session_log1 = create(:pt_session_log, datetime_occurred: 9.days.ago)
+      pt_session_log2 = create(:pt_session_log, datetime_occurred: 2.days.from_now)
 
-      expect(PtSession.for_past_n_days(7)).to_not include(pt_session1)
-      expect(PtSession.for_past_n_days(7)).to_not include(pt_session2)
+      expect(PtSessionLog.for_past_n_days(7)).to_not include(pt_session_log1)
+      expect(PtSessionLog.for_past_n_days(7)).to_not include(pt_session_log2)
     end
 
     it 'returns an empty array if no logs occurred within the past n days' do
-      create(:pt_session, datetime_occurred: 9.days.ago)
-      expect(PtSession.for_past_n_days(7)).to eq([])
+      create(:pt_session_log, datetime_occurred: 9.days.ago)
+      expect(PtSessionLog.for_past_n_days(7)).to eq([])
     end
   end
 
@@ -67,12 +67,12 @@ RSpec.describe PtSession, type: :model do
       user = create(:user)
       arm = create(:body_part, name: 'arm', user_id: user.id)
       leg = create(:body_part, name: 'leg', user_id: user.id)
-      arm_log1 = create(:pt_session, body_part_id: arm.id, user_id: user.id)
-      arm_log2 = create(:pt_session, body_part_id: arm.id, user_id: user.id)
-      leg_log = create(:pt_session, body_part_id: leg.id, user_id: user.id)
+      arm_log1 = create(:pt_session_log, body_part_id: arm.id, user_id: user.id)
+      arm_log2 = create(:pt_session_log, body_part_id: arm.id, user_id: user.id)
+      leg_log = create(:pt_session_log, body_part_id: leg.id, user_id: user.id)
 
-      expect(PtSession.for_body_part(arm.id)).to include(arm_log1, arm_log2)
-      expect(PtSession.for_body_part(arm.id)).to_not include(leg_log)
+      expect(PtSessionLog.for_body_part(arm.id)).to include(arm_log1, arm_log2)
+      expect(PtSessionLog.for_body_part(arm.id)).to_not include(leg_log)
     end
   end
 
