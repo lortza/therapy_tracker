@@ -1,0 +1,12 @@
+<% content_for(:title, format_time(@exercise_log)) %>
+
+<h1>Editing <%= @exercise_log.exercise_name %></h1>
+
+<%= render '/exercise_logs/form', exercise_log: @exercise_log, url: pt_session_log_exercise_log_path(@pt_session_log) %>
+
+<%= link_to 'Delete Exercise Log', pt_session_log_exercise_log_path(@pt_session_log, @exercise_log), method: :delete, data: { confirm: "Are you sure you want to delete #{@exercise_log.exercise_name}?" }, class: button_class('danger') %>
+
+
+<script>
+  // burnDropdowns(<%#= @exercise_log.sets %>, <%#= @exercise_log.reps %>)
+</script>

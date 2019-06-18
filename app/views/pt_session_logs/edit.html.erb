@@ -1,0 +1,7 @@
+<%= render partial: 'pt_session_logs/pt_session_log_header', locals: { log: @pt_session_log } %>
+<h1>Edit Session</h1>
+
+<%= render 'form', pt_session_log: @pt_session_log %>
+
+<%= link_to 'Delete PT Session', @pt_session_log, method: :delete, data: { confirm: 'Are you sure?' }, class: button_class('danger') %>
+<%= link_to 'Cancel', pt_session_log_path(@pt_session_log), class: button_class('primary pull-right') %>

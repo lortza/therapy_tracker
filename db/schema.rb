@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_01_235732) do
+ActiveRecord::Schema.define(version: 2019_06_16_232503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,10 +39,10 @@ ActiveRecord::Schema.define(version: 2019_06_01_235732) do
     t.boolean "per_side", default: false
     t.integer "burn_set"
     t.string "resistance"
-    t.bigint "pt_session_id"
+    t.bigint "pt_session_log_id"
     t.index ["body_part_id"], name: "index_exercise_logs_on_body_part_id"
     t.index ["exercise_id"], name: "index_exercise_logs_on_exercise_id"
-    t.index ["pt_session_id"], name: "index_exercise_logs_on_pt_session_id"
+    t.index ["pt_session_log_id"], name: "index_exercise_logs_on_pt_session_log_id"
     t.index ["user_id"], name: "index_exercise_logs_on_user_id"
   end
 
@@ -84,15 +84,15 @@ ActiveRecord::Schema.define(version: 2019_06_01_235732) do
   end
 
   create_table "pt_homework_exercises", force: :cascade do |t|
-    t.bigint "pt_session_id"
+    t.bigint "pt_session_log_id"
     t.bigint "exercise_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["exercise_id"], name: "index_pt_homework_exercises_on_exercise_id"
-    t.index ["pt_session_id"], name: "index_pt_homework_exercises_on_pt_session_id"
+    t.index ["pt_session_log_id"], name: "index_pt_homework_exercises_on_pt_session_log_id"
   end
 
-  create_table "pt_sessions", force: :cascade do |t|
+  create_table "pt_session_logs", force: :cascade do |t|
     t.bigint "user_id"
     t.datetime "datetime_occurred"
     t.text "exercise_notes", default: ""
@@ -102,8 +102,8 @@ ActiveRecord::Schema.define(version: 2019_06_01_235732) do
     t.datetime "updated_at", null: false
     t.bigint "body_part_id"
     t.text "questions"
-    t.index ["body_part_id"], name: "index_pt_sessions_on_body_part_id"
-    t.index ["user_id"], name: "index_pt_sessions_on_user_id"
+    t.index ["body_part_id"], name: "index_pt_session_logs_on_body_part_id"
+    t.index ["user_id"], name: "index_pt_session_logs_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -124,7 +124,7 @@ ActiveRecord::Schema.define(version: 2019_06_01_235732) do
   add_foreign_key "body_parts", "users"
   add_foreign_key "exercise_logs", "body_parts"
   add_foreign_key "exercise_logs", "exercises"
-  add_foreign_key "exercise_logs", "pt_sessions"
+  add_foreign_key "exercise_logs", "pt_session_logs"
   add_foreign_key "exercise_logs", "users"
   add_foreign_key "exercises", "users"
   add_foreign_key "pain_logs", "body_parts"
@@ -132,7 +132,7 @@ ActiveRecord::Schema.define(version: 2019_06_01_235732) do
   add_foreign_key "pain_logs", "users"
   add_foreign_key "pains", "users"
   add_foreign_key "pt_homework_exercises", "exercises"
-  add_foreign_key "pt_homework_exercises", "pt_sessions"
-  add_foreign_key "pt_sessions", "body_parts"
-  add_foreign_key "pt_sessions", "users"
+  add_foreign_key "pt_homework_exercises", "pt_session_logs"
+  add_foreign_key "pt_session_logs", "body_parts"
+  add_foreign_key "pt_session_logs", "users"
 end

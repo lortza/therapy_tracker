@@ -42,7 +42,7 @@
 <h4>Grouped by Day</h4>
 <%= line_chart [
   {name: 'Exercise Logs', data: @report.exercise_logs.group_by_day(:datetime_occurred).count},
-  {name: 'Physical Therapy Sessions', data: @report.pt_sessions.group_by_day(:datetime_occurred).count},
+  {name: 'Physical Therapy Sessions', data: @report.pt_session_logs.group_by_day(:datetime_occurred).count},
   {name: 'Pain Logs', data: @report.pain_logs.group_by_day(:datetime_occurred).count},
 ] %>
 

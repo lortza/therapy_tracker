@@ -1,0 +1,37 @@
+<%= render partial: 'pt_session_logs/pt_session_log_header', locals: { log: @pt_session_log } %>
+
+<h2>
+  <span class='pull-right'>
+    <%= link_to 'Edit', edit_pt_session_log_path(@pt_session_log), class: button_class %>
+    <%= link_to 'Back', pt_session_logs_path, class: button_class %>
+  </span>
+  Physical Therapy
+</h2>
+
+<p class="card-text"><strong><%= @pt_session_log.body_part_name.titleize %>:</strong> <%= @pt_session_log.duration %> minutes<br></p>
+
+<h5>Questions for Therapist</h5>
+<%= simple_format(@pt_session_log.questions, {}, wrapper_tag: 'p') %>
+
+
+<h5>Session Notes</h5>
+<%= simple_format(@pt_session_log.exercise_notes, {}, wrapper_tag: 'p') %>
+
+<%= link_to 'Log an Exercise', new_pt_session_log_exercise_log_path(@pt_session_log), class: button_class %>
+<ul>
+  <% @pt_session_log.exercise_logs.chronologically.each do |exercise_log| %>
+    <li>
+      <%= link_to exercise_log.exercise_name, pt_session_log_exercise_log_path(@pt_session_log, exercise_log) %>:
+      <%= display_exercise_stats(exercise_log) %>
+      <%= link_to 'edit', edit_pt_session_log_exercise_log_path(@pt_session_log, exercise_log) %>
+    </li>
+  <% end %>
+</ul>
+
+<h5>Homework</h5>
+<%= simple_format(@pt_session_log.homework, {}, wrapper_tag: 'p') %>
+<ul>
+  <% @pt_session_log.homework_exercises.each do |exercise| %>
+  <li><%= exercise.name %></li>
+  <% end %>
+</ul>

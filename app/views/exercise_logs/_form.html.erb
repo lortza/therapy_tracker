@@ -81,6 +81,6 @@
 
   <div class='actions mt-3 mb-3'>
     <%= form.submit class: button_class('success') %>
-    <%= link_to 'Cancel',@pt_session ? pt_session_path(@pt_session) : exercise_logs_path, class: button_class('primary pull-right') %>
+    <%= link_to 'Cancel',@pt_session_log ? pt_session_log_path(@pt_session_log) : exercise_logs_path, class: button_class('primary pull-right') %>
   </div>
 <% end %>

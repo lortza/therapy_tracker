@@ -5,7 +5,7 @@ FactoryBot.define do
     user
     exercise
     body_part
-    pt_session_id { nil }
+    pt_session_log_id { nil }
     datetime_occurred { '2019-03-23 14:08:03' }
     sets { 2 }
     reps { 10 }

@@ -6,7 +6,7 @@ class ExerciseLog < ApplicationRecord
   belongs_to :user
   belongs_to :exercise
   belongs_to :body_part
-  belongs_to :pt_session, optional: true
+  belongs_to :pt_session_log, optional: true
 
   validates :datetime_occurred,
             :exercise_id,
@@ -30,8 +30,8 @@ class ExerciseLog < ApplicationRecord
   delegate :name, to: :body_part, prefix: true
   delegate :name, to: :exercise, prefix: true
 
-  scope :at_home, -> { where(pt_session_id: nil) }
-  scope :at_pt, -> { where.not(pt_session_id: nil) }
+  scope :at_home, -> { where(pt_session_log_id: nil) }
+  scope :at_pt, -> { where.not(pt_session_log_id: nil) }
 
   class << self
     def group_by_exercise_and_count

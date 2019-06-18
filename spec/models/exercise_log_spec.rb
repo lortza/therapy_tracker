@@ -7,7 +7,7 @@ RSpec.describe ExerciseLog, type: :model do
     it { should belong_to(:user) }
     it { should belong_to(:exercise) }
     it { should belong_to(:body_part) }
-    it { should belong_to(:pt_session).optional }
+    it { should belong_to(:pt_session_log).optional }
   end
 
   context 'validations' do
@@ -42,7 +42,7 @@ RSpec.describe ExerciseLog, type: :model do
                                exercise_id
                                per_side
                                progress_note
-                               pt_session_id
+                               pt_session_log_id
                                rep_length
                                reps
                                resistance
@@ -57,42 +57,42 @@ RSpec.describe ExerciseLog, type: :model do
 
   describe 'scopes' do
     describe 'at_home' do
-      it 'returns exercise_logs that are not associated with a pt_session' do
-        exercise_log = create(:exercise_log, pt_session_id: nil)
+      it 'returns exercise_logs that are not associated with a pt_session_log' do
+        exercise_log = create(:exercise_log, pt_session_log_id: nil)
 
         expect(ExerciseLog.at_home).to include(exercise_log)
       end
 
-      it 'does not return exercise_logs that are associated with a pt_session' do
-        pt_session = create(:pt_session)
-        exercise_log = create(:exercise_log, pt_session_id: pt_session.id)
+      it 'does not return exercise_logs that are associated with a pt_session_log' do
+        pt_session_log = create(:pt_session_log)
+        exercise_log = create(:exercise_log, pt_session_log_id: pt_session_log.id)
 
         expect(ExerciseLog.at_home).to_not include(exercise_log)
       end
 
-      it 'returns an empty array if all exercise_logs belong to pt_sessions' do
-        pt_session = create(:pt_session)
-        build(:exercise_log, pt_session_id: pt_session.id)
+      it 'returns an empty array if all exercise_logs belong to pt_session_logs' do
+        pt_session_log = create(:pt_session_log)
+        build(:exercise_log, pt_session_log_id: pt_session_log.id)
 
         expect(ExerciseLog.at_home).to eq([])
       end
     end
 
     describe 'at_pt' do
-      it 'returns exercise_logs that are associated with pt_sessions' do
-        pt_session = create(:pt_session)
-        exercise_log = create(:exercise_log, pt_session_id: pt_session.id)
+      it 'returns exercise_logs that are associated with pt_session_logs' do
+        pt_session_log = create(:pt_session_log)
+        exercise_log = create(:exercise_log, pt_session_log_id: pt_session_log.id)
 
         expect(ExerciseLog.at_pt).to include(exercise_log)
       end
 
-      it 'does not return exercise_logs that are not associated with a pt_session' do
-        exercise_log = create(:exercise_log, pt_session_id: nil)
+      it 'does not return exercise_logs that are not associated with a pt_session_log' do
+        exercise_log = create(:exercise_log, pt_session_log_id: nil)
         expect(ExerciseLog.at_pt).to_not include(exercise_log)
       end
 
-      it 'returns an empty array if no exercise_logs belong to a pt_session' do
-        build(:exercise_log, pt_session_id: nil)
+      it 'returns an empty array if no exercise_logs belong to a pt_session_log' do
+        build(:exercise_log, pt_session_log_id: nil)
         expect(ExerciseLog.at_pt).to eq([])
       end
     end

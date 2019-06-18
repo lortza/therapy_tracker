@@ -15,11 +15,11 @@ RSpec.describe Log, type: :module do
       user = create(:user)
       pain_log = create(:pain_log, user_id: user.id)
       exercise_log = create(:exercise_log, user_id: user.id)
-      pt_session = create(:pt_session, user_id: user.id)
+      pt_session_log = create(:pt_session_log, user_id: user.id)
 
       expect(Log.all(user)).to include(pain_log)
       expect(Log.all(user)).to include(exercise_log)
-      expect(Log.all(user)).to include(pt_session)
+      expect(Log.all(user)).to include(pt_session_log)
     end
 
     it 'is ordered by datetime_occurred in descending order' do

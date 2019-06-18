@@ -11,11 +11,11 @@ module LogsHelper
   end
 
   def last_homework
-    return false if current_user.pt_sessions.last.nil?
+    return false if current_user.pt_session_logs.last.nil?
 
     {
-      notes: current_user.pt_sessions.last&.homework,
-      exercises: current_user.pt_sessions.last&.homework_exercises
+      notes: current_user.pt_session_logs.last&.homework,
+      exercises: current_user.pt_session_logs.last&.homework_exercises
     }
   end
 
