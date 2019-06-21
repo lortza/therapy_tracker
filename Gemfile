@@ -11,7 +11,7 @@ gem 'chartkick', '>= 3.2.0' # chart rendering for ruby data
 gem 'coffee-rails', '~> 4.2' # Use CoffeeScript for .coffee assets and views
 gem 'devise' # user authentication
 gem 'groupdate' # grouping by dates. goes with chartkick
-gem 'jbuilder', '~> 2.5' # https://github.com/rails/jbuilder
+gem 'jbuilder', '~> 2.9' # https://github.com/rails/jbuilder
 gem 'pg', '>= 0.18', '< 2.0' # Use postgresql as the database for Active Record
 gem 'puma', '~> 3.11' # Use Puma as the app server
 gem 'rails', '~> 5.2.2' # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
