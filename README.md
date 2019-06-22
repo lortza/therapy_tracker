@@ -58,3 +58,7 @@ A lot can happen at a PT session. You'll be doing workouts, getting consultation
 ### Reporting
 
 Data is best served in a way that is visually meaningful. That is why we have chart representation of the data from your logs.
+
+## Contributing
+
+This project is not currently open to receiving contributions.
