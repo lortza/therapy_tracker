@@ -1,0 +1,2 @@
+<%= form.label 'When', class: 'required' %><br>
+<%= form.datetime_select :datetime_occurred, ampm: true, minute_step: 10, value: Date.today, required: true, class: 'form-control' %>

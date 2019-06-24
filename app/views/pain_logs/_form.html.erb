@@ -10,8 +10,7 @@
   </div>
 
   <div class='field'>
-    <%= form.label 'When', class: 'required' %><br>
-    <%= form.datetime_select :datetime_occurred, ampm: true, minute_step: 15, value: Date.today, required: true, class: 'form-control' %>
+    <%= render partial: 'shared/datetime_picker', locals: {form: form} %>
   </div>
 
   <div class='form-row'>
