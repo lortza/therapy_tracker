@@ -2,13 +2,14 @@ language: ruby
 rvm: 2.5.3
 services:
   - postgresql
+  - xvfb
 addons:
   chrome: stable
 env: RAILS_ENV=test
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
   - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
+  # - sh -e /etc/init.d/xvfb start
 script:
   - bundle exec rubocop
   - bundle exec scss-lint app/assets/stylesheets/**.scss
