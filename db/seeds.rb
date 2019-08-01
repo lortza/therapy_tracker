@@ -55,7 +55,7 @@ LOG_MULTIPLIER = 30
 
 def generate_datetime
   h = rand(6..20)
-  Faker::Date.between(1.month.ago, Date.today).to_datetime + h.hours
+  Faker::Date.between(from: 1.month.ago, to: Date.today).to_datetime + h.hours
 end
 
 #------------------------------------------
