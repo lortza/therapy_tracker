@@ -15,7 +15,7 @@ gem 'jbuilder', '~> 2.9' # https://github.com/rails/jbuilder
 gem 'pg', '>= 0.18', '< 2.0' # Use postgresql as the database for Active Record
 gem 'puma', '~> 4.0' # Use Puma as the app server
 gem 'rails', '~> 5.2.3' # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'sass-rails', '~> 5.0' # Use SCSS for stylesheets
+gem 'sass-rails', '~> 6.0' # Use SCSS for stylesheets
 gem 'scss_lint', require: false
 gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
 gem 'will_paginate', '~> 3.1.0' # pagination. Styles: http://mislav.github.io/will_paginate/
