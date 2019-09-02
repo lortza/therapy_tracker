@@ -42,18 +42,18 @@ jobs:
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
       # Install yarn
-      - restore_cache:
-          name: Restore Yarn Package Cache
-          keys:
-            - yarn-packages-{{ checksum "yarn.lock" }}
-      - run:
-          name: Install Dependencies
-          command: yarn install
-      - save_cache:
-          name: Save Yarn Package Cache
-          key: yarn-packages-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.cache/yarn
+      # - restore_cache:
+      #     name: Restore Yarn Package Cache
+      #     keys:
+      #       - yarn-packages-{{ checksum "yarn.lock" }}
+      # - run:
+      #     name: Install Dependencies
+      #     command: yarn install
+      # - save_cache:
+      #     name: Save Yarn Package Cache
+      #     key: yarn-packages-{{ checksum "yarn.lock" }}
+      #     paths:
+      #       - ~/.cache/yarn
 
       # Compile assets
       # - run:
@@ -76,9 +76,7 @@ jobs:
             bundle exec rubocop
             bundle exec scss-lint app/assets/stylesheets/**.scss
 
-            bundle exec rspec -r rspec_junit_formatter \
-                            --format progress \
-                            --format RspecJunitFormatter \
+            bundle exec rspec -r --format progress \
                             --out /tmp/test-results/rspec.xml \
                             --format progress \
                             $TEST_FILES
