@@ -1,6 +1,6 @@
 # Therapy Tracker
 
-[![Build Status](https://travis-ci.com/lortza/therapy_tracker.svg?branch=master)](https://travis-ci.com/lortza/therapy_tracker)
+[![CircleCI](https://circleci.com/gh/lortza/therapy_tracker.svg?style=svg)](https://circleci.com/gh/lortza/therapy_tracker)
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/4f0468795ab338217d80/maintainability)](https://codeclimate.com/github/lortza/therapy_tracker/maintainability)
 
