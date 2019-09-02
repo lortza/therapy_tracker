@@ -66,24 +66,9 @@ jobs:
       - run: bundle exec rake db:migrate
       - run: bundle exec rake db:seed
 
-      # run tests!
-      - run:
-          name: run tests
-          command: |
-            mkdir /tmp/test-results
-            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
+      # Run linters!
+      - run: bundle exec rubocop
+      - run: bundle exec scss-lint app/assets/stylesheets/**.scss
 
-            bundle exec rubocop
-            bundle exec scss-lint app/assets/stylesheets/**.scss
-
-            bundle exec rspec -r format progress \
-                            --out /tmp/test-results/rspec.xml \
-                            --format progress \
-                            $TEST_FILES
-
-      # collect reports
-      - store_test_results:
-          path: /tmp/test-results
-      - store_artifacts:
-          path: /tmp/test-results
-          destination: test-results
+      # Run tests!
+      - run: bundle exec rspec
