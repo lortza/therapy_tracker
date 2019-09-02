@@ -56,10 +56,10 @@ jobs:
             - ~/.cache/yarn
 
       # Compile assets
-      - run:
-          name: Compile Assets
-          command: |
-            bundle exec rails webpacker:compile
+      # - run:
+      #     name: Compile Assets
+      #     command: |
+      #       bundle exec rails webpacker:compile
 
       # Database setup
       - run: bundle exec rake db:create
