@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :exercise do
-    user_id { create(:user) }
+    user
     sequence(:name) { |n| "exercise#{n}" }
     sequence(:description) { |n| "description of exercise#{n}" }
     default_sets { 2 }
