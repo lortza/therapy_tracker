@@ -11,7 +11,7 @@ class Exercise < ApplicationRecord
   has_many :pt_homework_sessions, through: :pt_homework_exercises, source: :pt_session_log
 
   validates :description,
-            :default_sets,
+            # :default_sets,
             :default_reps,
             :default_rep_length,
             presence: true

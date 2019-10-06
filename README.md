@@ -16,6 +16,9 @@ This is an app to track physical therapy exercise logs.
 - [Dependabot](https://app.dependabot.com/accounts/lortza/) dependency manager
 - Admin namespace for Users
 
+
+![alt text](/public/screenshots/index.png "index page") ![alt text](/public/screenshots/charts.png "charts page")
+
 ## Dev Setup
 
 Clone this repo, set your Ruby version to 2.5.3, and run `bundle install` to install gems!
