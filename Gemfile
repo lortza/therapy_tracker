@@ -13,7 +13,7 @@ gem 'devise' # user authentication
 gem 'groupdate' # grouping by dates. goes with chartkick
 gem 'jbuilder', '~> 2.9' # https://github.com/rails/jbuilder
 gem 'pg', '>= 0.18', '< 2.0' # Use postgresql as the database for Active Record
-gem 'puma', '~> 4.0' # Use Puma as the app server
+gem 'puma', '~> 4.2' # Use Puma as the app server
 gem 'rails', '~> 5.2.3' # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'sass-rails', '~> 6.0' # Use SCSS for stylesheets
 gem 'scss_lint', require: false
@@ -32,7 +32,7 @@ group :development do
   gem 'rails-erd', require: false # generates ERD chart for your schema, run `bundle exec erd`
   gem 'rubycritic', require: false # provides feedback on complexity and churns for your codebase
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'listen', '>= 3.0.5', '< 3.3'
   gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'rubocop-performance'
@@ -49,7 +49,7 @@ group :development, :test do
   gem 'bullet' # detects N+1 queries via config/initializers/bullet.rb
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'capybara' # interacts with the browser
-  gem 'factory_bot_rails', '~> 5.0'
+  gem 'factory_bot_rails', '~> 5.1'
   gem 'faker' # creates fake data for seeding
   gem 'guard-rspec', require: false # runs rspec automatically
   gem 'launchy' # goes with capybara
