@@ -17,8 +17,6 @@ This is an app to track physical therapy exercise logs.
 - Admin namespace for Users
 
 
-![alt text](/public/screenshots/index.png "index page") ![alt text](/public/screenshots/charts.png "charts page")
-
 ## Dev Setup
 
 Clone this repo, set your Ruby version to 2.5.3, and run `bundle install` to install gems!
@@ -46,9 +44,35 @@ Add your own exercises, types of pain you experience, and your target body parts
 
 Log every time you do an exercise, tracking your sets, reps, burn reps, and resistance levels. You can also write notes on your progress. Data entry is minimized by having default set/rep information automatically populated into the form fields whenever you select an exercise from the dropdown.
 
+![alt text](/public/screenshots/index.png "index page")
+
+
 #### Rep Counter
 
 One of my favorite features of this application is the rep counter. After entering a new exercise log, you can launch the counter and it will play beeps and count your reps for you, indicating which set and rep you're on.
+
+![alt text](/public/screenshots/rep_counter.png "rep counter")
+
+The rep counter is all async javascript. As a backend Rubyist, this part makes my brain hurt.
+```javascript
+var repsCounter = 1;
+async function countReps() {
+  while (repsCounter <= reps) {
+    console.log(`Set ${setsCounter}, rep ${repsCounter}`);
+    repDisplayer.textContent = repsCounter;
+    soundRep.play().catch(e => {
+      console.log(e);
+    });
+
+    await sleep(repLength * 1000);
+    repsCounter++
+  }
+  repsCounter = 1;
+  console.log(`Set ${setsCounter} complete`);
+  beginFinishedIndicator.textContent = 'Rest...';
+  repDisplayer.textContent = 0;
+};
+```
 
 ### Pain Logging
 
@@ -58,9 +82,25 @@ One of the challenges of reporting pain back to a physical therapist is getting 
 
 A lot can happen at a PT session. You'll be doing workouts, getting consultation, and being assigned homework. The physical therapy tracking makes it easy to stay on top of what you've accomplished and what you need to work on between sessions.
 
+![alt text](/public/screenshots/pt_session.png "physical therapy session notes")
+
+
 ### Reporting
 
 Data is best served in a way that is visually meaningful. That is why we have chart representation of the data from your logs.
+
+![alt text](/public/screenshots/chart.png "charts page")
+
+The reporting is possibly the flashiest part of this app, but the least complicated. I used the `chartkick` gem to render the charts.
+
+```html
+<h3>Exercises vs Pain</h3>
+<h4>Grouped by Day</h4>
+<%= area_chart [
+  {name: 'Qty Exercises', data: @report.exercise_logs.group_by_day(:datetime_occurred).count},
+  {name: 'Pain Levels Total', data: @report.pain_logs.group_by_day(:datetime_occurred).sum(:pain_level)},
+] %>
+```
 
 ## Contributing
 
