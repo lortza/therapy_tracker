@@ -17,15 +17,18 @@ AllCops:
     - 'vendor/**/*'
     # - '**/*.erb'
 
+Layout/LineLength:
+  Max: 120
+  Exclude:
+  - !ruby/regexp /.*_spec\.rb$/
+
 Metrics/BlockLength:
   Exclude:
     - !ruby/regexp /.*_spec\.rb$/
     - 'lib/tasks/*'
 
-Layout/LineLength:
-  Max: 120
-  Exclude:
-  - !ruby/regexp /.*_spec\.rb$/
+Rails/UniqueValidationWithoutIndex:
+  Enabled: false
 
 Style/Documentation:
   Enabled: false
