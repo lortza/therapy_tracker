@@ -58,7 +58,7 @@ group :development, :test do
   gem 'pry-awesome_print'
   gem 'pry-byebug'
   gem 'pry-rails'
-  gem 'rspec-rails', '~> 3.9'
+  gem 'rspec-rails', '~> 4.0'
   gem 'selenium-webdriver'
   gem 'webdrivers', '~> 4.2'
 end
