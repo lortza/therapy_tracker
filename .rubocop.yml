@@ -2,8 +2,6 @@ require:
   - rubocop-rails
   - rubocop-performance
 
-Documentation:
-  Enabled: false
 Rails:
   Enabled: true
 AllCops:
@@ -24,18 +22,25 @@ Metrics/BlockLength:
     - !ruby/regexp /.*_spec\.rb$/
     - 'lib/tasks/*'
 
-Metrics/LineLength:
+Layout/LineLength:
   Max: 120
   Exclude:
   - !ruby/regexp /.*_spec\.rb$/
 
+Style/Documentation:
+  Enabled: false
 Style/BlockDelimiters:
   Exclude:
     - !ruby/regexp /.*_spec\.rb$/
-
 Style/ClassAndModuleChildren:
   EnforcedStyle: compact
 Style/EmptyMethod:
   EnforcedStyle: expanded
 Style/TrailingCommaInArrayLiteral:
   EnforcedStyleForMultiline: consistent_comma
+Style/HashEachMethods:
+  Enabled: false
+Style/HashTransformKeys:
+  Enabled: false
+Style/HashTransformValues:
+  Enabled: false
