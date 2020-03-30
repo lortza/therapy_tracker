@@ -14,7 +14,7 @@ gem 'groupdate' # grouping by dates. goes with chartkick
 gem 'jbuilder', '~> 2.10' # https://github.com/rails/jbuilder
 gem 'pg', '>= 0.18', '< 2.0' # Use postgresql as the database for Active Record
 gem 'puma', '~> 4.3' # Use Puma as the app server
-gem 'rails', '~> 5.2.4' # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'rails', '~> 6.0.2' # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'sass-rails', '~> 6.0' # Use SCSS for stylesheets
 gem 'scss_lint', require: false
 gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
