@@ -49,7 +49,7 @@ group :development, :test do
   gem 'bullet' # detects N+1 queries via config/initializers/bullet.rb
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'capybara' # interacts with the browser
-  gem 'factory_bot_rails', '~> 5.2'
+  gem 'factory_bot_rails', '~> 6.0'
   gem 'faker' # creates fake data for seeding
   gem 'guard-rspec', require: false # runs rspec automatically
   gem 'launchy' # goes with capybara
