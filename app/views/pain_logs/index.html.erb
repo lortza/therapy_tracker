@@ -13,7 +13,7 @@
 
     <div class='col-12 col-md-2 mb-2'>
       <%= select_tag :pain_type,
-        options_for_select(current_user.pains.all.map(&:name), params[:pain_type]),
+        options_for_select(options_for_pain_logs_dropdown, params[:pain_type]),
         class: 'form-control'
       %>
     </div>

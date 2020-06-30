@@ -26,4 +26,9 @@ module LogsHelper
   def user_needs_data_for_section(user, attr)
     user.send(attr).empty?
   end
+
+  def options_for_pain_logs_dropdown
+    pains = ['']
+    pains += current_user.pains.all.map(&:name)
+  end
 end

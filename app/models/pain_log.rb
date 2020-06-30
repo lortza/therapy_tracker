@@ -44,7 +44,7 @@ class PainLog < ApplicationRecord
     elsif pain_type.present?
       pain = Pain.find_by(name: pain_type)
       where(pain_id: pain.id)
-    elsif search_terms.present?
+    else
       where('pain_description ILIKE ?', "%#{search_terms}%")
     end
   end
