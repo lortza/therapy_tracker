@@ -27,6 +27,10 @@ module LogsHelper
     user.send(attr).empty?
   end
 
+  def options_for_body_parts_dropdown
+    [''] + current_user.body_parts.all.map(&:name)
+  end
+
   def options_for_pain_logs_dropdown
     [''] + current_user.pains.all.map(&:name)
   end

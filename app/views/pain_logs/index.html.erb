@@ -4,21 +4,28 @@
 
 <%= form_tag(pain_logs_path, method: 'get', id: 'filter-form' ) do %>
   <div class='row'>
-    <div class='col-12 col-md-8 mb-2'>
+    <div class='col-12 col-md-3 mb-2'>
       <%= text_field_tag :search, params[:search],
                                   placeholder: "Search Entries",
                                   class: 'form-control'
       %>
     </div>
 
-    <div class='col-12 col-md-2 mb-2'>
+    <div class='col-12 col-md-3 mb-2'>
+      <%= select_tag :body_part,
+        options_for_select(options_for_body_parts_dropdown, params[:body_part]),
+        class: 'form-control'
+      %>
+    </div>
+
+    <div class='col-12 col-md-3 mb-2'>
       <%= select_tag :pain_type,
         options_for_select(options_for_pain_logs_dropdown, params[:pain_type]),
         class: 'form-control'
       %>
     </div>
 
-    <div class='col-12 col-md-2'>
+    <div class='col-12 col-md-3'>
       <button type='submit' class='btn btn-outline-primary' style="width: 100%;">Submit</button>
       <%= link_to 'Reset', pain_logs_path, class: 'ml-3' %>
     </div>
