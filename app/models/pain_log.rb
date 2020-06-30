@@ -34,4 +34,18 @@ class PainLog < ApplicationRecord
     #   end
     # end
   end
+
+  def self.search(pain_type: '', search_terms: '')
+    return all if pain_type.blank? && search_terms.blank?
+
+    if pain_type.present? && search_terms.present?
+      pain = Pain.find_by(name: pain_type)
+      where('pain_id = ? AND pain_description ILIKE ?', pain.id, "%#{search_terms}%")
+    elsif pain_type.present?
+      pain = Pain.find_by(name: pain_type)
+      where(pain_id: pain.id)
+    elsif search_terms.present?
+      where('pain_description ILIKE ?', "%#{search_terms}%")
+    end
+  end
 end

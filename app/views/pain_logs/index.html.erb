@@ -2,6 +2,30 @@
   <%= render 'buttons/new_pain_log' %>
 </header>
 
+<%= form_tag(pain_logs_path, method: 'get', id: 'filter-form' ) do %>
+  <div class='row'>
+    <div class='col-12 col-md-8 mb-2'>
+      <%= text_field_tag :search, params[:search],
+                                  placeholder: "Search Entries",
+                                  class: 'form-control'
+      %>
+    </div>
+
+    <div class='col-12 col-md-2 mb-2'>
+      <%= select_tag :pain_type,
+        options_for_select(current_user.pains.all.map(&:name), params[:pain_type]),
+        class: 'form-control'
+      %>
+    </div>
+
+    <div class='col-12 col-md-2'>
+      <button type='submit' class='btn btn-outline-primary' style="width: 100%;">Submit</button>
+      <%= link_to 'Reset', pain_logs_path, class: 'ml-3' %>
+    </div>
+  </div> <!-- row -->
+<% end %>
+<hr>
+
 <% @logs.each do |pain_log| %>
   <%= render partial: 'pain_log', locals: { pain_log: pain_log } %>
 <% end %>
