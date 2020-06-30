@@ -6,7 +6,14 @@ class PainLogsController < ApplicationController
   layout 'no_white_container', only: [:index]
 
   def index
-    @logs = current_user.pain_logs.order(datetime_occurred: 'DESC').paginate(page: params[:page], per_page: 25)
+    search_terms = params[:search]
+    pain_type = params[:pain_type]
+    body_part = params[:body_part]
+
+    @logs = current_user.pain_logs
+                        .search(body_part: body_part, pain_type: pain_type, search_terms: search_terms)
+                        .order(datetime_occurred: 'DESC')
+                        .paginate(page: params[:page], per_page: 25)
   end
 
   def show
