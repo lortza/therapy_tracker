@@ -28,7 +28,6 @@ module LogsHelper
   end
 
   def options_for_pain_logs_dropdown
-    pains = ['']
-    pains += current_user.pains.all.map(&:name)
+    [''] + current_user.pains.all.map(&:name)
   end
 end
