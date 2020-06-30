@@ -35,6 +35,7 @@ class PainLog < ApplicationRecord
     # end
   end
 
+  # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
   def self.search(body_part: '', pain_type: '', search_terms: '')
     return all if body_part.blank? && pain_type.blank? && search_terms.blank?
 
@@ -49,4 +50,5 @@ class PainLog < ApplicationRecord
       where('body_part_id = ? AND pain_description ILIKE ?', body_part.id, "%#{search_terms}%")
     end
   end
+  # rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 end
