@@ -7,11 +7,11 @@ class PainLogsController < ApplicationController
 
   def index
     search_terms = search_params[:search]
-    pain_name = search_params[:pain_name]
-    body_part_name = search_params[:body_part_name]
+    pain_id = search_params[:pain_name]
+    body_part_id = search_params[:body_part_name]
 
     @logs = current_user.pain_logs
-                        .search(body_part_name: body_part_name, pain_name: pain_name, search_terms: search_terms)
+                        .search(body_part_id: body_part_id, pain_id: pain_id, search_terms: search_terms)
                         .order(datetime_occurred: 'DESC')
                         .paginate(page: params[:page], per_page: 25)
   end

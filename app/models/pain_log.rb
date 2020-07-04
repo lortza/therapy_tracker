@@ -36,18 +36,15 @@ class PainLog < ApplicationRecord
   end
 
   # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
-  def self.search(body_part_name: '', pain_name: '', search_terms: '')
-    return all if body_part_name.blank? && pain_name.blank? && search_terms.blank?
+  def self.search(body_part_id: '', pain_id: '', search_terms: '')
+    return all if body_part_id.blank? && pain_id.blank? && search_terms.blank?
 
-    pain = Pain.find_by(name: pain_name)
-    body_part = BodyPart.find_by(name: body_part_name)
-
-    if pain.present? && body_part.present?
-      where('pain_id = ? AND body_part_id = ?', pain.id, body_part.id).with_search_terms(search_terms)
-    elsif pain.present?
-      where('pain_id = ?', pain.id).with_search_terms(search_terms)
-    elsif body_part.present?
-      where('body_part_id = ?', body_part.id).with_search_terms(search_terms)
+    if pain_id.present? && body_part_id.present?
+      where('pain_id = ? AND body_part_id = ?', pain_id, body_part_id).with_search_terms(search_terms)
+    elsif pain_id.present?
+      where('pain_id = ?', pain_id).with_search_terms(search_terms)
+    elsif body_part_id.present?
+      where('body_part_id = ?', body_part_id).with_search_terms(search_terms)
     else
       with_search_terms(search_terms)
     end
