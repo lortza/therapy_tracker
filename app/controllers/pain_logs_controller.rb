@@ -6,12 +6,10 @@ class PainLogsController < ApplicationController
   layout 'no_white_container', only: [:index]
 
   def index
-    search_terms = search_params[:search]
-    pain_id = search_params[:pain_name]
-    body_part_id = search_params[:body_part_name]
-
     @logs = current_user.pain_logs
-                        .search(body_part_id: body_part_id, pain_id: pain_id, search_terms: search_terms)
+                        .search(body_part_id: search_params[:body_part_id],
+                                pain_id: search_params[:pain_id],
+                                search_terms: search_params[:search])
                         .order(datetime_occurred: 'DESC')
                         .paginate(page: params[:page], per_page: 25)
   end
@@ -71,7 +69,7 @@ class PainLogsController < ApplicationController
   end
 
   def search_params
-    params.permit(:search, :pain_name, :body_part_name)
+    params.permit(:search, :pain_id, :body_part_id)
   end
 
   def pain_log_params

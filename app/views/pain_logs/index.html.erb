@@ -5,16 +5,16 @@
 <%= form_tag(pain_logs_path, method: 'get', id: 'filter-form' ) do %>
   <div class='row'>
     <div class='col-12 col-md-3 mb-2'>
-      <%= select_tag :body_part_name,
-        options_for_select(options_for_body_parts_dropdown, params[:body_part_name]),
+      <%= select_tag :body_part_id,
+        options_for_select(options_for_body_parts_dropdown, params[:body_part_id]),
         { prompt: 'Select a Body Part',
           class: 'form-control' }
       %>
     </div>
 
     <div class='col-12 col-md-3 mb-2'>
-      <%= select_tag :pain_name,
-        options_for_select(options_for_pain_logs_dropdown, params[:pain_name]),
+      <%= select_tag :pain_id,
+        options_for_select(options_for_pain_logs_dropdown, params[:pain_id]),
         { prompt: 'Select a Pain',
           class: 'form-control' }
       %>
