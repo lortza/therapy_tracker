@@ -5,23 +5,25 @@
 <%= form_tag(pain_logs_path, method: 'get', id: 'filter-form' ) do %>
   <div class='row'>
     <div class='col-12 col-md-3 mb-2'>
+      <%= select_tag :body_part_name,
+        options_for_select(options_for_body_parts_dropdown, params[:body_part_name]),
+        { prompt: 'Select a Body Part',
+          class: 'form-control' }
+      %>
+    </div>
+
+    <div class='col-12 col-md-3 mb-2'>
+      <%= select_tag :pain_name,
+        options_for_select(options_for_pain_logs_dropdown, params[:pain_name]),
+        { prompt: 'Select a Pain',
+          class: 'form-control' }
+      %>
+    </div>
+
+    <div class='col-12 col-md-3 mb-2'>
       <%= text_field_tag :search, params[:search],
-                                  placeholder: "Search Entries",
+                                  placeholder: "Search Description",
                                   class: 'form-control'
-      %>
-    </div>
-
-    <div class='col-12 col-md-3 mb-2'>
-      <%= select_tag :body_part,
-        options_for_select(options_for_body_parts_dropdown, params[:body_part]),
-        class: 'form-control'
-      %>
-    </div>
-
-    <div class='col-12 col-md-3 mb-2'>
-      <%= select_tag :pain_type,
-        options_for_select(options_for_pain_logs_dropdown, params[:pain_type]),
-        class: 'form-control'
       %>
     </div>
 

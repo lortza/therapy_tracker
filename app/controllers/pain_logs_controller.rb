@@ -6,12 +6,12 @@ class PainLogsController < ApplicationController
   layout 'no_white_container', only: [:index]
 
   def index
-    search_terms = params[:search]
-    pain_type = params[:pain_type]
-    body_part = params[:body_part]
+    search_terms = search_params[:search]
+    pain_name = search_params[:pain_name]
+    body_part_name = search_params[:body_part_name]
 
     @logs = current_user.pain_logs
-                        .search(body_part: body_part, pain_type: pain_type, search_terms: search_terms)
+                        .search(body_part_name: body_part_name, pain_name: pain_name, search_terms: search_terms)
                         .order(datetime_occurred: 'DESC')
                         .paginate(page: params[:page], per_page: 25)
   end
@@ -68,6 +68,10 @@ class PainLogsController < ApplicationController
 
   def authorize_pain_log
     redirect_to root_path, alert: authorization_alert unless authorized_user?(@pain_log)
+  end
+
+  def search_params
+    params.permit(:search, :pain_name, :body_part_name)
   end
 
   def pain_log_params

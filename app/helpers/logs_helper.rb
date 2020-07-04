@@ -28,10 +28,12 @@ module LogsHelper
   end
 
   def options_for_body_parts_dropdown
-    [''] + current_user.body_parts.all.map(&:name)
+    # current_user.body_parts.map{ |b| [ b.name, b.id ] }
+    current_user.body_parts.order(:name).map(&:name)
   end
 
   def options_for_pain_logs_dropdown
-    [''] + current_user.pains.all.map(&:name)
+    # current_user.pains.order(:name).map{ |p| [ p.name, p.id ] }
+    current_user.pains.order(:name).map(&:name)
   end
 end
