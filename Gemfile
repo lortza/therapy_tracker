@@ -5,7 +5,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.3'
 
-gem 'autoprefixer-rails'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'chartkick', '>= 3.2.0' # chart rendering for ruby data
 gem 'coffee-rails', '~> 5.0' # Use CoffeeScript for .coffee assets and views
