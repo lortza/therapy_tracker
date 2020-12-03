@@ -23,7 +23,7 @@ class ExerciseLogsController < ApplicationController
   def edit
   end
 
-  def create # rubocop:disable Metrics/AbcSize
+  def create
     @exercise_log = current_user.exercise_logs.new(exercise_log_params)
 
     respond_to do |format|

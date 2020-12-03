@@ -5,6 +5,8 @@ require:
 Rails:
   Enabled: true
 AllCops:
+  NewCops: enable
+  TargetRubyVersion: 2.5.3
   DefaultFormatter: progress
   Exclude:
     - 'bin/**'
@@ -22,6 +24,8 @@ Layout/LineLength:
   Exclude:
   - !ruby/regexp /.*_spec\.rb$/
 
+Metrics/AbcSize:
+  Enabled: false
 Metrics/BlockLength:
   Exclude:
     - !ruby/regexp /.*_spec\.rb$/

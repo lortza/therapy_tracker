@@ -5,7 +5,7 @@ class Pain < ApplicationRecord
 
   belongs_to :user
   has_many :pain_logs, dependent: :destroy
-  has_many :logs, foreign_key: 'pain_id', class_name: 'PainLog', dependent: :destroy, inverse_of: :pain
+  has_many :logs, class_name: 'PainLog', dependent: :destroy, inverse_of: :pain
 
   validates :name, presence: true,
                    uniqueness: {
