@@ -77,7 +77,6 @@ RSpec.describe PtSessionLog, type: :model do
   end
 
   describe 'self.exercise_counts' do
-    xit 'returns a count of all exercises grouped by date' do
-    end
+    xit 'returns a count of all exercises grouped by date'
   end
 end

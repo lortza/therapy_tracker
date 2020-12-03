@@ -24,7 +24,7 @@ class PainLogsController < ApplicationController
   def edit
   end
 
-  def create # rubocop:disable Metrics/AbcSize
+  def create
     @pain_log = current_user.pain_logs.new(pain_log_params)
 
     respond_to do |format|

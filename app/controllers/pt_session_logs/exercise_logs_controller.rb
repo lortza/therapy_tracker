@@ -18,7 +18,7 @@ class PtSessionLogs::ExerciseLogsController < PtSessionLogsController
     render './exercise_logs/show'
   end
 
-  def create # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+  def create # rubocop:disable Metrics/MethodLength
     @exercise_log = @pt_session_log.exercise_logs.new(exercise_log_params)
     @exercise_log.user_id = current_user.id
 

@@ -19,7 +19,7 @@ class PtSessionLogsController < ApplicationController
   def edit
   end
 
-  def create # rubocop:disable Metrics/AbcSize
+  def create
     @pt_session_log = current_user.pt_session_logs.new(pt_session_log_params)
 
     respond_to do |format|
