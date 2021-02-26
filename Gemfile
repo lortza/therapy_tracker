@@ -59,7 +59,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rspec-rails', '~> 4.0'
   gem 'selenium-webdriver'
-  gem 'webdrivers', '~> 4.4'
+  gem 'webdrivers', '~> 4.6'
 end
 
 group :test do
