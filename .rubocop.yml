@@ -10,6 +10,7 @@ AllCops:
   TargetRubyVersion: 2.5.3
   DefaultFormatter: progress
   Exclude:
+    - 'config.ru'
     - 'bin/**'
     - 'config/**/*'
     - 'db/**/*'
