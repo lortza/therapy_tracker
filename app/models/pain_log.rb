@@ -42,9 +42,9 @@ class PainLog < ApplicationRecord
     if pain_id.present? && body_part_id.present?
       where('pain_id = ? AND body_part_id = ?', pain_id, body_part_id).with_search_terms(search_terms)
     elsif pain_id.present?
-      where('pain_id = ?', pain_id).with_search_terms(search_terms)
+      where(pain_id: pain_id).with_search_terms(search_terms)
     elsif body_part_id.present?
-      where('body_part_id = ?', body_part_id).with_search_terms(search_terms)
+      where(body_part_id: body_part_id).with_search_terms(search_terms)
     else
       with_search_terms(search_terms)
     end
