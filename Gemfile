@@ -31,7 +31,7 @@ group :development do
   gem 'rails-erd', require: false # generates ERD chart for your schema, run `bundle exec erd`
   gem 'rubycritic', require: false # provides feedback on complexity and churns for your codebase
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'listen', '>= 3.0.5', '< 3.4'
+  gem 'listen', '>= 3.0.5', '< 3.6'
   gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'rubocop-performance'
