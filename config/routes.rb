@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root to: 'logs#index'
 
   resources :charts, only: [:index]
+  resources :stats, only: [:index]
 
   resources :exercises
   resources :pains, only: [:index, :new, :create, :edit, :update, :destroy]
