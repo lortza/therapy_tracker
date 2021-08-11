@@ -1,4 +1,4 @@
-<%= form_tag(reports_path, method: 'get', id: 'filter-form' ) do %>
+<%= form_tag(charts_path, method: 'get', id: 'filter-form' ) do %>
   <div class='row'>
     <div class='col-4'>
       <%= select_tag :body_part_id,
@@ -21,7 +21,7 @@
     </div>
 
     <div class='col-2'>
-      <%= link_to 'Reset', reports_path, class: 'btn btn-outline-secondary' %>
+      <%= link_to 'Reset', charts_path, class: 'btn btn-outline-secondary' %>
     </div>
   </div> <!-- row -->
 <% end %>

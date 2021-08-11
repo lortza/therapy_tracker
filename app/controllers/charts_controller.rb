@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ReportsController < ApplicationController
+class ChartsController < ApplicationController
   def index
     filter_params = {
       user: current_user,

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'logs#index'
 
-  resources :reports, only: [:index]
+  resources :charts, only: [:index]
 
   resources :exercises
   resources :pains, only: [:index, :new, :create, :edit, :update, :destroy]
