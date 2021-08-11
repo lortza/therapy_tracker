@@ -5,14 +5,14 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.3'
 
-gem 'bootsnap', '>= 1.1.0', require: false
+gem 'bootsnap', '>= 1.7.7', require: false
 gem 'chartkick', '>= 3.2.0' # chart rendering for ruby data
 gem 'coffee-rails', '~> 5.0' # Use CoffeeScript for .coffee assets and views
 gem 'devise' # user authentication
 gem 'groupdate' # grouping by dates. goes with chartkick
 gem 'jbuilder', '~> 2.10' # https://github.com/rails/jbuilder
 gem 'pg', '>= 0.18', '< 2.0' # Use postgresql as the database for Active Record
-gem 'puma', '~> 4.3' # Use Puma as the app server
+gem 'puma', '~> 5.4' # Use Puma as the app server
 gem 'rails', '~> 6.1.4' # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'sass-rails', '~> 6.0' # Use SCSS for stylesheets
 gem 'scss_lint', require: false
@@ -31,7 +31,7 @@ group :development do
   gem 'rails-erd', require: false # generates ERD chart for your schema, run `bundle exec erd`
   gem 'rubycritic', require: false # provides feedback on complexity and churns for your codebase
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'listen', '>= 3.0.5', '< 3.4'
+  gem 'listen', '>= 3.0.5', '< 3.7'
   gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'rubocop-performance'
@@ -57,7 +57,7 @@ group :development, :test do
   gem 'pry-awesome_print'
   gem 'pry-byebug'
   gem 'pry-rails'
-  gem 'rspec-rails', '~> 4.0'
+  gem 'rspec-rails', '~> 5.0'
   gem 'selenium-webdriver'
   gem 'webdrivers', '~> 4.4'
 end
