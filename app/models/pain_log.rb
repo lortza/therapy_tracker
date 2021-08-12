@@ -28,6 +28,7 @@ class PainLog < ApplicationRecord
         [Pain.find(k).name, v]
       end
     end
+
     # def avg_pain_level_by_day
     #   x = PainLog.all.map do |log|
     #     [log.datetime_occurred.to_date => log.pain_level]

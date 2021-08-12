@@ -17,7 +17,9 @@
       <tr>
         <td width='15%';><%= pain.name %></td>
         <td><%= avg_pain_level(occurrences) %>&nbsp;
-          <span style='display: inline-block; background-color: gray; height: 10px; width: <%= (avg_pain_level(occurrences) * 10) - 10 %>%;'><span>
+          <div style='display: inline-block; width: 90%;'>
+            <span style='display: inline-block; background-color: gray; height: 10px; width: <%= (avg_pain_level(occurrences) * 10) %>%;'><span>
+          </div>
         </td>
         <td><%= occurrences.length %></td>
         <td><%= format_datetime(pain.pain_logs.first_occurrence.datetime_occurred) %></td>
