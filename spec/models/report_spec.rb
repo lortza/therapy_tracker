@@ -4,10 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Report, type: :model do
   let(:user) { create(:user) }
-  before do
-    # allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
-  end
-
+  
   xcontext 'attributes' do
     it 'should have all of its attributes' do
       expected_attributes = %w[filter_params]
