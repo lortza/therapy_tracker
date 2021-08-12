@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Report, type: :model do
   let(:user) { create(:user) }
-  
+
   xcontext 'attributes' do
     it 'should have all of its attributes' do
       expected_attributes = %w[filter_params]
