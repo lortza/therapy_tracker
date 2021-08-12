@@ -1,6 +1,6 @@
 <h1>Stats by Body Part</h1>
 <%= render partial: 'shared/filter_form', locals: { destination_path: stats_path, body_parts: @report.body_parts } %>
 
-<% @body_parts.each do |body_part, pain_logs| %>
+<% @report.pain_stats_by_body_part.each do |body_part, pain_logs| %>
   <%= render partial: 'body_part_table', locals: { body_part: body_part, pain_logs_for_body_part: pain_logs } %>
 <% end %>

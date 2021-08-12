@@ -4,7 +4,8 @@ class Report
   attr_reader :filter_params
   TIMEFRAMES = [['Past Week', 7],
                 ['Past Two Weeks', 14],
-                ['Past Month', 30],].freeze
+                ['Past Month', 30],
+                ['Past Year', 360],].freeze
 
   def initialize(filter_params)
     @filter_params = filter_params
@@ -34,7 +35,7 @@ class Report
     @body_parts ||= filter_params[:user].body_parts
   end
 
-  def stats_by_body_part
+  def pain_stats_by_body_part
     pain_logs.includes(:body_part).group_by(&:body_part)
   end
 
