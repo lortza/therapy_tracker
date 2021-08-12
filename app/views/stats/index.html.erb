@@ -1,5 +1,5 @@
-<h1>Stats</h1>
-<%= render partial: 'filter_form' %>
+<h1>Stats by Body Part</h1>
+<%= render partial: 'shared/filter_form', locals: { destination_path: stats_path, body_parts: @report.body_parts } %>
 
 <% 3.times do %>
   <%= render partial: 'body_part_table' %>

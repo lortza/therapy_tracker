@@ -7,7 +7,8 @@
 ] %>
 
 <h1>Charts</h1>
-<%= render partial: 'filter_form' %>
+<%= render partial: 'shared/filter_form', locals: { destination_path: charts_path, body_parts: @report.body_parts } %>
+
 
 <h3>Pain Instances & Levels</h3>
 <h4>Grouped by Day</h4>
