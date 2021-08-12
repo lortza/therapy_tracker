@@ -9,5 +9,6 @@ class StatsController < ApplicationController
     }
 
     @report = Report.new(filter_params)
+    @body_parts = @report.stats_by_body_part
   end
 end

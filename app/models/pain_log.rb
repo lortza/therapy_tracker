@@ -33,6 +33,13 @@ class PainLog < ApplicationRecord
     #     [log.datetime_occurred.to_date => log.pain_level]
     #   end
     # end
+    def first_occurrence
+      order(:datetime_occurred).first
+    end
+
+    def last_occurrence
+      order(:datetime_occurred).last
+    end
   end
 
   # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity

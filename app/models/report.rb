@@ -34,6 +34,10 @@ class Report
     @body_parts ||= filter_params[:user].body_parts
   end
 
+  def stats_by_body_part
+    pain_logs.includes(:body_part).group_by(&:body_part)
+  end
+
   private
 
   def query_logs(log_type)
