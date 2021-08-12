@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe LogsHelper, type: :helper do
   it 'should format time' do
     log = build(:exercise_log)
-    expect(helper.format_time(log)).to eq('Sat 03/23/19 at 02:08PM')
+    expect(helper.format_datetime(log.datetime_occurred)).to eq('Sat 03/23/19 at 02:08PM')
   end
 
   it 'should find the second to last log' do
