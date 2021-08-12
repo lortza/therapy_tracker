@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 module LogsHelper
-  def format_time(log)
-    # log.datetime_occurred.strftime("%a %m/%d/%y at %I:%M %p in %Z")
-    log.datetime_occurred.strftime('%a %m/%d/%y at %I:%M%p')
+  def format_datetime(datetime)
+    # log.datetime.strftime("%a %m/%d/%y at %I:%M %p in %Z")
+    datetime.strftime('%a %m/%d/%y at %I:%M%p')
   end
 
   def last_log(kollection, attr)

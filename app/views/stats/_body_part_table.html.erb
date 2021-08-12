@@ -1,0 +1,30 @@
+<h2>
+  <%= body_part.name %>
+  <small class="text-muted pull-right">(<%= pluralize(pain_logs_for_body_part.length, 'Occurrence')%>)</small>
+</h2>
+<table class='table mb-5'>
+  <thead>
+    <tr>
+      <th>Pain Type</th>
+      <th>Average Intensity (10 max)</th>
+      <th>Occurrences</th>
+      <th>First Occurrence</th>
+      <th>Last Occurrence</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% pain_logs_for_body_part.group_by(&:pain).each do |pain, occurrences| %>
+      <tr>
+        <td width='15%';><%= pain.name %></td>
+        <td><%= avg_pain_level(occurrences) %>&nbsp;
+          <div style='display: inline-block; width: 90%;'>
+            <span style='display: inline-block; background-color: gray; height: 10px; width: <%= (avg_pain_level(occurrences) * 10) %>%;'><span>
+          </div>
+        </td>
+        <td><%= occurrences.length %></td>
+        <td><%= format_datetime(pain.pain_logs.first_occurrence.datetime_occurred) %></td>
+        <td><%= format_datetime(pain.pain_logs.last_occurrence.datetime_occurred) %></td>
+      </tr>
+      <% end %>
+  </tbody>
+</table>

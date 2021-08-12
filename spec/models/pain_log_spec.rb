@@ -86,12 +86,25 @@ RSpec.describe PainLog, type: :model do
     end
   end
 
-  # describe '#avg_pain_level_by_day' do
-  #   it 'returns the average pain level of minutes exercised per log' do
-  #     pain_log = build(:pain_log)
-  #     allow(pain_log).to receive(:seconds_spent).and_return(120)
+  describe 'self.first_occurrence' do
+    let(:pain) { create(:pain) }
+    let!(:pain_log_today) { create(:pain_log, pain: pain, datetime_occurred: 5.hours.ago) }
+    let!(:pain_log_yesterday) { create(:pain_log, pain: pain, datetime_occurred: 24.hours.ago) }
 
-  #     expect(PainLog.avg_pain_level_by_day).to eq(2)
-  #   end
-  # end
+    it 'returns the log with the earliest datetime_occurred' do
+      expect(pain.logs.first_occurrence).to eq(pain_log_yesterday)
+      expect(pain.logs.first_occurrence).to_not eq(pain_log_today)
+    end
+  end
+
+  describe 'self.second_occurrence' do
+    let(:pain) { create(:pain) }
+    let!(:pain_log_today) { create(:pain_log, pain: pain, datetime_occurred: 5.hours.ago) }
+    let!(:pain_log_yesterday) { create(:pain_log, pain: pain, datetime_occurred: 24.hours.ago) }
+
+    it 'returns the log with the latest datetime_occurred' do
+      expect(pain.logs.last_occurrence).to eq(pain_log_today)
+      expect(pain.logs.last_occurrence).to_not eq(pain_log_yesterday)
+    end
+  end
 end

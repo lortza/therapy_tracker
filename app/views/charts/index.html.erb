@@ -6,8 +6,9 @@
   {name: "Series B", data: series_b}
 ] %>
 
-<h1>Reports</h1>
-<%= render partial: 'filter_form' %>
+<h1>Charts</h1>
+<%= render partial: 'shared/filter_form', locals: { destination_path: charts_path, body_parts: @report.body_parts } %>
+
 
 <h3>Pain Instances & Levels</h3>
 <h4>Grouped by Day</h4>

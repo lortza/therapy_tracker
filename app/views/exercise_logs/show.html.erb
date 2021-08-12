@@ -1,4 +1,4 @@
-<% content_for(:title, format_time(@exercise_log)) %>
+<% content_for(:title, format_datetime(@exercise_log.datetime_occurred)) %>
 
 <%= render partial: 'exercise_logs/exercise_log_header', locals: { log: @exercise_log } %>
 
@@ -15,7 +15,7 @@
 </p>
 
 <p>
-  <%= format_time(@exercise_log) %>
+  <%= format_datetime(@exercise_log.datetime_occurred) %>
 </p>
 
 <p>
