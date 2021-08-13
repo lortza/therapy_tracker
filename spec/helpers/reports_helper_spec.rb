@@ -41,10 +41,10 @@ RSpec.describe ReportsHelper, type: :helper do
       create(:pain_log, user: user, pain: ache, body_part: arse, datetime_occurred: 25.hours.ago)
     end
 
-    let(:neck_report) { Report.new(user: user,timeframe: '', body_part_id: neck.id) }
+    let(:neck_report) { Report.new(user: user, timeframe: '', body_part_id: neck.id) }
 
     let(:neck_occurrences) do
-      neck_report.pain_stats_by_body_part.map { |pain, occurrences| occurrences }.first
+      neck_report.pain_stats_by_body_part.map { |_pain, occurrences| occurrences }.first
     end
 
     describe 'first_occurrence' do
