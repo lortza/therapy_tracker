@@ -47,25 +47,25 @@ RSpec.describe ReportsHelper, type: :helper do
       neck_report.pain_stats_by_body_part.map { |_pain, occurrences| occurrences }.first
     end
 
-    describe 'first_occurrence' do
+    describe 'first_occurrence_datetime' do
       it 'returns the log with the oldest datetime_occurred' do
-        expect(helper.first_occurrence(neck_occurrences)).to eq(pain_log_yesterday.datetime_occurred)
-        expect(helper.first_occurrence(neck_occurrences)).to_not eq(pain_log_today.datetime_occurred)
+        expect(helper.first_occurrence_datetime(neck_occurrences)).to eq(pain_log_yesterday.datetime_occurred)
+        expect(helper.first_occurrence_datetime(neck_occurrences)).to_not eq(pain_log_today.datetime_occurred)
       end
 
       it 'does not include records outside of the body_part set' do
-        expect(helper.first_occurrence(neck_occurrences)).to_not eq(arse_pain_log_yesterday.datetime_occurred)
+        expect(helper.first_occurrence_datetime(neck_occurrences)).to_not eq(arse_pain_log_yesterday.datetime_occurred)
       end
     end
 
-    describe 'last_occurrence' do
+    describe 'last_occurrence_datetime' do
       it 'returns the log with the most recent datetime_occurred' do
-        expect(helper.last_occurrence(neck_occurrences)).to eq(pain_log_today.datetime_occurred)
-        expect(helper.last_occurrence(neck_occurrences)).to_not eq(pain_log_yesterday.datetime_occurred)
+        expect(helper.last_occurrence_datetime(neck_occurrences)).to eq(pain_log_today.datetime_occurred)
+        expect(helper.last_occurrence_datetime(neck_occurrences)).to_not eq(pain_log_yesterday.datetime_occurred)
       end
 
       it 'does not include records outside of the body_part set' do
-        expect(helper.last_occurrence(neck_occurrences)).to_not eq(arse_pain_log_today.datetime_occurred)
+        expect(helper.last_occurrence_datetime(neck_occurrences)).to_not eq(arse_pain_log_today.datetime_occurred)
       end
     end
   end

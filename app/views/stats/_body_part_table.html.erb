@@ -22,8 +22,8 @@
           </div>
         </td>
         <td><%= occurrences.length %></td>
-        <td><%= format_datetime(first_occurrence(occurrences)) %></td>
-        <td><%= format_datetime(last_occurrence(occurrences)) %></td>
+        <td><%= format_datetime(first_occurrence_datetime(occurrences)) %></td>
+        <td><%= format_datetime(last_occurrence_datetime(occurrences)) %></td>
       </tr>
       <% end %>
   </tbody>

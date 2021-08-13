@@ -5,11 +5,11 @@ module ReportsHelper
     (occurrences.map(&:pain_level).sum / occurrences.length).to_i
   end
 
-  def first_occurrence(occurrences)
+  def first_occurrence_datetime(occurrences)
     occurrences.map(&:datetime_occurred).min
   end
 
-  def last_occurrence(occurrences)
+  def last_occurrence_datetime(occurrences)
     occurrences.map(&:datetime_occurred).max
   end
 end
