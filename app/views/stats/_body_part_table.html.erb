@@ -22,8 +22,8 @@
           </div>
         </td>
         <td><%= occurrences.length %></td>
-        <td><%= format_datetime(pain.pain_logs.first_occurrence.datetime_occurred) %></td>
-        <td><%= format_datetime(pain.pain_logs.last_occurrence.datetime_occurred) %></td>
+        <td><%= format_datetime(first_occurrence(occurrences)) %></td>
+        <td><%= format_datetime(last_occurrence(occurrences)) %></td>
       </tr>
       <% end %>
   </tbody>
