@@ -85,26 +85,4 @@ RSpec.describe PainLog, type: :model do
       expect(PainLog.group_by_pain_and_count).to match_array(expected_output)
     end
   end
-
-  describe 'self.first_occurrence' do
-    let(:pain) { create(:pain) }
-    let!(:pain_log_today) { create(:pain_log, pain: pain, datetime_occurred: 5.hours.ago) }
-    let!(:pain_log_yesterday) { create(:pain_log, pain: pain, datetime_occurred: 24.hours.ago) }
-
-    it 'returns the log with the earliest datetime_occurred' do
-      expect(pain.logs.first_occurrence).to eq(pain_log_yesterday)
-      expect(pain.logs.first_occurrence).to_not eq(pain_log_today)
-    end
-  end
-
-  describe 'self.second_occurrence' do
-    let(:pain) { create(:pain) }
-    let!(:pain_log_today) { create(:pain_log, pain: pain, datetime_occurred: 5.hours.ago) }
-    let!(:pain_log_yesterday) { create(:pain_log, pain: pain, datetime_occurred: 24.hours.ago) }
-
-    it 'returns the log with the latest datetime_occurred' do
-      expect(pain.logs.last_occurrence).to eq(pain_log_today)
-      expect(pain.logs.last_occurrence).to_not eq(pain_log_yesterday)
-    end
-  end
 end

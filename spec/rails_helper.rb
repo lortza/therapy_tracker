@@ -59,6 +59,13 @@ RSpec.configure do |config|
     end
   end
 
+  # TODO: This does not work yet. I need to include
+  # ActiveSupport::Testing::TimeHelpers#freeze_time
+  # or figure out why my rails version is behind in ActiveSupport updates
+  config.around(:each, freeze_time: true) do |example|
+    freeze_time { example.run }
+  end
+
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::IntegrationHelpers, type: :request
 

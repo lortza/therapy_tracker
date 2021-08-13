@@ -28,14 +28,6 @@ class PainLog < ApplicationRecord
         [Pain.find(k).name, v]
       end
     end
-
-    def first_occurrence
-      order(:datetime_occurred).first
-    end
-
-    def last_occurrence
-      order(:datetime_occurred).last
-    end
   end
 
   # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
