@@ -23,7 +23,7 @@ RSpec.describe ReportsHelper, type: :helper do
     end
   end
 
-  context 'occurrences ordering' do
+  xcontext 'occurrences ordering', freeze_time: true do
     let(:ache) { create(:pain, user: user) }
     let(:neck) { create(:body_part, user: user) }
     let!(:pain_log_today) do

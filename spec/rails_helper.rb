@@ -59,6 +59,10 @@ RSpec.configure do |config|
     end
   end
 
+  config.around(:each, freeze_time: true) do |example|
+    freeze_time { example.run }
+  end
+
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::IntegrationHelpers, type: :request
 
