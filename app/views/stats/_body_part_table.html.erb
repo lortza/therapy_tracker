@@ -8,8 +8,9 @@
       <th>Pain Type</th>
       <th>Average Intensity (10 max)</th>
       <th>Occurrences</th>
-      <th>First Occurrence</th>
-      <th>Last Occurrence</th>
+      <th>Time Frame</th>
+      <th>Avg Frequency</th>
+      <th>First & Last</th>
     </tr>
   </thead>
   <tbody>
@@ -22,8 +23,16 @@
           </div>
         </td>
         <td><%= occurrences.length %></td>
-        <td><%= format_datetime(first_occurrence_datetime(occurrences)) %></td>
-        <td><%= format_datetime(last_occurrence_datetime(occurrences)) %></td>
+        <td><%= occurrence_timeframe(occurrences) %></td>
+        <td><%= occurrence_frequency(occurrences) %></td>
+        <td>
+          <% if occurrences.length == 1 %>
+          <%= formatted_first_occurrence_datetime(occurrences) %>
+          <% else %>
+          <%= formatted_first_occurrence_datetime(occurrences) %><br>
+          <%= formatted_last_occurrence_datetime(occurrences) %><br>
+          <% end %>
+        </td>
       </tr>
       <% end %>
   </tbody>

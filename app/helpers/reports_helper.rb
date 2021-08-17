@@ -2,14 +2,23 @@
 
 module ReportsHelper
   def avg_pain_level(occurrences)
-    (occurrences.map(&:pain_level).sum / occurrences.length).to_i
+    OccurrenceCalculator.new(occurrences).avg_pain_level
   end
 
-  def first_occurrence_datetime(occurrences)
-    occurrences.map(&:datetime_occurred).min
+  def occurrence_timeframe(occurrences)
+    timeframe = OccurrenceCalculator.new(occurrences).timeframe
+    pluralize(timeframe.qty, timeframe.unit)
   end
 
-  def last_occurrence_datetime(occurrences)
-    occurrences.map(&:datetime_occurred).max
+  def occurrence_frequency(occurrences)
+    OccurrenceCalculator.new(occurrences).frequency
+  end
+
+  def formatted_first_occurrence_datetime(occurrences)
+    format_datetime(OccurrenceCalculator.new(occurrences).first_datetime)
+  end
+
+  def formatted_last_occurrence_datetime(occurrences)
+    format_datetime(OccurrenceCalculator.new(occurrences).last_datetime)
   end
 end
