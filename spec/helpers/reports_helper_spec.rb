@@ -3,70 +3,67 @@
 require 'rails_helper'
 
 RSpec.describe ReportsHelper, type: :helper do
-  let(:user) { create(:user) }
+  let(:occurrences) { 'foo' }
 
   describe 'avg_pain_level' do
-    let(:pain) { create(:pain) }
+    it 'calls the OccurrenceCalculator' do
+      expect_any_instance_of(OccurrenceCalculator).to receive(:avg_pain_level).and_return('foo')
 
-    it 'returns an average pain_level of several logs' do
-      create(:pain_log, pain: pain, pain_level: 10)
-      create(:pain_log, pain: pain, pain_level: 2)
-      create(:pain_log, pain: pain, pain_level: 7)
-
-      expect(helper.avg_pain_level(pain.logs)).to eq(6)
+      helper.avg_pain_level(occurrences)
     end
 
-    it 'returns an average pain_level of a single log' do
-      create(:pain_log, pain: pain, pain_level: 2)
+    it 'returns the average pain level for a set of logs' do
+      allow_any_instance_of(OccurrenceCalculator).to receive(:avg_pain_level).and_return(2.5)
 
-      expect(helper.avg_pain_level(pain.logs)).to eq(2)
+      expect(helper.avg_pain_level(occurrences)).to eq(2.5)
     end
   end
 
-  xcontext 'occurrences ordering', freeze_time: true do
-    let(:ache) { create(:pain, user: user) }
-    let(:neck) { create(:body_part, user: user) }
-    let!(:pain_log_today) do
-      create(:pain_log, user: user, pain: ache, body_part: neck, datetime_occurred: 5.hours.ago)
-    end
-    let!(:pain_log_yesterday) do
-      create(:pain_log, user: user, pain: ache, body_part: neck, datetime_occurred: 24.hours.ago)
+  describe 'occurrence_frequency' do
+    it 'calls the OccurrenceCalculator' do
+      expect_any_instance_of(OccurrenceCalculator).to receive(:frequency)
+
+      helper.occurrence_frequency(occurrences)
     end
 
-    let(:arse) { create(:body_part) }
-    let!(:arse_pain_log_today) do
-      create(:pain_log, user: user, pain: ache, body_part: arse, datetime_occurred: 2.hours.ago)
+    it 'returns the frequency as sent by the OccurrenceCalculator' do
+      allow_any_instance_of(OccurrenceCalculator).to receive(:frequency).and_return('1.6 per week')
+
+      expect(helper.occurrence_frequency(occurrences)).to eq('1.6 per week')
     end
-    let!(:arse_pain_log_yesterday) do
-      create(:pain_log, user: user, pain: ache, body_part: arse, datetime_occurred: 25.hours.ago)
-    end
+  end
 
-    let(:neck_report) { Report.new(user: user, timeframe: '', body_part_id: neck.id) }
+  describe 'occurrence_timeframe' do
+    it "displays the time unit as plural when it's more than one" do
+      struct = OpenStruct.new(qty: 2.0, unit: 'month')
+      allow_any_instance_of(OccurrenceCalculator).to receive(:timeframe).and_return(struct)
 
-    let(:neck_occurrences) do
-      neck_report.pain_stats_by_body_part.map { |_pain, occurrences| occurrences }.first
-    end
-
-    describe 'first_occurrence_datetime' do
-      it 'returns the log with the oldest datetime_occurred' do
-        expect(helper.first_occurrence_datetime(neck_occurrences)).to eq(pain_log_yesterday.datetime_occurred)
-        expect(helper.first_occurrence_datetime(neck_occurrences)).to_not eq(pain_log_today.datetime_occurred)
-      end
-
-      it 'does not include records outside of the body_part set' do
-        expect(helper.first_occurrence_datetime(neck_occurrences)).to_not eq(arse_pain_log_yesterday.datetime_occurred)
-      end
+      expect(helper.occurrence_timeframe(occurrences)).to include('2.0 months')
     end
 
-    describe 'last_occurrence_datetime' do
-      it 'returns the log with the most recent datetime_occurred' do
-        expect(helper.last_occurrence_datetime(neck_occurrences)).to eq(pain_log_today.datetime_occurred)
-        expect(helper.last_occurrence_datetime(neck_occurrences)).to_not eq(pain_log_yesterday.datetime_occurred)
-      end
+    it 'displays the time unit as singular appropriate' do
+      struct = OpenStruct.new(qty: 1, unit: 'day')
+      allow_any_instance_of(OccurrenceCalculator).to receive(:timeframe).and_return(struct)
 
-      it 'does not include records outside of the body_part set' do
-        expect(helper.last_occurrence_datetime(neck_occurrences)).to_not eq(arse_pain_log_today.datetime_occurred)
-      end
+      expect(helper.occurrence_timeframe(occurrences)).to eq('1 day')
+    end
+  end
+
+  describe 'formatted_first_occurrence_datetime' do
+    it 'formats the datetime given' do
+      datetime = '2021-08-01'.to_datetime
+      allow_any_instance_of(OccurrenceCalculator).to receive(:first_datetime).and_return(datetime)
+
+      expect(helper.formatted_first_occurrence_datetime(occurrences)).to eq('Sun 08/01/21 at 12:00AM')
+    end
+  end
+
+  describe 'formatted_last_occurrence_datetime' do
+    it 'formats the datetime given' do
+      datetime = '2021-08-01'.to_datetime
+      allow_any_instance_of(OccurrenceCalculator).to receive(:last_datetime).and_return(datetime)
+
+      expect(helper.formatted_last_occurrence_datetime(occurrences)).to eq('Sun 08/01/21 at 12:00AM')
     end
   end
 end

@@ -11,23 +11,53 @@ RSpec.describe OccurrenceCalculator, type: :model do
 
   describe 'avg_pain_level' do
     let(:pain) { create(:pain) }
+    let(:occurrences) { pain.logs }
 
     it 'returns an average pain_level of several logs' do
       create(:pain_log, pain: pain, pain_level: 10)
       create(:pain_log, pain: pain, pain_level: 2)
       create(:pain_log, pain: pain, pain_level: 7)
 
-      expect(helper.avg_pain_level(pain.logs)).to eq(6)
+      expect(calculator.avg_pain_level).to eq(6)
     end
 
     it 'returns an average pain_level of a single log' do
       create(:pain_log, pain: pain, pain_level: 2)
 
-      expect(helper.avg_pain_level(pain.logs)).to eq(2)
+      expect(calculator.avg_pain_level).to eq(2)
     end
   end
 
   describe 'frequency' do
+    context 'when it only happened once' do
+      let(:pain_log1) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: 1.month.ago) }
+      let(:occurrences) { [pain_log1] }
+
+      it 'returns "once"' do
+        expect(calculator.frequency).to eq('once')
+      end
+    end
+
+    context 'when the several occurrences per month' do
+      let(:pain_log1) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: '2021-05-01') }
+      let(:pain_log2) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: '2021-05-23') }
+      let(:occurrences) { [pain_log1, pain_log2] }
+
+      it 'reports several occurences within that unit' do
+        expect(calculator.frequency).to eq('1.6 per week')
+      end
+    end
+
+    context 'when several months between occurrences' do
+      let(:pain_log1) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: '2021-05-14') }
+      let(:pain_log2) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: '2021-08-22') }
+      let(:pain_log3) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: '2021-09-02') }
+      let(:occurrences) { [pain_log1, pain_log2, pain_log3] }
+
+      it 'spreads the occurrences out over several units' do
+        expect(calculator.frequency).to eq('1.2 per month')
+      end
+    end
   end
 
   describe 'timeframe' do
@@ -108,32 +138,5 @@ RSpec.describe OccurrenceCalculator, type: :model do
       log = create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: 1.day.ago)
       expect(calculator.last_datetime.to_date).to_not eq(log.datetime_occurred.to_date)
     end
-  end
-
-  xcontext 'occurrences ordering', freeze_time: true do
-    let(:ache) { create(:pain, user: user) }
-    let(:neck) { create(:body_part, user: user) }
-    let!(:pain_log_today) do
-      create(:pain_log, user: user, pain: ache, body_part: neck, datetime_occurred: 5.hours.ago)
-    end
-    let!(:pain_log_yesterday) do
-      create(:pain_log, user: user, pain: ache, body_part: neck, datetime_occurred: 24.hours.ago)
-    end
-
-    let(:arse) { create(:body_part) }
-    let!(:arse_pain_log_today) do
-      create(:pain_log, user: user, pain: ache, body_part: arse, datetime_occurred: 2.hours.ago)
-    end
-    let!(:arse_pain_log_yesterday) do
-      create(:pain_log, user: user, pain: ache, body_part: arse, datetime_occurred: 25.hours.ago)
-    end
-
-    let(:neck_report) { Report.new(user: user, timeframe: '', body_part_id: neck.id) }
-
-    let(:neck_occurrences) do
-      neck_report.pain_stats_by_body_part.map { |_pain, occurrences| occurrences }.first
-    end
-
-
   end
 end
