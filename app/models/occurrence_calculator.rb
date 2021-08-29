@@ -27,22 +27,24 @@ class OccurrenceCalculator
   # rubocop:disable Metrics/MethodLength
   def timeframe
     seconds = last_datetime - first_datetime
-    days = (seconds / 60 / 60 / 24)
+    days_between_first_and_last = (seconds / 60 / 60 / 24)
     data = OpenStruct.new
-    if days.zero?
+
+    case days_between_first_and_last
+    when 0
       data.qty = 1.round(1)
       data.unit = 'day'
-    elsif days < 7
-      data.qty = days.round(1)
+    when 1..6
+      data.qty = days_between_first_and_last.round(1)
       data.unit = 'day'
-    elsif days < 30
-      data.qty = (days / 7).round(1)
+    when 7..29
+      data.qty = (days_between_first_and_last / 7).round(1)
       data.unit = 'week'
-    elsif days < 360
-      data.qty = (days / 30).round(1)
+    when 30..360
+      data.qty = (days_between_first_and_last / 30).round(1)
       data.unit = 'month'
     else
-      data.qty = (days / 360).round(1)
+      data.qty = (days_between_first_and_last / 360).round(1)
       data.unit = 'year'
     end
     data
