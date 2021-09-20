@@ -12,7 +12,7 @@ gem 'devise' # user authentication
 gem 'groupdate' # grouping by dates. goes with chartkick
 gem 'jbuilder', '~> 2.10' # https://github.com/rails/jbuilder
 gem 'pg', '>= 0.18', '< 2.0' # Use postgresql as the database for Active Record
-gem 'puma', '~> 5.4' # Use Puma as the app server
+gem 'puma', '~> 5.5' # Use Puma as the app server
 gem 'rails', '~> 6.1.4.1' # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'sass-rails', '~> 6.0' # Use SCSS for stylesheets
 gem 'scss_lint', require: false
