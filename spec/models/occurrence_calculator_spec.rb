@@ -8,6 +8,7 @@ RSpec.describe OccurrenceCalculator, type: :model do
   let(:user) { create(:user) }
   let(:body_part) { create(:body_part, user: user) }
   let(:pain) { create(:pain, user: user) }
+  let(:today) { '01/08/2021'.to_datetime }
 
   describe 'avg_pain_level' do
     let(:pain) { create(:pain) }
@@ -30,7 +31,7 @@ RSpec.describe OccurrenceCalculator, type: :model do
 
   describe 'frequency' do
     context 'when it only happened once' do
-      let(:pain_log1) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: 1.month.ago) }
+      let(:pain_log1) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: today - 1.month) }
       let(:occurrences) { [pain_log1] }
 
       it 'returns "once"' do
@@ -61,12 +62,12 @@ RSpec.describe OccurrenceCalculator, type: :model do
   end
 
   describe 'timeframe' do
-    let(:pain_log1) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: 1.month.ago) }
-    let(:pain_log2) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: 3.months.ago) }
-    let(:pain_log3) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: 1.day.ago) }
-    let(:pain_log4) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: 3.days.ago) }
-    let(:pain_log5) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: 2.weeks.ago) }
-    let(:pain_log6) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: 2.years.ago) }
+    let(:pain_log1) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: today - 1.month) }
+    let(:pain_log2) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: today - 3.months) }
+    let(:pain_log3) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: today - 1.day) }
+    let(:pain_log4) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: today - 3.days) }
+    let(:pain_log5) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: today - 2.weeks) }
+    let(:pain_log6) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: today - 2.years) }
     let(:occurrences) { [pain_log1, pain_log2] }
 
     it 'returns the timeframe between the first and last occurrences' do
@@ -75,7 +76,7 @@ RSpec.describe OccurrenceCalculator, type: :model do
     end
 
     it 'does not include timeframes for logs outside of the set' do
-      create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: 1.year.ago)
+      create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: today - 1.year)
       expect(calculator.timeframe.qty).to_not eq(11.1)
     end
 
@@ -109,8 +110,8 @@ RSpec.describe OccurrenceCalculator, type: :model do
   end
 
   describe 'first_datetime' do
-    let(:pain_log1) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: 1.month.ago) }
-    let(:pain_log2) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: 2.months.ago) }
+    let(:pain_log1) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: today - 1.month) }
+    let(:pain_log2) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: today - 2.months) }
     let(:occurrences) { [pain_log1, pain_log2] }
 
     it 'returns the log with the oldest datetime_occurred' do
@@ -119,14 +120,14 @@ RSpec.describe OccurrenceCalculator, type: :model do
     end
 
     it 'does not include records outside of the body_part set' do
-      log = create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: 4.months.ago)
+      log = create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: today - 4.months)
       expect(calculator.first_datetime.to_date).to_not eq(log.datetime_occurred.to_date)
     end
   end
 
   describe 'last_datetime' do
-    let(:pain_log1) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: 1.month.ago) }
-    let(:pain_log2) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: 2.months.ago) }
+    let(:pain_log1) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: today - 1.month) }
+    let(:pain_log2) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: today - 2.months) }
     let(:occurrences) { [pain_log1, pain_log2] }
 
     it 'returns the log with the most recent datetime_occurred' do
@@ -135,7 +136,7 @@ RSpec.describe OccurrenceCalculator, type: :model do
     end
 
     it 'does not include records outside of the body_part set' do
-      log = create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: 1.day.ago)
+      log = create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: today - 1.day)
       expect(calculator.last_datetime.to_date).to_not eq(log.datetime_occurred.to_date)
     end
   end
