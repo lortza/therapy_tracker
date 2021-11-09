@@ -2,7 +2,7 @@
   <%= render partial: 'shared/errors', locals: {object: pain_log} %>
 
   <div class='field'>
-    <%= form.label 'Target Body Part', class: 'required' %>
+    <%= form.label 'Body Part', class: 'required' %>
     <%= form.collection_select :body_part_id,
     current_user.body_parts.active, :id, :name,
     { include_blank: false, required: true },
