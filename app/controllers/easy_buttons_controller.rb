@@ -53,6 +53,8 @@ class EasyButtonsController < ApplicationController
                                         :body_part_id,
                                         :pain_id,
                                         :pain_level,
+                                        :trigger,
+                                        :pain_description,
                                         :name)
   end
 end

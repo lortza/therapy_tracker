@@ -58,6 +58,8 @@ ActiveRecord::Schema.define(version: 2021_11_08_222744) do
     t.bigint "pain_id"
     t.string "name", null: false
     t.integer "pain_level"
+    t.text "pain_description"
+    t.text "trigger"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["body_part_id"], name: "index_easy_buttons_on_body_part_id"

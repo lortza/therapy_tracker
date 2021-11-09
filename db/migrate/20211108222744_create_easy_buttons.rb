@@ -8,6 +8,8 @@ class CreateEasyButtons < ActiveRecord::Migration[6.1]
       t.references :pain, foreign_key: true
       t.string :name, null: false
       t.integer :pain_level
+      t.text :pain_description
+      t.text :trigger
       t.timestamps
     end
   end
