@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class EasyButtonsController < ApplicationController
-  before_action :set_easy_button, only: %i[ edit update destroy ]
-  before_action :authorize_easy_button, only: %i[ edit update destroy]
+  before_action :set_easy_button, only: %i[edit update destroy]
+  before_action :authorize_easy_button, only: %i[edit update destroy]
 
   def index
     @easy_buttons = current_user.easy_buttons.order(name: :asc).all
@@ -19,7 +19,7 @@ class EasyButtonsController < ApplicationController
     @easy_button = current_user.easy_buttons.new(easy_button_params)
 
     if @easy_button.save
-      redirect_to easy_buttons_url, notice: "Easy button was successfully created."
+      redirect_to easy_buttons_url, notice: 'Easy button was successfully created.'
     else
       render :new, status: :unprocessable_entity
     end
@@ -27,7 +27,7 @@ class EasyButtonsController < ApplicationController
 
   def update
     if @easy_button.update(easy_button_params)
-      redirect_to easy_buttons_url, notice: "Easy button was successfully updated."
+      redirect_to easy_buttons_url, notice: 'Easy button was successfully updated.'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -35,7 +35,7 @@ class EasyButtonsController < ApplicationController
 
   def destroy
     @easy_button.destroy
-    redirect_to easy_buttons_url, notice: "Easy button was successfully destroyed."
+    redirect_to easy_buttons_url, notice: 'Easy button was successfully destroyed.'
   end
 
   private
