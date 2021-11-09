@@ -10,8 +10,6 @@ class PainLog < ApplicationRecord
   validates :datetime_occurred,
             :body_part_id,
             :pain_id,
-            :pain_description,
-            :trigger,
             presence: true
 
   validates :pain_level,
