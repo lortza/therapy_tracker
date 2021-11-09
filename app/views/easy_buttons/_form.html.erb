@@ -1,0 +1,40 @@
+<%= form_with(model: easy_button) do |form| %>
+  <%= render partial: 'shared/errors', locals: {object: easy_button} %>
+
+  <div class='field'>
+    <%= form.label 'Name', class: 'required' %>
+    <%= form.text_field :name, required: true, class: 'form-control' %>
+  </div>
+
+  <div class='field'>
+    <%= form.label 'Body Part', class: 'required' %>
+    <%= form.collection_select :body_part_id,
+    current_user.body_parts.active, :id, :name,
+    { include_blank: false, required: true },
+    class: 'form-control' %>
+  </div>
+
+  <div class='form-row'>
+    <div class='col'>
+      <div class='field'>
+        <%= form.label 'Pain Type', class: 'required' %>
+        <%= form.collection_select :pain_id,
+        current_user.pains.by_name, :id, :name,
+        { include_blank: false, required: true },
+        class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class='col'>
+      <div class='field'>
+        <%= form.label 'Pain Level (0 = none, 10 = worst)', class: 'required' %>
+        <%= form.number_field :pain_level, selected: last_log(:pain_logs, :pain_level), required: true, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+
+  <div class='actions mt-3 mb-3'>
+    <%= form.submit class: button_class('success') %>
+    <%= link_to 'Cancel', pain_logs_path, class: button_class('primary pull-right') %>
+  </div>
+  <% end %>
