@@ -28,13 +28,13 @@
     <div class='col'>
       <div class='field'>
         <%= form.label 'Pain Level (0 = none, 10 = worst)', class: 'required' %>
-        <%= form.number_field :pain_level, selected: last_log(:pain_logs, :pain_level), required: true, class: 'form-control' %>
+        <%= form.number_field :pain_level, required: true, class: 'form-control' %>
       </div>
     </div>
   </div>
 
   <div class='actions mt-3 mb-3'>
     <%= form.submit class: button_class('success') %>
-    <%= link_to 'Cancel', pain_logs_path, class: button_class('primary pull-right') %>
+    <%= link_to 'Cancel', easy_buttons_path, class: button_class('primary pull-right') %>
   </div>
   <% end %>
