@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   resources :stats, only: [:index]
 
   resources :exercises
+  resources :easy_buttons, only: [:index, :new, :create, :edit, :update, :destroy]
+  post '/new_pain_log_from_easy_button', to: 'pain_logs#new_from_easy_button'
+
   resources :pains, only: [:index, :new, :create, :edit, :update, :destroy]
   resources :body_parts, only: [:index, :new, :create, :edit, :update, :destroy]
 
