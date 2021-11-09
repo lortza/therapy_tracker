@@ -19,7 +19,7 @@ class EasyButtonsController < ApplicationController
     @easy_button = current_user.easy_buttons.new(easy_button_params)
 
     if @easy_button.save
-      redirect_to easy_buttons_url, notice: 'Easy button was successfully created.'
+      redirect_to easy_buttons_url, notice: "#{@easy_button.name} was created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -27,7 +27,7 @@ class EasyButtonsController < ApplicationController
 
   def update
     if @easy_button.update(easy_button_params)
-      redirect_to easy_buttons_url, notice: 'Easy button was successfully updated.'
+      redirect_to easy_buttons_url, notice: "#{@easy_button.name} was updated."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -35,7 +35,7 @@ class EasyButtonsController < ApplicationController
 
   def destroy
     @easy_button.destroy
-    redirect_to easy_buttons_url, notice: 'Easy button was successfully destroyed.'
+    redirect_to easy_buttons_url, notice: "#{@easy_button.name} was deleted."
   end
 
   private
