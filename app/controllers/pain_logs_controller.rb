@@ -27,14 +27,27 @@ class PainLogsController < ApplicationController
   def create
     @pain_log = current_user.pain_logs.new(pain_log_params)
 
-    respond_to do |format|
-      if @pain_log.save
-        format.html { redirect_to root_url }
-        format.json { render :show, status: :created, location: @pain_log }
-      else
-        format.html { render :new }
-        format.json { render json: @pain_log.errors, status: :unprocessable_entity }
-      end
+    if @pain_log.save
+      redirect_to root_url
+    else
+      render :new
+    end
+  end
+
+  def create_from_easy_button
+    easy_button = current_user.easy_buttons.find(params[:easy_button])
+    attributes = easy_button.attributes
+                            .except('id','user_id','name', 'created_at', 'updated_at')
+                            .merge(datetime_occurred: Time.current)
+
+    @pain_log = current_user.pain_logs.new(attributes)
+
+    if @pain_log.save
+      redirect_to pain_logs_url, notice: "#{easy_button.name} was logged."
+      return
+    else
+      redirect_to pain_logs_url, alert: "#{easy_button.name} was not logged."
+      return
     end
   end
 

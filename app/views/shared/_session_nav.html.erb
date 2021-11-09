@@ -17,7 +17,7 @@
     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
       <% if current_user.easy_buttons.any? %>
         <% current_user.easy_buttons.order(name: :asc).each do |button| %>
-          <%= link_to button.name, new_pain_log_from_easy_button_path(easy_button: button), class: 'dropdown-item'  %>
+          <%= link_to button.name, create_pain_log_from_easy_button_path(easy_button: button), method: :post, class: 'dropdown-item'  %>
         <% end %>
         <div class="dropdown-divider"></div>
       <% end %>
