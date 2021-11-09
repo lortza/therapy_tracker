@@ -4,6 +4,7 @@ class BodyPart < ApplicationRecord
   extend Nameable
 
   belongs_to :user
+  has_many :easy_buttons, dependent: :destroy
   has_many :exercise_logs, dependent: :destroy
   has_many :pain_logs, dependent: :destroy
   has_many :pt_session_logs, dependent: :destroy
