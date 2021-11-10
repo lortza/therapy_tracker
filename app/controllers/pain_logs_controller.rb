@@ -37,8 +37,8 @@ class PainLogsController < ApplicationController
   def create_from_quick_form
     pain_log_quick_form_value = current_user.pain_log_quick_form_values.find(params[:content])
     attributes = pain_log_quick_form_value.attributes
-                            .except('id', 'user_id', 'name', 'created_at', 'updated_at')
-                            .merge(datetime_occurred: Time.current)
+                                          .except('id', 'user_id', 'name', 'created_at', 'updated_at')
+                                          .merge(datetime_occurred: Time.current)
 
     @pain_log = current_user.pain_logs.new(attributes)
 
