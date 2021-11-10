@@ -6,7 +6,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :easy_buttons, dependent: :destroy
+  has_many :pain_log_quick_form_values, dependent: :destroy
   has_many :body_parts, dependent: :destroy
   has_many :exercises, dependent: :destroy
   has_many :exercise_logs, dependent: :destroy

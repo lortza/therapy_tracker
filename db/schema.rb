@@ -52,21 +52,6 @@ ActiveRecord::Schema.define(version: 2021_11_08_222744) do
     t.index ["user_id"], name: "index_body_parts_on_user_id"
   end
 
-  create_table "easy_buttons", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "body_part_id"
-    t.bigint "pain_id"
-    t.string "name", null: false
-    t.integer "pain_level"
-    t.text "pain_description"
-    t.text "trigger"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["body_part_id"], name: "index_easy_buttons_on_body_part_id"
-    t.index ["pain_id"], name: "index_easy_buttons_on_pain_id"
-    t.index ["user_id"], name: "index_easy_buttons_on_user_id"
-  end
-
   create_table "exercise_logs", force: :cascade do |t|
     t.integer "sets", default: 0
     t.integer "reps", default: 0
@@ -101,6 +86,21 @@ ActiveRecord::Schema.define(version: 2021_11_08_222744) do
     t.boolean "default_per_side", default: false
     t.string "default_resistance"
     t.index ["user_id"], name: "index_exercises_on_user_id"
+  end
+
+  create_table "pain_log_quick_form_values", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "body_part_id"
+    t.bigint "pain_id"
+    t.string "name", null: false
+    t.integer "pain_level"
+    t.text "pain_description"
+    t.text "trigger"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["body_part_id"], name: "index_pain_log_quick_form_values_on_body_part_id"
+    t.index ["pain_id"], name: "index_pain_log_quick_form_values_on_pain_id"
+    t.index ["user_id"], name: "index_pain_log_quick_form_values_on_user_id"
   end
 
   create_table "pain_logs", force: :cascade do |t|
@@ -167,14 +167,14 @@ ActiveRecord::Schema.define(version: 2021_11_08_222744) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "body_parts", "users"
-  add_foreign_key "easy_buttons", "body_parts"
-  add_foreign_key "easy_buttons", "pains"
-  add_foreign_key "easy_buttons", "users"
   add_foreign_key "exercise_logs", "body_parts"
   add_foreign_key "exercise_logs", "exercises"
   add_foreign_key "exercise_logs", "pt_session_logs"
   add_foreign_key "exercise_logs", "users"
   add_foreign_key "exercises", "users"
+  add_foreign_key "pain_log_quick_form_values", "body_parts"
+  add_foreign_key "pain_log_quick_form_values", "pains"
+  add_foreign_key "pain_log_quick_form_values", "users"
   add_foreign_key "pain_logs", "body_parts"
   add_foreign_key "pain_logs", "pains"
   add_foreign_key "pain_logs", "users"

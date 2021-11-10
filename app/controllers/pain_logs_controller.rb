@@ -34,20 +34,18 @@ class PainLogsController < ApplicationController
     end
   end
 
-  def create_from_easy_button
-    easy_button = current_user.easy_buttons.find(params[:easy_button])
-    attributes = easy_button.attributes
-                            .except('id','user_id','name', 'created_at', 'updated_at')
+  def create_from_quick_form
+    pain_log_quick_form_value = current_user.pain_log_quick_form_values.find(params[:content])
+    attributes = pain_log_quick_form_value.attributes
+                            .except('id', 'user_id', 'name', 'created_at', 'updated_at')
                             .merge(datetime_occurred: Time.current)
 
     @pain_log = current_user.pain_logs.new(attributes)
 
     if @pain_log.save
-      redirect_to pain_logs_url, notice: "#{easy_button.name} was logged."
-      return
+      redirect_to pain_logs_url, notice: "#{pain_log_quick_form_value.name} was logged."
     else
-      redirect_to pain_logs_url, alert: "#{easy_button.name} was not logged."
-      return
+      redirect_to pain_logs_url, alert: "#{pain_log_quick_form_value.name} was not logged."
     end
   end
 

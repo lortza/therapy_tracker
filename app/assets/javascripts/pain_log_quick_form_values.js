@@ -1,10 +1,10 @@
-function easyButtonListToggler() {
+function painLogQuickFormValueListToggler() {
   document.addEventListener('DOMContentLoaded', function () {
-    let exerciseList = document.getElementById('easy-button-list')
+    let exerciseList = document.getElementById('quick-log-button-list')
 
     exerciseList.addEventListener('click', function (event) {
       let element = event.target
-      if(element.classList.contains('easy-button-description-toggle')){
+      if(element.classList.contains('quick-log-button-description-toggle')){
         let description = element.parentElement.parentElement.querySelector('.exercise-description');
         if(element.classList.contains('fa-chevron-down')){
           element.classList.remove('fa-chevron-down')

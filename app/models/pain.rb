@@ -4,7 +4,7 @@ class Pain < ApplicationRecord
   extend Nameable
 
   belongs_to :user
-  has_many :easy_buttons, dependent: :destroy
+  has_many :pain_log_quick_form_values, dependent: :destroy
   has_many :pain_logs, dependent: :destroy
   has_many :logs, class_name: 'PainLog', dependent: :destroy, inverse_of: :pain
 

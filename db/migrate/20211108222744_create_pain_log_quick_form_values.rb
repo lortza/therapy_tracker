@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-class CreateEasyButtons < ActiveRecord::Migration[6.1]
+class CreatePainLogQuickFormValues < ActiveRecord::Migration[6.1]
   def change
-    create_table :easy_buttons do |t|
+    create_table :pain_log_quick_form_values do |t|
       t.references :user, foreign_key: true
       t.references :body_part, foreign_key: true
       t.references :pain, foreign_key: true
