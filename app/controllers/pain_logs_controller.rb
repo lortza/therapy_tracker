@@ -36,11 +36,9 @@ class PainLogsController < ApplicationController
 
   def create_from_quick_form
     pain_log_quick_form_value = current_user.pain_log_quick_form_values.find(params[:content])
-    attributes = pain_log_quick_form_value.attributes
-                                          .except('id', 'user_id', 'name', 'created_at', 'updated_at')
-                                          .merge(datetime_occurred: Time.current)
+    authorize_quick_pain_log(pain_log_quick_form_value)
 
-    @pain_log = current_user.pain_logs.new(attributes)
+    @pain_log = current_user.pain_logs.new(pain_log_quick_form_value.loggable_attributes)
 
     if @pain_log.save
       redirect_to pain_logs_url, notice: "#{pain_log_quick_form_value.name} was logged."
@@ -72,11 +70,15 @@ class PainLogsController < ApplicationController
   private
 
   def set_pain_log
-    @pain_log = PainLog.find(params[:id])
+    @pain_log = current_user.pain_logs.find(params[:id])
   end
 
   def authorize_pain_log
     redirect_to root_path, alert: authorization_alert unless authorized_user?(@pain_log)
+  end
+
+  def authorize_quick_pain_log(pain_log_quick_form_value)
+    redirect_to root_path, alert: authorization_alert unless authorized_user?(pain_log_quick_form_value)
   end
 
   def search_params

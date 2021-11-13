@@ -28,4 +28,29 @@ RSpec.describe PainLogQuickFormValue, type: :model do
       expect(duplicate_record.valid?).to be(true)
     end
   end
+
+  describe 'loggable_attributes' do
+    it 'contains only the attributes needed by a pain_log object' do
+      expected_keys = [
+        'user_id',
+        'body_part_id',
+        'pain_id',
+        'pain_level',
+        'pain_description',
+        'trigger',
+        :datetime_occurred,
+      ]
+      quick_log = build(:pain_log_quick_form_value)
+      actual_keys = quick_log.loggable_attributes.keys
+
+      expect(actual_keys).to match_array(expected_keys)
+    end
+
+    it 'should have a value for datetime_occurred' do
+      quick_log = build(:pain_log_quick_form_value)
+      datetime_occurred = quick_log.loggable_attributes[:datetime_occurred]
+
+      expect(datetime_occurred).to be
+    end
+  end
 end

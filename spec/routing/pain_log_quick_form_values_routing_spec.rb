@@ -12,10 +12,6 @@ RSpec.describe PainLogQuickFormValuesController, type: :routing do
       expect(get: '/pain_log_quick_form_values/new').to route_to('pain_log_quick_form_values#new')
     end
 
-    it 'routes to #show' do
-      expect(get: '/pain_log_quick_form_values/1').to route_to('pain_log_quick_form_values#show', id: '1')
-    end
-
     it 'routes to #edit' do
       expect(get: '/pain_log_quick_form_values/1/edit').to route_to('pain_log_quick_form_values#edit', id: '1')
     end

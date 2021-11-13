@@ -76,7 +76,6 @@ RSpec.describe 'PainLogs', type: :request do
 
     it 'renders pain_logs#create' do
       sign_in(user)
-      pain_log_attributes = build(:pain_log, user_id: user.id).attributes
       pain_log_attributes = build(:pain_log,
                                   user_id: user.id,
                                   body_part_id: create(:body_part).id,

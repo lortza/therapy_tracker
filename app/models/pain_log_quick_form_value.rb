@@ -17,4 +17,10 @@ class PainLogQuickFormValue < ApplicationRecord
   validates :pain_level,
             presence: true,
             numericality: true
+
+  def loggable_attributes
+    attributes
+      .except('id', 'name', 'created_at', 'updated_at')
+      .merge(datetime_occurred: Time.current)
+  end
 end
