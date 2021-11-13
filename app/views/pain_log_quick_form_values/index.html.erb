@@ -1,7 +1,7 @@
-<%= link_to 'Add Pain Log Shortcut', new_pain_log_quick_form_value_path, class: button_class('primary pull-right') %>
+<%= link_to 'Add a Quick Log Link', new_pain_log_quick_form_value_path, class: button_class('primary pull-right') %>
 
-<h1>Pain Quick Log Shortcuts</h1>
-<p>Create a one-click shortcut to easily add a pain instance.</p>
+<h1>Common Pain Quick Log Settings</h1>
+<p>Create a one-click link to easily add a pain log for your common pains.</p>
 
 <% if current_user.pain_log_quick_form_values.any? %>
   <%= render partial: 'shared/search_form', locals: { url: pain_log_quick_form_values_path } %>
@@ -18,8 +18,7 @@
   </section>
 
 <% else %>
-  <p>Create a New Easy Button</p>
-  <%= link_to 'New Easy Button', new_pain_log_quick_form_value_path, class: button_class('primary btn-wide') %>
+  <%= link_to 'Get Started!', new_pain_log_quick_form_value_path, class: button_class('primary btn-wide') %>
 <% end %>
 
 <script type="text/javascript">

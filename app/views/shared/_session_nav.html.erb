@@ -10,18 +10,18 @@
     </div>
   </li>
 
+  <% if current_user.pain_log_quick_form_values.any? %>
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Pain Quick Log
     </a>
     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-      <% if current_user.pain_log_quick_form_values.any? %>
         <% current_user.pain_log_quick_form_values.order(name: :asc).each do |attr| %>
           <%= link_to attr.name, create_pain_log_from_quick_form_path(content: attr), method: :post, class: 'dropdown-item'  %>
         <% end %>
-      <% end %>
     </div>
   </li>
+  <% end %>
 
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
