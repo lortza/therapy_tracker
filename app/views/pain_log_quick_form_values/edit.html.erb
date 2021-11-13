@@ -1,0 +1,3 @@
+<h1>Editing: <%= @pain_log_quick_form_value.name %></h1>
+<p>This edits the default values for your quick-logging "easy button". If you want to edit a specific pain experience, go to <%= link_to 'pain logs', pain_logs_path %> and edit the appropriate pain log.</p>
+<%= render 'form', pain_log_quick_form_value: @pain_log_quick_form_value %>

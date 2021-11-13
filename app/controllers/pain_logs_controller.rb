@@ -27,14 +27,23 @@ class PainLogsController < ApplicationController
   def create
     @pain_log = current_user.pain_logs.new(pain_log_params)
 
-    respond_to do |format|
-      if @pain_log.save
-        format.html { redirect_to root_url }
-        format.json { render :show, status: :created, location: @pain_log }
-      else
-        format.html { render :new }
-        format.json { render json: @pain_log.errors, status: :unprocessable_entity }
-      end
+    if @pain_log.save
+      redirect_to root_url
+    else
+      render :new
+    end
+  end
+
+  def create_from_quick_form
+    quick_log_data = current_user.pain_log_quick_form_values.find(params[:content])
+    authorize_quick_pain_log(quick_log_data)
+
+    @pain_log = current_user.pain_logs.new(quick_log_data.loggable_attributes)
+
+    if @pain_log.save
+      redirect_to pain_logs_url, notice: "#{quick_log_data.name} was logged."
+    else
+      redirect_to pain_logs_url, alert: "#{quick_log_data.name} was not logged."
     end
   end
 
@@ -61,11 +70,15 @@ class PainLogsController < ApplicationController
   private
 
   def set_pain_log
-    @pain_log = PainLog.find(params[:id])
+    @pain_log = current_user.pain_logs.find(params[:id])
   end
 
   def authorize_pain_log
     redirect_to root_path, alert: authorization_alert unless authorized_user?(@pain_log)
+  end
+
+  def authorize_quick_pain_log(quick_log_data)
+    redirect_to root_path, alert: authorization_alert unless authorized_user?(quick_log_data)
   end
 
   def search_params
