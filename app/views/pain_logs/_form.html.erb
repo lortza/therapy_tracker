@@ -33,13 +33,13 @@
   </div>
 
   <div class='field'>
-    <%= form.label :trigger, class: 'required' %>
-    <%= form.text_area :trigger, required: true, class: 'form-control' %>
+    <%= form.label 'What were you doing when this happened?' %>
+    <%= form.text_area :trigger, class: 'form-control' %>
   </div>
 
   <div class='field'>
-    <%= form.label 'Describe Pain', class: 'required' %>
-    <%= form.text_area :pain_description, required: true, class: 'form-control' %>
+    <%= form.label 'Describe Pain' %>
+    <%= form.text_area :pain_description, class: 'form-control' %>
   </div>
 
   <div class='actions mt-3 mb-3'>
