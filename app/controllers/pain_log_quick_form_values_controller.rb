@@ -5,7 +5,9 @@ class PainLogQuickFormValuesController < ApplicationController
   before_action :authorize_pain_log_quick_form_value, only: %i[edit update destroy]
 
   def index
-    @pain_log_quick_form_values = current_user.pain_log_quick_form_values.order(name: :asc).all
+    @pain_log_quick_form_values = current_user.pain_log_quick_form_values
+                                              .search(params[:search])
+                                              .by_name
   end
 
   def new
