@@ -2,8 +2,8 @@
   <%= render partial: 'shared/errors', locals: {object: pain_log_quick_form_value} %>
 
   <div class='field'>
-    <%= form.label 'Name for Easy Button', class: 'required' %>
-    <%= form.text_field :name, required: true, class: 'form-control' %>
+    <%= form.label 'Name', class: 'required' %>
+    <%= form.text_field :name, required: true, placeholder: 'ex: Average Tension Headache', class: 'form-control' %>
   </div>
 
   <div class='field'>
@@ -44,7 +44,7 @@
   </div>
 
   <div class='actions mt-3 mb-3'>
-    <%= form.submit class: button_class('success') %>
+    <%= form.submit 'Save', class: button_class('success') %>
     <%= link_to 'Cancel', pain_log_quick_form_values_path, class: button_class('primary pull-right') %>
   </div>
   <% end %>
