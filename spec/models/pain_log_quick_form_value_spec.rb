@@ -3,5 +3,29 @@
 require 'rails_helper'
 
 RSpec.describe PainLogQuickFormValue, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context 'associations' do
+    it { should belong_to(:user) }
+    it { should belong_to(:pain) }
+    it { should belong_to(:body_part) }
+  end
+
+  context 'validations' do
+    it { should validate_presence_of(:name) }
+    it { should validate_presence_of(:pain_level) }
+  end
+
+  describe 'case insensitivity of "name" scoped to record owner' do
+    it 'does not permit the owner to give two records the same name' do
+      user = create(:user)
+      create(:pain_log_quick_form_value, user: user, name: 'foo')
+      duplicate_record = build(:pain_log_quick_form_value, user: user, name: 'FOO')
+      expect(duplicate_record.valid?).to be(false)
+    end
+
+    it 'permits multiple users to have records with the same name' do
+      create(:pain_log_quick_form_value, name: 'foo')
+      duplicate_record = build(:pain_log_quick_form_value, name: 'foo')
+      expect(duplicate_record.valid?).to be(true)
+    end
+  end
 end
