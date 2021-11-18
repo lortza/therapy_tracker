@@ -2,10 +2,12 @@
   <a href="<%= edit_pain_log_path(pain_log) %>">
     <div class="card-body">
       <%= render partial: 'pain_logs/pain_log_header', locals: { log: pain_log } %>
-    
+
       <p class="card-text"><strong><%= pain_log.body_part_name.titleize %>:</strong> Pain Level: <%= pain_log.pain_level %> <%= pain_log.pain_name %><br>
-        <%= pain_log.pain_description %><br>
-        <small class="text-muted">Triggered by: <%= pain_log.trigger %></small>
+        <%= pain_log.pain_description if pain_log.pain_description.present? %>
+        <% if pain_log.trigger.present? %>
+          <br><small class="text-muted">Triggered by: <%= pain_log.trigger %></small>
+        <% end %>
       </p>
     </div>
   </a>

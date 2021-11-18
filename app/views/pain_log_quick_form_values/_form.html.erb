@@ -1,5 +1,10 @@
-<%= form_with(model: pain_log, local: true) do |form| %>
-  <%= render partial: 'shared/errors', locals: {object: pain_log} %>
+<%= form_with(model: pain_log_quick_form_value) do |form| %>
+  <%= render partial: 'shared/errors', locals: {object: pain_log_quick_form_value} %>
+
+  <div class='field'>
+    <%= form.label 'Name', class: 'required' %>
+    <%= form.text_field :name, required: true, placeholder: 'ex: Average Tension Headache', class: 'form-control' %>
+  </div>
 
   <div class='field'>
     <%= form.label 'Body Part', class: 'required' %>
@@ -7,10 +12,6 @@
     current_user.body_parts.active, :id, :name,
     { include_blank: false, required: true },
     class: 'form-control' %>
-  </div>
-
-  <div class='field'>
-    <%= render partial: 'shared/datetime_picker', locals: {form: form} %>
   </div>
 
   <div class='form-row'>
@@ -27,7 +28,7 @@
     <div class='col'>
       <div class='field'>
         <%= form.label 'Pain Level (0 = none, 10 = worst)', class: 'required' %>
-        <%= form.number_field :pain_level, selected: last_log(:pain_logs, :pain_level), required: true, class: 'form-control' %>
+        <%= form.number_field :pain_level, required: true, class: 'form-control' %>
       </div>
     </div>
   </div>
@@ -43,7 +44,7 @@
   </div>
 
   <div class='actions mt-3 mb-3'>
-    <%= form.submit class: button_class('success') %>
-    <%= link_to 'Cancel', pain_logs_path, class: button_class('primary pull-right') %>
+    <%= form.submit 'Save', class: button_class('success') %>
+    <%= link_to 'Cancel', pain_log_quick_form_values_path, class: button_class('primary pull-right') %>
   </div>
-<% end %>
+  <% end %>

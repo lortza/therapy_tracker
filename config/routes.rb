@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   resources :stats, only: [:index]
 
   resources :exercises
+  resources :pain_log_quick_form_values, only: [:index, :new, :create, :edit, :update, :destroy]
+  post '/create_pain_log_from_quick_form', to: 'pain_logs#create_from_quick_form'
+
   resources :pains, only: [:index, :new, :create, :edit, :update, :destroy]
   resources :body_parts, only: [:index, :new, :create, :edit, :update, :destroy]
 
