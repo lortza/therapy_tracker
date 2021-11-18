@@ -167,10 +167,10 @@ GEM
       guard (~> 2.1)
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
-    i18n (1.8.10)
+    i18n (1.8.11)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
-    jbuilder (2.11.2)
+    jbuilder (2.11.3)
       activesupport (>= 5.0.0)
     kwalify (0.7.2)
     launchy (2.5.0)
@@ -435,7 +435,7 @@ GEM
     will_paginate (3.3.1)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.4.2)
+    zeitwerk (2.5.1)
 
 PLATFORMS
   java
@@ -460,7 +460,7 @@ DEPENDENCIES
   faker
   groupdate
   guard-rspec
-  jbuilder (~> 2.10)
+  jbuilder (~> 2.11)
   launchy
   letter_opener
   listen (>= 3.0.5, < 3.8)
