@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.3'
+ruby '3.1.0'
 
 gem 'bootsnap', '>= 1.7.7', require: false
 gem 'chartkick', '>= 3.2.0' # chart rendering for ruby data
@@ -25,6 +25,9 @@ gem 'will_paginate', '~> 3.3.0' # pagination. Styles: http://mislav.github.io/wi
 # gem 'momentjs-rails', '>= 2.9.0'
 # gem 'redis', '~> 4.0' # Use Redis adapter to run Action Cable in production
 # gem 'turbolinks', '~> 5' # https://github.com/turbolinks/turbolinks
+gem 'net-imap', require: false
+gem 'net-pop', require: false
+gem 'net-smtp', require: false # Send internet mail via SMTP
 
 group :development do
   # gem 'capistrano-rails' # Use Capistrano for deployment
