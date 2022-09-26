@@ -41,7 +41,7 @@ group :development do
   gem 'rubocop-rails'
   gem 'seed_dump' # run with `rake db:seed:dump`
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-watcher-listen', '~> 2.1.0'
 end
 
 group :development, :test do
