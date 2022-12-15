@@ -41,7 +41,7 @@ group :development do
   gem 'rubocop-rails'
   gem 'seed_dump' # run with `rake db:seed:dump`
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-watcher-listen', '~> 2.1.0'
 end
 
 group :development, :test do
@@ -60,7 +60,7 @@ group :development, :test do
   gem 'pry-awesome_print'
   gem 'pry-byebug'
   gem 'pry-rails'
-  gem 'rspec-rails', '~> 5.1'
+  gem 'rspec-rails', '~> 6.0'
   gem 'selenium-webdriver'
   gem 'webdrivers', '~> 5.2'
 end
