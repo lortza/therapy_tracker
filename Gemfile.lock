@@ -388,7 +388,7 @@ GEM
       websocket (~> 1.0)
     sexp_processor (4.16.1)
     shellany (0.0.1)
-    shoulda-matchers (5.2.0)
+    shoulda-matchers (5.3.0)
       activesupport (>= 5.2.0)
     simplecov (0.21.2)
       docile (~> 1.1)
