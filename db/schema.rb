@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_08_222744) do
-
+ActiveRecord::Schema[7.0].define(version: 2023_04_06_193953) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,7 +19,7 @@ ActiveRecord::Schema.define(version: 2021_11_08_222744) do
     t.string "record_type", null: false
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
@@ -32,8 +31,8 @@ ActiveRecord::Schema.define(version: 2021_11_08_222744) do
     t.text "metadata"
     t.string "service_name", null: false
     t.bigint "byte_size", null: false
-    t.string "checksum", null: false
-    t.datetime "created_at", null: false
+    t.string "checksum"
+    t.datetime "created_at", precision: nil, null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
@@ -45,8 +44,8 @@ ActiveRecord::Schema.define(version: 2021_11_08_222744) do
 
   create_table "body_parts", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.bigint "user_id"
     t.boolean "archived", default: false
     t.index ["user_id"], name: "index_body_parts_on_user_id"
@@ -55,10 +54,10 @@ ActiveRecord::Schema.define(version: 2021_11_08_222744) do
   create_table "exercise_logs", force: :cascade do |t|
     t.integer "sets", default: 0
     t.integer "reps", default: 0
-    t.datetime "datetime_occurred"
+    t.datetime "datetime_occurred", precision: nil
     t.text "progress_note", default: ""
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.bigint "user_id"
     t.bigint "exercise_id"
     t.integer "rep_length", default: 0
@@ -78,8 +77,8 @@ ActiveRecord::Schema.define(version: 2021_11_08_222744) do
     t.bigint "user_id"
     t.string "name"
     t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.integer "default_reps"
     t.integer "default_sets"
     t.integer "default_rep_length"
@@ -96,8 +95,8 @@ ActiveRecord::Schema.define(version: 2021_11_08_222744) do
     t.integer "pain_level"
     t.text "pain_description"
     t.text "trigger"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["body_part_id"], name: "index_pain_log_quick_form_values_on_body_part_id"
     t.index ["pain_id"], name: "index_pain_log_quick_form_values_on_pain_id"
     t.index ["user_id"], name: "index_pain_log_quick_form_values_on_user_id"
@@ -105,12 +104,12 @@ ActiveRecord::Schema.define(version: 2021_11_08_222744) do
 
   create_table "pain_logs", force: :cascade do |t|
     t.bigint "user_id"
-    t.datetime "datetime_occurred"
+    t.datetime "datetime_occurred", precision: nil
     t.integer "pain_level"
     t.text "pain_description", default: ""
     t.text "trigger", default: ""
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.bigint "pain_id"
     t.bigint "body_part_id"
     t.index ["body_part_id"], name: "index_pain_logs_on_body_part_id"
@@ -120,8 +119,8 @@ ActiveRecord::Schema.define(version: 2021_11_08_222744) do
 
   create_table "pains", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.bigint "user_id"
     t.index ["user_id"], name: "index_pains_on_user_id"
   end
@@ -129,20 +128,20 @@ ActiveRecord::Schema.define(version: 2021_11_08_222744) do
   create_table "pt_homework_exercises", force: :cascade do |t|
     t.bigint "pt_session_log_id"
     t.bigint "exercise_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["exercise_id"], name: "index_pt_homework_exercises_on_exercise_id"
     t.index ["pt_session_log_id"], name: "index_pt_homework_exercises_on_pt_session_log_id"
   end
 
   create_table "pt_session_logs", force: :cascade do |t|
     t.bigint "user_id"
-    t.datetime "datetime_occurred"
+    t.datetime "datetime_occurred", precision: nil
     t.text "exercise_notes", default: ""
     t.text "homework", default: ""
     t.integer "duration"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.bigint "body_part_id"
     t.text "questions"
     t.index ["body_part_id"], name: "index_pt_session_logs_on_body_part_id"
@@ -153,13 +152,13 @@ ActiveRecord::Schema.define(version: 2021_11_08_222744) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
+    t.datetime "reset_password_sent_at", precision: nil
+    t.datetime "remember_created_at", precision: nil
     t.string "first_name", default: "", null: false
     t.string "last_name", default: "", null: false
     t.boolean "admin", default: false, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
