@@ -6,7 +6,6 @@ class ExercisesController < ApplicationController
 
   def index
     @exercises = current_user.exercises.search(params[:search]).by_name
-    fail
   end
 
   def show
