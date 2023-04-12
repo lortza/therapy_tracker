@@ -28,6 +28,8 @@ gem 'will_paginate', '~> 3.3.0' # pagination. Styles: http://mislav.github.io/wi
 gem 'net-imap', require: false
 gem 'net-pop', require: false
 gem 'net-smtp', require: false # Send internet mail via SMTP
+gem 'sentry-rails'                      # Rails support for Sentry
+gem 'sentry-ruby'                       # Error reporting to Sentry.io
 
 group :development do
   # gem 'capistrano-rails' # Use Capistrano for deployment

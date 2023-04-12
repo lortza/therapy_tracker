@@ -2,6 +2,7 @@
 
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  before_action :set_sentry_context
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
 
@@ -20,6 +21,12 @@ class ApplicationController < ActionController::Base
 
   def authorization_alert
     "Whoops! You're not authorized to view that page."
+  end
+
+  # New Configs: https://docs.sentry.io/platforms/ruby/migration/
+  def set_sentry_context
+    Sentry.set_user(id: session[:current_user_id]) # or anything else in session
+    Sentry.set_extras(params: params.to_unsafe_h, url: request.url)
   end
 
   protected
