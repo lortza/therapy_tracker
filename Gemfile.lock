@@ -158,7 +158,7 @@ GEM
     formatador (1.1.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    groupdate (6.3.0)
+    groupdate (6.4.0)
       activesupport (>= 6.1)
     guard (2.18.0)
       formatador (>= 0.2.4)
