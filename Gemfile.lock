@@ -134,10 +134,10 @@ GEM
     docile (1.4.0)
     erubi (1.12.0)
     execjs (2.8.1)
-    factory_bot (6.2.1)
+    factory_bot (6.4.1)
       activesupport (>= 5.0.0)
-    factory_bot_rails (6.2.0)
-      factory_bot (~> 6.2.0)
+    factory_bot_rails (6.4.0)
+      factory_bot (~> 6.4)
       railties (>= 5.0.0)
     faker (3.2.2)
       i18n (>= 1.8.11, < 2)
@@ -194,7 +194,7 @@ GEM
       actionpack
       activerecord
       railties
-    loofah (2.21.4)
+    loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
     lumberjack (1.2.8)
@@ -223,7 +223,7 @@ GEM
       net-protocol
     nio4r (2.5.9)
     nio4r (2.5.9-java)
-    nokogiri (1.15.4)
+    nokogiri (1.15.5)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     notiffany (0.1.3)
@@ -487,7 +487,7 @@ DEPENDENCIES
   coffee-rails (~> 5.0)
   database_cleaner
   devise
-  factory_bot_rails (~> 6.1)
+  factory_bot_rails (~> 6.4)
   faker
   groupdate
   guard-rspec
