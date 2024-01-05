@@ -212,7 +212,7 @@ GEM
     msgpack (1.7.2)
     msgpack (1.7.2-java)
     nenv (0.3.0)
-    net-imap (0.4.9)
+    net-imap (0.4.9.1)
       date
       net-protocol
     net-pop (0.1.2)
