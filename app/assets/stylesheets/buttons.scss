@@ -37,6 +37,12 @@
   &:hover { background-color: darken($therapy-color, 10%); }
 }
 
+.slit-button {
+  background-color: $slit-color;
+  border: 1px solid darken($slit-color, 10%);
+  &:hover { background-color: darken($slit-color, 10%); }
+}
+
 .btn-wide {
   display: block;
   margin-bottom: 1rem;
