@@ -1,0 +1,9 @@
+<div class="card card--log-entry log-border-slit">
+  <a href="<%= edit_slit_log_path(slit_log) %>">
+    <div class="card-body">
+      <%= render partial: 'slit_logs/slit_log_header', locals: { log: slit_log } %>
+
+      <p class="card-text">Logged dose</p>
+    </div>
+  </a>
+</div>

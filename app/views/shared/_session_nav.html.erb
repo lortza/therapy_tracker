@@ -10,6 +10,10 @@
     </div>
   </li>
 
+  <li class="nav-item">
+    <%= link_to 'SLIT Quick Log', slit_logs_path, method: :post, class: 'nav-link' %>
+  </li>
+
   <% if current_user.pain_log_quick_form_values.any? %>
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
