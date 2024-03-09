@@ -152,6 +152,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_07_233959) do
     t.bigint "user_id", null: false
     t.datetime "datetime_occurred"
     t.boolean "started_new_bottle", default: false
+    t.integer "doses_remaining"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_slit_logs_on_user_id"

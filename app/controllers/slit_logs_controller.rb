@@ -2,7 +2,7 @@
 
 class SlitLogsController < ApplicationController
   before_action :set_slit_log, only: %i[edit update destroy]
-  before_action :authorize_slit_log, only: %i[index edit update destroy]
+  before_action :authorize_slit_log, only: %i[edit update destroy]
   # layout 'no_white_container', only: [:index]
 
   def index
@@ -15,9 +15,16 @@ class SlitLogsController < ApplicationController
   def edit
   end
 
-  def create
+  def new
     @slit_log = current_user.slit_logs.new(
       datetime_occurred: Time.current
+    )
+  end
+
+  def create
+    @slit_log = current_user.slit_logs.new(
+      datetime_occurred: (params[:datetime_occurred] || Time.current),
+      started_new_bottle: params[:started_new_bottle]
     )
 
     if @slit_log.save!
@@ -57,6 +64,7 @@ class SlitLogsController < ApplicationController
   def slit_log_params
     params.require(:slit_log).permit(:user_id,
                                      :datetime_occurred,
-                                     :started_new_bottle)
+                                     :started_new_bottle,
+                                     :doses_remaining)
   end
 end
