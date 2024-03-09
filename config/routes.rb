@@ -1,8 +1,13 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   devise_for :users
   root to: 'logs#index'
+
+  namespace :admin do
+    resources :users, only: [:index, :show]
+  end
 
   resources :charts, only: [:index]
   resources :stats, only: [:index]
@@ -21,8 +26,5 @@ Rails.application.routes.draw do
     resources :exercise_logs, controller: 'pt_session_logs/exercise_logs', only: [:new, :create, :show, :edit, :update, :destroy]
   end
 
-  namespace :admin do
-    resources :users, only: [:index, :show]
-  end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :slit_logs
 end

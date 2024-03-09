@@ -15,7 +15,7 @@ class PtSessionLogs::ExerciseLogsController < PtSessionLogsController
   end
 
   def show
-    render './exercise_logs/show'
+    render 'exercise_logs/show'
   end
 
   def create # rubocop:disable Metrics/MethodLength

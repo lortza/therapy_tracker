@@ -4,21 +4,23 @@
       Log New
     </a>
     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-      <%= link_to 'Exercise Log', new_exercise_log_path, class: 'dropdown-item' %>
-      <%= link_to 'Pain Log', new_pain_log_path, class: 'dropdown-item' %>
-      <%= link_to 'PT Session', new_pt_session_log_path, class: 'dropdown-item' %>
+      <%= link_to '+ Exercise Log', new_exercise_log_path, class: 'dropdown-item' %>
+      <%= link_to '+ Pain Log', new_pain_log_path, class: 'dropdown-item' %>
+      <%= link_to '+ PT Session', new_pt_session_log_path, class: 'dropdown-item' %>
+      <%= link_to '+ SLIT Log', new_slit_log_path, class: 'dropdown-item' %>
     </div>
   </li>
 
   <% if current_user.pain_log_quick_form_values.any? %>
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Pain Quick Log
+      Quick Log
     </a>
     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <% current_user.pain_log_quick_form_values.order(name: :asc).each do |attr| %>
-          <%= link_to attr.name, create_pain_log_from_quick_form_path(content: attr), method: :post, class: 'dropdown-item'  %>
-        <% end %>
+      <%= link_to 'SLIT dose', slit_logs_path, method: :post, class: 'dropdown-item'  %>
+      <% current_user.pain_log_quick_form_values.order(name: :asc).each do |attr| %>
+        <%= link_to attr.name, create_pain_log_from_quick_form_path(content: attr), method: :post, class: 'dropdown-item'  %>
+      <% end %>
     </div>
   </li>
   <% end %>
@@ -33,6 +35,7 @@
       <%= link_to 'Exercise Logs', exercise_logs_path, class: 'dropdown-item' %>
       <%= link_to 'Pain Logs', pain_logs_path, class: 'dropdown-item' %>
       <%= link_to 'PT Session Logs', pt_session_logs_path, class: 'dropdown-item' %>
+      <%= link_to 'SLIT Logs', slit_logs_path, class: 'dropdown-item' %>
     </div>
   </li>
 

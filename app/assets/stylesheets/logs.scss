@@ -39,7 +39,9 @@
 .log-type-pain { @include log-type-color($pain-color); }
 .log-type-exercise { @include log-type-color($exercise-color); }
 .log-type-therapy { @include log-type-color($therapy-color); }
+.log-type-slit { @include log-type-color($slit-color); }
 
 .log-border-exercise { border: 1px solid $exercise-color; }
 .log-border-pain { border: 1px solid $pain-color; }
 .log-border-therapy { border: 1px solid $therapy-color; }
+.log-border-slit { border: 1px solid $slit-color; }

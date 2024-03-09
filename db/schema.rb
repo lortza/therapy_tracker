@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_06_193953) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_07_233959) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -148,6 +148,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_06_193953) do
     t.index ["user_id"], name: "index_pt_session_logs_on_user_id"
   end
 
+  create_table "slit_logs", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "datetime_occurred"
+    t.boolean "started_new_bottle", default: false
+    t.integer "doses_remaining"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_slit_logs_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -182,4 +192,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_06_193953) do
   add_foreign_key "pt_homework_exercises", "pt_session_logs"
   add_foreign_key "pt_session_logs", "body_parts"
   add_foreign_key "pt_session_logs", "users"
+  add_foreign_key "slit_logs", "users"
 end

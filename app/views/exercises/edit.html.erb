@@ -2,5 +2,4 @@
 
 <%= render 'form', exercise: @exercise %>
 
-<hr>
-<%= link_to 'Delete Exercise', @exercise, method: :delete, data: { confirm: 'If you delete this exercise, you will also delete any Exercise Logs you created for it. Are you sure you want to do this? It cannot be undone.' }, class: button_class('danger') %>
+<%= render partial: 'shared/delete_footer', locals: { object: @exercise, delete_path: @exercise, message: 'If you delete this exercise, you will also delete any Exercise Logs you created for it. Are you sure you want to do this? It cannot be undone.' } %>

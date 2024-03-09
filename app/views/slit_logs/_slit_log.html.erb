@@ -1,0 +1,13 @@
+<div class="card card--log-entry log-border-slit">
+  <a href="<%= edit_slit_log_path(slit_log) %>">
+    <div class="card-body">
+      <%= render partial: 'slit_logs/slit_log_header', locals: { log: slit_log } %>
+
+      <p class="card-text">
+        Took drops
+        <%= " | #{slit_log.doses_remaining} doses remaining" if slit_log.doses_remaining.present? %>
+        <%= ' (Started new bottle)' if slit_log.started_new_bottle? %>
+      </p>
+    </div>
+  </a>
+</div>

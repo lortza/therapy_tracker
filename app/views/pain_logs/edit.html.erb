@@ -4,5 +4,4 @@
 
 <%= render 'form', pain_log: @pain_log %>
 
-<hr>
-<%= link_to 'Delete Pain Log', @pain_log, method: :delete, data: { confirm: 'If you delete this pain, you will also delete any Pain Logs associated with it. This cannot be undone. Are you sure you want to do this?' }, class: button_class('danger') %>
+<%= render partial: 'shared/delete_footer', locals: { object: @pain_log, delete_path: @pain_log } %>
