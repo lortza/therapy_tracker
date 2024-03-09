@@ -27,6 +27,14 @@ RSpec.describe SlitLogsController, type: :request do
       expect(response).to redirect_to new_user_session_path
     end
 
+    it 'denies access to slit_logs#quick_log_create' do
+      expect {
+        post quick_log_create_path
+      }.to_not change(SlitLog, :count)
+
+      expect(response).to redirect_to new_user_session_path
+    end
+
     it 'denies access to slit_logs#update' do
       patch slit_log_path(slit_log, slit_log: slit_log.attributes)
       expect(response).to redirect_to new_user_session_path
@@ -55,10 +63,24 @@ RSpec.describe SlitLogsController, type: :request do
     end
 
     it 'renders slit_logs#create' do
-      slit_log_attributes = build(:slit_log, user_id: user.id).attributes
+      slit_log_attributes = build(
+        :slit_log,
+        user_id: user.id,
+        datetime_occurred: Time.current,
+        started_new_bottle: true,
+        doses_remaining: 5
+      ).attributes
 
       expect {
         post slit_logs_path(slit_log: slit_log_attributes)
+      }.to change(SlitLog, :count)
+
+      expect(response).to redirect_to root_url
+    end
+
+    it 'renders slit_logs#quick_log_create' do
+      expect {
+        post quick_log_create_path
       }.to change(SlitLog, :count)
 
       expect(response).to redirect_to root_url

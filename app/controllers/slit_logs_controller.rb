@@ -21,10 +21,17 @@ class SlitLogsController < ApplicationController
   end
 
   def create
-    @slit_log = current_user.slit_logs.new(
-      datetime_occurred: params[:datetime_occurred] || Time.current,
-      started_new_bottle: params[:started_new_bottle]
-    )
+    @slit_log = current_user.slit_logs.new(slit_log_params)
+
+    if @slit_log.save!
+      redirect_to root_url
+    else
+      render :new
+    end
+  end
+
+  def quick_log_create
+    @slit_log = current_user.slit_logs.new(datetime_occurred: Time.current)
 
     if @slit_log.save!
       redirect_to root_url

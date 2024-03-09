@@ -27,4 +27,5 @@ Rails.application.routes.draw do
   end
 
   resources :slit_logs
+  post '/quick_log_create', to: 'slit_logs#quick_log_create'
 end
