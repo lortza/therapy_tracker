@@ -11,7 +11,6 @@ class SlitLogsController < ApplicationController
                         .paginate(page: params[:page], per_page: 25)
   end
 
-
   def edit
   end
 
@@ -23,7 +22,7 @@ class SlitLogsController < ApplicationController
 
   def create
     @slit_log = current_user.slit_logs.new(
-      datetime_occurred: (params[:datetime_occurred] || Time.current),
+      datetime_occurred: params[:datetime_occurred] || Time.current,
       started_new_bottle: params[:started_new_bottle]
     )
 
