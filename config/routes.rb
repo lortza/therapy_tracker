@@ -26,5 +26,5 @@ Rails.application.routes.draw do
     resources :exercise_logs, controller: 'pt_session_logs/exercise_logs', only: [:new, :create, :show, :edit, :update, :destroy]
   end
 
-  resources :slit_logs, only: [:create, :index, :edit, :update, :destroy]
+  resources :slit_logs
 end

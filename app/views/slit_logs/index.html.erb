@@ -1,0 +1,29 @@
+<header class='add-log-buttons-container'>
+  <%= render 'buttons/new_slit_log' %>
+</header>
+<!-- TODO: build out search form
+<%= form_tag(slit_logs_path, method: 'get', id: 'filter-form' ) do %>
+  <div class='row'>
+    <div class='col-12 col-md-3 mb-2'>
+     probably do a between-dates search
+    </div>
+
+    <div class='col-12 col-md-3 mb-2'>
+      maybe do a new bottle search
+    </div>
+
+    <div class='col-12 col-md-3'>
+      <button type='submit' class='btn btn-secondary' style="width: 100%;">Submit</button>
+      <%= link_to 'Reset', slit_logs_path, class: 'ml-3 reset-link' %>
+    </div>
+  </div>
+<% end %>
+<hr>
+-->
+
+<% @logs.each do |slit_log| %>
+  <%= render partial: 'slit_log', locals: { slit_log: slit_log } %>
+<% end %>
+<br>
+
+<%= will_paginate @logs, page_links: false %>
