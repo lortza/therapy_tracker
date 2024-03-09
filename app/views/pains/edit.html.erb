@@ -2,5 +2,4 @@
 
 <%= render 'form', pain: @pain %>
 
-<hr>
-<%= link_to 'Delete Pain', @pain, method: :delete, data: { confirm: 'Are you sure?' }, class: button_class('danger') %>
+<%= render partial: 'shared/delete_footer', locals: { object: @pain, delete_path: @pain, message: 'If you delete this pain, you will also delete any Pain Logs associated with it. This cannot be undone. Consider renaming it instead. Are you sure you want to delete it?' } %>

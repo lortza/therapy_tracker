@@ -2,6 +2,4 @@
 
 <%= render 'form', body_part: @body_part %>
 
-<hr>
-
-<%= link_to 'Delete', @body_part, method: :delete, data: { confirm: 'If you delete this body part, you will also delete all Exercise Logs, Pain Logs, and PT Sessions created for it. This cannot be undone. Consider renaming your body part instead.' }, class: button_class('danger') %>
+<%= render partial: 'shared/delete_footer', locals: { object: @body_part, delete_path: @body_part, message: 'If you delete this body part, you will also delete all Exercise Logs, Pain Logs, and PT Sessions created for it. This cannot be undone. Consider renaming your body part instead.' } %>

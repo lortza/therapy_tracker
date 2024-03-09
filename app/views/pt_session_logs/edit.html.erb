@@ -3,5 +3,4 @@
 
 <%= render 'form', pt_session_log: @pt_session_log %>
 
-<%= link_to 'Delete PT Session', @pt_session_log, method: :delete, data: { confirm: 'Are you sure?' }, class: button_class('danger') %>
-<%= link_to 'Cancel', pt_session_log_path(@pt_session_log), class: button_class('primary pull-right') %>
+<%= render partial: 'shared/delete_footer', locals: { object: @pt_session_log, delete_path: @pt_session_log } %>

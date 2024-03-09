@@ -5,5 +5,4 @@
 
 <%= render 'form', slit_log: @slit_log, url: slit_logs_path(@slit_log) %>
 
-<%= link_to 'Delete SLIT Log', @slit_log, method: :delete, data: { confirm: 'Are you sure?' }, class: button_class('danger') %>
-
+<%= render partial: 'shared/delete_footer', locals: { object: @slit_log, delete_path: @slit_log } %>
