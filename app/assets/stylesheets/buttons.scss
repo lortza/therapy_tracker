@@ -1,6 +1,11 @@
 @import 'variables';
 
-.add-log-buttons-container { margin: 1rem 0; }
+.add-log-buttons-container {
+  display: flex;
+  gap: .5rem;
+  justify-content: space-between;
+  margin: 1rem 0;
+}
 
 .add-log-button {
   border-radius: 15px;
@@ -12,6 +17,7 @@
   padding-top: .6rem;
   text-align: center;
   text-decoration: none;
+  width: 100%;
 }
 
 .add-log-button:hover {
