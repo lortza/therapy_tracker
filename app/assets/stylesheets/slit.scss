@@ -1,0 +1,35 @@
+// https://developer.mozilla.org/en-US/docs/Web/CSS/columns#try_it
+.slit-report-data-container {
+  columns: 3 auto;
+}
+
+.slit-report-data-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: .5rem;
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+}
+
+.slit-report-data-header {
+  font-weight: bold;
+  border: 1px solid black;
+}
+
+.slit-report-col-dose {
+  width: 3rem;
+}
+
+// MEDIA QUERIES
+@media (max-width: 576px) {
+  .slit-report-data-container {
+    columns: auto;
+  }
+  .slit-report-data-header:nth-of-type(2), .slit-report-data-header:nth-of-type(3) {
+    display: none;
+  }
+}
+
+

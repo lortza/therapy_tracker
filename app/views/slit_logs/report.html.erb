@@ -1,0 +1,26 @@
+<h1>Sublingual Immunotherapy Patient Documentation<br>Mantenance Dosage</h1>
+<h2>Call 336-659-4814 to order more drops</h2>
+<p>For <%= current_user.email %> from <%= @logs.first.datetime_occurred.strftime('%m/%d/%y') %> to <%= @logs.last.datetime_occurred.strftime('%m/%d/%y') %></p>
+<p><strong>NB</strong> = started new bottle</p>
+
+<div class='slit-report-data-container mt-4'>
+  <% 3.times do %>
+    <div class="slit-report-data-row slit-report-data-header">
+      <span class='row-col-dose'>Dose</span>
+      <span>Taken</span>
+    </div>
+  <% end %>
+</div>
+
+<div class='slit-report-data-container'>
+  <% @logs.each_with_index do |log, index| %>
+    <div class="slit-report-data-row">
+      <span class='slit-report-col-dose'><%= index + 1 %></span>
+      <span><%= log.datetime_occurred.strftime('%m/%d/%y at %I:%M%p') %></span>
+      <% if log.started_new_bottle? %>
+        <span><strong>NB</strong></span>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+

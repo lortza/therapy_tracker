@@ -57,6 +57,10 @@ class SlitLogsController < ApplicationController
     end
   end
 
+  def report
+    @logs = current_user.slit_logs.where(datetime_occurred: 90.days.ago..Time.current).order(datetime_occurred: :asc)
+  end
+
   private
 
   def set_slit_log
