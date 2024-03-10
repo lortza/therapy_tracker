@@ -4,18 +4,18 @@
 }
 
 .slit-report-data-row {
-  display: flex;
   align-items: center;
+  border-bottom: 1px solid $black;
+  border-left: 1px solid $black;
+  border-right: 1px solid $black;
+  display: flex;
   gap: 1rem;
   padding: .5rem;
-  border-bottom: 1px solid black;
-  border-left: 1px solid black;
-  border-right: 1px solid black;
 }
 
 .slit-report-data-header {
+  border: 1px solid $black;
   font-weight: bold;
-  border: 1px solid black;
 }
 
 .slit-report-col-dose {
@@ -27,7 +27,9 @@
   .slit-report-data-container {
     columns: auto;
   }
-  .slit-report-data-header:nth-of-type(2), .slit-report-data-header:nth-of-type(3) {
+
+  .slit-report-data-header:nth-of-type(2),
+  .slit-report-data-header:nth-of-type(3) {
     display: none;
   }
 }
