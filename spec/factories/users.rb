@@ -7,5 +7,6 @@ FactoryBot.define do
     sequence(:email) { |n| "user#{n}@example.com" }
     password { 'password' }
     password_confirmation { 'password' }
+    enable_slit_tracking { false }
   end
 end
