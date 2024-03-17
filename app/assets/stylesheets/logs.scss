@@ -21,6 +21,8 @@
   font-size: .8rem;
 }
 
+.log-icon-color {color: $black;}
+
 .card-title {
   font-size: 1rem;
   margin-bottom: .5rem;
@@ -31,8 +33,10 @@
   line-height: 1rem;
 }
 
+.dose-skipped { color: $red; }
+
 @mixin log-type-color($color) {
-  .log-icon { color: $color; }
+  .log-icon-color { color: $color; }
   .card-title { color: $color; }
 }
 

@@ -24,6 +24,7 @@ RSpec.describe User, type: :model do
                                first_name
                                last_name
                                admin
+                               enable_slit_tracking
                                created_at updated_at]
       actual_attributes = build(:user).attributes.keys
 
