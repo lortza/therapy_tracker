@@ -7,5 +7,6 @@ FactoryBot.define do
     occurred_at { nil }
     started_new_bottle { false }
     doses_remaining { nil }
+    dose_skipped { false }
   end
 end
