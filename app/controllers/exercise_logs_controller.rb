@@ -8,7 +8,7 @@ class ExerciseLogsController < ApplicationController
   def index
     @logs = current_user.exercise_logs
                         .at_home
-                        .order(datetime_occurred: 'DESC')
+                        .order(occurred_at: 'DESC')
                         .paginate(page: params[:page], per_page: 25)
   end
 
@@ -70,7 +70,7 @@ class ExerciseLogsController < ApplicationController
   def exercise_log_params # rubocop:disable Metrics/MethodLength
     params.require(:exercise_log).permit(:user_id,
                                          :body_part_id,
-                                         :datetime_occurred,
+                                         :occurred_at,
                                          :exercise_id,
                                          :sets,
                                          :reps,

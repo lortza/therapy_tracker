@@ -12,7 +12,7 @@ RSpec.describe ExerciseLog, type: :model do
 
   context 'validations' do
     it { should validate_presence_of(:body_part_id) }
-    it { should validate_presence_of(:datetime_occurred) }
+    it { should validate_presence_of(:occurred_at) }
     it { should validate_presence_of(:exercise_id) }
     it { should validate_presence_of(:sets) }
     it { should validate_presence_of(:reps) }
@@ -38,7 +38,7 @@ RSpec.describe ExerciseLog, type: :model do
                                body_part_id
                                burn_rep
                                burn_set
-                               datetime_occurred
+                               occurred_at
                                exercise_id
                                per_side
                                progress_note
@@ -99,15 +99,15 @@ RSpec.describe ExerciseLog, type: :model do
   end
 
   describe 'chronologically' do
-    it 'is ordered by datetime_occurred in ascending order' do
+    it 'is ordered by occurred_at in ascending order' do
       user = create(:user)
       first_log = create(:exercise_log,
                          user_id: user.id,
-                         datetime_occurred: '2019-01-01 1:00:00')
+                         occurred_at: '2019-01-01 1:00:00')
 
       last_log = create(:exercise_log,
                         user_id: user.id,
-                        datetime_occurred: '2019-01-01 2:00:00')
+                        occurred_at: '2019-01-01 2:00:00')
 
       expect(ExerciseLog.chronologically.first).to eq(first_log)
       expect(ExerciseLog.chronologically.last).to eq(last_log)
@@ -116,20 +116,20 @@ RSpec.describe ExerciseLog, type: :model do
 
   describe 'self.for_past_n_days' do
     it 'returns logs that occurred between today and the past n days' do
-      exercise_log = create(:exercise_log, datetime_occurred: 2.days.ago)
+      exercise_log = create(:exercise_log, occurred_at: 2.days.ago)
       expect(ExerciseLog.for_past_n_days(7)).to include(exercise_log)
     end
 
     it 'does not return logs that occurred outside of the past n days' do
-      exercise_log1 = create(:exercise_log, datetime_occurred: 9.days.ago)
-      exercise_log2 = create(:exercise_log, datetime_occurred: 2.days.from_now)
+      exercise_log1 = create(:exercise_log, occurred_at: 9.days.ago)
+      exercise_log2 = create(:exercise_log, occurred_at: 2.days.from_now)
 
       expect(ExerciseLog.for_past_n_days(7)).to_not include(exercise_log1)
       expect(ExerciseLog.for_past_n_days(7)).to_not include(exercise_log2)
     end
 
     it 'returns an empty array if no logs occurred within the past n days' do
-      create(:exercise_log, datetime_occurred: 9.days.ago)
+      create(:exercise_log, occurred_at: 9.days.ago)
       expect(ExerciseLog.for_past_n_days(7)).to eq([])
     end
   end
@@ -161,15 +161,15 @@ RSpec.describe ExerciseLog, type: :model do
   describe 'self.minutes_spent_by_day' do
     it 'returns a hash of dates and total minutes' do
       create(:exercise_log,
-             datetime_occurred: '2019-12-30',
+             occurred_at: '2019-12-30',
              sets: 1, reps: 1, rep_length: 120)
 
       create(:exercise_log,
-             datetime_occurred: '2019-12-30',
+             occurred_at: '2019-12-30',
              sets: 1, reps: 1, rep_length: 120)
 
       create(:exercise_log,
-             datetime_occurred: '2019-12-31',
+             occurred_at: '2019-12-31',
              sets: 1, reps: 1, rep_length: 60)
 
       expected_output = {

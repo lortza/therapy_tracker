@@ -22,15 +22,15 @@ RSpec.describe Log, type: :module do
       expect(Log.all(user)).to include(pt_session_log)
     end
 
-    it 'is ordered by datetime_occurred in descending order' do
+    it 'is ordered by occurred_at in descending order' do
       user = create(:user)
       first_log = create(:exercise_log,
                          user_id: user.id,
-                         datetime_occurred: '2019-01-01 1:00:00')
+                         occurred_at: '2019-01-01 1:00:00')
 
       last_log = create(:exercise_log,
                         user_id: user.id,
-                        datetime_occurred: '2019-01-01 2:00:00')
+                        occurred_at: '2019-01-01 2:00:00')
 
       expect(Log.all(user).first).to eq(last_log)
       expect(Log.all(user).last).to eq(first_log)

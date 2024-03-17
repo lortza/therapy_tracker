@@ -18,7 +18,7 @@ namespace :data do
   #         user_id: pt_session_log.user_id,
   #         pt_session_log_id: pt_session_log.id,
   #         body_part_id: pt_session_log.body_part_id,
-  #         datetime_occurred: pt_ex.created_at,
+  #         occurred_at: pt_ex.created_at,
   #         exercise_id: pt_ex.exercise_id,
   #         sets: pt_ex.sets ? pt_ex.sets : pt_ex.exercise.default_sets,
   #         reps: pt_ex.reps ? pt_ex.reps : pt_ex.exercise.default_reps,

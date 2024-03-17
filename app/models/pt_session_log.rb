@@ -10,7 +10,7 @@ class PtSessionLog < ApplicationRecord
   has_many :pt_homework_exercises, dependent: :destroy
   has_many :homework_exercises, through: :pt_homework_exercises, source: :exercise
 
-  validates :datetime_occurred,
+  validates :occurred_at,
             :body_part_id,
             :exercise_notes,
             :homework,
@@ -24,8 +24,8 @@ class PtSessionLog < ApplicationRecord
 
   def self.exercise_counts
     output = {}
-    all.order(:datetime_occurred).each do |session|
-      output[session.datetime_occurred.to_date] = session.exercise_logs.count
+    all.order(:occurred_at).each do |session|
+      output[session.occurred_at.to_date] = session.exercise_logs.count
     end
     output
   end

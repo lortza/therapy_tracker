@@ -62,7 +62,7 @@ class OccurrenceCalculator
   private
 
   def datetimes
-    occurrences.map(&:datetime_occurred)
+    occurrences.map(&:occurred_at)
   end
 
   def pain_levels

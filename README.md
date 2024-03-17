@@ -97,8 +97,8 @@ The reporting is possibly the flashiest part of this app, but the least complica
 <h3>Exercises vs Pain</h3>
 <h4>Grouped by Day</h4>
 <%= area_chart [
-  {name: 'Qty Exercises', data: @report.exercise_logs.group_by_day(:datetime_occurred).count},
-  {name: 'Pain Levels Total', data: @report.pain_logs.group_by_day(:datetime_occurred).sum(:pain_level)},
+  {name: 'Qty Exercises', data: @report.exercise_logs.group_by_day(:occurred_at).count},
+  {name: 'Pain Levels Total', data: @report.pain_logs.group_by_day(:occurred_at).sum(:pain_level)},
 ] %>
 ```
 

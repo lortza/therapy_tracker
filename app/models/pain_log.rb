@@ -7,7 +7,7 @@ class PainLog < ApplicationRecord
   belongs_to :body_part
   belongs_to :pain
 
-  validates :datetime_occurred,
+  validates :occurred_at,
             :body_part_id,
             :pain_id,
             presence: true

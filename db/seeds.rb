@@ -76,7 +76,7 @@ puts '... Exercise Logs'
       user_id: user.id,
       body_part_id: BodyPart.all.sample.id,
       exercise_id: Exercise.all.sample.id,
-      datetime_occurred: generate_datetime,
+      occurred_at: generate_datetime,
       progress_note: progress_notes.sample
     )
   end
@@ -89,7 +89,7 @@ puts '... Exercise Logs'
       user_id: user.id,
       body_part_id: BodyPart.all.sample.id,
       pain_id: Pain.all.sample.id,
-      datetime_occurred: generate_datetime
+      occurred_at: generate_datetime
     )
   end
 
@@ -114,7 +114,7 @@ puts '... Exercise Logs'
       :pt_session_log,
       user_id: user.id,
       body_part_id: BodyPart.all.sample.id,
-      datetime_occurred: generate_datetime,
+      occurred_at: generate_datetime,
       exercise_notes: exercise_note_opts.sample,
       homework: homework_notes.sample
     )

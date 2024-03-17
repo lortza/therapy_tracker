@@ -15,7 +15,7 @@ RSpec.describe 'pain_logs/edit', type: :view do
     assert_select 'form[action=?][method=?]', pain_log_path(@pain_log), 'post' do
       assert_select 'select[name=?]', 'pain_log[body_part_id]'
 
-      # assert_select 'select[name=?]', /pain_log\[datetime_occurred\(\d+[i]\)\]/
+      # assert_select 'select[name=?]', /pain_log\[occurred_at\(\d+[i]\)\]/
 
       assert_select 'select[name=?]', 'pain_log[pain_id]'
 

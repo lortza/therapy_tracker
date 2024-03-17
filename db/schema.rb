@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_07_233959) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_16_214955) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -54,7 +54,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_07_233959) do
   create_table "exercise_logs", force: :cascade do |t|
     t.integer "sets", default: 0
     t.integer "reps", default: 0
-    t.datetime "datetime_occurred", precision: nil
+    t.datetime "occurred_at", precision: nil
     t.text "progress_note", default: ""
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
@@ -69,6 +69,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_07_233959) do
     t.bigint "pt_session_log_id"
     t.index ["body_part_id"], name: "index_exercise_logs_on_body_part_id"
     t.index ["exercise_id"], name: "index_exercise_logs_on_exercise_id"
+    t.index ["occurred_at"], name: "index_exercise_logs_on_occurred_at"
     t.index ["pt_session_log_id"], name: "index_exercise_logs_on_pt_session_log_id"
     t.index ["user_id"], name: "index_exercise_logs_on_user_id"
   end
@@ -104,7 +105,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_07_233959) do
 
   create_table "pain_logs", force: :cascade do |t|
     t.bigint "user_id"
-    t.datetime "datetime_occurred", precision: nil
+    t.datetime "occurred_at", precision: nil
     t.integer "pain_level"
     t.text "pain_description", default: ""
     t.text "trigger", default: ""
@@ -113,6 +114,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_07_233959) do
     t.bigint "pain_id"
     t.bigint "body_part_id"
     t.index ["body_part_id"], name: "index_pain_logs_on_body_part_id"
+    t.index ["occurred_at"], name: "index_pain_logs_on_occurred_at"
     t.index ["pain_id"], name: "index_pain_logs_on_pain_id"
     t.index ["user_id"], name: "index_pain_logs_on_user_id"
   end
@@ -136,7 +138,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_07_233959) do
 
   create_table "pt_session_logs", force: :cascade do |t|
     t.bigint "user_id"
-    t.datetime "datetime_occurred", precision: nil
+    t.datetime "occurred_at", precision: nil
     t.text "exercise_notes", default: ""
     t.text "homework", default: ""
     t.integer "duration"
@@ -145,16 +147,18 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_07_233959) do
     t.bigint "body_part_id"
     t.text "questions"
     t.index ["body_part_id"], name: "index_pt_session_logs_on_body_part_id"
+    t.index ["occurred_at"], name: "index_pt_session_logs_on_occurred_at"
     t.index ["user_id"], name: "index_pt_session_logs_on_user_id"
   end
 
   create_table "slit_logs", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.datetime "datetime_occurred"
+    t.datetime "occurred_at"
     t.boolean "started_new_bottle", default: false
     t.integer "doses_remaining"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["occurred_at"], name: "index_slit_logs_on_occurred_at"
     t.index ["user_id"], name: "index_slit_logs_on_user_id"
   end
 

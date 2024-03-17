@@ -3,7 +3,7 @@
 json.extract! pt_session_log,
               :id,
               :user_id,
-              :datetime_occurred,
+              :occurred_at,
               :exercise_notes,
               :homework,
               :duration,

@@ -10,7 +10,7 @@ RSpec.describe PainLog, type: :model do
   end
 
   context 'validations' do
-    it { should validate_presence_of(:datetime_occurred) }
+    it { should validate_presence_of(:occurred_at) }
     it { should validate_presence_of(:body_part_id) }
     it { should validate_presence_of(:pain_id) }
     it { should validate_presence_of(:pain_level) }
@@ -27,7 +27,7 @@ RSpec.describe PainLog, type: :model do
     it 'should have all of its attributes' do
       expected_attributes = %w[id
                                body_part_id
-                               datetime_occurred
+                               occurred_at
                                pain_description
                                pain_id
                                pain_level
@@ -42,20 +42,20 @@ RSpec.describe PainLog, type: :model do
 
   describe 'self.for_past_n_days' do
     it 'returns logs that occurred between today and the past n days' do
-      pain_log = create(:pain_log, datetime_occurred: 2.days.ago)
+      pain_log = create(:pain_log, occurred_at: 2.days.ago)
       expect(PainLog.for_past_n_days(7)).to include(pain_log)
     end
 
     it 'does not return logs that occurred outside of the past n days' do
-      pain_log1 = create(:pain_log, datetime_occurred: 9.days.ago)
-      pain_log2 = create(:pain_log, datetime_occurred: 2.days.from_now)
+      pain_log1 = create(:pain_log, occurred_at: 9.days.ago)
+      pain_log2 = create(:pain_log, occurred_at: 2.days.from_now)
 
       expect(PainLog.for_past_n_days(7)).to_not include(pain_log1)
       expect(PainLog.for_past_n_days(7)).to_not include(pain_log2)
     end
 
     it 'returns an empty array if no logs occurred within the past n days' do
-      create(:pain_log, datetime_occurred: 9.days.ago)
+      create(:pain_log, occurred_at: 9.days.ago)
       expect(PainLog.for_past_n_days(7)).to eq([])
     end
   end

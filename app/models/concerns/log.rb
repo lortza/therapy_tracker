@@ -10,15 +10,15 @@ module Log
       user.slit_logs.to_a,
     ]
 
-    logs.flatten.sort_by { |a| a[:datetime_occurred] }.reverse!
+    logs.flatten.sort_by { |a| a[:occurred_at] }.reverse!
   end
 
   def chronologically
-    all.order(:datetime_occurred)
+    all.order(:occurred_at)
   end
 
   def for_past_n_days(qty_days)
-    where('datetime_occurred >= ? AND datetime_occurred <= ?', qty_days.days.ago, today)
+    where('occurred_at >= ? AND occurred_at <= ?', qty_days.days.ago, today)
   end
 
   def for_body_part(id)

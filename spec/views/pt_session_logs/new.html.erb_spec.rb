@@ -15,7 +15,7 @@ RSpec.describe 'pt_session_logs/new', type: :view do
     assert_select 'form[action=?][method=?]', pt_session_logs_path, 'post' do
       assert_select 'select[name=?]', 'pt_session_log[body_part_id]'
 
-      # assert_select 'select[name=?]', /pt_session_log\[datetime_occurred\(\d+i\)\]/
+      # assert_select 'select[name=?]', /pt_session_log\[occurred_at\(\d+i\)\]/
 
       assert_select 'textarea[name=?]', 'pt_session_log[questions]'
 
