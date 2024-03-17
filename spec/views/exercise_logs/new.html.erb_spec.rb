@@ -15,7 +15,7 @@ RSpec.describe 'exercise_logs/new', type: :view do
     assert_select 'form[action=?][method=?]', exercise_logs_path, 'post' do
       assert_select 'select[name=?]', 'exercise_log[body_part_id]'
 
-      # assert_select 'select[name=?]', /exercise_log\[datetime_occurred\(\d+[i]\)\]/
+      # assert_select 'select[name=?]', /exercise_log\[occurred_at\(\d+[i]\)\]/
 
       assert_select 'select[name=?]', 'exercise_log[exercise_id]'
 

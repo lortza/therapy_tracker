@@ -8,7 +8,7 @@ class ExerciseLog < ApplicationRecord
   belongs_to :body_part
   belongs_to :pt_session_log, optional: true
 
-  validates :datetime_occurred,
+  validates :occurred_at,
             :exercise_id,
             :body_part_id,
             presence: true
@@ -44,7 +44,7 @@ class ExerciseLog < ApplicationRecord
     def minutes_spent_by_day
       output = {}
       all.find_each do |log|
-        occurred = log.datetime_occurred.to_date
+        occurred = log.occurred_at.to_date
 
         if output[occurred].nil?
           output[occurred] = log.minutes_spent.round(2)

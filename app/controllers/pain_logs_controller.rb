@@ -10,7 +10,7 @@ class PainLogsController < ApplicationController
                         .search(body_part_id: search_params[:body_part_id],
                                 pain_id: search_params[:pain_id],
                                 search_terms: search_params[:search])
-                        .order(datetime_occurred: 'DESC')
+                        .order(occurred_at: 'DESC')
                         .paginate(page: params[:page], per_page: 25)
   end
 
@@ -89,7 +89,7 @@ class PainLogsController < ApplicationController
     params.require(:pain_log).permit(:user_id,
                                      :body_part_id,
                                      :pain_id,
-                                     :datetime_occurred,
+                                     :occurred_at,
                                      :pain_level,
                                      :pain_description,
                                      :trigger)

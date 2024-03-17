@@ -31,7 +31,7 @@ RSpec.describe OccurrenceCalculator, type: :model do
 
   describe 'frequency' do
     context 'when it only happened once' do
-      let(:pain_log1) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: today - 1.month) }
+      let(:pain_log1) { create(:pain_log, body_part: body_part, pain: pain, occurred_at: today - 1.month) }
       let(:occurrences) { [pain_log1] }
 
       it 'returns "once"' do
@@ -40,8 +40,8 @@ RSpec.describe OccurrenceCalculator, type: :model do
     end
 
     context 'when the several occurrences per month' do
-      let(:pain_log1) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: '2021-05-01') }
-      let(:pain_log2) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: '2021-05-23') }
+      let(:pain_log1) { create(:pain_log, body_part: body_part, pain: pain, occurred_at: '2021-05-01') }
+      let(:pain_log2) { create(:pain_log, body_part: body_part, pain: pain, occurred_at: '2021-05-23') }
       let(:occurrences) { [pain_log1, pain_log2] }
 
       it 'reports several occurences within that unit' do
@@ -50,9 +50,9 @@ RSpec.describe OccurrenceCalculator, type: :model do
     end
 
     context 'when several months between occurrences' do
-      let(:pain_log1) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: '2021-05-14') }
-      let(:pain_log2) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: '2021-08-22') }
-      let(:pain_log3) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: '2021-09-02') }
+      let(:pain_log1) { create(:pain_log, body_part: body_part, pain: pain, occurred_at: '2021-05-14') }
+      let(:pain_log2) { create(:pain_log, body_part: body_part, pain: pain, occurred_at: '2021-08-22') }
+      let(:pain_log3) { create(:pain_log, body_part: body_part, pain: pain, occurred_at: '2021-09-02') }
       let(:occurrences) { [pain_log1, pain_log2, pain_log3] }
 
       it 'spreads the occurrences out over several units' do
@@ -62,12 +62,12 @@ RSpec.describe OccurrenceCalculator, type: :model do
   end
 
   describe 'timeframe' do
-    let(:pain_log1) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: today - 1.month) }
-    let(:pain_log2) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: today - 3.months) }
-    let(:pain_log3) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: today - 1.day) }
-    let(:pain_log4) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: today - 3.days) }
-    let(:pain_log5) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: today - 2.weeks) }
-    let(:pain_log6) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: today - 2.years) }
+    let(:pain_log1) { create(:pain_log, body_part: body_part, pain: pain, occurred_at: today - 1.month) }
+    let(:pain_log2) { create(:pain_log, body_part: body_part, pain: pain, occurred_at: today - 3.months) }
+    let(:pain_log3) { create(:pain_log, body_part: body_part, pain: pain, occurred_at: today - 1.day) }
+    let(:pain_log4) { create(:pain_log, body_part: body_part, pain: pain, occurred_at: today - 3.days) }
+    let(:pain_log5) { create(:pain_log, body_part: body_part, pain: pain, occurred_at: today - 2.weeks) }
+    let(:pain_log6) { create(:pain_log, body_part: body_part, pain: pain, occurred_at: today - 2.years) }
     let(:occurrences) { [pain_log1, pain_log2] }
 
     it 'returns the timeframe between the first and last occurrences' do
@@ -76,7 +76,7 @@ RSpec.describe OccurrenceCalculator, type: :model do
     end
 
     it 'does not include timeframes for logs outside of the set' do
-      create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: today - 1.year)
+      create(:pain_log, body_part: body_part, pain: pain, occurred_at: today - 1.year)
       expect(calculator.timeframe.qty).to_not eq(11.1)
     end
 
@@ -110,34 +110,34 @@ RSpec.describe OccurrenceCalculator, type: :model do
   end
 
   describe 'first_datetime' do
-    let(:pain_log1) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: today - 1.month) }
-    let(:pain_log2) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: today - 2.months) }
+    let(:pain_log1) { create(:pain_log, body_part: body_part, pain: pain, occurred_at: today - 1.month) }
+    let(:pain_log2) { create(:pain_log, body_part: body_part, pain: pain, occurred_at: today - 2.months) }
     let(:occurrences) { [pain_log1, pain_log2] }
 
-    it 'returns the log with the oldest datetime_occurred' do
-      expect(calculator.first_datetime.to_date).to_not eq(pain_log1.datetime_occurred.to_date)
-      expect(calculator.first_datetime.to_date).to eq(pain_log2.datetime_occurred.to_date)
+    it 'returns the log with the oldest occurred_at' do
+      expect(calculator.first_datetime.to_date).to_not eq(pain_log1.occurred_at.to_date)
+      expect(calculator.first_datetime.to_date).to eq(pain_log2.occurred_at.to_date)
     end
 
     it 'does not include records outside of the body_part set' do
-      log = create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: today - 4.months)
-      expect(calculator.first_datetime.to_date).to_not eq(log.datetime_occurred.to_date)
+      log = create(:pain_log, body_part: body_part, pain: pain, occurred_at: today - 4.months)
+      expect(calculator.first_datetime.to_date).to_not eq(log.occurred_at.to_date)
     end
   end
 
   describe 'last_datetime' do
-    let(:pain_log1) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: today - 1.month) }
-    let(:pain_log2) { create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: today - 2.months) }
+    let(:pain_log1) { create(:pain_log, body_part: body_part, pain: pain, occurred_at: today - 1.month) }
+    let(:pain_log2) { create(:pain_log, body_part: body_part, pain: pain, occurred_at: today - 2.months) }
     let(:occurrences) { [pain_log1, pain_log2] }
 
-    it 'returns the log with the most recent datetime_occurred' do
-      expect(calculator.last_datetime.to_date).to eq(pain_log1.datetime_occurred.to_date)
-      expect(calculator.last_datetime.to_date).to_not eq(pain_log2.datetime_occurred.to_date)
+    it 'returns the log with the most recent occurred_at' do
+      expect(calculator.last_datetime.to_date).to eq(pain_log1.occurred_at.to_date)
+      expect(calculator.last_datetime.to_date).to_not eq(pain_log2.occurred_at.to_date)
     end
 
     it 'does not include records outside of the body_part set' do
-      log = create(:pain_log, body_part: body_part, pain: pain, datetime_occurred: today - 1.day)
-      expect(calculator.last_datetime.to_date).to_not eq(log.datetime_occurred.to_date)
+      log = create(:pain_log, body_part: body_part, pain: pain, occurred_at: today - 1.day)
+      expect(calculator.last_datetime.to_date).to_not eq(log.occurred_at.to_date)
     end
   end
 end

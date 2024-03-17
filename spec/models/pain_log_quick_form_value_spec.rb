@@ -38,7 +38,7 @@ RSpec.describe PainLogQuickFormValue, type: :model do
         'pain_level',
         'pain_description',
         'trigger',
-        :datetime_occurred,
+        :occurred_at,
       ]
       quick_log = build(:pain_log_quick_form_value)
       actual_keys = quick_log.loggable_attributes.keys
@@ -46,11 +46,11 @@ RSpec.describe PainLogQuickFormValue, type: :model do
       expect(actual_keys).to match_array(expected_keys)
     end
 
-    it 'should have a value for datetime_occurred' do
+    it 'should have a value for occurred_at' do
       quick_log = build(:pain_log_quick_form_value)
-      datetime_occurred = quick_log.loggable_attributes[:datetime_occurred]
+      occurred_at = quick_log.loggable_attributes[:occurred_at]
 
-      expect(datetime_occurred).to be
+      expect(occurred_at).to be
     end
   end
 end

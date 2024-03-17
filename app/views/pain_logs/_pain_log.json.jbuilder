@@ -3,7 +3,7 @@
 json.extract! pain_log,
               :id,
               :user_id,
-              :datetime_occurred,
+              :occurred_at,
               :body_part_id,
               :pain_level,
               :pain_description,

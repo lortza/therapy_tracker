@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe SlitLogsController, type: :request do
   let(:user) { create(:user) }
-  let(:slit_log) { create(:slit_log, user_id: user.id, datetime_occurred: Time.current) }
+  let(:slit_log) { create(:slit_log, user_id: user.id, occurred_at: Time.current) }
 
   describe 'Public access to slit_logs' do
     it 'denies access to slit_logs#new' do
@@ -18,7 +18,7 @@ RSpec.describe SlitLogsController, type: :request do
     end
 
     it 'denies access to slit_logs#create' do
-      slit_log_attributes = build(:slit_log, user_id: user.id, datetime_occurred: Time.current).attributes
+      slit_log_attributes = build(:slit_log, user_id: user.id, occurred_at: Time.current).attributes
 
       expect {
         post slit_logs_path(slit_log_attributes)
@@ -66,7 +66,7 @@ RSpec.describe SlitLogsController, type: :request do
       slit_log_attributes = build(
         :slit_log,
         user_id: user.id,
-        datetime_occurred: Time.current,
+        occurred_at: Time.current,
         started_new_bottle: true,
         doses_remaining: 5
       ).attributes
@@ -88,7 +88,7 @@ RSpec.describe SlitLogsController, type: :request do
 
     it 'renders slit_logs#update' do
       new_datetime = 4.days.ago
-      patch slit_log_path(slit_log, slit_log: { datetime_occurred: new_datetime })
+      patch slit_log_path(slit_log, slit_log: { occurred_at: new_datetime })
 
       expect(response).to redirect_to root_url
     end

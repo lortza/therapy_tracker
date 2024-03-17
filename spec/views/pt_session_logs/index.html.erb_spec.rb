@@ -7,7 +7,7 @@ RSpec.describe 'pt_session_logs/index', type: :view do
     @user = create(:user)
     create(:pt_session_log, user_id: @user.id)
     create(:pt_session_log, user_id: @user.id)
-    @logs = @user.pt_session_logs.order(datetime_occurred: 'DESC').paginate(page: params[:page], per_page: 10)
+    @logs = @user.pt_session_logs.order(occurred_at: 'DESC').paginate(page: params[:page], per_page: 10)
   end
 
   it 'renders a list of pt_session_logs' do

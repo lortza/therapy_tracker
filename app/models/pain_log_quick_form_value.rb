@@ -21,6 +21,6 @@ class PainLogQuickFormValue < ApplicationRecord
   def loggable_attributes
     attributes
       .except('id', 'name', 'created_at', 'updated_at')
-      .merge(datetime_occurred: Time.current)
+      .merge(occurred_at: Time.current)
   end
 end

@@ -75,7 +75,7 @@ class PtSessionLogs::ExerciseLogsController < PtSessionLogsController
     params.require(:exercise_log).permit(:pt_session_log_id,
                                          :user_id,
                                          :body_part_id,
-                                         :datetime_occurred,
+                                         :occurred_at,
                                          :exercise_id,
                                          :sets,
                                          :reps,

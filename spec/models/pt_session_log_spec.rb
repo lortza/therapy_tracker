@@ -13,7 +13,7 @@ RSpec.describe PtSessionLog, type: :model do
 
   context 'validations' do
     it { should validate_presence_of(:body_part_id) }
-    it { should validate_presence_of(:datetime_occurred) }
+    it { should validate_presence_of(:occurred_at) }
     it { should validate_presence_of(:exercise_notes) }
     it { should validate_presence_of(:homework) }
     it { should validate_presence_of(:duration) }
@@ -29,7 +29,7 @@ RSpec.describe PtSessionLog, type: :model do
     it 'should have all of its attributes' do
       expected_attributes = %w[id
                                body_part_id
-                               datetime_occurred
+                               occurred_at
                                duration
                                exercise_notes
                                homework
@@ -44,20 +44,20 @@ RSpec.describe PtSessionLog, type: :model do
 
   describe 'self.for_past_n_days' do
     it 'returns logs that occurred between today and the past n days' do
-      pt_session_log = create(:pt_session_log, datetime_occurred: 2.days.ago)
+      pt_session_log = create(:pt_session_log, occurred_at: 2.days.ago)
       expect(PtSessionLog.for_past_n_days(7)).to include(pt_session_log)
     end
 
     it 'does not return logs that occurred outside of the past n days' do
-      pt_session_log1 = create(:pt_session_log, datetime_occurred: 9.days.ago)
-      pt_session_log2 = create(:pt_session_log, datetime_occurred: 2.days.from_now)
+      pt_session_log1 = create(:pt_session_log, occurred_at: 9.days.ago)
+      pt_session_log2 = create(:pt_session_log, occurred_at: 2.days.from_now)
 
       expect(PtSessionLog.for_past_n_days(7)).to_not include(pt_session_log1)
       expect(PtSessionLog.for_past_n_days(7)).to_not include(pt_session_log2)
     end
 
     it 'returns an empty array if no logs occurred within the past n days' do
-      create(:pt_session_log, datetime_occurred: 9.days.ago)
+      create(:pt_session_log, occurred_at: 9.days.ago)
       expect(PtSessionLog.for_past_n_days(7)).to eq([])
     end
   end

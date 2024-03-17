@@ -6,7 +6,7 @@ class PtSessionLogsController < ApplicationController
   layout 'no_white_container', only: [:index]
 
   def index
-    @logs = current_user.pt_session_logs.order(datetime_occurred: 'DESC').paginate(page: params[:page], per_page: 10)
+    @logs = current_user.pt_session_logs.order(occurred_at: 'DESC').paginate(page: params[:page], per_page: 10)
   end
 
   def show
@@ -66,7 +66,7 @@ class PtSessionLogsController < ApplicationController
   def pt_session_log_params
     params.require(:pt_session_log).permit(:user_id,
                                            :body_part_id,
-                                           :datetime_occurred,
+                                           :occurred_at,
                                            :exercise_notes,
                                            :homework, :duration,
                                            :questions,

@@ -1,4 +1,4 @@
 <header class='log-type-pain'>
   <span class='log-icon'>Pain <i class='fal fa-user-injured'></i></span>
-  <h5 class='card-title'><%= format_datetime(log.datetime_occurred) if log.persisted? %></h5>
+  <h5 class='card-title'><%= format_datetime(log.occurred_at) if log.persisted? %></h5>
 </header>

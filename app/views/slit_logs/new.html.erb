@@ -1,4 +1,4 @@
-<% content_for(:title, format_datetime(@slit_log.datetime_occurred)) %>
+<% content_for(:title, format_datetime(@slit_log.occurred_at)) %>
 
 <%= render partial: 'slit_logs/slit_log_header', locals: { log: @slit_log } %>
 <h1>New SLIT Log</h1>

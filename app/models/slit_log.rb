@@ -3,5 +3,5 @@
 class SlitLog < ApplicationRecord
   belongs_to :user
 
-  validates :datetime_occurred, presence: true
+  validates :occurred_at, presence: true
 end
