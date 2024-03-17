@@ -63,10 +63,7 @@ class SlitLogsController < ApplicationController
                         .where(occurred_at: report_record_limit.days.ago..Time.current)
                         .order(occurred_at: :asc)
                         .limit(report_record_limit)
-
-  # other thing
   end
-
 
   private
 
