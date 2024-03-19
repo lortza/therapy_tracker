@@ -32,6 +32,26 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe 'scopes' do
+    describe 'with_slit_enabled' do
+      let(:user_with_slit_tracking) { create(:user, enable_slit_tracking: true) }
+      let(:user_without_slit_tracking) { create(:user, enable_slit_tracking: false) }
+
+      before do
+        user_with_slit_tracking
+        user_without_slit_tracking
+      end
+
+      it 'includes users with slit_tracking_enabled' do
+        expect(described_class.with_slit_enabled).to include(user_with_slit_tracking)
+      end
+
+      it 'excludes users without slit_tracking_enabled' do
+        expect(described_class.with_slit_enabled).not_to include(user_without_slit_tracking)
+      end
+    end
+  end
+
   describe '#full_name' do
     it 'displays the users full name' do
       user = build(:user, first_name: 'first', last_name: 'last')

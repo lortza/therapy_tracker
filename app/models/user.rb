@@ -15,6 +15,8 @@ class User < ApplicationRecord
   has_many :pt_session_logs, dependent: :destroy
   has_many :slit_logs, dependent: :destroy
 
+  scope :with_slit_enabled, -> { where(enable_slit_tracking: true) }
+
   def full_name
     "#{first_name} #{last_name}"
   end
