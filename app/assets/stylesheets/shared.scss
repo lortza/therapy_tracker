@@ -61,3 +61,9 @@ body { background-color: $dk-blue; }
 
   .exercise-description { margin-bottom: 0; }
 }
+
+.highlight-yellow {
+  background-color: $yellow-highlighter;
+  margin: -3px;
+  padding: 3px;
+}

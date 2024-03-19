@@ -24,6 +24,8 @@
   width: 3rem;
 }
 
+.dose-skipped { color: $red; }
+
 // MEDIA QUERIES
 @media (max-width: 576px) {
   .slit-report-data-container {

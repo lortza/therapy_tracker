@@ -8,12 +8,15 @@ $medium-gray: #ccc;
 $error: ff0000;
 $white: #fff;
 $black: #000;
+$red: #c70039;
+$orange: #ed553b;
+$dk-blue: #112f41;
+$yellow: #f2b134;
+$light-yellow: lighten($yellow, 30%);
+$yellow-highlighter: #ff0;
 
-$pain-color: #f2b134;
+$pain-color: $yellow;
 $exercise-color: #48aa6c;
 $therapy-color: #0994a1;
 $slit-color: #8228d5;
 
-$red: #c70039;
-$orange: #ed553b;
-$dk-blue: #112f41;
