@@ -1,6 +1,6 @@
 <h2>Sublingual Immunotherapy Patient Documentation</h2>
 <p>Maintenance Dosage log for patient <%= current_user.email %> from <%= @logs.first.occurred_at.strftime('%m/%d/%y') %> to <%= @logs.last.occurred_at.strftime('%m/%d/%y') %></p>
-<p><strong>NB</strong> = started new bottle | <strong>SKIPPED</strong> = drops not taken for date | <strong>C</strong> = Call 336-659-4814 to order more drops</p>
+<p><strong>NB</strong> = started new bottle | <strong>SKIPPED</strong> = drops not taken for date | <strong>CALL</strong> = Call 336-659-4814 to order more drops</p>
 
 <div class='slit-report-data-container mt-4'>
   <% 3.times do %>
@@ -13,7 +13,7 @@
 
 <div class='slit-report-data-container'>
   <% @logs.each_with_index do |log, index| %>
-    <div class="slit-report-data-row <%= 'highlight-yellow' if index == @index_to_prompt_calling %>">
+    <div class="slit-report-data-row">
       <span class='slit-report-col-dose'><%= index + 1 %></span>
       <% if log.dose_skipped? %>
         <span><%= log.occurred_at.strftime('%a %m/%d/%y') %> <strong class="dose-skipped">SKIPPED</strong></span>
@@ -22,7 +22,7 @@
       <% end %>
 
       <% if index == @index_to_prompt_calling %>
-        <span><strong>C</strong></span>
+        <span class="<%= 'highlight-yellow' if index == @index_to_prompt_calling %>"><strong>CALL</strong></span>
       <% end %>
 
       <% if log.started_new_bottle? %>
