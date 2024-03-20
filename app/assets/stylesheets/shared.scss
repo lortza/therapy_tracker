@@ -64,6 +64,12 @@ body { background-color: $dk-blue; }
 
 .highlight-yellow {
   background-color: $yellow-highlighter;
-  margin: -3px;
-  padding: 3px;
+  margin: -10px -3px;
+  padding: 0px 3px;
+}
+
+@media print {
+  .highlight-yellow {
+    border: .5px solid $black;
+  }
 }
