@@ -15,7 +15,7 @@ RSpec.describe 'exercise_logs/index', type: :view do
     allow(view).to receive(:current_user).and_return(@user)
     render
     assert_select 'div.card-body>p', count: 2
-    assert_select 'div.card-body>header>h5', text: 'Sat 03/23/19 at 02:08PM', count: 2
+    assert_select 'div.card-body>h5', text: 'Exercise: Sat 03/23/19 at 02:08PM', count: 2
     assert_select 'div.card-body>p>strong', text: /Body Part\d+:/, count: 2
     assert_select 'div.card-body>p', text: %r{Exercise\d+: 2 sets / 10 reps at 5 seconds each}, count: 2
     assert_select 'div.card-body>p>small', text: %r{Progress: exercise burn at Set 2 / Rep 5.}, count: 2
