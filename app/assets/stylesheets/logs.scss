@@ -4,15 +4,16 @@
   margin-bottom: 1rem;
   width: 100%;
 }
-.card--padding-clear {padding: 0;}
+
+.card--padding-clear { padding: 0; }
 .card-body { padding: .6rem; }
 
 .card--icon-container {
-  display: flex;
   align-items: center;
-  width: 2rem;
   color: $white;
+  display: flex;
   justify-content: center;
+  width: 2rem;
 }
 
 .card--log-entry {
@@ -56,14 +57,14 @@
 .log-border-therapy { border: .125em solid $therapy-color; }
 .log-border-slit { border: .125em solid $slit-color; }
 
-.background-color-exercise {background-color: $exercise-color}
-.background-color-pain {background-color: $pain-color}
-.background-color-therapy {background-color: $therapy-color}
-.background-color-slit {background-color: $slit-color}
-.background-color-slit-skipped {background-color: $slit-skipped-color}
+.background-color-exercise { background-color: $exercise-color; }
+.background-color-pain { background-color: $pain-color; }
+.background-color-therapy { background-color: $therapy-color; }
+.background-color-slit { background-color: $slit-color; }
+.background-color-slit-skipped { background-color: $slit-skipped-color; }
 
-.color-exercise {color: $exercise-color}
-.color-pain {color: $pain-color}
-.color-therapy {color: $therapy-color}
-.color-slit {color: $slit-color}
-.color-slit-skipped {color: $slit-skipped-color}
+.color-exercise { color: $exercise-color; }
+.color-pain { color: $pain-color; }
+.color-therapy { color: $therapy-color; }
+.color-slit { color: $slit-color; }
+.color-slit-skipped { color: $slit-skipped-color; }
