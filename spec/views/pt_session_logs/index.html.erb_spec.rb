@@ -14,7 +14,7 @@ RSpec.describe 'pt_session_logs/index', type: :view do
     allow(view).to receive(:current_user).and_return(@user)
     render
     assert_select 'div.card-body>p', count: 2
-    assert_select 'div.card-body>header>h5', text: 'Mon 03/25/19 at 10:29PM', count: 2
+    assert_select 'div.card-body>h5', text: 'PT Session: Mon 03/25/19 at 10:29PM', count: 2
     assert_select 'div.card-body>p>strong', text: /Body Part\d+:/, count: 2
     assert_select 'div.card-body>p', text: /\d{1,2} minutes/, count: 2
     assert_select 'div.card-body>p>small', text: /sample exercise notes/, count: 2
