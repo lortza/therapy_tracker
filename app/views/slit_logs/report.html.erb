@@ -21,7 +21,7 @@
         <span><%= log.occurred_at.strftime('%a %m/%d/%y at %I:%M%p') %></span>
       <% end %>
 
-      <% if index == @index_to_prompt_calling %>
+      <% if index == SlitLog::DOSE_TO_PLACE_ORDER %>
         <span class="<%= 'highlight-yellow' if index == @index_to_prompt_calling %>"><strong>CALL</strong></span>
       <% end %>
 
