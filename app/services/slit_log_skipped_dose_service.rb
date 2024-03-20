@@ -5,6 +5,7 @@ class SlitLogSkippedDoseService
     def call
       User.with_slit_enabled.each do |user|
         Rails.logger.debug "==============SlitLogSkippedDoseService=================="
+        puts "putsing just for fun"
         Rails.logger.debug "user: #{user.email}"
         last_log = user.slit_logs.order(occurred_at: :desc).limit(1).first
         Rails.logger.debug "last_log: #{last_log.occurred_at}"
