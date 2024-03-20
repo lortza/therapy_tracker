@@ -10,7 +10,6 @@ class SlitLogSkippedDoseService
         Rails.logger.debug "last_log: #{last_log.occurred_at}"
         Rails.logger.debug "last_log.occurred_at.to_date: #{last_log.occurred_at.to_date}"
         Rails.logger.debug "Date.yesterday: #{Date.yesterday}"
-        binding.pry
         Rails.logger.debug "no_log_yesterday?: #{no_log_yesterday?(last_log)}"
         Rails.logger.debug "yes log yesterday: #{last_log&.occurred_at&.to_date == Date.yesterday}"
         next unless no_log_yesterday?(last_log)
