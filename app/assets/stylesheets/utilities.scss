@@ -1,6 +1,6 @@
 @import 'variables';
 
-/* SIZE */
+// SIZE
 .text-xsmall { font-size: x-small; }
 .text-small { font-size: small; }
 .text-medium { font-size: medium; }
@@ -9,11 +9,11 @@
 .text-xxlarge { font-size: xx-large; }
 .text-size-inherit { font-size: inherit; }
 
-/* DISPLAY */
+// DISPLAY
 .flex { display: flex; }
 .inline-block { display: inline-block; }
 
-/* CORE */
+// CORE
 .color-error { color: $red; }
 .background-color-error { background-color: $red; }
 .border-color-error { border-color: $red; }
