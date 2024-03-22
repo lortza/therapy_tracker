@@ -1,19 +1,12 @@
-<div class="card card--log-entry log-border border-color-pain">
-<a href="<%= edit_pain_log_path(pain_log) %>">
-    <div class="card--padding-clear flex">
-      <div class="card--icon-container background-color-pain">
-        <span class="material-symbols-outlined">recent_patient</span>
-      </div>
+<% @card_body = capture do %>
+  <h5 class='card-title color-pain'>Pain: <%= format_datetime(pain_log.occurred_at) %></h5>
+  <p class="card-text"><strong><%= pain_log.body_part_name.titleize %>:</strong> Pain Level: <%= pain_log.pain_level %> <%= pain_log.pain_name %><br>
+    <%= pain_log.pain_description if pain_log.pain_description.present? %>
+    <% if pain_log.trigger.present? %>
+      <br><small class="text-muted">Triggered by: <%= pain_log.trigger %></small>
+    <% end %>
+  </p>
+<% end %>
 
-      <div class='card-body'>
-        <h5 class='card-title color-pain'>Pain: <%= format_datetime(pain_log.occurred_at) %></h5>
-        <p class="card-text"><strong><%= pain_log.body_part_name.titleize %>:</strong> Pain Level: <%= pain_log.pain_level %> <%= pain_log.pain_name %><br>
-          <%= pain_log.pain_description if pain_log.pain_description.present? %>
-          <% if pain_log.trigger.present? %>
-            <br><small class="text-muted">Triggered by: <%= pain_log.trigger %></small>
-          <% end %>
-        </p>
-      </div>
-    </div>
-  </a>
-</div>
+<!-- @card_body is rendered in the component below: -->
+<%= render partial: '/logs/log_component', locals: { log_type: 'pain', edit_path: edit_pain_log_path(pain_log), icon_name: 'recent_patient', error_condition: false }%>

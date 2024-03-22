@@ -1,0 +1,12 @@
+<div class="card card--log-entry log-border border-color-<%= log_type %>">
+  <a href="<%= edit_path %>">
+    <div class="card--padding-clear flex">
+      <div class="card--icon-container background-color-<%= log_type %> <%= 'background-color-error' if error_condition %>">
+        <span class="material-symbols-outlined"><%= icon_name %></span>
+      </div>
+      <div class='card-body'>
+        <%= @card_body %>
+      </div>
+    </div>
+  </a>
+</div>
