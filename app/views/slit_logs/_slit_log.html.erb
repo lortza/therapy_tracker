@@ -5,9 +5,9 @@
     <h5 class='card-title color-slit'>SLIT Dose Taken: <%= format_datetime(slit_log.occurred_at) %></h5>
   <% end %>
   <p class="card-text">
-  <%= slit_log.dose_skipped? ? 'Skipped Dose' : 'Took drops' %>
-  <%= " | #{slit_log.doses_remaining} doses remaining" if slit_log.doses_remaining.present? %>
-  <%= ' (Started new bottle)' if slit_log.started_new_bottle? %>
+    <%= slit_log.dose_skipped? ? 'Skipped Dose' : 'Took drops' %>
+    <%= " | #{slit_log.doses_remaining} doses remaining" if slit_log.doses_remaining.present? %>
+    <%= ' (Started new bottle)' if slit_log.started_new_bottle? %>
   </p>
 <% end %>
 
