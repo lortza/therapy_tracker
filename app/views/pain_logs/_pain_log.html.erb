@@ -1,4 +1,4 @@
-<% @card_body = capture do %>
+<% @log_content = capture do %>
   <h5 class='card-title color-pain'>Pain: <%= format_datetime(pain_log.occurred_at) %></h5>
   <p class="card-text"><strong><%= pain_log.body_part_name.titleize %>:</strong> Pain Level: <%= pain_log.pain_level %> <%= pain_log.pain_name %><br>
     <%= pain_log.pain_description if pain_log.pain_description.present? %>
@@ -8,5 +8,12 @@
   </p>
 <% end %>
 
-<!-- @card_body is rendered in the component below: -->
-<%= render partial: '/logs/log_component', locals: { log_type: 'pain', edit_path: edit_pain_log_path(pain_log), icon_name: 'recent_patient', error_condition: false }%>
+<%= render partial: '/logs/log_component',
+  locals: {
+    log_content: @log_content,
+    log_type: 'pain',
+    edit_path: edit_pain_log_path(pain_log),
+    icon_name: 'recent_patient',
+    error_condition: false
+  }
+%>

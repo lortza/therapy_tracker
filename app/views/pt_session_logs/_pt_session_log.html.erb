@@ -1,9 +1,16 @@
-<% @card_body = capture do %>
+<% @log_content = capture do %>
   <h5 class='card-title color-therapy'>PT Session: <%= format_datetime(pt_session_log.occurred_at) %></h5>
   <p class='card-text'><strong><%= pt_session_log.body_part_name.titleize %>:</strong> <%= pt_session_log.duration %> minutes<br>
     <small class='text-muted'><%= pt_session_log.exercise_notes %></small>
   </p>
 <% end %>
 
-<!-- @card_body is rendered in the component below: -->
-<%= render partial: '/logs/log_component', locals: { log_type: 'therapy', edit_path: edit_pt_session_log_path(pt_session_log), icon_name: 'physical_therapy', error_condition: false } %>
+<%= render partial: '/logs/log_component',
+  locals: {
+    log_content: @log_content,
+    log_type: 'therapy',
+    edit_path: edit_pt_session_log_path(pt_session_log),
+    icon_name: 'physical_therapy',
+    error_condition: false
+  }
+%>
