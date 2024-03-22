@@ -1,4 +1,7 @@
 <header class='log-type-<%= log_type %>'>
-  <span class='log-icon log-icon-color'><%= log_name %> <i class='<%= icon_name %>'></i></span>
+  <span class='log-icon log-icon-color'>
+    <%= log_name %>
+    <span class="material-symbols-outlined"><%= icon_name %></span>
+  </span>
   <h5 class='card-title'><%= format_datetime(log.occurred_at) if log.persisted? %></h5>
 </header>
