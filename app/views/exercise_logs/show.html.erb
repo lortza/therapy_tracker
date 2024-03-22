@@ -1,6 +1,6 @@
 <% content_for(:title, format_datetime(@exercise_log.occurred_at)) %>
 
-<%= render partial: 'exercise_logs/exercise_log_header', locals: { log: @exercise_log } %>
+<%= render partial: 'logs/log_header', locals: { log: @exercise_log, style_name: 'exercise', log_name: 'Exercise', icon_name: 'exercise' } %>
 
 <h2>
   <span class='pull-right'>

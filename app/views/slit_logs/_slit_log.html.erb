@@ -1,21 +1,22 @@
-<div class="card card--log-entry log-border border-color-slit">
-  <a href="<%= edit_slit_log_path(slit_log) %>">
-    <div class="card--padding-clear flex">
-      <div class="card--icon-container background-color-slit <%= 'background-color-error' if slit_log.dose_skipped?%>">
-        <span class="material-symbols-outlined">colorize</span>
-      </div>
-      <div class='card-body'>
-        <% if slit_log.dose_skipped? %>
-          <h5 class='card-title color-error'>SLIT Dose SKIPPED: <%= slit_log.occurred_at.strftime('%a %m/%d/%y') %></h5>
-        <% else %>
-          <h5 class='card-title color-slit'>SLIT Dose Taken: <%= format_datetime(slit_log.occurred_at) %></h5>
-        <% end %>
-        <p class="card-text">
-          <%= slit_log.dose_skipped? ? 'Skipped Dose' : 'Took drops' %>
-          <%= " | #{slit_log.doses_remaining} doses remaining" if slit_log.doses_remaining.present? %>
-          <%= ' (Started new bottle)' if slit_log.started_new_bottle? %>
-        </p>
-      </div>
-    </div>
-  </a>
-</div>
+<% @log_content = capture do %>
+  <% if slit_log.dose_skipped? %>
+    <h5 class='card-title color-error'>SLIT Dose SKIPPED: <%= slit_log.occurred_at.strftime('%a %m/%d/%y') %></h5>
+  <% else %>
+    <h5 class='card-title color-slit'>SLIT Dose Taken: <%= format_datetime(slit_log.occurred_at) %></h5>
+  <% end %>
+  <p class="card-text">
+    <%= slit_log.dose_skipped? ? 'Skipped Dose' : 'Took drops' %>
+    <%= " | #{slit_log.doses_remaining} doses remaining" if slit_log.doses_remaining.present? %>
+    <%= ' (Started new bottle)' if slit_log.started_new_bottle? %>
+  </p>
+<% end %>
+
+<%= render partial: '/logs/log_component',
+  locals: {
+    log_content: @log_content,
+    log_type: 'slit',
+    edit_path: edit_slit_log_path(slit_log),
+    icon_name: 'colorize',
+    error_condition: slit_log.dose_skipped?
+  }
+%>

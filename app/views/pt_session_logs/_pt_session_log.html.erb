@@ -1,15 +1,16 @@
-<div class='card card--log-entry log-border border-color-therapy'>
-  <a href='<%= pt_session_log_path(pt_session_log) %>'>
-    <div class="card--padding-clear flex">
-      <div class="card--icon-container background-color-therapy">
-        <span class="material-symbols-outlined">physical_therapy</span>
-      </div>
-      <div class='card-body'>
-        <h5 class='card-title color-therapy'>PT Session: <%= format_datetime(pt_session_log.occurred_at) %></h5>
-        <p class='card-text'><strong><%= pt_session_log.body_part_name.titleize %>:</strong> <%= pt_session_log.duration %> minutes<br>
-          <small class='text-muted'><%= pt_session_log.exercise_notes %></small>
-        </p>
-      </div>
-    </div>
-  </a>
-</div>
+<% @log_content = capture do %>
+  <h5 class='card-title color-therapy'>PT Session: <%= format_datetime(pt_session_log.occurred_at) %></h5>
+  <p class='card-text'><strong><%= pt_session_log.body_part_name.titleize %>:</strong> <%= pt_session_log.duration %> minutes<br>
+    <small class='text-muted'><%= pt_session_log.exercise_notes %></small>
+  </p>
+<% end %>
+
+<%= render partial: '/logs/log_component',
+  locals: {
+    log_content: @log_content,
+    log_type: 'therapy',
+    edit_path: edit_pt_session_log_path(pt_session_log),
+    icon_name: 'physical_therapy',
+    error_condition: false
+  }
+%>

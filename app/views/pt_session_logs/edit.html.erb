@@ -1,4 +1,5 @@
-<%= render partial: 'pt_session_logs/pt_session_log_header', locals: { log: @pt_session_log } %>
+<%= render partial: 'logs/log_header', locals: { log: @pt_session_log, style_name: 'therapy', log_name: 'PT Session', icon_name: 'physical_therapy' } %>
+
 <h1>Edit Session</h1>
 
 <%= render 'form', pt_session_log: @pt_session_log %>
