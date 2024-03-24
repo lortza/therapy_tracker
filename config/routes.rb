@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show]
   end
 
+  resources :users, only: [:edit, :update]
+
+
   resources :charts, only: [:index]
   resources :stats, only: [:index]
 
