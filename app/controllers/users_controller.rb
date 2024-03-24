@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to session.delete(:return_to)
+      redirect_to session.fetch(:return_to, root_path)
     else
       render :edit
     end
