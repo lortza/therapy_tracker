@@ -7,7 +7,7 @@
       <%= link_to '+ Exercise Log', new_exercise_log_path, class: 'dropdown-item' %>
       <%= link_to '+ Pain Log', new_pain_log_path, class: 'dropdown-item' %>
       <%= link_to '+ PT Session', new_pt_session_log_path, class: 'dropdown-item' %>
-      <%= link_to '+ SLIT Log', new_slit_log_path, class: 'dropdown-item' %>
+      <%= link_to '+ SLIT Log', new_slit_log_path, class: 'dropdown-item' if current_user.enable_slit_tracking %>
     </div>
   </li>
 
@@ -17,7 +17,7 @@
       Quick Log
     </a>
     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-      <%= link_to 'SLIT dose', quick_log_create_path, method: :post, class: 'dropdown-item'  %>
+      <%= link_to 'SLIT dose', quick_log_create_path, method: :post, class: 'dropdown-item' if current_user.enable_slit_tracking %>
       <% current_user.pain_log_quick_form_values.order(name: :asc).each do |attr| %>
         <%= link_to attr.name, create_pain_log_from_quick_form_path(content: attr), method: :post, class: 'dropdown-item'  %>
       <% end %>
@@ -32,7 +32,7 @@
     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
       <%= link_to 'Pain Stats by Body Part', stats_path, class: 'dropdown-item' %>
       <%= link_to 'Charts', charts_path, class: 'dropdown-item' %>
-      <%= link_to 'SLIT Logs for Print', slit_report_path, class: 'dropdown-item' %>
+      <%= link_to 'SLIT Logs for Print', slit_report_path, class: 'dropdown-item' if current_user.enable_slit_tracking %>
       <div class='dropdown-divider'></div>
       <%= link_to 'Exercise Logs', exercise_logs_path, class: 'dropdown-item' %>
       <%= link_to 'Pain Logs', pain_logs_path, class: 'dropdown-item' %>
