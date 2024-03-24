@@ -1,0 +1,20 @@
+<% content_for(:title, 'Edit User Profile') %>
+
+<h1>Editing User Profile</h1>
+
+<%= form_with(model: @user, local: true) do |form| %>
+  <%= render partial: 'shared/errors', locals: {object: @user} %>
+
+  <div class='form-row'>
+    <div class='col-12 col-md-3'>
+      <div class='field'>
+        <%= form.label 'Enable SLIT Therapy Tracking?' %>
+        <%= form.check_box :enable_slit_tracking, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+
+  <div class='mt-3 mb-3'>
+    <%= form.submit 'Submit', class: button_class('success') %>
+  </div>
+<% end %>
