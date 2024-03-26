@@ -9,8 +9,8 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show]
   end
 
-  resources :users, only: [:edit, :update]
-
+  resources :users, only: [:update]
+  get 'users/settings', action: :edit, controller: 'users', as: 'edit_user_settings'
 
   resources :charts, only: [:index]
   resources :stats, only: [:index]

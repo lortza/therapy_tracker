@@ -7,8 +7,8 @@ RSpec.describe 'Users', type: :request do
 
   describe 'Public access to users' do
     it 'denies access to users#edit' do
-      get edit_user_path(user.id)
-      expect(response).to redirect_to new_user_session_path
+      get edit_user_settings_path(user.id)
+      expect(response).to be_unauthorized
     end
 
     it 'denies access to users#update' do
@@ -22,7 +22,7 @@ RSpec.describe 'Users', type: :request do
 
     describe '#edit' do
       it 'renders users#edit' do
-        get edit_user_path(user.id)
+        get edit_user_settings_path(user.id)
 
         expect(response).to be_successful
         expect(response).to render_template(:edit)
