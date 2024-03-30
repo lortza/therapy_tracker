@@ -4,7 +4,7 @@ class MaterialIcon
   # https://fonts.google.com/icons
   include ActionView::Helpers::TagHelper
 
-  def initialize(icon:, title: nil, size: :inherit, filled: false, classes: nil, weight: :lighter)
+  def initialize(icon:, title: nil, size: :inherit, filled: false, classes: nil, weight: :normal)
     @icon = icon.to_sym
     @title = title
     @size = size
