@@ -67,7 +67,7 @@ class ExerciseLogsController < ApplicationController
     @exercise_log = ExerciseLog.find(params[:id])
   end
 
-  def exercise_log_params # rubocop:disable Metrics/MethodLength
+  def exercise_log_params
     params.require(:exercise_log).permit(:user_id,
                                          :body_part_id,
                                          :occurred_at,
