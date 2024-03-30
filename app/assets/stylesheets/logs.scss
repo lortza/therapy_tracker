@@ -13,7 +13,7 @@
   color: $white;
   display: flex;
   justify-content: center;
-  width: 2rem;
+  min-width: 2rem;
 }
 
 .card--log-entry {
