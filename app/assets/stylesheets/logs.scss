@@ -7,14 +7,14 @@
 
 .header--icon-container {
   align-items: center;
+  border-bottom-left-radius: $bootstrap-card-border-radius;
+  border-top-right-radius: $bootstrap-card-border-radius;
   color: $white;
   display: flex;
   justify-content: center;
-  min-width: 2rem;
   margin-right: -1rem;
   margin-top: -1rem;
-  border-top-right-radius: $bootstrap-card-border-radius;
-  border-bottom-left-radius: $bootstrap-card-border-radius;
+  min-width: 2rem;
 }
 
 .card--padding-clear { padding: 0; }
