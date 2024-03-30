@@ -12,8 +12,22 @@
 // DISPLAY
 .flex { display: flex; }
 .inline-block { display: inline-block; }
+.justify-between { justify-content: space-between; }
 
 // CORE
 .color-error { color: $red; }
 .background-color-error { background-color: $red; }
 .border-color-error { border-color: $red; }
+
+// MATERIAL ICONS
+// https://fonts.google.com/icons
+
+// Options:
+// font-variation-settings:
+// 'FILL' 0,
+// 'wght' 400,
+// 'GRAD' 0,
+// 'opsz' 24
+
+.icon-outlined { font-variation-settings: 'FILL' 0; }
+.icon-filled { font-variation-settings: 'FILL' 1; }

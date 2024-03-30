@@ -1,2 +1,1 @@
-<%= link_to '<span class="material-symbols-outlined">physical_therapy</span><br>+PT'.html_safe, new_pt_session_log_path, class: 'add-log-button therapy-button' %>
-<!-- clinical_notes -->
+<%= link_to MaterialIcon.new(icon: 'pt_session').render + '<br>+PT'.html_safe, new_pt_session_log_path, class: 'add-log-button therapy-button' %>
