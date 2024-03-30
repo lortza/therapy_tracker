@@ -18,7 +18,7 @@ class PtSessionLogs::ExerciseLogsController < PtSessionLogsController
     render 'exercise_logs/show'
   end
 
-  def create # rubocop:disable Metrics/MethodLength
+  def create
     @exercise_log = @pt_session_log.exercise_logs.new(exercise_log_params)
     @exercise_log.user_id = current_user.id
 
@@ -71,7 +71,7 @@ class PtSessionLogs::ExerciseLogsController < PtSessionLogsController
     @pt_session_log = PtSessionLog.find(params[:pt_session_log_id])
   end
 
-  def exercise_log_params # rubocop:disable Metrics/MethodLength
+  def exercise_log_params
     params.require(:exercise_log).permit(:pt_session_log_id,
                                          :user_id,
                                          :body_part_id,

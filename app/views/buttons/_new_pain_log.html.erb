@@ -1,2 +1,1 @@
-<%= link_to '<span class="material-symbols-outlined">recent_patient</span><br>+Pain'.html_safe, new_pain_log_path, class: 'add-log-button pain-button' %>
-<!-- personal_injury -->
+<%= link_to MaterialIcon.new(icon: :pain, size: :large).render + '<br>+Pain'.html_safe, new_pain_log_path, class: 'add-log-button pain-button' %>

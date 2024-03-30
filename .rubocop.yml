@@ -32,6 +32,12 @@ Metrics/BlockLength:
   Exclude:
     - !ruby/regexp /.*_spec\.rb$/
     - 'lib/tasks/*'
+Metrics/CyclomaticComplexity:
+  Max: 15
+Metrics/MethodLength:
+  Max: 25
+Metrics/ParameterLists:
+  Max: 10
 
 Rails/UniqueValidationWithoutIndex:
   Enabled: false

@@ -9,11 +9,17 @@
 .text-xxlarge { font-size: xx-large; }
 .text-size-inherit { font-size: inherit; }
 
+// FONT
+.text-lighter { font-weight: lighter; }
+.text-normal { font-weight: normal; }
+
 // DISPLAY
 .flex { display: flex; }
 .inline-block { display: inline-block; }
+.justify-between { justify-content: space-between; }
 
 // CORE
 .color-error { color: $red; }
 .background-color-error { background-color: $red; }
 .border-color-error { border-color: $red; }
+

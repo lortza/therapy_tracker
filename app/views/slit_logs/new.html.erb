@@ -1,7 +1,7 @@
 <% content_for(:title, format_datetime(@slit_log.occurred_at)) %>
 
-<%= render partial: 'logs/log_header', locals: { log: @slit_log, style_name: 'slit', log_name: 'SLIT Dose', icon_name: 'colorize' } %>
+<%= render partial: 'logs/log_header', locals: { log: @slit_log, style_name: 'slit', log_name: 'SLIT Dose', icon_name: 'slit' } %>
 
-<h1>New SLIT Log</h1>
+<h1 class="log-h1">New SLIT Log</h1>
 
 <%= render 'form', slit_log: @slit_log, url: slit_logs_path(@slit_log) %>

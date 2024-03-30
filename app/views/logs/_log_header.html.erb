@@ -1,7 +1,6 @@
-<header class='log-type-<%= style_name %>'>
-  <span class='log-icon log-icon-color'>
-    <%= log_name %>
-    <span class="material-symbols-outlined"><%= icon_name %></span>
-  </span>
+<header class='flex justify-between log-type-<%= style_name %>'>
   <h5 class='card-title'><%= format_datetime(log.occurred_at) if log.persisted? %></h5>
+  <div class="header--icon-container background-color-<%= style_name %>">
+    <%= MaterialIcon.new(icon: icon_name, size: :medium).render %>
+  </div>
 </header>

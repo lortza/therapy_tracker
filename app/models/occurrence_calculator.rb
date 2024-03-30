@@ -24,7 +24,6 @@ class OccurrenceCalculator
     end
   end
 
-  # rubocop:disable Metrics/MethodLength
   def timeframe
     seconds = last_datetime - first_datetime
     days_between_first_and_last = (seconds / 60 / 60 / 24)
@@ -49,7 +48,6 @@ class OccurrenceCalculator
     end
     data
   end
-  # rubocop:enable Metrics/MethodLength
 
   def first_datetime
     datetimes.min

@@ -5,6 +5,18 @@
   width: 100%;
 }
 
+.header--icon-container {
+  align-items: center;
+  border-bottom-left-radius: $bootstrap-card-border-radius;
+  border-top-right-radius: $bootstrap-card-border-radius;
+  color: $white;
+  display: flex;
+  justify-content: center;
+  margin-right: -1rem;
+  margin-top: -1rem;
+  min-width: 2rem;
+}
+
 .card--padding-clear { padding: 0; }
 .card-body { padding: .6rem; }
 
@@ -13,7 +25,7 @@
   color: $white;
   display: flex;
   justify-content: center;
-  width: 2rem;
+  min-width: 2rem;
 }
 
 .card--log-entry {
@@ -25,10 +37,7 @@
   }
 }
 
-.log-icon {
-  float: right;
-  font-size: .8rem;
-}
+.log-h1 { font-size: large; }
 
 .log-icon-color {color: $black;}
 

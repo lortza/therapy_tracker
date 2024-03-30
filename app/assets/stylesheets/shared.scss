@@ -2,22 +2,6 @@
 
 body { background-color: $dk-blue; }
 
-.fa-nav {
-  border-radius: 50%;
-  font-size: 20px;
-  height: 40px;
-  text-align: center;
-  width: 40px;
-}
-
-.fa-notes-medical {
-  background-color: $brand-main;
-  border: 1px solid $brand-main;
-  color: $white;
-  margin-right: .5rem;
-  padding: .5rem;
-}
-
 .pull-right {
   float: right;
 }
@@ -68,6 +52,34 @@ body { background-color: $dk-blue; }
   padding: 0 3px;
 }
 
+// MATERIAL ICONS
+// https://fonts.google.com/icons
+
+// Options:
+// font-variation-settings:
+// 'FILL' 0,
+// 'wght' 400,
+// 'GRAD' 0,
+// 'opsz' 24
+
+.icon-outlined { font-variation-settings: 'FILL' 0; }
+.icon-filled { font-variation-settings: 'FILL' 1; }
+
+.navbar-logo {
+  background-color: $brand-main;
+  border: 1px solid $brand-main;
+  border-radius: 50%;
+  color: $white;
+  font-size: 1.25rem;
+  height: 40px;
+  margin-right: .5rem;
+  padding: 0 .5rem 0 .5rem;
+  text-align: center;
+  width: 40px;
+}
+
+
+// MEDIA QUERIES
 @media print {
   .highlight-yellow {
     border: .5px solid $black;

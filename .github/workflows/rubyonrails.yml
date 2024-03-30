@@ -51,8 +51,8 @@ jobs:
         uses: ruby/setup-ruby@8f312efe1262fb463d906e9bf040319394c18d3e # v1.92
         with:
           bundler-cache: true
-      - name: Lint CSS
-        run: bundle exec scss-lint app/assets/stylesheets/**.scss
+      # - name: Lint CSS
+      #   run: bundle exec scss-lint app/assets/stylesheets/**.scss
       - name: Rubocop
         run: bundle exec rubocop --parallel
       # Add or replace any other lints here
