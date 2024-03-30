@@ -4,12 +4,13 @@ class MaterialIcon
   # https://fonts.google.com/icons
   include ActionView::Helpers::TagHelper
 
-  def initialize(icon:, title: nil, size: :inherit, filled: false, classes: nil)
+  def initialize(icon:, title: nil, size: :inherit, filled: false, classes: nil, weight: :lighter)
     @icon = icon.to_sym
     @title = title
     @size = size
     @filled = filled ? 'icon-filled' : 'icon-outlined'
     @provided_classes = classes
+    @weight = weight
   end
 
   def render
@@ -99,7 +100,7 @@ class MaterialIcon
   end
 
   def computed_inline_styles
-    "font-size: #{size_style}; font-weight: lighter;"
+    "font-size: #{size_style}; font-weight: #{@weight};"
   end
 
   def base_classes
