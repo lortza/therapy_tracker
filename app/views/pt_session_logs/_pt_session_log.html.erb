@@ -1,5 +1,5 @@
 <% @log_content = capture do %>
-  <h5 class='card-title color-therapy'>PT Session: <%= format_datetime(pt_session_log.occurred_at) %></h5>
+  <h5 class='card-title color-therapy'><%= pt_session_log.display_name %>: <%= format_datetime(pt_session_log.occurred_at) %></h5>
   <p class='card-text'><strong><%= pt_session_log.body_part_name.titleize %>:</strong> <%= pt_session_log.duration %> minutes<br>
     <small class='text-muted'><%= pt_session_log.exercise_notes %></small>
   </p>
@@ -7,10 +7,9 @@
 
 <%= render partial: '/logs/log_component',
   locals: {
+    log: pt_session_log,
     log_content: @log_content,
-    log_type: 'therapy',
     edit_path: edit_pt_session_log_path(pt_session_log),
-    icon_name: 'pt_session',
     error_condition: false
   }
 %>
