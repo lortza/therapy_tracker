@@ -1,5 +1,6 @@
 <nav class="navbar navbar-expand-sm navbar-light bg-light">
-  <i class="fal fa-notes-medical fa-nav"></i> <%= link_to 'TherapyTracker', root_url, class: 'navbar-brand' %>
+  <%= link_to MaterialIcon.new(icon: 'logo', title: 'Therapy Tracker').render, root_url, class: 'navbar-logo' %>
+  <%= link_to 'TherapyTracker', root_url, class: 'navbar-brand' %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>

@@ -16,6 +16,7 @@ class MaterialIcon
     case @icon
     when :exercise then exercise;
     when :pain then recent_patient;
+    when :logo then clinical_notes;
     when :pt_session then physical_therapy;
     when :slit then colorize;
     when :search then search;
@@ -28,36 +29,50 @@ class MaterialIcon
 
   def colorize
     content_tag(:span, 'colorize',
+      style: computed_inline_styles,
       class: symbol_classes,
       title: @title.presence || 'SLIT Therapy')
   end
 
   def exercise
     content_tag(:span, 'exercise',
+      style: computed_inline_styles,
       class: symbol_classes,
       title: @title.presence || 'Exercise')
   end
 
+  def clinical_notes
+    content_tag(:span, 'clinical_notes',
+      style: computed_inline_styles,
+      class: symbol_classes,
+      title: @title.presence || 'Therapy Tracker')
+  end
+
   def physical_therapy
     content_tag(:span, 'physical_therapy',
+      style: computed_inline_styles,
       class: symbol_classes,
       title: @title.presence || 'Physical Therapy')
   end
 
   def recent_patient
     content_tag(:span, 'recent_patient',
+      style: computed_inline_styles,
       class: symbol_classes,
       title: @title.presence || 'Pain')
   end
 
   def search
     content_tag(:span, 'search',
+      style: computed_inline_styles,
       class: symbol_classes,
       title: @title.presence || "Search")
   end
 
   private
 
+  # TODO size classes aren't being acknowledged by the icon. This feature is not working.
+  # I'm overriding via inline styles.
   def size_class
     case @size
     when :xsmall then 'text-xsmall'
@@ -82,7 +97,11 @@ class MaterialIcon
   end
 
   def computed_classes
-    "#{base_classes} #{size_class} #{@filled} #{@provided_classes}"
+    "#{base_classes} #{@filled} #{@provided_classes}"
+  end
+
+  def computed_inline_styles
+    "font-size: #{@size};"
   end
 
   def base_classes
