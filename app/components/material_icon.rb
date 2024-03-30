@@ -71,17 +71,15 @@ class MaterialIcon
 
   private
 
-  # TODO size classes aren't being acknowledged by the icon. This feature is not working.
-  # I'm overriding via inline styles.
-  def size_class
+  def size_style
     case @size
-    when :xsmall then 'text-xsmall'
-    when :small then 'text-small'
-    when :medium then 'text-medium'
-    when :large then 'text-large'
-    when :xlarge then 'text-xlarge'
-    when :xxlarge then 'text-xxlarge'
-    when :inherit then 'text-size-inherit'
+    when :xsmall then '.75rem'
+    when :small then '1rem'
+    when :medium then '1.5rem'
+    when :large then '2rem'
+    when :xlarge then '2.5rem'
+    when :xxlarge then '3rem'
+    when :inherit then 'inherit'
     else
       raise 'ERROR: Available sizes are :xsmall, :small, :medium, :large, :xlarge, :xxlarge, :inherit'
     end
@@ -101,7 +99,7 @@ class MaterialIcon
   end
 
   def computed_inline_styles
-    "font-size: #{@size};"
+    "font-size: #{size_style}; font-weight: lighter;"
   end
 
   def base_classes
