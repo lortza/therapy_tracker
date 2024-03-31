@@ -7,11 +7,11 @@ class PainLogsController < ApplicationController
 
   def index
     logs = current_user.pain_logs
-                        .search(body_part_id: search_params[:body_part_id],
-                          pain_id: search_params[:pain_id],
-                          search_terms: search_params[:search])
-                        .order(occurred_at: 'DESC')
-                        .paginate(page: params[:page], per_page: 25)
+                       .search(body_part_id: search_params[:body_part_id],
+                               pain_id: search_params[:pain_id],
+                               search_terms: search_params[:search])
+                       .order(occurred_at: 'DESC')
+                       .paginate(page: params[:page], per_page: 25)
 
     @logs = PainLogDecorator.decorate_collection(logs)
   end

@@ -7,9 +7,9 @@ class ExerciseLogsController < ApplicationController
 
   def index
     logs = current_user.exercise_logs
-                        .at_home
-                        .order(occurred_at: 'DESC')
-                        .paginate(page: params[:page], per_page: 25)
+                       .at_home
+                       .order(occurred_at: 'DESC')
+                       .paginate(page: params[:page], per_page: 25)
 
     @logs = ExerciseLogDecorator.decorate_collection(logs)
   end
