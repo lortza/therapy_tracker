@@ -29,20 +29,4 @@ class PtSessionLog < ApplicationRecord
     end
     output
   end
-
-  def display_name
-    'PT Session'
-  end
-
-  def self.icon_name
-    'physical_therapy'
-  end
-
-  def icon_name
-    PtSessionLog.icon_name
-  end
-
-  def css_name
-    'therapy'
-  end
 end
