@@ -2,7 +2,7 @@
   <a href="<%= edit_path %>">
     <div class="card--padding-clear flex">
       <div class="card--icon-container background-color-<%= log.css_name %> <%= 'background-color-error' if error_condition %>">
-        <%= MaterialIcon.new(icon: log.icon_name, size: :medium).render %>
+        <%= MaterialIconComponent.new(icon: log.icon_name, size: :medium).render %>
       </div>
       <div class='card-body'>
         <%= log_content %>

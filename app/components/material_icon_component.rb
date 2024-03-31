@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class MaterialIcon
+class MaterialIconComponent
   # https://fonts.google.com/icons
   include ActionView::Helpers::TagHelper
 
