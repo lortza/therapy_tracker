@@ -10,6 +10,11 @@
     <label class="mb-0 inline">Enable SLIT Therapy Tracking</label>
   </div>
 
+  <div class='field'>
+    <%= form.check_box :enable_pt_session_tracking %>
+    <label class="mb-0 inline">Enable Physical Therapy Tracking</label>
+  </div>
+
   <div class='mt-3 mb-3'>
     <%= form.submit 'Submit', class: button_class('success') %>
   </div>
