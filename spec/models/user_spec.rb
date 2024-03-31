@@ -25,7 +25,9 @@ RSpec.describe User, type: :model do
                                last_name
                                admin
                                enable_slit_tracking
-                               created_at updated_at]
+                               enable_pt_session_tracking
+                               created_at
+                               updated_at]
       actual_attributes = build(:user).attributes.keys
 
       expect(actual_attributes).to match_array(expected_attributes)
