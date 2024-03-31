@@ -1,6 +1,6 @@
 <header class='flex justify-between log-type-<%= log.css_name %>'>
   <h5 class='card-title'><%= format_datetime(log.occurred_at) if log.persisted? %></h5>
   <div class="header--icon-container background-color-<%= log.css_name %>">
-    <%= MaterialIcon.new(icon: log.icon_name, size: :medium).render %>
+    <%= MaterialIconComponent.new(icon: log.icon_name, size: :medium).render %>
   </div>
 </header>

@@ -1,6 +1,6 @@
 <header class='add-log-buttons-container'>
-  <%= render 'buttons/new_slit_log' if current_user.enable_slit_tracking %>
-  <%= render 'buttons/new_pain_log' %>
-  <%= render 'buttons/new_exercise_log' %>
-  <%= render 'buttons/new_pt_session_log' %>
+  <%= NewLogButtonComponent.new(log_klass: SlitLog, text: 'SLIT', path: quick_log_create_path, method: :post).render if current_user.enable_slit_tracking %>
+  <%= NewLogButtonComponent.new(log_klass: PainLog).render %>
+  <%= NewLogButtonComponent.new(log_klass: ExerciseLog).render %>
+  <%= NewLogButtonComponent.new(log_klass: PtSessionLog, text: 'PT').render %>
 </header>

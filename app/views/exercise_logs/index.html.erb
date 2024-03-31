@@ -1,5 +1,5 @@
 <header class='add-log-buttons-container'>
-  <%= render 'buttons/new_exercise_log' %>
+  <%= NewLogButtonComponent.new(log_klass: ExerciseLog).render %>
 </header>
 
 <% @logs.each do |exercise_log| %>
