@@ -6,10 +6,12 @@ class ExerciseLogsController < ApplicationController
   layout 'no_white_container', only: [:index]
 
   def index
-    @logs = current_user.exercise_logs
+    logs = current_user.exercise_logs
                         .at_home
                         .order(occurred_at: 'DESC')
                         .paginate(page: params[:page], per_page: 25)
+
+    @logs = ExerciseLogDecorator.decorate_collection(logs)
   end
 
   def show
@@ -17,7 +19,7 @@ class ExerciseLogsController < ApplicationController
   end
 
   def new
-    @exercise_log = current_user.exercise_logs.new
+    @exercise_log = current_user.exercise_logs.new.decorate
   end
 
   def edit
@@ -64,7 +66,7 @@ class ExerciseLogsController < ApplicationController
   end
 
   def set_exercise_log
-    @exercise_log = ExerciseLog.find(params[:id])
+    @exercise_log = ExerciseLog.find(params[:id]).decorate
   end
 
   def exercise_log_params
