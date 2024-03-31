@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'exercise_logs/show', type: :view do
   before(:each) do
     @user = create(:user)
-    @exercise_log = create(:exercise_log, user_id: @user.id)
+    @exercise_log = create(:exercise_log, user_id: @user.id).decorate
   end
 
   it 'renders attributes in <div>' do

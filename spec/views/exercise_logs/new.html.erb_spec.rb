@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'exercise_logs/new', type: :view do
   before(:each) do
     @user = create(:user)
-    @exercise_log = build(:exercise_log, user_id: @user.id)
+    @exercise_log = build(:exercise_log, user_id: @user.id).decorate
   end
 
   it 'renders new exercise_log form' do

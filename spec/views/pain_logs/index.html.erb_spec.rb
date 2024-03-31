@@ -7,7 +7,8 @@ RSpec.describe 'pain_logs/index', type: :view do
     @user = create(:user)
     create(:pain_log, user_id: @user.id)
     create(:pain_log, user_id: @user.id)
-    @logs = @user.pain_logs.order(occurred_at: 'DESC').paginate(page: params[:page], per_page: 25)
+    logs = @user.pain_logs.order(occurred_at: 'DESC').paginate(page: params[:page], per_page: 25)
+    @logs = PainLogDecorator.decorate_collection(logs)
   end
 
   it 'renders a list of pain_logs' do

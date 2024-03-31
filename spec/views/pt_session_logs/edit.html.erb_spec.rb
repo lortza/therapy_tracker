@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'pt_session_logs/edit', type: :view do
   before(:each) do
     @user = create(:user)
-    @pt_session_log = create(:pt_session_log, user_id: @user.id)
+    @pt_session_log = create(:pt_session_log, user_id: @user.id).decorate
   end
 
   it 'renders the edit pt_session_log form' do

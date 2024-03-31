@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'pain_logs/new', type: :view do
   before(:each) do
     @user = create(:user)
-    @pain_log = build(:pain_log, user_id: @user.id)
+    @pain_log = build(:pain_log, user_id: @user.id).decorate
   end
 
   it 'renders new pain_log form' do
