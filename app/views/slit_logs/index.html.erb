@@ -1,5 +1,5 @@
 <header class='add-log-buttons-container'>
-  <%= render 'buttons/new_slit_log' %>
+  <%= NewLogButtonComponent.new(log_klass: SlitLog, text: 'SLIT', path: quick_log_create_path, method: :post).render if current_user.enable_slit_tracking %>
 </header>
 <!-- TODO: build out search form
 <%= form_tag(slit_logs_path, method: 'get', id: 'filter-form' ) do %>

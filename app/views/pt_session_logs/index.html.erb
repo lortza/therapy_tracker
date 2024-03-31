@@ -1,5 +1,5 @@
 <header class='add-log-buttons-container'>
-  <%= render 'buttons/new_pt_session_log' %>
+  <%= NewLogButtonComponent.new(log_klass: PtSessionLog, text: 'PT', path: new_pt_session_log_path).render %>
 </header>
 
 <% @logs.each do |pt_session_log| %>

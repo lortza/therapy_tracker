@@ -1,5 +1,5 @@
 <header class='add-log-buttons-container'>
-  <%= render 'buttons/new_pain_log' %>
+  <%= NewLogButtonComponent.new(log_klass: PainLog, path: new_pain_log_path).render %>
 </header>
 
 <%= form_tag(pain_logs_path, method: 'get', id: 'filter-form' ) do %>
