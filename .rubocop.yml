@@ -1,8 +1,7 @@
 require:
   - rubocop-rails
   - rubocop-performance
-Bundler:
-  OrderedGems:
+Bundler/OrderedGems:
     Enabled: false
 Rails:
   Enabled: true
