@@ -5,7 +5,7 @@
 
 <%= render 'form', exercise_log: @exercise_log, url: exercise_log_path(@exercise_log) %>
 
-<%= render partial: 'shared/delete_footer', locals: { object: @exercise_log, delete_path: @exercise_log } %>
+<%= render partial: 'logs/delete_footer', locals: { object: @exercise_log, delete_path: @exercise_log } %>
 
 <script>
   // burnDropdowns(<%= @exercise_log.sets %>, <%= @exercise_log.reps %>)
