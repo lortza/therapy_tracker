@@ -6,19 +6,21 @@ class PainLogsController < ApplicationController
   layout 'no_white_container', only: [:index]
 
   def index
-    @logs = current_user.pain_logs
-                        .search(body_part_id: search_params[:body_part_id],
-                                pain_id: search_params[:pain_id],
-                                search_terms: search_params[:search])
-                        .order(occurred_at: 'DESC')
-                        .paginate(page: params[:page], per_page: 25)
+    logs = current_user.pain_logs
+                       .search(body_part_id: search_params[:body_part_id],
+                               pain_id: search_params[:pain_id],
+                               search_terms: search_params[:search])
+                       .order(occurred_at: 'DESC')
+                       .paginate(page: params[:page], per_page: 25)
+
+    @logs = PainLogDecorator.decorate_collection(logs)
   end
 
   def show
   end
 
   def new
-    @pain_log = current_user.pain_logs.new
+    @pain_log = current_user.pain_logs.new.decorate
   end
 
   def edit
@@ -70,7 +72,7 @@ class PainLogsController < ApplicationController
   private
 
   def set_pain_log
-    @pain_log = current_user.pain_logs.find(params[:id])
+    @pain_log = current_user.pain_logs.find(params[:id]).decorate
   end
 
   def authorize_pain_log

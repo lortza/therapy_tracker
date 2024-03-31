@@ -7,8 +7,8 @@ RSpec.describe 'exercise_logs/index', type: :view do
     @user = create(:user)
     create(:exercise_log, user_id: @user.id)
     create(:exercise_log, user_id: @user.id)
-    @logs = @user.exercise_logs.at_home
-                 .paginate(page: params[:page], per_page: 25)
+    logs = @user.exercise_logs.at_home.paginate(page: params[:page], per_page: 25)
+    @logs = ExerciseLogDecorator.decorate_collection(logs)
   end
 
   it 'renders a list of exercise_logs' do

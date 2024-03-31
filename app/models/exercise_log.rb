@@ -68,20 +68,4 @@ class ExerciseLog < ApplicationRecord
   def blank_stats?
     sets.blank? || reps.blank?
   end
-
-  def display_name
-    'Exercise'
-  end
-
-  def self.icon_name
-    'exercise'
-  end
-
-  def icon_name
-    ExerciseLog.icon_name
-  end
-
-  def css_name
-    'exercise'
-  end
 end

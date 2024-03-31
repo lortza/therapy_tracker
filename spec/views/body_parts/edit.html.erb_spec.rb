@@ -7,7 +7,7 @@ RSpec.describe 'body_parts/edit', type: :view do
     @user = create(:user)
     @body_part = assign(:body_part, BodyPart.create!(
                                       user_id: @user.id,
-                                      name: 'MyString',
+                                      name: 'My Body Part',
                                       archived: false
                                     ))
   end

@@ -6,9 +6,11 @@ class SlitLogsController < ApplicationController
   layout 'no_white_container', only: [:index]
 
   def index
-    @logs = current_user.slit_logs
-                        .order(occurred_at: 'DESC')
-                        .paginate(page: params[:page], per_page: 25)
+    logs = current_user.slit_logs
+                       .order(occurred_at: 'DESC')
+                       .paginate(page: params[:page], per_page: 25)
+
+    @logs = SlitLogDecorator.decorate_collection(logs)
   end
 
   def edit
@@ -17,7 +19,7 @@ class SlitLogsController < ApplicationController
   def new
     @slit_log = current_user.slit_logs.new(
       occurred_at: Time.current
-    )
+    ).decorate
   end
 
   def create
@@ -60,16 +62,18 @@ class SlitLogsController < ApplicationController
   def report
     report_record_limit = 90
     @index_to_prompt_calling = 45
-    @logs = current_user.slit_logs
-                        .where(occurred_at: report_record_limit.days.ago..Time.current)
-                        .order(occurred_at: :asc)
-                        .limit(report_record_limit)
+    logs = current_user.slit_logs
+                       .where(occurred_at: report_record_limit.days.ago..Time.current)
+                       .order(occurred_at: :asc)
+                       .limit(report_record_limit)
+
+    @logs = SlitLogDecorator.decorate_collection(logs)
   end
 
   private
 
   def set_slit_log
-    @slit_log = current_user.slit_logs.find(params[:id])
+    @slit_log = current_user.slit_logs.find(params[:id]).decorate
   end
 
   def authorize_slit_log

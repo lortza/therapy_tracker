@@ -1,1 +1,1 @@
-<%= link_to MaterialIcon.new(icon: PainLog.icon_name, size: :large).render + '<br>+Pain'.html_safe, new_pain_log_path, class: 'add-log-button pain-button' %>
+<%= link_to MaterialIcon.new(icon: PainLog.new.decorate.icon_name, size: :large).render + '<br>+Pain'.html_safe, new_pain_log_path, class: 'add-log-button pain-button' %>

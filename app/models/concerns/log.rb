@@ -4,10 +4,10 @@ module Log
   # class methods for querying logs
   def self.all(user)
     logs = [
-      user.pt_session_logs.to_a,
-      user.pain_logs.to_a,
-      user.exercise_logs.at_home.to_a,
-      user.slit_logs.to_a,
+      user.pt_session_logs.decorate.to_a,
+      user.pain_logs.decorate.to_a,
+      user.exercise_logs.at_home.decorate.to_a,
+      user.slit_logs.decorate.to_a,
     ]
 
     logs.flatten.sort_by { |a| a[:occurred_at] }.reverse!

@@ -6,14 +6,15 @@ class PtSessionLogsController < ApplicationController
   layout 'no_white_container', only: [:index]
 
   def index
-    @logs = current_user.pt_session_logs.order(occurred_at: 'DESC').paginate(page: params[:page], per_page: 10)
+    logs = current_user.pt_session_logs.order(occurred_at: 'DESC').paginate(page: params[:page], per_page: 10)
+    @logs = PtSessionLogDecorator.decorate_collection(logs)
   end
 
   def show
   end
 
   def new
-    @pt_session_log = current_user.pt_session_logs.new
+    @pt_session_log = current_user.pt_session_logs.new.decorate
   end
 
   def edit
@@ -56,7 +57,7 @@ class PtSessionLogsController < ApplicationController
   private
 
   def set_pt_session_log
-    @pt_session_log = PtSessionLog.find(params[:id])
+    @pt_session_log = PtSessionLog.find(params[:id]).decorate
   end
 
   def authorize_pt_session_log

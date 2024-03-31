@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'pain_logs/show', type: :view do
   before(:each) do
     @user = create(:user)
-    @pain_log = create(:pain_log, user_id: @user.id)
+    @pain_log = create(:pain_log, user_id: @user.id).decorate
   end
 
   it 'renders attributes in <div>' do
