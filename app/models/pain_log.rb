@@ -47,4 +47,20 @@ class PainLog < ApplicationRecord
   def self.with_search_terms(search_terms)
     where("concat_ws(' ', trigger, pain_description) ILIKE ?", "%#{search_terms}%")
   end
+
+  def display_name
+    'Pain'
+  end
+
+  def self.icon_name
+    'recent_patient'
+  end
+
+  def icon_name
+    PainLog.icon_name
+  end
+
+  def css_name
+    'pain'
+  end
 end

@@ -1,5 +1,5 @@
 <% @log_content = capture do %>
-  <h5 class='card-title color-exercise'>Exercise: <%= format_datetime(exercise_log.occurred_at) %></h5>
+  <h5 class='card-title color-exercise'><%= exercise_log.display_name %>: <%= format_datetime(exercise_log.occurred_at) %></h5>
   <p class="card-text"><strong><%= exercise_log.body_part_name.titleize %>:</strong> <%= exercise_log.exercise_name.titleize %>: <%= format_exercise_stats(exercise_log) %><br>
     <% unless exercise_log.burn_rep.blank? && exercise_log.progress_note.blank? %>
       <small class="text-muted">Progress: exercise burn at Set <%= exercise_log.burn_set %> / Rep <%= exercise_log.burn_rep %>.<%= format_resistance(exercise_log) %> <%= exercise_log.progress_note %></small>
@@ -9,10 +9,9 @@
 
 <%= render partial: '/logs/log_component',
   locals: {
+    log: exercise_log,
     log_content: @log_content,
-    log_type: 'exercise',
     edit_path: edit_exercise_log_path(exercise_log),
-    icon_name: 'exercise',
     error_condition: false
   }
 %>

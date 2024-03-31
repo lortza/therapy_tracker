@@ -14,73 +14,15 @@ class MaterialIcon
   end
 
   def render
-    case @icon
-    when :exercise then exercise
-    when :pain then recent_patient
-    when :logo then clinical_notes
-    when :pt_session then physical_therapy
-    when :slit then colorize
-    when :search then search
-    else
-      raise "ERROR: There is no ':#{@icon}' icon. See app/components/material_icon.rb for icon options."
-    end
+    content_tag(
+      :span, @icon,
+      style: computed_inline_styles,
+      class: symbol_classes,
+      title: @title.presence || @icon
+    )
   end
 
   private
-
-  def colorize
-    content_tag(
-      :span, 'colorize',
-      style: computed_inline_styles,
-      class: symbol_classes,
-      title: @title.presence || 'SLIT Therapy'
-    )
-  end
-
-  def exercise
-    content_tag(
-      :span, 'exercise',
-      style: computed_inline_styles,
-      class: symbol_classes,
-      title: @title.presence || 'Exercise'
-    )
-  end
-
-  def clinical_notes
-    content_tag(
-      :span, 'clinical_notes',
-      style: computed_inline_styles,
-      class: symbol_classes,
-      title: @title.presence || 'Therapy Tracker'
-    )
-  end
-
-  def physical_therapy
-    content_tag(
-      :span, 'physical_therapy',
-      style: computed_inline_styles,
-      class: symbol_classes,
-      title: @title.presence || 'Physical Therapy'
-    )
-  end
-
-  def recent_patient
-    content_tag(
-      :span, 'recent_patient',
-      style: computed_inline_styles,
-      class: symbol_classes,
-      title: @title.presence || 'Pain'
-    )
-  end
-
-  def search
-    content_tag(
-      :span, 'search',
-      style: computed_inline_styles,
-      class: symbol_classes,
-      title: @title.presence || 'Search'
-    )
-  end
 
   def size_style
     case @size
