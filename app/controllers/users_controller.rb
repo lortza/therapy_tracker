@@ -26,6 +26,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:enable_slit_tracking)
+    params.require(:user).permit(:enable_slit_tracking, :enable_pt_session_tracking)
   end
 end

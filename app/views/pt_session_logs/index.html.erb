@@ -1,5 +1,5 @@
 <header class='add-log-buttons-container'>
-  <%= NewLogButtonComponent.new(log_klass: PtSessionLog, text: 'PT').render %>
+  <%= NewLogButtonComponent.new(log_klass: PtSessionLog, text: 'PT').render if current_user.enable_pt_session_tracking %>
 </header>
 
 <% @logs.each do |pt_session_log| %>
