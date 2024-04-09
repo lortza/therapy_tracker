@@ -1,0 +1,2 @@
+class DummyRecord < ApplicationRecord
+end
