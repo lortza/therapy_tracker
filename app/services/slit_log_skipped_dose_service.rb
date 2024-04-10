@@ -6,10 +6,10 @@ class SlitLogSkippedDoseService
       yesterday = Date.yesterday
 
       User.with_slit_enabled.each do |user|
-        DummyRecord.create(data:
-          {
+        DummyRecord.create(
+          data: {
             user: user.email,
-            service: "SlitLogSkippedDoseService",
+            service: 'SlitLogSkippedDoseService',
             no_log_for_user_yesterday?: no_log_for_user_yesterday?(user: user, yesterday: yesterday),
             yesterday: yesterday,
             yesterday_beginning_of_day: yesterday.beginning_of_day,
