@@ -4,9 +4,18 @@ require 'rails_helper'
 
 RSpec.describe LogsHelper, type: :helper do
   describe 'format_datetime' do
+    let(:current_datetime) { 'Sat, 23 Mar 2019 14:15:00 -0400'.to_datetime }
+
     it 'should format time' do
-      log = build(:exercise_log)
-      expect(helper.format_datetime(log.occurred_at)).to eq('Sat 03/23/19 at 02:08 PM')
+      expect(helper.format_datetime(current_datetime)).to eq('Sat 03/23/19 at 02:15 PM')
+    end
+  end
+
+  describe 'format_time_today_at' do
+    let(:current_datetime) { 'Mon, 01 Apr 2024 08:15:00 -0400'.to_datetime }
+
+    it 'should format time' do
+      expect(helper.format_time_today_at(current_datetime)).to eq('Today at 08:15 AM')
     end
   end
 
