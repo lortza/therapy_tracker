@@ -2,7 +2,9 @@
   <% if slit_log.dose_skipped? %>
     <h5 class='card-title color-error'>SLIT Dose SKIPPED: <%= slit_log.occurred_at.strftime('%a %m/%d/%y') %></h5>
   <% else %>
-    <h5 class='card-title color-slit'>SLIT Dose Taken: <%= format_datetime(slit_log.occurred_at) %></h5>
+    <h5 class='card-title color-slit'>
+      SLIT Dose Taken: <%= slit_log.occurred_at.to_date == Date.current ? format_time_today_at(slit_log.occurred_at) : format_datetime(slit_log.occurred_at) %>
+    </h5>
   <% end %>
   <p class="card-text">
     <%= slit_log.dose_skipped? ? 'Skipped Dose' : 'Took drops' %>

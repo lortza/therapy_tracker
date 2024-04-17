@@ -6,6 +6,10 @@ module LogsHelper
     datetime.strftime('%a %m/%d/%y at %I:%M%p')
   end
 
+  def format_time_today_at(datetime)
+    datetime.strftime('Today at %I:%M %p')
+  end
+
   def last_log(kollection, attr)
     current_user.send(kollection)[-2]&.send(attr)
   end
