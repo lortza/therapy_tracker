@@ -6,7 +6,7 @@ RSpec.describe LogsHelper, type: :helper do
   describe 'format_datetime' do
     it 'should format time' do
       log = build(:exercise_log)
-      expect(helper.format_datetime(log.occurred_at)).to eq('Sat 03/23/19 at 02:08PM')
+      expect(helper.format_datetime(log.occurred_at)).to eq('Sat 03/23/19 at 02:08 PM')
     end
   end
 
