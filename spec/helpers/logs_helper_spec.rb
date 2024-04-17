@@ -7,7 +7,7 @@ RSpec.describe LogsHelper, type: :helper do
     let(:current_datetime) { 'Sat, 23 Mar 2019 14:15:00 -0400'.to_datetime }
 
     it 'should format time' do
-      expect(helper.format_datetime(current_datetime)).to eq('Sat 03/23/19 at 02:15 PM')
+      expect(helper.format_datetime(current_datetime)).to eq('Sat 03/23/19 at 02:15PM')
     end
   end
 

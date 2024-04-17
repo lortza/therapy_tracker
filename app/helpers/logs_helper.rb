@@ -3,7 +3,7 @@
 module LogsHelper
   def format_datetime(datetime)
     # log.datetime.strftime("%a %m/%d/%y at %I:%M %p in %Z")
-    datetime.strftime('%a %m/%d/%y at %I:%M %p')
+    datetime.strftime('%a %m/%d/%y at %I:%M%p')
   end
 
   def format_time_today_at(datetime)
