@@ -18,6 +18,10 @@ class User < ApplicationRecord
   scope :with_slit_enabled, -> { where(enable_slit_tracking: true) }
 
   def full_name
-    "#{first_name} #{last_name}"
+    [first_name.presence, last_name.presence].compact.join(' ')
+  end
+
+  def name_or_email
+    full_name.presence || email
   end
 end

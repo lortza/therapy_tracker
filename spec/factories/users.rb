@@ -2,8 +2,9 @@
 
 FactoryBot.define do
   factory :user do
-    sequence(:first_name) { |n| "firstname#{n}" }
-    sequence(:last_name) { |n| "lastname#{n}" }
+    sequence(:first_name) { "" }
+    sequence(:last_name) { "" }
+    # TODO: make email defailt to ""
     sequence(:email) { |n| "user#{n}@example.com" }
     password { 'password' }
     password_confirmation { 'password' }

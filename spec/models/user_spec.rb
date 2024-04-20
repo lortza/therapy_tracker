@@ -59,5 +59,35 @@ RSpec.describe User, type: :model do
       user = build(:user, first_name: 'first', last_name: 'last')
       expect(user.full_name).to eq('first last')
     end
+
+    context 'when there is no first_name' do
+      it 'does not include extra spacing' do
+        user = build(:user, last_name: 'last')
+        expect(user.full_name).to eq('last')
+      end
+    end
+
+    context 'when there is no last_name' do
+      it 'does not include extra spacing' do
+        user = build(:user, first_name: 'first')
+        expect(user.full_name).to eq('first')
+      end
+    end
+  end
+
+  describe '#name_or_email' do
+    context 'when there is no value for name' do
+      it 'displays the email address' do
+        user = build(:user, first_name: '', last_name: '', email: 'foo@email.com')
+        expect(user.name_or_email).to eq(user.email)
+      end
+    end
+
+    context 'when there is a value for name' do
+      it 'displays the full_name' do
+        user = build(:user, first_name: 'foo', email: 'foo@email.com')
+        expect(user.name_or_email).to eq(user.full_name)
+      end
+    end
   end
 end
