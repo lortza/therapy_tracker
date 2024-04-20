@@ -32,5 +32,5 @@ Rails.application.routes.draw do
   resources :slit_logs
   post '/quick_log_create', to: 'slit_logs#quick_log_create'
 
-  resources :slit_log_reports, only: [:index]
+  resources :slit_log_reports, only: [:index, :new]
 end
