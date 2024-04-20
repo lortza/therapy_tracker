@@ -4,7 +4,6 @@ module SlitLogReport
   RECORD_LIMIT = 90
   DOSE_TO_PLACE_ORDER = 60
 
-
   class << self
     def default_start_date
       Date.current - RECORD_LIMIT.days
