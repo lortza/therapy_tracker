@@ -1,5 +1,5 @@
 <h2>Sublingual Immunotherapy Patient Documentation</h2>
-<p>Maintenance Dosage log for patient <%= current_user.email %> from <%= @logs.first.occurred_at.strftime('%m/%d/%y') %> to <%= @logs.last.occurred_at.strftime('%m/%d/%y') %></p>
+<p>Maintenance Dosage log for patient <%= current_user.name_or_email %> from <%= @logs.first.occurred_at.strftime('%m/%d/%y') %> to <%= @logs.last.occurred_at.strftime('%m/%d/%y') %></p>
 <p><strong>NB</strong> = started new bottle | <strong>SKIPPED</strong> = drops not taken for date | <strong>CALL</strong> = Call 336-659-4814 to order more drops</p>
 
 <div class='slit-report-data-container mt-4'>
@@ -21,8 +21,8 @@
         <span><%= log.occurred_at.strftime('%a %m/%d/%y at %I:%M%p') %></span>
       <% end %>
 
-      <% if index == SlitLog::DOSE_TO_PLACE_ORDER %>
-        <span class="<%= 'highlight-yellow' if index == @index_to_prompt_calling %>"><strong>CALL</strong></span>
+      <% if index == SlitLogReport.place_order_index %>
+        <span class="<%= 'highlight-yellow' %>"><strong>CALL</strong></span>
       <% end %>
 
       <% if log.started_new_bottle? %>
@@ -32,3 +32,4 @@
   <% end %>
 </div>
 
+<%= will_paginate @logs, page_links: false, class: "pagination mt-3 mb-0" %>

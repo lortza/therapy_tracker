@@ -59,17 +59,6 @@ class SlitLogsController < ApplicationController
     end
   end
 
-  def report
-    report_record_limit = 90
-    @index_to_prompt_calling = 45
-    logs = current_user.slit_logs
-                       .where(occurred_at: report_record_limit.days.ago..Time.current)
-                       .order(occurred_at: :asc)
-                       .limit(report_record_limit)
-
-    @logs = SlitLogDecorator.decorate_collection(logs)
-  end
-
   private
 
   def set_slit_log

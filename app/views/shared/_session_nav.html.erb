@@ -32,7 +32,7 @@
     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
       <%= link_to 'Pain Stats by Body Part', stats_path, class: 'dropdown-item' %>
       <%= link_to 'Charts', charts_path, class: 'dropdown-item' %>
-      <%= link_to 'SLIT Logs for Print', slit_report_path, class: 'dropdown-item' if current_user.enable_slit_tracking %>
+      <%= link_to 'SLIT Logs for Print', new_slit_log_report_path, class: 'dropdown-item' if current_user.enable_slit_tracking %>
       <div class='dropdown-divider'></div>
       <%= link_to 'Exercise Logs', exercise_logs_path, class: 'dropdown-item' %>
       <%= link_to 'Pain Logs', pain_logs_path, class: 'dropdown-item' %>
