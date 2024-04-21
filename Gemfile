@@ -10,12 +10,10 @@ gem 'pg', '>= 0.18', '< 2.0' # Use postgresql as the database for Active Record
 gem 'sass-rails', '~> 6.0' # Use SCSS for stylesheets
 gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
 
-
 gem 'hotwire-rails'
 gem 'importmap-rails'
 gem 'jbuilder', '~> 2.11' # https://github.com/rails/jbuilder
 gem 'sdoc', '~> 2.6.1', group: :doc
-# gem 'devise', '~> 4.9.3'
 gem 'rack-mini-profiler'
 gem 'sprockets-rails'
 gem 'stimulus-rails'
@@ -23,7 +21,6 @@ gem 'turbo-rails'
 
 gem 'bootsnap', '>= 1.7.7', require: false
 gem 'chartkick', '>= 3.2.0' # chart rendering for ruby data
-# gem 'coffee-rails', '~> 5.0' # Use CoffeeScript for .coffee assets and views
 gem 'devise' # user authentication
 gem 'groupdate' # grouping by dates. goes with chartkick
 gem 'will_paginate', '~> 4.0.0' # pagination. Styles: http://mislav.github.io/will_paginate/
