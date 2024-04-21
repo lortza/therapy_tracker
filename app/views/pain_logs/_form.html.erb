@@ -4,9 +4,12 @@
   <div class='field'>
     <%= form.label 'Body Part', class: 'required' %>
     <%= form.collection_select :body_part_id,
-    current_user.body_parts.active, :id, :name,
-    { include_blank: false, required: true },
-    class: 'form-control' %>
+        current_user.body_parts.active,
+        :id,
+        :name,
+        { prompt: '--Select--' },
+        required: true,
+        class: 'form-control' %>
   </div>
 
   <div class='field'>
@@ -18,9 +21,12 @@
       <div class='field'>
         <%= form.label 'Pain Type', class: 'required' %>
         <%= form.collection_select :pain_id,
-        current_user.pains.by_name, :id, :name,
-        { include_blank: false, required: true },
-        class: 'form-control' %>
+            current_user.pains.by_name,
+            :id,
+            :name,
+            { prompt: '--Select--' },
+            required: true,
+            class: 'form-control' %>
       </div>
     </div>
 
