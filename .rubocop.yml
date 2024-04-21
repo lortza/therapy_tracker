@@ -56,6 +56,8 @@ Style/TrailingCommaInArrayLiteral:
   EnforcedStyleForMultiline: consistent_comma
 Style/HashEachMethods:
   Enabled: false
+Style/HashSyntax:
+  Enabled: false
 Style/HashTransformKeys:
   Enabled: false
 Style/HashTransformValues:
