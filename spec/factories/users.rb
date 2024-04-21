@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :user do
     sequence(:first_name) { '' }
     sequence(:last_name) { '' }
-    # TODO: make email defailt to ''
+    # TODO: make email default to ''
     sequence(:email) { |n| "user#{n}@example.com" }
     password { 'password' }
     password_confirmation { 'password' }
