@@ -1,0 +1,9 @@
+<%= button_to(MaterialIconComponent.new(
+      icon: decorated_log.icon_name,
+      size: :large
+    ).render + "<br>+#{text}".html_safe,
+    path,
+    remote: use_js,
+    form_class: "w-100", # applies to form
+    class: "add-log-button #{decorated_log.css_name}-button" # applies to button
+  )%>

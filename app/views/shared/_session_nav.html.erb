@@ -17,9 +17,9 @@
       Quick Log
     </a>
     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-      <%= link_to 'SLIT dose', quick_log_create_path, method: :post, class: 'dropdown-item' if current_user.enable_slit_tracking %>
+      <%= button_to 'SLIT dose', quick_log_create_path, method: :post, remote: false, class: 'dropdown-item' if current_user.enable_slit_tracking? %>
       <% current_user.pain_log_quick_form_values.order(name: :asc).each do |attr| %>
-        <%= link_to attr.name, create_pain_log_from_quick_form_path(content: attr), method: :post, class: 'dropdown-item'  %>
+        <%= button_to attr.name, create_pain_log_from_quick_form_path(content: attr), class: 'dropdown-item'  %>
       <% end %>
     </div>
   </li>
