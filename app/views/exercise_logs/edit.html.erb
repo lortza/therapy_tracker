@@ -1,7 +1,14 @@
 <% content_for(:title, format_datetime(@exercise_log.occurred_at)) %>
 
 <%= render partial: 'logs/log_header', locals: { log: @exercise_log } %>
-<h1 class='log-h1'>Editing <%= @exercise_log.exercise_name %></h1>
+
+<h2>
+  <span class='pull-right'>
+    <%= link_to 'Show', @exercise_log, class: button_class %>
+    <%= link_to 'Index', exercise_logs_path, class: button_class %>
+  </span>
+  Editing <%= @exercise_log.exercise_name.titleize %>
+</h2>
 
 <%= render 'form', exercise_log: @exercise_log, url: exercise_log_path(@exercise_log) %>
 
