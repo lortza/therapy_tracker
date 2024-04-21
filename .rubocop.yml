@@ -8,7 +8,7 @@ Rails:
 AllCops:
   SuggestExtensions: false
   NewCops: disable
-  TargetRubyVersion: 2.5.3
+  TargetRubyVersion: 3.2.2
   DefaultFormatter: progress
   Exclude:
     - 'config.ru'
@@ -55,6 +55,8 @@ Style/EmptyMethod:
 Style/TrailingCommaInArrayLiteral:
   EnforcedStyleForMultiline: consistent_comma
 Style/HashEachMethods:
+  Enabled: false
+Style/HashSyntax:
   Enabled: false
 Style/HashTransformKeys:
   Enabled: false
