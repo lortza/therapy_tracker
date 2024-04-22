@@ -18,7 +18,7 @@ class SlitLogSkippedDoseService
         )
         next unless no_log_for_user_yesterday?(user: user, yesterday: yesterday)
 
-        user.slit_logs.create(occurred_at: DateTime.yesterday, dose_skipped: true)
+        user.slit_logs.create(occurred_at: yesterday, dose_skipped: true)
       end
     end
 

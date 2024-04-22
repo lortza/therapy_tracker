@@ -6,22 +6,21 @@ RSpec.describe SlitLogSkippedDoseService, type: :service do
   let(:service) { described_class.call }
   describe 'self.call' do
     let(:user) { create(:user) }
-    let(:yesterday_date) { Date.parse('2024-03-01') }
-    let(:yesterday_datetime) { DateTime.parse('2024-03-01') }
-    let(:today_date) { Date.parse('2024-03-02') }
+    let(:yesterday_string) { '2024-04-01' }
+    let(:yesterday_date) { Date.parse(yesterday_string) }
+    let(:yesterday_datetime) { 'Mon, 01 Apr 2024 00:00:00.000000000 EDT -04:00' }
+    let(:today_date) { Date.parse('2024-04-02') }
 
     before do
       allow(Date).to receive(:yesterday).and_return(yesterday_date)
-      allow(DateTime).to receive(:yesterday).and_return(yesterday_datetime)
       allow(Date).to receive(:today).and_return(today_date)
     end
 
     context 'when there are multiple users of the app' do
       it 'calculates skips in context to the user' do
         user_who_skipped = create(:user, enable_slit_tracking: true)
-
         user_who_took_dose = create(:user, enable_slit_tracking: true)
-        user_who_took_dose.slit_logs.create(occurred_at: yesterday_datetime)
+        user_who_took_dose.slit_logs.create!(occurred_at: yesterday_string)
 
         service
         aggregate_failures do
@@ -51,7 +50,6 @@ RSpec.describe SlitLogSkippedDoseService, type: :service do
 
       it 'does not create a skip log' do
         expect { service }.not_to(change { SlitLog.count })
-        user.slit_logs.create!(occurred_at: yesterday_datetime - 1.day)
       end
     end
 
@@ -66,15 +64,13 @@ RSpec.describe SlitLogSkippedDoseService, type: :service do
 
       context 'and logged a dose yesterday' do
         it 'does not create a skip log' do
-          user.slit_logs.create(occurred_at: yesterday_datetime)
+          user.slit_logs.create(occurred_at: yesterday_string)
           expect { service }.not_to(change { user.slit_logs.count })
         end
       end
 
       context 'and did not log a dose yesterday' do
-        before do
-          user.slit_logs.create!(occurred_at: yesterday_datetime - 1)
-        end
+        before { user }
 
         it 'creates a log' do
           expect { service }.to change { SlitLog.count }.by(1)
@@ -96,7 +92,7 @@ RSpec.describe SlitLogSkippedDoseService, type: :service do
 
       context "and yesterday's log is for a skipped dose" do
         it 'does not create another skipped dose log for yesterday' do
-          user.slit_logs.create!(occurred_at: yesterday_datetime, dose_skipped: true)
+          user.slit_logs.create!(occurred_at: yesterday_string, dose_skipped: true)
           expect { service }.not_to(change { user.slit_logs.count })
         end
       end
