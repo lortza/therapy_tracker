@@ -1,5 +1,5 @@
 <header class='add-log-buttons-container'>
-  <%= render partial: 'shared/quick_log_button_to', locals: { text: 'SLIT', decorated_log: SlitLog.new.decorate, path: quick_log_create_path, use_js: false } if current_user.enable_slit_tracking?  %>
+  <%= render partial: 'shared/quick_log_button_to', locals: { text: 'SLIT', decorated_log: SlitLog.new.decorate, path: quick_log_create_path, use_js: true } if current_user.enable_slit_tracking?  %>
   <%= NewLogButtonComponent.new(log_klass: PainLog).render %>
   <%= NewLogButtonComponent.new(log_klass: ExerciseLog).render %>
   <%= NewLogButtonComponent.new(log_klass: PtSessionLog, text: 'PT').render if current_user.enable_pt_session_tracking %>

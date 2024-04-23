@@ -5,11 +5,13 @@
     <%= render partial: 'pt_session_logs/homework', locals: { homework: last_homework } %>
   <% end %>
 
-  <% @logs.each do |log| %>
-    <%= render log %>
-  <% end %>
-  <br>
-  <%= will_paginate @logs, :page_links => false %>
+  <div id='js-logs' class='mb-5'>
+    <% @logs.each do |log| %>
+      <%= render log %>
+    <% end %>
+  </div>
+
+  <%= will_paginate @logs, page_links: false %>
 
 <% else %>
   <%= render 'new_user_welcome' %>

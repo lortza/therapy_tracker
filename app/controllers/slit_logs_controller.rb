@@ -33,11 +33,12 @@ class SlitLogsController < ApplicationController
   end
 
   def quick_log_create
-    @slit_log = current_user.slit_logs.new(occurred_at: Time.current)
+    slit_log = current_user.slit_logs.new(occurred_at: Time.current).decorate
 
     respond_to do |format|
-      if @slit_log.save!
-        # format.js
+      if slit_log.save!
+        @slit_log = slit_log.decorate
+        format.js
         format.html { redirect_to root_url }
       else
         format.html { render :new }

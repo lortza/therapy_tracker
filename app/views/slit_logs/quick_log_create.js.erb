@@ -1,0 +1,8 @@
+console.log('Hello');
+// debugger;
+
+// Append log to top of logs index
+document.getElementById('js-logs')
+        .insertAdjacentHTML('afterbegin', "<%= escape_javascript(render partial: 'slit_log', locals: { slit_log: @slit_log }) %>");
+
+// Append timer to top of logs index
