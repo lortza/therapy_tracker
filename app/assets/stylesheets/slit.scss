@@ -26,6 +26,28 @@
 
 .dose-skipped { color: $red; }
 
+.slit-timer-container {
+  text-align: center;
+  color: $brand-main;
+  border: .125em solid $brand-main;
+  border-radius: $bootstrap-card-border-radius;
+  background-color: $white;
+}
+
+.slit-timer-clock {
+  font-size: 5rem;
+  margin-top: 0;
+  line-height: normal;
+}
+
+.slit-timer-dismiss {
+  float: right;
+  &:hover {
+    color: darken($brand-main, 10%);
+    cursor: pointer;
+  }
+}
+
 // MEDIA QUERIES
 @media (max-width: 576px) {
   .slit-report-data-container {
