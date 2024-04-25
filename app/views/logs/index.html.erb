@@ -1,15 +1,26 @@
 <% if @logs.present? %>
   <%= render partial: 'shared/add_log_buttons' %>
 
+  <div class='slit-timer-container hidden'>
+    <div id='js-slit-timer-dismiss' class="slit-timer-dismiss">
+      <%= MaterialIconComponent.new(icon: 'close', size: :large ).render %>
+    </div>
+    SLIT hold time remaining:
+    <%= link_to MaterialIconComponent.new(icon: 'timer_off', size: :medium ).render, logs_path, class: 'pull-right' %>
+    <div id='js-slit-timer' class='slit-timer-clock'></div>
+  </div>
+
   <% if last_homework %>
     <%= render partial: 'pt_session_logs/homework', locals: { homework: last_homework } %>
   <% end %>
 
-  <% @logs.each do |log| %>
-    <%= render log %>
-  <% end %>
-  <br>
-  <%= will_paginate @logs, :page_links => false %>
+  <div id='js-logs' class='mb-5'>
+    <% @logs.each do |log| %>
+      <%= render log %>
+    <% end %>
+  </div>
+
+  <%= will_paginate @logs, page_links: false %>
 
 <% else %>
   <%= render 'new_user_welcome' %>

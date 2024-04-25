@@ -31,13 +31,11 @@
 
 
 <!-- Button trigger modal -->
-<button type='button' class='btn btn-warning btn-wide' data-toggle='modal' data-target='#exampleModal'>
+<button type='button' class='btn btn-warning btn-wide' data-toggle='modal' data-target='#repCounterModal'>
   <i class='far fa-stopwatch'></i> Launch Rep Counter
 </button>
 
-<%= render partial: 'exercise_logs/rep_counter_modal' %>
+<%= render partial: 'exercise_logs/rep_counter_modal', locals: { sets: @exercise_log.sets, reps: @exercise_log.reps, rep_length: @exercise_log.rep_length, cancel_url: destination_url(@exercise_log, @pt_session_log) } %>
 <%= new_exercise_log_button(@pt_session_log) %>
 
-<script>
-  counter(<%= @exercise_log.sets %>, <%= @exercise_log.reps %>, <%= @exercise_log.rep_length %>)
-</script>
+

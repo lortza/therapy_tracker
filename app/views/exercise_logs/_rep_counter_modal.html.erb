@@ -1,34 +1,36 @@
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="repCounterModal" tabindex="-1" role="dialog" aria-labelledby="repCounterModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Rep Counter</h5>
+        <h5 class="modal-title" id="repCounterModalLabel">Rep Counter</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Dismiss">
           <span class="modal-dismiss">Close</span> <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-
         <h3>
           <span id='begin-finished-indicator' class='hidden'></span>
         </h3>
         <div class='row'>
           <div class='col'>
             <p class='set-rep-row'>Set:<br>
-              <span id='set' class='counter-number-big'>0</span> of <%= @exercise_log.sets %>
+              <span id='set' class='counter-number-big'>0</span> of <%= sets %>
             </p>
           </div>
           <div class='col'>
-            <p class='set-rep-row'>Rep: (Hold for <%= @exercise_log.rep_length %>)<br>
-              <span id='rep' class='counter-number-big'>0</span> of <%= @exercise_log.reps %><br>
+            <p class='set-rep-row'>Rep: (Hold for <%= rep_length %>)<br>
+              <span id='rep' class='counter-number-big'>0</span> of <%= reps %><br>
             </p>
           </div>
-        </div> <!-- row -->
+        </div>
 
         <%= link_to '<i class="fas fa-play"></i> Start Timer'.html_safe, '#', id: 'start_button', class: button_class('success') %>
-        <%= link_to '<i class="fas fa-stop"></i> Stop & Reset '.html_safe, destination_url(@exercise_log, @pt_session_log), id: 'stop_button', class: button_class('danger pull-right') %>
+        <%= link_to '<i class="fas fa-stop"></i> Stop & Reset '.html_safe, cancel_url, id: 'stop_button', class: button_class('danger pull-right') %>
 
+        <script>
+          counter(<%= sets %>, <%= reps %>, <%= rep_length %>)
+        </script>
       </div><!-- modal body -->
     </div>
   </div>
