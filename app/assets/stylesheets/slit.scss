@@ -28,10 +28,14 @@
 
 .slit-timer-container {
   text-align: center;
-  color: $brand-main;
+  color: $brand-main-lt;
   border: .125em solid $brand-main;
   border-radius: $bootstrap-card-border-radius;
-  background-color: $white;
+  background-color: darken($brand-main, 20%);
+}
+
+.slit-timer-container a {
+  color: $brand-main-lt;
 }
 
 .slit-timer-clock {

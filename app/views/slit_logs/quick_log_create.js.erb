@@ -4,7 +4,7 @@ document.getElementById('js-logs')
 
 // Start Timer
 const timerElement = document.getElementById('js-slit-timer');
-timerElement.innerHTML = 02 + ":" + 00;
+timerElement.innerHTML = 02 + ":" + 01
 startTimer();
 
 function startTimer() {
@@ -30,15 +30,19 @@ function checkSecond(sec) {
   return sec;
 }
 
+const dismissButton = document.getElementById('js-slit-timer-dismiss');
+
 function completeTimer() {
   const soundExerciseComplete = new Audio('/sounds/exercise_complete.m4a');
+  const cancelButton = document.getElementById('js-slit-timer-cancel-btn');
+  cancelButton.classList.add('hidden');
+  dismissButton.classList.remove('hidden');
   console.log(`Timer ended`)
   soundExerciseComplete.play().catch(e => {
     console.log(e);
   });
 }
 
-const dismissButton = document.getElementById('js-slit-timer-dismiss');
 dismissButton.addEventListener('click', function (event) {
   event.preventDefault;
   timerElement.parentElement.classList.add('hidden');
