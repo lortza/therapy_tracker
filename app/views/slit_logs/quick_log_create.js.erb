@@ -33,9 +33,6 @@ function checkSecond(sec) {
 function completeTimer() {
   const soundExerciseComplete = new Audio('/sounds/exercise_complete.m4a');
   console.log(`Timer ended`)
-  //beginFinishedIndicator.textContent = 'Finished!';
-  //setDisplayer.textContent = 0;
-  //repDisplayer.textContent = 0;
   soundExerciseComplete.play().catch(e => {
     console.log(e);
   });
