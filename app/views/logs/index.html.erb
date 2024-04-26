@@ -8,7 +8,7 @@
 
     SLIT hold time remaining:
     <%= link_to MaterialIconComponent.new(icon: 'timer_off', size: :medium ).render, logs_path, id: 'js-slit-timer-cancel-btn', class: 'pull-right' %>
-    <div id='js-slit-timer' class='slit-timer-clock'>02:00</div>
+    <div id='js-slit-timer' class='slit-timer-clock'></div>
   </div>
 
   <% if last_homework %>
