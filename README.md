@@ -8,9 +8,9 @@
 
 This is an app to track physical therapy exercise logs.
 
-- Ruby: 2.5.3
-- Rails: 5.2.2
-- Postgres: '>= 0.18', '< 2.0'
+- Ruby
+- Rails
+- Postgres
 - Devise
 - RSpec
 - [Dependabot](https://app.dependabot.com/accounts/lortza/) dependency manager
@@ -82,8 +82,17 @@ One of the challenges of reporting pain back to a physical therapist is getting 
 
 A lot can happen at a PT session. You'll be doing workouts, getting consultation, and being assigned homework. The physical therapy tracking makes it easy to stay on top of what you've accomplished and what you need to work on between sessions.
 
+Physical therapy session logging is defaulted to off. Users can turn on physical therapy session logging in their settings.
+
 ![alt text](/public/screenshots/pt_session.png "physical therapy session notes")
 
+### Sublingual Immunotherapy Tracking
+
+Sublingual immunotherapy (SLIT) are allergy drops taken daily. They are administered by placing drops unter the tongue and holding for 2 minutes. Patients need to present their adherence logs to their provider when ordering new vials. This app supports adherence tracking with easy one-touch logging. Skipped doses are displayed in the log stream view. Users can produce a pdf of adherence logs based on a date range of their choosing. The one-touch logging also starts a 2-min timer that ends with a chime and link to dismiss.
+
+SLIT logging is defaulted to off. Users can turn on SLIT logging in their settings.
+
+![alt text](/public/screenshots/slit_index.png "SLIT tracking")
 
 ### Reporting
 

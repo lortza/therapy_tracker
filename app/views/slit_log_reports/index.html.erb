@@ -1,5 +1,8 @@
 <h2>Sublingual Immunotherapy Patient Documentation</h2>
-<p>Maintenance Dosage log for patient <%= current_user.name_or_email %> from <%= @logs.first.occurred_at.strftime('%m/%d/%y') %> to <%= @logs.last.occurred_at.strftime('%m/%d/%y') %></p>
+<p>Maintenance Dosage log for patient <%= current_user.name_or_email %>
+<% if @logs.any? %>
+  from <%= @logs.first.occurred_at.strftime('%m/%d/%y') %> to <%= @logs.last.occurred_at.strftime('%m/%d/%y') %></p>
+<% end %>
 <p><strong>NB</strong> = started new bottle | <strong>SKIPPED</strong> = drops not taken for date | <strong>CALL</strong> = Call 336-659-4814 to order more drops</p>
 
 <div class='slit-report-data-container mt-4'>
