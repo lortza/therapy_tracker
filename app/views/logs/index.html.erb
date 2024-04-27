@@ -1,17 +1,19 @@
 <% if @logs.present? %>
   <%= render partial: 'shared/add_log_buttons' %>
 
-  <div class='slit-timer-container hidden'>
-    <div id='js-slit-timer-dismiss' class="slit-timer-dismiss hidden">
-      <%= MaterialIconComponent.new(icon: 'close', size: :large ).render %>
+  <% if current_user.enable_slit_tracking? %>
+    <div class='slit-timer-container hidden'>
+      <div id='js-slit-timer-dismiss' class="slit-timer-dismiss hidden">
+        <%= MaterialIconComponent.new(icon: 'close', size: :large ).render %>
+      </div>
+
+      SLIT hold time remaining:
+      <%= link_to MaterialIconComponent.new(icon: 'timer_off', size: :medium ).render, logs_path, id: 'js-slit-timer-cancel-btn', class: 'pull-right' %>
+      <div id='js-slit-timer' class='slit-timer-clock'></div>
     </div>
+  <% end %>
 
-    SLIT hold time remaining:
-    <%= link_to MaterialIconComponent.new(icon: 'timer_off', size: :medium ).render, logs_path, id: 'js-slit-timer-cancel-btn', class: 'pull-right' %>
-    <div id='js-slit-timer' class='slit-timer-clock'></div>
-  </div>
-
-  <% if last_homework %>
+  <% if current_user.enable_pt_session_tracking? && last_homework %>
     <%= render partial: 'pt_session_logs/homework', locals: { homework: last_homework } %>
   <% end %>
 
