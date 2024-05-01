@@ -24,7 +24,10 @@
   width: 3rem;
 }
 
-.dose-skipped { color: $red; }
+.dose-skipped {
+  color: $red;
+  margin-left: 3rem;
+}
 
 .slit-timer-container {
   text-align: center;
@@ -67,6 +70,11 @@
 @media print {
   .slit-report-col-dose {
     width: 1rem;
+  }
+  .dose-skipped {
+    color: inherit;
+    border: 1px solid black;
+    padding: 0 2px;
   }
 }
 
