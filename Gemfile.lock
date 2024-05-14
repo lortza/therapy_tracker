@@ -94,8 +94,8 @@ GEM
       erubi (>= 1.0.0)
       rack (>= 0.9.0)
       rouge (>= 1.0.0)
-    bigdecimal (3.1.7)
-    bigdecimal (3.1.7-java)
+    bigdecimal (3.1.8)
+    bigdecimal (3.1.8-java)
     bindex (0.8.1)
     binding_of_caller (1.0.1)
       debug_inspector (>= 1.2.0)
@@ -221,7 +221,7 @@ GEM
       rails (>= 6.0.0)
       stimulus-rails
       turbo-rails
-    i18n (1.14.4)
+    i18n (1.14.5)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
     importmap-rails (2.0.1)
@@ -234,7 +234,7 @@ GEM
       rdoc
       reline (>= 0.4.2)
     jar-dependencies (0.4.1)
-    jbuilder (2.11.5)
+    jbuilder (2.12.0)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
     json (2.7.2)
@@ -588,7 +588,7 @@ DEPENDENCIES
   guard-rspec
   hotwire-rails
   importmap-rails
-  jbuilder (~> 2.11)
+  jbuilder (~> 2.12)
   launchy
   letter_opener
   listen (>= 3.0.5, < 3.10)
