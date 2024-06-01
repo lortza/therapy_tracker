@@ -12,13 +12,13 @@ class SlitLog < ApplicationRecord
   private
 
   def set_doses_remaining
-    return if self.doses_remaining.present?
+    return if doses_remaining.present?
 
     if started_new_bottle?
       self.doses_remaining = MAX_BOTTLE_DOSES
     else
       previous_balance = previous_log&.doses_remaining
-      return nil unless previous_balance.present?
+      return nil if previous_balance.blank?
 
       self.doses_remaining = calculate_doses_remaining(previous_balance)
     end
@@ -32,7 +32,7 @@ class SlitLog < ApplicationRecord
   def calculate_doses_remaining(previous_log_doses_remaining)
     if dose_skipped?
       previous_log_doses_remaining
-    elsif previous_log_doses_remaining > 0
+    elsif previous_log_doses_remaining.positive?
       previous_log_doses_remaining - 1
     else
       0

@@ -75,13 +75,13 @@ RSpec.describe SlitLog, type: :model do
     end
 
     context "when the previous log's value is zero" do
-      it "returns 0" do
+      it 'returns 0' do
         expect(SlitLog.new.send(:calculate_doses_remaining, 0)).to eq(0)
       end
     end
 
     context "when the previous log's value is less than zero" do
-      it "returns 0" do
+      it 'returns 0' do
         expect(SlitLog.new.send(:calculate_doses_remaining, -1)).to eq(0)
       end
     end
