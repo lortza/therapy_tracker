@@ -12,6 +12,8 @@ class SlitLog < ApplicationRecord
   private
 
   def set_doses_remaining
+    return if self.doses_remaining.present?
+
     if started_new_bottle?
       self.doses_remaining = MAX_BOTTLE_DOSES
     else

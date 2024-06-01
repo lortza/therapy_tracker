@@ -18,6 +18,16 @@ RSpec.describe SlitLog, type: :model do
         create(:slit_log, user: user, occurred_at: DateTime.current - 2.days, doses_remaining: previous_balance)
       end
 
+      context 'when the new log contains a value for doses_remaining' do
+        let(:slit_log) { build(:slit_log, doses_remaining: 15) }
+        let(:previous_balance) { 30 }
+
+        it 'sets uses the existing doses_remaining value' do
+          slit_log.send(:set_doses_remaining)
+          expect(slit_log.doses_remaining).to eq(15)
+        end
+      end
+
       context 'when starting a new bottle' do
         let(:slit_log) { build(:slit_log, started_new_bottle: true) }
         let(:previous_balance) { nil }
