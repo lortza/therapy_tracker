@@ -33,7 +33,8 @@ class SlitLogsController < ApplicationController
   end
 
   def quick_log_create
-    @slit_log = current_user.slit_logs.new(occurred_at: Time.current).decorate
+    attrs = {occurred_at: Time.current, started_new_bottle: params[:started_new_bottle]}
+    @slit_log = current_user.slit_logs.new(attrs).decorate
 
     respond_to do |format|
       if @slit_log.save!
