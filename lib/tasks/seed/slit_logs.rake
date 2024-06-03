@@ -4,7 +4,6 @@ namespace :db do
   namespace :seed do
     desc 'Create SLIT Logs'
     task :slit_logs, [:user_id, :quantity] => [:environment] do |_task, args|
-      puts 'Removing all SLIT Logs'
       SlitLog.destroy_all
 
       puts 'Seeding SLIT Logs'

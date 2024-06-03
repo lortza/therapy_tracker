@@ -4,7 +4,6 @@ namespace :db do
   namespace :seed do
     desc 'Create Pain Logs'
     task :pain_logs, [:user_id, :quantity] => [:environment] do |_task, args|
-      puts 'Removing all pain Logs'
       PainLog.destroy_all
 
       user_id = if args[:user_id].present?
