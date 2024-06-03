@@ -19,7 +19,7 @@ User.destroy_all
 #-------------------------------------------
 puts 'Seeding Users'
 existing_user = User.find_by(email: 'admin@email.com', admin: true)
-user = existing_user.present? ? existing_user : FactoryBot.create(:user, first_name: 'Admin', last_name: 'McAdmins', email: 'admin@email.com', admin: true)
+user = existing_user.present? ? existing_user : FactoryBot.create(:user, email: 'admin@email.com', admin: true)
 
 
 #-------------------------------------------
