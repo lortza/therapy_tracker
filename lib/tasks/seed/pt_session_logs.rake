@@ -4,11 +4,9 @@ namespace :db do
   namespace :seed do
     desc 'Seed PT Session Logs'
     task :pt_session_logs, [:user_id, :quantity] => [:environment] do |_task, args|
-      puts 'Removing all PT Session Logs'
       PtSessionLog.destroy_all
 
       user_id = if args[:user_id].present?
-        binding.pry
         args[:user_id]
       else
         existing_user = User.find_by(email: 'admin@email.com', admin: true)
