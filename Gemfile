@@ -23,7 +23,7 @@ gem 'bootsnap', '>= 1.7.7', require: false
 gem 'chartkick', '>= 3.2.0' # chart rendering for ruby data
 gem 'devise' # user authentication
 gem 'groupdate' # grouping by dates. goes with chartkick
-gem 'will_paginate', '~> 4.0.0' # pagination. Styles: http://mislav.github.io/will_paginate/
+gem 'will_paginate', '~> 4.0.1' # pagination. Styles: http://mislav.github.io/will_paginate/
 gem 'scss_lint', require: false
 # gem 'bcrypt', '~> 3.1.7' # Use ActiveModel has_secure_password
 # gem 'bootstrap3-datetimepicker-rails', '~> 4.14.30'
