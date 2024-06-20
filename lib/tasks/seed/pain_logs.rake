@@ -2,11 +2,10 @@
 
 namespace :db do
   namespace :seed do
-    desc 'Create SLIT Logs'
-    task :slit_logs, [:user_id, :quantity] => [:environment] do |_task, args|
-      SlitLog.destroy_all
+    desc 'Create Pain Logs'
+    task :pain_logs, [:user_id, :quantity] => [:environment] do |_task, args|
+      PainLog.destroy_all
 
-      puts 'Seeding SLIT Logs'
       user_id = if args[:user_id].present?
         args[:user_id]
       else
@@ -14,16 +13,16 @@ namespace :db do
         existing_user.present? ? existing_user.id : FactoryBot.create(:user, first_name: 'Admin', last_name: 'McAdmins', email: 'admin@email.com', admin: true).id
       end
 
-      quantity = args[:quantity].presence || 90
-      start_date = DateTime.current - quantity
+      quantity = args[:quantity].presence || 30
 
-      quantity.times do |i|
+      puts 'Seeding Pain Logs'
+      quantity.times do
         FactoryBot.create(
-          :slit_log,
+          :pain_log,
           user_id: user_id,
-          started_new_bottle:(i % 45 == 0),
-          dose_skipped: i != 0 && (i % 13 == 0),
-          occurred_at: (start_date + i + 1)
+          body_part_id: BodyPart.all.sample.id,
+          pain_id: Pain.all.sample.id,
+          occurred_at: Faker::Time.between(from: 3.month.ago, to: DateTime.current)
         )
       end
     end
