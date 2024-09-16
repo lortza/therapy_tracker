@@ -222,7 +222,7 @@ GEM
       rails (>= 6.0.0)
       stimulus-rails
       turbo-rails
-    i18n (1.14.5)
+    i18n (1.14.6)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
     importmap-rails (2.0.1)
@@ -235,7 +235,7 @@ GEM
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     jar-dependencies (0.4.1)
-    jbuilder (2.12.0)
+    jbuilder (2.13.0)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
     json (2.7.2)
@@ -588,7 +588,7 @@ DEPENDENCIES
   guard-rspec
   hotwire-rails
   importmap-rails
-  jbuilder (~> 2.12)
+  jbuilder (~> 2.13)
   launchy
   letter_opener
   listen (>= 3.0.5, < 3.10)
