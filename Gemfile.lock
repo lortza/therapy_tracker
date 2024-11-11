@@ -582,7 +582,7 @@ DEPENDENCIES
   guard-rspec
   hotwire-rails
   importmap-rails
-  jbuilder (~> 2.12)
+  jbuilder (~> 2.13)
   launchy
   letter_opener
   listen (>= 3.0.5, < 3.10)
