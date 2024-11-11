@@ -131,8 +131,8 @@ GEM
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0.0)
     database_cleaner-core (2.0.1)
-    date (3.3.4)
-    date (3.3.4-java)
+    date (3.4.0)
+    date (3.4.0-java)
     debug_inspector (1.2.0)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
@@ -273,7 +273,7 @@ GEM
     msgpack (1.7.3-java)
     mutex_m (0.2.0)
     nenv (0.3.0)
-    net-imap (0.5.0)
+    net-imap (0.5.1)
       date
       net-protocol
     net-pop (0.1.2)
@@ -518,7 +518,7 @@ GEM
     thread_safe (0.3.6)
     thread_safe (0.3.6-java)
     tilt (2.4.0)
-    timeout (0.4.1)
+    timeout (0.4.2)
     tty-which (0.5.0)
     turbo-rails (2.0.11)
       actionpack (>= 6.0.0)
