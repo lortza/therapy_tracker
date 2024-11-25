@@ -33,7 +33,7 @@ FactoryBot.create(:exercise, user_id: user.id, name: 'cross-body isometrics', de
 
 #------------------------------------------
 puts 'Seeding Body Parts'
-body_part_names = ['hip, right', 'hip, left', 'knee, right', 'knee, left']
+body_part_names = ['hip, right', 'hip, left', 'knee, right', 'knee, left', 'head']
 
 body_part_names.each do |body_part_name|
   FactoryBot.create(:body_part, user_id: user.id, name: body_part_name)
