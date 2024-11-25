@@ -7,7 +7,7 @@ FactoryBot.define do
     body_part
     pain
     pain_level { rand(1..5) }
-    pain_description { 'sample pain description' }
-    trigger { 'sample pain trigger' }
+    pain_description { "sample pain description" }
+    trigger { "sample pain trigger" }
   end
 end

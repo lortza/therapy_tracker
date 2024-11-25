@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.describe 'pt_session_logs/show', type: :view do
+RSpec.describe "pt_session_logs/show", type: :view do
   before(:each) do
     @user = create(:user)
     @pt_session_log = create(:pt_session_log, user_id: @user.id).decorate
   end
 
-  it 'renders attributes in <div>' do
+  it "renders attributes in <div>" do
     allow(view).to receive(:current_user).and_return(@user)
     render
     expect(rendered).to match(%r{Mon 03/25/19 at 10:29PM})
