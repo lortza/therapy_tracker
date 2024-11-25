@@ -5,7 +5,7 @@ class PtSessionLogs::ExerciseLogsController < PtSessionLogsController
   before_action :set_exercise_log, only: %i[show edit update destroy]
   before_action :authorize_pt_session_log, only: %i[show edit update destroy]
   before_action :authorize_exercise_log, only: %i[show edit update destroy]
-  layout 'no_white_container', only: [:index]
+  layout "no_white_container", only: [:index]
 
   def new
     @exercise_log = @pt_session_log.exercise_logs.new
@@ -15,7 +15,7 @@ class PtSessionLogs::ExerciseLogsController < PtSessionLogsController
   end
 
   def show
-    render 'exercise_logs/show'
+    render "exercise_logs/show"
   end
 
   def create
@@ -48,7 +48,7 @@ class PtSessionLogs::ExerciseLogsController < PtSessionLogsController
   def destroy
     @exercise_log.destroy
     respond_to do |format|
-      format.html { redirect_to pt_session_log_path(@pt_session_log), notice: 'Exercise log was deleted.' }
+      format.html { redirect_to pt_session_log_path(@pt_session_log), notice: "Exercise log was deleted." }
       format.json { head :no_content }
     end
   end
@@ -72,18 +72,20 @@ class PtSessionLogs::ExerciseLogsController < PtSessionLogsController
   end
 
   def exercise_log_params
-    params.require(:exercise_log).permit(:pt_session_log_id,
-                                         :user_id,
-                                         :body_part_id,
-                                         :occurred_at,
-                                         :exercise_id,
-                                         :sets,
-                                         :reps,
-                                         :rep_length,
-                                         :per_side,
-                                         :resistance,
-                                         :burn_set,
-                                         :burn_rep,
-                                         :progress_note)
+    params.require(:exercise_log).permit(
+      :pt_session_log_id,
+      :user_id,
+      :body_part_id,
+      :occurred_at,
+      :exercise_id,
+      :sets,
+      :reps,
+      :rep_length,
+      :per_side,
+      :resistance,
+      :burn_set,
+      :burn_rep,
+      :progress_note
+    )
   end
 end

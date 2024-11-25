@@ -8,13 +8,13 @@ class PainLog < ApplicationRecord
   belongs_to :pain
 
   validates :occurred_at,
-            :body_part_id,
-            :pain_id,
-            presence: true
+    :body_part_id,
+    :pain_id,
+    presence: true
 
   validates :pain_level,
-            presence: true,
-            numericality: true
+    presence: true,
+    numericality: true
 
   delegate :name, to: :body_part, prefix: true
   delegate :name, to: :pain, prefix: true
@@ -29,11 +29,11 @@ class PainLog < ApplicationRecord
   end
 
   # rubocop:disable Metrics/PerceivedComplexity
-  def self.search(body_part_id: '', pain_id: '', search_terms: '')
+  def self.search(body_part_id: "", pain_id: "", search_terms: "")
     return all if body_part_id.blank? && pain_id.blank? && search_terms.blank?
 
     if pain_id.present? && body_part_id.present?
-      where('pain_id = ? AND body_part_id = ?', pain_id, body_part_id).with_search_terms(search_terms)
+      where("pain_id = ? AND body_part_id = ?", pain_id, body_part_id).with_search_terms(search_terms)
     elsif pain_id.present?
       where(pain_id: pain_id).with_search_terms(search_terms)
     elsif body_part_id.present?

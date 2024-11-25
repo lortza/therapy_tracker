@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def require_admin
-    redirect_to root_path, alert: 'Must be Admin to access this area' unless current_user_admin?
+    redirect_to root_path, alert: "Must be Admin to access this area" unless current_user_admin?
   end
 
   def current_user_admin?

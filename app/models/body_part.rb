@@ -10,11 +10,11 @@ class BodyPart < ApplicationRecord
   has_many :pt_session_logs, dependent: :destroy
 
   validates :name,
-            presence: true,
-            uniqueness: {
-              case_sensitive: false,
-              scope: :user_id
-            }
+    presence: true,
+    uniqueness: {
+      case_sensitive: false,
+      scope: :user_id
+    }
 
   def self.active
     where(archived: false)

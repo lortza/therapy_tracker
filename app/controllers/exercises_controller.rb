@@ -31,7 +31,7 @@ class ExercisesController < ApplicationController
 
   def update
     if @exercise.update(exercise_params)
-      redirect_to exercises_url, notice: 'Exercise was successfully updated.'
+      redirect_to exercises_url, notice: "Exercise was successfully updated."
     else
       render :edit
     end
@@ -40,7 +40,7 @@ class ExercisesController < ApplicationController
   def destroy
     @exercise.destroy
     respond_to do |format|
-      format.html { redirect_to exercises_url, notice: 'Exercise was successfully destroyed.' }
+      format.html { redirect_to exercises_url, notice: "Exercise was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -56,13 +56,7 @@ class ExercisesController < ApplicationController
   end
 
   def exercise_params
-    params.require(:exercise).permit(:user_id,
-                                     :name,
-                                     :default_sets,
-                                     :default_reps,
-                                     :default_rep_length,
-                                     :default_resistance,
-                                     :description,
-                                     :default_per_side)
+    params.require(:exercise)
+      .permit(:user_id, :name, :default_sets, :default_reps, :default_rep_length, :default_resistance, :description, :default_per_side)
   end
 end

@@ -4,14 +4,14 @@ class ExerciseLogDecorator < ApplicationDecorator
   delegate_all
 
   def display_name
-    'Exercise'
+    "Exercise"
   end
 
   def icon_name
-    'exercise'
+    "exercise"
   end
 
   def css_name
-    'exercise'
+    "exercise"
   end
 end

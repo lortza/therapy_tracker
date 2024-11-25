@@ -5,21 +5,21 @@ module ApplicationHelper
     if content_for?(:title)
       content_for(:title)
     else
-      'Therapy Tracker'
+      "Therapy Tracker"
     end
   end
 
   def bootstrap_flash_class(type)
     case type
-    when 'alert' then 'warning'
-    when 'error' then 'danger'
-    when 'notice' then 'success'
+    when "alert" then "warning"
+    when "error" then "danger"
+    when "notice" then "success"
     else
-      'info'
+      "info"
     end
   end
 
-  def button_class(style = 'primary')
+  def button_class(style = "primary")
     "btn btn-sm btn-outline-#{style}"
   end
 end

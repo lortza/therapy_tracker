@@ -3,10 +3,10 @@
 class PtSessionLogsController < ApplicationController
   before_action :set_pt_session_log, only: %i[show edit update destroy]
   before_action :authorize_pt_session_log, only: %i[show edit update destroy]
-  layout 'no_white_container', only: [:index]
+  layout "no_white_container", only: [:index]
 
   def index
-    logs = current_user.pt_session_logs.order(occurred_at: 'DESC').paginate(page: params[:page], per_page: 10)
+    logs = current_user.pt_session_logs.order(occurred_at: "DESC").paginate(page: params[:page], per_page: 10)
     @logs = PtSessionLogDecorator.decorate_collection(logs)
   end
 
@@ -49,7 +49,7 @@ class PtSessionLogsController < ApplicationController
   def destroy
     @pt_session_log.destroy
     respond_to do |format|
-      format.html { redirect_to root_url, notice: 'PT log was successfully deleted.' }
+      format.html { redirect_to root_url, notice: "PT log was successfully deleted." }
       format.json { head :no_content }
     end
   end
@@ -66,11 +66,11 @@ class PtSessionLogsController < ApplicationController
 
   def pt_session_log_params
     params.require(:pt_session_log).permit(:user_id,
-                                           :body_part_id,
-                                           :occurred_at,
-                                           :exercise_notes,
-                                           :homework, :duration,
-                                           :questions,
-                                           homework_exercise_ids: [])
+      :body_part_id,
+      :occurred_at,
+      :exercise_notes,
+      :homework, :duration,
+      :questions,
+      homework_exercise_ids: [])
   end
 end

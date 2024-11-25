@@ -8,7 +8,7 @@ class MaterialIconComponent
     @icon = icon.to_sym
     @title = title
     @size = size
-    @filled = filled ? 'icon-filled' : 'icon-outlined'
+    @filled = filled ? "icon-filled" : "icon-outlined"
     @provided_classes = classes
     @weight = weight
   end
@@ -26,15 +26,15 @@ class MaterialIconComponent
 
   def size_style
     case @size
-    when :xsmall then '.75rem'
-    when :small then '1rem'
-    when :medium then '1.5rem'
-    when :large then '2rem'
-    when :xlarge then '2.5rem'
-    when :xxlarge then '3rem'
-    when :inherit then 'inherit'
+    when :xsmall then ".75rem"
+    when :small then "1rem"
+    when :medium then "1.5rem"
+    when :large then "2rem"
+    when :xlarge then "2.5rem"
+    when :xxlarge then "3rem"
+    when :inherit then "inherit"
     else
-      raise 'ERROR: Available sizes are :xsmall, :small, :medium, :large, :xlarge, :xxlarge, :inherit'
+      raise "ERROR: Available sizes are :xsmall, :small, :medium, :large, :xlarge, :xxlarge, :inherit"
     end
   end
 
@@ -56,6 +56,6 @@ class MaterialIconComponent
   end
 
   def base_classes
-    'align-middle'
+    "align-middle"
   end
 end

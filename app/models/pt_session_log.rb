@@ -11,14 +11,14 @@ class PtSessionLog < ApplicationRecord
   has_many :homework_exercises, through: :pt_homework_exercises, source: :exercise
 
   validates :occurred_at,
-            :body_part_id,
-            :exercise_notes,
-            :homework,
-            presence: true
+    :body_part_id,
+    :exercise_notes,
+    :homework,
+    presence: true
 
   validates :duration,
-            presence: true,
-            numericality: true
+    presence: true,
+    numericality: true
 
   delegate :name, to: :body_part, prefix: true
 
