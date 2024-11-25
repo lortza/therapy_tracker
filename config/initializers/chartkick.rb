@@ -1,6 +1,4 @@
-pain_color = '#F2B134'
-exercise_color = '#48AA6C'
-therapy_color = '#0994A1'
+"#0994A1"
 
 # Chartkick.options = {
 #   height: "400px",

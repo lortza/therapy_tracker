@@ -4,10 +4,10 @@ FactoryBot.define do
   factory :pt_session_log do
     user
     body_part
-    occurred_at { '2019-03-25 22:29:28' }
-    questions { 'sample question?' }
-    exercise_notes { 'sample exercise notes' }
-    homework { 'sample homework' }
+    occurred_at { "2019-03-25 22:29:28" }
+    questions { "sample question?" }
+    exercise_notes { "sample exercise notes" }
+    homework { "sample homework" }
     duration { [45, 60, 90].sample }
   end
 

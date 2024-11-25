@@ -2,20 +2,20 @@
 
 namespace :db do
   namespace :seed do
-    desc 'Seed PT Session Logs'
+    desc "Seed PT Session Logs"
     task :pt_session_logs, [:user_id, :quantity] => [:environment] do |_task, args|
       PtSessionLog.destroy_all
 
       user_id = if args[:user_id].present?
         args[:user_id]
       else
-        existing_user = User.find_by(email: 'admin@email.com', admin: true)
-        existing_user.present? ? existing_user.id : FactoryBot.create(:user, first_name: 'Seeded', last_name: 'Admin', email: 'admin@email.com', admin: true).id
+        existing_user = User.find_by(email: "admin@email.com", admin: true)
+        existing_user.present? ? existing_user.id : FactoryBot.create(:user, first_name: "Seeded", last_name: "Admin", email: "admin@email.com", admin: true).id
       end
 
       quantity = args[:quantity].presence || 30
 
-      puts 'Seeding PT Session Logs'
+      puts "Seeding PT Session Logs"
       quantity.times do
         pt_session_log = FactoryBot.create(
           :pt_session_log,
@@ -40,25 +40,24 @@ namespace :db do
           )
         end
       end
-
     end # task
-  end #seed
+  end # seed
 end # db
 
 def exercise_note_opts
   [
-    'leveled up this time. used harder band. did one more set on most exercises',
-    'tried a new warmup this time. dr says flexibility is good, but need to do more. showed me 2 new stretches.',
-    'did strength testing for benchmarks. there is improvement since last week.',
+    "leveled up this time. used harder band. did one more set on most exercises",
+    "tried a new warmup this time. dr says flexibility is good, but need to do more. showed me 2 new stretches.",
+    "did strength testing for benchmarks. there is improvement since last week."
   ]
 end
 
 def homework_notes
   [
-    'same as session',
-    'do regular exercises and incorporate in 1 or two extra sets or reps where you can',
-    'regular exercises plus add in an extra walk around the neighborhood',
-    'regular exercises plus add in an extra bike ride',
-    'try walking as fast as you can to see how far you can get before pain sets in'
+    "same as session",
+    "do regular exercises and incorporate in 1 or two extra sets or reps where you can",
+    "regular exercises plus add in an extra walk around the neighborhood",
+    "regular exercises plus add in an extra bike ride",
+    "try walking as fast as you can to see how far you can get before pain sets in"
   ]
 end

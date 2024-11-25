@@ -9,7 +9,7 @@ FactoryBot.define do
     default_reps { 10 }
     default_rep_length { 5 }
     default_per_side { false }
-    default_resistance { ['', 'yellow band', 'green band'].sample }
+    default_resistance { ["", "yellow band", "green band"].sample }
   end
 
   trait :with_3_exercise_logs do

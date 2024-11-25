@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.describe 'exercise_logs/show', type: :view do
+RSpec.describe "exercise_logs/show", type: :view do
   before(:each) do
     @user = create(:user)
     @exercise_log = create(:exercise_log, user_id: @user.id).decorate
   end
 
-  it 'renders attributes in <div>' do
+  it "renders attributes in <div>" do
     allow(view).to receive(:current_user).and_return(@user)
     render
     expect(rendered).to match(%r{2 sets / 10 reps at 5 seconds each})

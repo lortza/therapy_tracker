@@ -1,6 +1,6 @@
 Sentry.init do |config|
   config.dsn = Rails.application.credentials.sentry_dsn
-  config.enabled_environments = %w[ production ]
+  config.enabled_environments = %w[production]
 
   # enable performance monitoring
   config.enable_tracing = true

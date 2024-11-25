@@ -8,8 +8,8 @@ class RemoveTargetBodyPartFromTables < ActiveRecord::Migration[5.2]
   end
 
   def down
-    add_column :exercise_logs, :target_body_part, :string, default: ''
-    add_column :pain_logs, :target_body_part, :string, default: ''
-    add_column :physical_therapy_sessions, :target_body_part, :string, default: ''
+    add_column :exercise_logs, :target_body_part, :string, default: ""
+    add_column :pain_logs, :target_body_part, :string, default: ""
+    add_column :physical_therapy_sessions, :target_body_part, :string, default: ""
   end
 end

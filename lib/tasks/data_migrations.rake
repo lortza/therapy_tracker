@@ -34,7 +34,7 @@ namespace :data do
   #   puts "Actual count: #{ExerciseLog.count}"
   # end
 
-  task :remove_old_session_ex => :environment do
+  task remove_old_session_ex: :environment do
     # handled via migrations. No need to remove additional data.
   end
 end

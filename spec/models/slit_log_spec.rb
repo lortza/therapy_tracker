@@ -1,38 +1,38 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe SlitLog, type: :model do
-  context 'associations' do
+  context "associations" do
     it { should belong_to(:user) }
   end
 
-  context 'validations' do
+  context "validations" do
     it { should validate_presence_of(:occurred_at) }
   end
 
-  describe 'before_save actions' do
-    describe 'private: set_doses_remaining' do
+  describe "before_save actions" do
+    describe "private: set_doses_remaining" do
       before do
         user = create(:user)
         create(:slit_log, user: user, occurred_at: DateTime.current - 2.days, doses_remaining: previous_balance)
       end
 
-      context 'when the new log contains a value for doses_remaining' do
+      context "when the new log contains a value for doses_remaining" do
         let(:slit_log) { build(:slit_log, doses_remaining: 15) }
         let(:previous_balance) { 30 }
 
-        it 'sets uses the existing doses_remaining value' do
+        it "sets uses the existing doses_remaining value" do
           slit_log.send(:set_doses_remaining)
           expect(slit_log.doses_remaining).to eq(15)
         end
       end
 
-      context 'when starting a new bottle' do
+      context "when starting a new bottle" do
         let(:slit_log) { build(:slit_log, started_new_bottle: true) }
         let(:previous_balance) { nil }
 
-        it 'sets the doses_remaining to the default value' do
+        it "sets the doses_remaining to the default value" do
           slit_log.send(:set_doses_remaining)
           expect(slit_log.doses_remaining).to eq(SlitLog::MAX_BOTTLE_DOSES)
         end
@@ -42,7 +42,7 @@ RSpec.describe SlitLog, type: :model do
         let(:slit_log) { build(:slit_log) }
         let(:previous_balance) { nil }
 
-        it 'sets the doses_remaining to nil' do
+        it "sets the doses_remaining to nil" do
           slit_log.send(:set_doses_remaining)
           expect(slit_log.doses_remaining).to be(nil)
         end
@@ -52,7 +52,7 @@ RSpec.describe SlitLog, type: :model do
         let(:slit_log) { build(:slit_log) }
         let(:previous_balance) { 1 }
 
-        it 'calls calculate_doses_remaining' do
+        it "calls calculate_doses_remaining" do
           expect(slit_log).to receive(:calculate_doses_remaining)
           slit_log.send(:set_doses_remaining)
         end
@@ -60,8 +60,8 @@ RSpec.describe SlitLog, type: :model do
     end
   end
 
-  describe 'private: #calculate_doses_remaining' do
-    context 'when the current log is a skipped dose' do
+  describe "private: #calculate_doses_remaining" do
+    context "when the current log is a skipped dose" do
       it "uses the previous log's value" do
         previous_value = 5
         expect(SlitLog.new(dose_skipped: true).send(:calculate_doses_remaining, previous_value)).to eq(previous_value)
@@ -75,13 +75,13 @@ RSpec.describe SlitLog, type: :model do
     end
 
     context "when the previous log's value is zero" do
-      it 'returns 0' do
+      it "returns 0" do
         expect(SlitLog.new.send(:calculate_doses_remaining, 0)).to eq(0)
       end
     end
 
     context "when the previous log's value is less than zero" do
-      it 'returns 0' do
+      it "returns 0" do
         expect(SlitLog.new.send(:calculate_doses_remaining, -1)).to eq(0)
       end
     end

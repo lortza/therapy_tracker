@@ -6,6 +6,6 @@ class RemoveExerciseNameFromExerciseLogs < ActiveRecord::Migration[5.2]
   end
 
   def down
-    add_column :exercise_logs, :exercise_name, :string, default: ''
+    add_column :exercise_logs, :exercise_name, :string, default: ""
   end
 end
