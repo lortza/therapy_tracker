@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby File.read(".ruby-version").strip
+ruby File.read('.ruby-version').strip
 
 gem 'rails', '7.2.2' # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'puma', '~> 6.4' # Use Puma as the app server
