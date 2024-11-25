@@ -2,10 +2,10 @@
 
 class Report
   attr_reader :filter_params
-  TIMEFRAMES = [['Past Week', 7],
-                ['Past Two Weeks', 14],
-                ['Past Month', 30],
-                ['Past Year', 360],].freeze
+  TIMEFRAMES = [["Past Week", 7],
+    ["Past Two Weeks", 14],
+    ["Past Month", 30],
+    ["Past Year", 360]].freeze
 
   def initialize(filter_params)
     @filter_params = filter_params

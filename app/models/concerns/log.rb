@@ -7,7 +7,7 @@ module Log
       user.pt_session_logs.decorate.to_a,
       user.pain_logs.decorate.to_a,
       user.exercise_logs.at_home.decorate.to_a,
-      user.slit_logs.decorate.to_a,
+      user.slit_logs.decorate.to_a
     ]
 
     logs.flatten.sort_by { |a| a[:occurred_at] }.reverse!
@@ -18,7 +18,7 @@ module Log
   end
 
   def for_past_n_days(qty_days)
-    where('occurred_at >= ? AND occurred_at <= ?', qty_days.days.ago, today)
+    where("occurred_at >= ? AND occurred_at <= ?", qty_days.days.ago, today)
   end
 
   def for_body_part(id)

@@ -6,8 +6,8 @@ class PainLogQuickFormValuesController < ApplicationController
 
   def index
     @pain_log_quick_form_values = current_user.pain_log_quick_form_values
-                                              .search(params[:search])
-                                              .by_name
+      .search(params[:search])
+      .by_name
   end
 
   def new
@@ -51,12 +51,7 @@ class PainLogQuickFormValuesController < ApplicationController
   end
 
   def pain_log_quick_form_value_params
-    params.require(:pain_log_quick_form_value).permit(:user_id,
-                                                      :body_part_id,
-                                                      :pain_id,
-                                                      :pain_level,
-                                                      :trigger,
-                                                      :pain_description,
-                                                      :name)
+    params.require(:pain_log_quick_form_value)
+      .permit(:user_id, :body_part_id, :pain_id, :pain_level, :trigger, :pain_description, :name)
   end
 end

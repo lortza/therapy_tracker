@@ -3,12 +3,12 @@
 class SlitLogsController < ApplicationController
   before_action :set_slit_log, only: %i[edit update destroy]
   before_action :authorize_slit_log, only: %i[edit update destroy]
-  layout 'no_white_container', only: [:index]
+  layout "no_white_container", only: [:index]
 
   def index
     logs = current_user.slit_logs
-                       .order(occurred_at: 'DESC')
-                       .paginate(page: params[:page], per_page: 25)
+      .order(occurred_at: "DESC")
+      .paginate(page: params[:page], per_page: 25)
 
     @logs = SlitLogDecorator.decorate_collection(logs)
   end
@@ -33,7 +33,7 @@ class SlitLogsController < ApplicationController
   end
 
   def quick_log_create
-    attrs = { occurred_at: Time.current, started_new_bottle: params[:started_new_bottle] }
+    attrs = {occurred_at: Time.current, started_new_bottle: params[:started_new_bottle]}
     @slit_log = current_user.slit_logs.new(attrs).decorate
 
     respond_to do |format|
@@ -59,7 +59,7 @@ class SlitLogsController < ApplicationController
   def destroy
     @slit_log.destroy
     respond_to do |format|
-      format.html { redirect_to root_url, notice: 'slit log was successfully destroyed.' }
+      format.html { redirect_to root_url, notice: "slit log was successfully destroyed." }
     end
   end
 
@@ -74,9 +74,11 @@ class SlitLogsController < ApplicationController
   end
 
   def slit_log_params
-    params.require(:slit_log).permit(:user_id,
-                                     :occurred_at,
-                                     :started_new_bottle,
-                                     :doses_remaining)
+    params.require(:slit_log).permit(
+      :user_id,
+      :occurred_at,
+      :started_new_bottle,
+      :doses_remaining
+    )
   end
 end

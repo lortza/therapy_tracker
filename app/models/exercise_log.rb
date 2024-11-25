@@ -9,23 +9,23 @@ class ExerciseLog < ApplicationRecord
   belongs_to :pt_session_log, optional: true
 
   validates :occurred_at,
-            :exercise_id,
-            :body_part_id,
-            presence: true
+    :exercise_id,
+    :body_part_id,
+    presence: true
 
   validates :sets,
-            :reps,
-            :rep_length,
-            presence: true,
-            numericality: true
+    :reps,
+    :rep_length,
+    presence: true,
+    numericality: true
 
   validates :burn_set,
-            :burn_rep,
-            presence: { on: :update }
+    :burn_rep,
+    presence: {on: :update}
 
   validates :burn_set,
-            :burn_rep,
-            numericality: { on: :update }
+    :burn_rep,
+    numericality: {on: :update}
 
   delegate :name, to: :body_part, prefix: true
   delegate :name, to: :exercise, prefix: true

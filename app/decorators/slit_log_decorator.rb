@@ -4,14 +4,14 @@ class SlitLogDecorator < ApplicationDecorator
   delegate_all
 
   def display_name
-    'SLIT Dose'
+    "SLIT Dose"
   end
 
   def icon_name
-    'colorize'
+    "colorize"
   end
 
   def css_name
-    'slit'
+    "slit"
   end
 end

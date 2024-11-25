@@ -3,15 +3,15 @@
 class PainLogsController < ApplicationController
   before_action :set_pain_log, only: %i[show edit update destroy]
   before_action :authorize_pain_log, only: %i[show edit update destroy]
-  layout 'no_white_container', only: [:index]
+  layout "no_white_container", only: [:index]
 
   def index
     logs = current_user.pain_logs
-                       .search(body_part_id: search_params[:body_part_id],
-                               pain_id: search_params[:pain_id],
-                               search_terms: search_params[:search])
-                       .order(occurred_at: 'DESC')
-                       .paginate(page: params[:page], per_page: 25)
+      .search(body_part_id: search_params[:body_part_id],
+        pain_id: search_params[:pain_id],
+        search_terms: search_params[:search])
+      .order(occurred_at: "DESC")
+      .paginate(page: params[:page], per_page: 25)
 
     @logs = PainLogDecorator.decorate_collection(logs)
   end
@@ -64,7 +64,7 @@ class PainLogsController < ApplicationController
   def destroy
     @pain_log.destroy
     respond_to do |format|
-      format.html { redirect_to root_url, notice: 'Pain log was successfully destroyed.' }
+      format.html { redirect_to root_url, notice: "Pain log was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -88,12 +88,14 @@ class PainLogsController < ApplicationController
   end
 
   def pain_log_params
-    params.require(:pain_log).permit(:user_id,
-                                     :body_part_id,
-                                     :pain_id,
-                                     :occurred_at,
-                                     :pain_level,
-                                     :pain_description,
-                                     :trigger)
+    params.require(:pain_log).permit(
+      :user_id,
+      :body_part_id,
+      :pain_id,
+      :occurred_at,
+      :pain_level,
+      :pain_description,
+      :trigger
+    )
   end
 end

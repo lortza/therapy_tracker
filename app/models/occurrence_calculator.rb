@@ -14,7 +14,7 @@ class OccurrenceCalculator
   def frequency
     occurrence_qty = occurrences.length
     if occurrence_qty == 1
-      'once'
+      "once"
     elsif occurrence_qty >= timeframe.qty
       qty = (occurrence_qty / timeframe.qty).round(1)
       "#{qty} per #{timeframe.unit}"
@@ -32,19 +32,19 @@ class OccurrenceCalculator
     case days_between_first_and_last
     when 0
       data.qty = 1.round(1)
-      data.unit = 'day'
+      data.unit = "day"
     when 1..6
       data.qty = days_between_first_and_last.round(1)
-      data.unit = 'day'
+      data.unit = "day"
     when 7..29
       data.qty = (days_between_first_and_last / 7).round(1)
-      data.unit = 'week'
+      data.unit = "week"
     when 30..360
       data.qty = (days_between_first_and_last / 30).round(1)
-      data.unit = 'month'
+      data.unit = "month"
     else
       data.qty = (days_between_first_and_last / 360).round(1)
-      data.unit = 'year'
+      data.unit = "year"
     end
     data
   end

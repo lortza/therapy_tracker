@@ -3,13 +3,13 @@
 class ExerciseLogsController < ApplicationController
   before_action :set_exercise_log, only: %i[show edit update destroy]
   before_action :authorize_exercise_log, only: %i[show edit update destroy]
-  layout 'no_white_container', only: [:index]
+  layout "no_white_container", only: [:index]
 
   def index
     logs = current_user.exercise_logs
-                       .at_home
-                       .order(occurred_at: 'DESC')
-                       .paginate(page: params[:page], per_page: 25)
+      .at_home
+      .order(occurred_at: "DESC")
+      .paginate(page: params[:page], per_page: 25)
 
     @logs = ExerciseLogDecorator.decorate_collection(logs)
   end
@@ -70,17 +70,19 @@ class ExerciseLogsController < ApplicationController
   end
 
   def exercise_log_params
-    params.require(:exercise_log).permit(:user_id,
-                                         :body_part_id,
-                                         :occurred_at,
-                                         :exercise_id,
-                                         :sets,
-                                         :reps,
-                                         :rep_length,
-                                         :per_side,
-                                         :resistance,
-                                         :burn_set,
-                                         :burn_rep,
-                                         :progress_note)
+    params.require(:exercise_log).permit(
+      :user_id,
+      :body_part_id,
+      :occurred_at,
+      :exercise_id,
+      :sets,
+      :reps,
+      :rep_length,
+      :per_side,
+      :resistance,
+      :burn_set,
+      :burn_rep,
+      :progress_note
+    )
   end
 end

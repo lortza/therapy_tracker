@@ -4,14 +4,14 @@ class PainLogDecorator < ApplicationDecorator
   delegate_all
 
   def icon_name
-    'recent_patient'
+    "recent_patient"
   end
 
   def display_name
-    'Pain'
+    "Pain"
   end
 
   def css_name
-    'pain'
+    "pain"
   end
 end

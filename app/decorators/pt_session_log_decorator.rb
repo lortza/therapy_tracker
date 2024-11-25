@@ -4,14 +4,14 @@ class PtSessionLogDecorator < ApplicationDecorator
   delegate_all
 
   def display_name
-    'PT Session'
+    "PT Session"
   end
 
   def icon_name
-    'physical_therapy'
+    "physical_therapy"
   end
 
   def css_name
-    'therapy'
+    "therapy"
   end
 end

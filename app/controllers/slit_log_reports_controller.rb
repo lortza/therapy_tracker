@@ -5,7 +5,7 @@ class SlitLogReportsController < ApplicationController
     start_date = search_params[:start_date].to_date.beginning_of_day
     end_date = search_params[:end_date].to_date.end_of_day
     logs = current_user.slit_logs.where(occurred_at: start_date..end_date)
-                       .order(occurred_at: :asc)
+      .order(occurred_at: :asc)
     #  .paginate(page: params[:page], per_page: SlitLogReport::RECORD_LIMIT)
 
     @logs = SlitLogDecorator.decorate_collection(logs)

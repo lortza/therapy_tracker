@@ -1,0 +1,6 @@
+ignore:
+  - "config/environments/**/*"
+  - "bin/*"
+  - "tmp/**/*"
+  - "node_modules/**/*"
+  - "vendor/**/*"

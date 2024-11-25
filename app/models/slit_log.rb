@@ -26,7 +26,7 @@ class SlitLog < ApplicationRecord
 
   def previous_log
     current_stamp = DateTime.current
-    SlitLog.where('occurred_at < ?', current_stamp).order(occurred_at: :desc).first
+    SlitLog.where("occurred_at < ?", current_stamp).order(occurred_at: :desc).first
   end
 
   def calculate_doses_remaining(previous_log_doses_remaining)

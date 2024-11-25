@@ -36,7 +36,7 @@ class PainsController < ApplicationController
   def destroy
     @pain.destroy
     respond_to do |format|
-      format.html { redirect_to pains_url, notice: 'Pain was successfully destroyed.' }
+      format.html { redirect_to pains_url, notice: "Pain was successfully destroyed." }
       format.json { head :no_content }
     end
   end
