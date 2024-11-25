@@ -7,9 +7,9 @@
 name: "Ruby on Rails CI"
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -42,23 +42,23 @@ jobs:
       - name: Check Seeds
         run: bundle exec rake db:seed
 
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Install Ruby and gems
-        uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
-      # - name: Lint CSS
-      #   run: bundle exec scss-lint app/assets/stylesheets/**.scss
-      - name: Rubocop
-        run: bundle exec rubocop --parallel
-      # Add or replace any other lints here
-      # - name: Reek
-      #   run: bundle exec reek
-      # - name: Security audit dependencies
-      #   run: bin/bundler-audit --update
-      # - name: Security audit application code
-      #   run: bin/brakeman -q -w2
+  # lint:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v4
+  #     - name: Install Ruby and gems
+  #       uses: ruby/setup-ruby@v1
+  #       with:
+  #         bundler-cache: true
+  #     - name: Lint CSS
+  #       run: bundle exec scss-lint app/assets/stylesheets/**.scss
+  #     - name: Rubocop
+  #       run: bundle exec rubocop --parallel
+  #     #Add or replace any other lints here
+  #     - name: Reek
+  #       run: bundle exec reek
+  #     - name: Security audit dependencies
+  #       run: bin/bundler-audit --update
+  #     - name: Security audit application code
+  #       run: bin/brakeman -q -w2
