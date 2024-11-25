@@ -5,7 +5,7 @@ namespace :heroku_cron do
   # UTC is 4 hours ahead of Eastern Time: https://savvytime.com/converter/utc-to-est
 
   namespace :slit_logs do
-    desc 'Create Skipped Dose'
+    desc "Create Skipped Dose"
     task create_skipped_dose: :environment do
       # rake heroku_cron:slit_logs:create_skipped_dose
 
@@ -15,7 +15,7 @@ namespace :heroku_cron do
   end
 
   namespace :dummy_records do
-    desc 'Create DummyRecord'
+    desc "Create DummyRecord"
     task create: :environment do
       # rake heroku_cron:dummy_records:create
 
