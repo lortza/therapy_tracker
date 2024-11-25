@@ -16,7 +16,6 @@ This is an app to track physical therapy exercise logs.
 - [Dependabot](https://app.dependabot.com/accounts/lortza/) dependency manager
 - Admin namespace for Users
 
-
 ## Dev Setup
 
 Clone this repo, set your Ruby version to 2.5.3, and run `bundle install` to install gems!
@@ -25,9 +24,11 @@ Run `rails s` to start your Rails server.
 Visit localhost:3000 on your browser!
 
 ### Linters
-This project uses [rubocop](https://github.com/rubocop-hq/rubocop) and [scss-lint](https://github.com/sds/scss-lint). Run them locally on your machine like this:
+
+This project uses [standard rb](https://github.com/standardrb/standard) (in support of the [VS Code extension](https://github.com/standardrb/vscode-standard-ruby?tab=readme-ov-file)) and [scss-lint](https://github.com/sds/scss-lint). Run them locally on your machine like this:
+
 ```
-bundle exec rubocop
+bundle exec standardrb
 
 bundle exec scss-lint app/assets/stylesheets/**.scss
 ```
@@ -46,7 +47,6 @@ Log every time you do an exercise, tracking your sets, reps, burn reps, and resi
 
 ![alt text](/public/screenshots/index.png "index page")
 
-
 #### Rep Counter
 
 One of my favorite features of this application is the rep counter. After entering a new exercise log, you can launch the counter and it will play beeps and count your reps for you, indicating which set and rep you're on.
@@ -54,24 +54,25 @@ One of my favorite features of this application is the rep counter. After enteri
 ![alt text](/public/screenshots/rep_counter.png "rep counter")
 
 The rep counter is all async javascript. As a backend Rubyist, this part makes my brain hurt.
+
 ```javascript
 var repsCounter = 1;
 async function countReps() {
   while (repsCounter <= reps) {
     console.log(`Set ${setsCounter}, rep ${repsCounter}`);
     repDisplayer.textContent = repsCounter;
-    soundRep.play().catch(e => {
+    soundRep.play().catch((e) => {
       console.log(e);
     });
 
     await sleep(repLength * 1000);
-    repsCounter++
+    repsCounter++;
   }
   repsCounter = 1;
   console.log(`Set ${setsCounter} complete`);
-  beginFinishedIndicator.textContent = 'Rest...';
+  beginFinishedIndicator.textContent = "Rest...";
   repDisplayer.textContent = 0;
-};
+}
 ```
 
 ### Pain Logging
@@ -105,10 +106,10 @@ The reporting is possibly the flashiest part of this app, but the least complica
 ```html
 <h3>Exercises vs Pain</h3>
 <h4>Grouped by Day</h4>
-<%= area_chart [
-  {name: 'Qty Exercises', data: @report.exercise_logs.group_by_day(:occurred_at).count},
-  {name: 'Pain Levels Total', data: @report.pain_logs.group_by_day(:occurred_at).sum(:pain_level)},
-] %>
+<%= area_chart [ {name: 'Qty Exercises', data:
+@report.exercise_logs.group_by_day(:occurred_at).count}, {name: 'Pain Levels
+Total', data: @report.pain_logs.group_by_day(:occurred_at).sum(:pain_level)}, ]
+%>
 ```
 
 ## Contributing
