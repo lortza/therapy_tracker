@@ -14,7 +14,7 @@ RSpec.describe "pains/index", type: :view do
 
     render
     assert_select "form"
-    assert_select "h3>a", text: "Name1".to_s, count: 1
-    assert_select "h3>a", text: "Name2".to_s, count: 1
+    assert_select "h3>a", text: "Name1", count: 1
+    assert_select "h3>a", text: "Name2", count: 1
   end
 end
