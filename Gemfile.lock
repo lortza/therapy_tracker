@@ -306,7 +306,7 @@ GEM
       ast (~> 2.4.1)
       racc
     path_expander (1.1.3)
-    pg (1.6.0)
+    pg (1.6.1)
     pp (0.6.2)
       prettyprint
     prettyprint (0.2.0)
