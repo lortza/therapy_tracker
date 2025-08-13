@@ -13,7 +13,7 @@ gem "uglifier", ">= 1.3.0" # Use Uglifier as compressor for JavaScript assets
 
 gem "hotwire-rails"
 gem "importmap-rails"
-gem "jbuilder", "~> 2.13" # https://github.com/rails/jbuilder
+gem "jbuilder", "~> 2.14" # https://github.com/rails/jbuilder
 gem "sdoc", "~> 2.6.1", group: :doc
 gem "rack-mini-profiler"
 gem "sprockets-rails"
