@@ -333,9 +333,9 @@ GEM
       date
       jar-dependencies (>= 0.1.7)
     public_suffix (6.0.2)
-    puma (6.6.1)
+    puma (7.0.2)
       nio4r (~> 2.0)
-    puma (6.6.1-java)
+    puma (7.0.2-java)
       nio4r (~> 2.0)
     racc (1.8.1)
     racc (1.8.1-java)
@@ -627,7 +627,7 @@ DEPENDENCIES
   pry-awesome_print
   pry-byebug
   pry-rails
-  puma (~> 6.6)
+  puma (~> 7.0)
   rack-mini-profiler
   rails (= 7.2.2.1)
   rails-controller-testing
