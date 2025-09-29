@@ -489,7 +489,7 @@ GEM
       tilt
     scss_lint (0.60.0)
       sass (~> 3.5, >= 3.5.5)
-    sdoc (2.6.1)
+    sdoc (2.6.4)
       rdoc (>= 5.0)
     securerandom (0.4.1)
     seed_dump (3.3.1)
@@ -636,7 +636,7 @@ DEPENDENCIES
   rubycritic
   sass-rails (~> 6.0)
   scss_lint
-  sdoc (~> 2.6.1)
+  sdoc (~> 2.6.4)
   seed_dump
   selenium-webdriver
   sentry-rails
