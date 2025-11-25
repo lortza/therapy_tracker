@@ -239,9 +239,9 @@ GEM
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     jar-dependencies (0.5.5)
-    jbuilder (2.13.0)
-      actionview (>= 5.0.0)
-      activesupport (>= 5.0.0)
+    jbuilder (2.14.1)
+      actionview (>= 7.0.0)
+      activesupport (>= 7.0.0)
     json (2.12.0)
     json (2.12.0-java)
     language_server-protocol (3.17.0.5)
@@ -615,7 +615,7 @@ DEPENDENCIES
   guard-rspec
   hotwire-rails
   importmap-rails
-  jbuilder (~> 2.13)
+  jbuilder (~> 2.14)
   launchy
   letter_opener
   listen (>= 3.0.5, < 3.10)
