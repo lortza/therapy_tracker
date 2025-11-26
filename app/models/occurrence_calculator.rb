@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require "ostruct"
 
 class OccurrenceCalculator
@@ -9,11 +10,15 @@ class OccurrenceCalculator
   end
 
   def avg_pain_level
+    return 0 if occurrences.empty?
+
     (pain_levels.sum / occurrences.length).to_i
   end
 
   def frequency
     occurrence_qty = occurrences.length
+    return "never" if occurrence_qty.zero?
+
     if occurrence_qty == 1
       "once"
     elsif occurrence_qty >= timeframe.qty
@@ -26,6 +31,14 @@ class OccurrenceCalculator
   end
 
   def timeframe
+    # Handle edge case where there are no occurrences or only one
+    if occurrences.empty? || first_datetime.nil? || last_datetime.nil?
+      data = OpenStruct.new
+      data.qty = 1.0
+      data.unit = "day"
+      return data
+    end
+
     seconds = last_datetime - first_datetime
     days_between_first_and_last = (seconds / 60 / 60 / 24)
     data = OpenStruct.new
