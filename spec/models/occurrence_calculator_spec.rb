@@ -27,9 +27,25 @@ RSpec.describe OccurrenceCalculator, type: :model do
 
       expect(calculator.avg_pain_level).to eq(2)
     end
+
+    context "with no occurrences" do
+      let(:occurrences) { [] }
+
+      it "returns 0" do
+        expect(calculator.avg_pain_level).to eq(0)
+      end
+    end
   end
 
   describe "frequency" do
+    context "when there are no occurrences" do
+      let(:occurrences) { [] }
+
+      it 'returns "never"' do
+        expect(calculator.frequency).to eq("never")
+      end
+    end
+
     context "when it only happened once" do
       let(:pain_log1) { create(:pain_log, body_part: body_part, pain: pain, occurred_at: today - 1.month) }
       let(:occurrences) { [pain_log1] }
@@ -69,6 +85,15 @@ RSpec.describe OccurrenceCalculator, type: :model do
     let(:pain_log5) { create(:pain_log, body_part: body_part, pain: pain, occurred_at: today - 2.weeks) }
     let(:pain_log6) { create(:pain_log, body_part: body_part, pain: pain, occurred_at: today - 2.years) }
     let(:occurrences) { [pain_log1, pain_log2] }
+
+    context "with no occurrences" do
+      let(:occurrences) { [] }
+
+      it "returns a default timeframe" do
+        expect(calculator.timeframe.qty).to eq(1.0)
+        expect(calculator.timeframe.unit).to eq("day")
+      end
+    end
 
     it "returns the timeframe between the first and last occurrences" do
       expect(calculator.timeframe.qty).to eq(2.0)
