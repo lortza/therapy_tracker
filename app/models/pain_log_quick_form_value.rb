@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class PainLogQuickFormValue < ApplicationRecord
-  extend Nameable
+  extend Sortable
+  extend Searchable
 
   belongs_to :user
   belongs_to :pain
