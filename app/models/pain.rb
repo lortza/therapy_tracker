@@ -19,11 +19,5 @@ class Pain < ApplicationRecord
     def logs?
       joins(:pain_logs).group("pains.id").order(:id)
     end
-
-    def log_count_by_name
-      logs?.map do |pain|
-        [pain.name, pain.pain_logs.count]
-      end
-    end
   end
 end

@@ -37,16 +37,6 @@ RSpec.describe Pain, type: :model do
     end
   end
 
-  describe "self.log_count_by_name" do
-    let!(:pain1) { create(:pain, :with_3_pain_logs, name: "pain1") }
-    let!(:pain2) { create(:pain, :with_3_pain_logs, name: "pain2") }
-
-    it "returns the pain name and the count of its logs as a nested array" do
-      expected_output = [["pain1", 3], ["pain2", 3]]
-      expect(Pain.log_count_by_name).to match_array(expected_output)
-    end
-  end
-
   describe "self.by_name" do
     it "returns a list of pains ordered by name, ascending" do
       pain1 = create(:pain, name: "a")

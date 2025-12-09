@@ -73,14 +73,4 @@ RSpec.describe PainLog, type: :model do
       expect(PainLog.for_body_part(arm.id)).to_not include(leg_log)
     end
   end
-
-  describe "self.group_by_pain_and_count" do
-    let!(:pain1) { create(:pain, :with_3_pain_logs, name: "pain1") }
-    let!(:pain2) { create(:pain, :with_3_pain_logs, name: "pain2") }
-
-    it "returns the pain name and the count of its logs as a nested array" do
-      expected_output = [["pain2", 3], ["pain1", 3]]
-      expect(PainLog.group_by_pain_and_count).to match_array(expected_output)
-    end
-  end
 end
