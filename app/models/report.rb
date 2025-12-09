@@ -1,14 +1,16 @@
 # frozen_string_literal: true
 
 class Report
-  attr_reader :filter_params
+  attr_reader :user, :body_part, :timeframe
   TIMEFRAMES = [["Past Week", 7],
     ["Past Two Weeks", 14],
     ["Past Month", 30],
     ["Past Year", 360]].freeze
 
-  def initialize(filter_params)
-    @filter_params = filter_params
+  def initialize(user:, timeframe:, body_part_id:)
+    @user = user
+    @timeframe = timeframe.presence&.to_i
+    @body_part = BodyPart.find_by(id: body_part_id)
   end
 
   def exercise_logs
@@ -28,11 +30,11 @@ class Report
   end
 
   def exercises
-    @exercises ||= filter_params[:user].exercises
+    @exercises ||= user.exercises
   end
 
   def body_parts
-    @body_parts ||= filter_params[:user].body_parts
+    @body_parts ||= user.body_parts
   end
 
   def pain_stats_by_body_part
@@ -42,10 +44,10 @@ class Report
   private
 
   def query_logs(log_type)
-    logs = log_type.where(user_id: @filter_params[:user].id)
+    logs = log_type.where(user_id: user.id)
 
-    logs = logs.for_body_part(@filter_params[:body_part_id]) if @filter_params[:body_part_id].present?
-    logs = logs.for_past_n_days(@filter_params[:timeframe].to_i) if @filter_params[:timeframe].present?
+    logs = logs.for_body_part(body_part.id) if body_part.present?
+    logs = logs.for_past_n_days(timeframe) if timeframe.present?
     logs
   end
 end
