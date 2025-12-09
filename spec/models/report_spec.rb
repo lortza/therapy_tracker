@@ -5,15 +5,6 @@ require "rails_helper"
 RSpec.describe Report, type: :model do
   let(:user) { create(:user) }
 
-  xcontext "attributes" do
-    it "should have all of its attributes" do
-      expected_attributes = %w[filter_params]
-      actual_attributes = build(:report).attributes.keys
-
-      expect(actual_attributes).to match_array(expected_attributes)
-    end
-  end
-
   describe "pain_stats_by_body_part" do
     let(:body_part) { create(:body_part, user: user) }
     let(:pain) { create(:pain, user: user) }
