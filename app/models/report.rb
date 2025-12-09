@@ -25,8 +25,13 @@ class Report
     @pt_session_logs ||= query_logs(PtSessionLog)
   end
 
-  def pains
-    @pains ||= filter_params[:user].pains
+
+  def exercise_log_count_by_body_part
+    exercise_logs.group("body_parts.name")
+      .joins(:body_part)
+      .order("body_parts.name")
+      .count
+      .to_a
   end
 
   def exercises

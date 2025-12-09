@@ -47,16 +47,9 @@
   {name: 'Pain Logs', data: @report.pain_logs.group_by_day(:occurred_at).count},
 ] %>
 
+<h3>Exercise Logs by Body Part</h3>
+Why are these showing all records and not just for the body part?
+<%= pie_chart @report.exercise_log_count_by_body_part %>
 <hr>
-<h3>Exercise Logs by Type</h3>
-<%= pie_chart @report.exercise_logs.group_by_exercise_and_count %>
-<hr>
+<% end %>
 
-<h3>Pain Logs by Type</h3>
-<%= bar_chart @report.pains.log_count_by_name %>
-<hr>
-
-<h3>Frequency of Pain By Day</h3>
-<h4>Grouped by Day</h4>
-<%= line_chart @report.pain_logs.group_by_day(:occurred_at).count %>
-<%#= scatter_chart @report.pain_logs.pluck(:occurred_at, :pain_level), xtitle: "Date", ytitle: "Pain Level" %>

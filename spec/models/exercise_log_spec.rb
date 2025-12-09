@@ -148,16 +148,6 @@ RSpec.describe ExerciseLog, type: :model do
     end
   end
 
-  describe "self.group_by_exercise_and_count" do
-    let!(:exercise1) { create(:exercise, :with_3_exercise_logs, name: "cross-body isometrics") }
-    let!(:exercise2) { create(:exercise, :with_3_exercise_logs, name: "clam shells") }
-
-    it "returns the exercise name and the count of its logs as a nested array" do
-      expected_output = [["cross-body isometrics", 3], ["clam shells", 3]]
-      expect(ExerciseLog.group_by_exercise_and_count).to match_array(expected_output)
-    end
-  end
-
   describe "self.minutes_spent_by_day" do
     it "returns a hash of dates and total minutes" do
       create(:exercise_log,

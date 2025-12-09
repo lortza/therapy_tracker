@@ -34,13 +34,6 @@ class ExerciseLog < ApplicationRecord
   scope :at_pt, -> { where.not(pt_session_log_id: nil) }
 
   class << self
-    def group_by_exercise_and_count
-      ex_ids_and_counts = group(:exercise_id).count
-      ex_ids_and_counts.map do |k, v|
-        [Exercise.find(k).name, v]
-      end
-    end
-
     def minutes_spent_by_day
       output = {}
       all.find_each do |log|
