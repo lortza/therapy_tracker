@@ -4,7 +4,7 @@
   <div class='field'>
     <%= form.label 'Target Body Part', class: 'required' %>
     <%= form.collection_select :body_part_id,
-        current_user.body_parts.active,
+        current_user.body_parts.active.by_name,
         :id,
         :name,
         { prompt: '--Select--' },
