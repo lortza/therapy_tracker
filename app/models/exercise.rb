@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class Exercise < ApplicationRecord
-  extend Nameable
+  extend Sortable
+  extend Searchable
 
   belongs_to :user
   has_many :exercise_logs, dependent: :destroy

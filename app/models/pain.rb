@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class Pain < ApplicationRecord
-  extend Nameable
+  extend Sortable
+  extend Searchable
 
   belongs_to :user
   has_many :pain_log_quick_form_values, dependent: :destroy
