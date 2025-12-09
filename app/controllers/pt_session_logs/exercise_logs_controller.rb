@@ -64,7 +64,7 @@ class PtSessionLogs::ExerciseLogsController < PtSessionLogsController
   end
 
   def set_exercise_log
-    @exercise_log = ExerciseLog.find(params[:id])
+    @exercise_log = ExerciseLog.find(params[:id]).decorate
   end
 
   def set_pt_session_log
