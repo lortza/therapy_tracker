@@ -1,10 +1,4 @@
-<%#= pie_chart({"Football" => 10, "Basketball" => 5}) %>
-<%#= pie_chart [["Football", 10], ["Basketball", 5]] %>
-
-<%#= line_chart [
-  {name: "Series A", data: series_a},
-  {name: "Series B", data: series_b}
-] %>
+<!-- Chart rendering handled by chartkick gem -->
 
 <h1>Charts</h1>
 <%= render partial: 'shared/filter_form', locals: { destination_path: charts_path, body_parts: @report.body_parts } %>
@@ -19,44 +13,48 @@
 ] %>
 
 <hr>
-<h3>Exercises vs Pain</h3>
-<h4>Grouped by Day</h4>
-<%= area_chart [
-  {name: 'Qty Exercises', data: @report.exercise_logs.group_by_day(:occurred_at).count},
-  {name: 'Pain Levels Total', data: @report.pain_logs.group_by_day(:occurred_at).sum(:pain_level)},
-] %>
-
-<%= bar_chart [
-  {name: 'Minutes Exercised', data: @report.exercise_logs.minutes_spent_by_day},
-  {name: 'Pain Levels Total', data: @report.pain_logs.group_by_day(:occurred_at).sum(:pain_level)},
-] %>
-
-<hr>
-<h3>Home vs PT Exercises</h3>
-<%= area_chart [
-  {name: 'Qty Pt Session Exercises', data: @report.exercise_logs.at_pt.group_by_day(:occurred_at).count},
-  {name: 'Qty Home Exercises', data: @report.exercise_logs.at_home.group_by_day(:occurred_at).count},
-] %>
-
-<hr>
-<h3>Pain, Exercise, & Therapy</h3>
-<h4>Grouped by Day</h4>
-<%= line_chart [
-  {name: 'Exercise Logs', data: @report.exercise_logs.group_by_day(:occurred_at).count},
-  {name: 'Physical Therapy Sessions', data: @report.pt_session_logs.group_by_day(:occurred_at).count},
-  {name: 'Pain Logs', data: @report.pain_logs.group_by_day(:occurred_at).count},
-] %>
-
-<hr>
-<h3>Exercise Logs by Type</h3>
-<%= pie_chart @report.exercise_logs.group_by_exercise_and_count %>
-<hr>
-
 <h3>Pain Logs by Type</h3>
-<%= bar_chart @report.pains.log_count_by_name %>
-<hr>
+<%= bar_chart @report.pain_log_count_by_pain %>
 
+<hr>
 <h3>Frequency of Pain By Day</h3>
 <h4>Grouped by Day</h4>
 <%= line_chart @report.pain_logs.group_by_day(:occurred_at).count %>
-<%#= scatter_chart @report.pain_logs.pluck(:occurred_at, :pain_level), xtitle: "Date", ytitle: "Pain Level" %>
+
+
+<% if current_user.enable_pt_session_tracking %>
+  <hr>
+  <h3>Exercises vs Pain</h3>
+  <h4>Grouped by Day</h4>
+  <%= area_chart [
+    {name: 'Qty Exercises', data: @report.exercise_logs.group_by_day(:occurred_at).count},
+    {name: 'Pain Levels Total', data: @report.pain_logs.group_by_day(:occurred_at).sum(:pain_level)},
+  ] %>
+
+  <%= bar_chart [
+    {name: 'Minutes Exercised', data: @report.exercise_logs.minutes_spent_by_day},
+    {name: 'Pain Levels Total', data: @report.pain_logs.group_by_day(:occurred_at).sum(:pain_level)},
+  ] %>
+
+  <hr>
+  <h3>Home vs PT Exercises</h3>
+  <%= area_chart [
+    {name: 'Qty Pt Session Exercises', data: @report.exercise_logs.at_pt.group_by_day(:occurred_at).count},
+    {name: 'Qty Home Exercises', data: @report.exercise_logs.at_home.group_by_day(:occurred_at).count},
+  ] %>
+
+  <hr>
+  <h3>Pain, Exercise, & Therapy</h3>
+  <h4>Grouped by Day</h4>
+  <%= line_chart [
+    {name: 'Exercise Logs', data: @report.exercise_logs.group_by_day(:occurred_at).count},
+    {name: 'Physical Therapy Sessions', data: @report.pt_session_logs.group_by_day(:occurred_at).count},
+    {name: 'Pain Logs', data: @report.pain_logs.group_by_day(:occurred_at).count},
+  ] %>
+
+  <h3>Exercise Logs by Body Part</h3>
+  Why are these showing all records and not just for the body part?
+  <%= pie_chart @report.exercise_log_count_by_body_part %>
+  <hr>
+<% end %>
+

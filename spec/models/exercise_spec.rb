@@ -51,22 +51,6 @@ RSpec.describe Exercise, type: :model do
     end
   end
 
-  describe "self.log_count_by_name" do
-    let!(:exercise1) { create(:exercise, :with_3_exercise_logs, name: "ex1") }
-    let!(:exercise2) { create(:exercise, :with_3_exercise_logs, name: "ex2") }
-    let!(:exercise3) { create(:exercise, name: "ex3") }
-
-    it "returns the exercise name and the count of its logs as a nested array" do
-      expected_output = [["ex1", 3], ["ex2", 3]]
-      expect(Exercise.log_count_by_name).to eq(expected_output)
-    end
-
-    it "does not include exercises with fewer than 1 log" do
-      insufficient_exercise = ["ex3", 0]
-      expect(Exercise.log_count_by_name).not_to include(insufficient_exercise)
-    end
-  end
-
   describe "self.by_name" do
     it "returns a list of exercises ordered by name, ascending" do
       exercise1 = create(:exercise, name: "a")

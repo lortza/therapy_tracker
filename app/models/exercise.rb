@@ -28,13 +28,5 @@ class Exercise < ApplicationRecord
     def logs?
       joins(:exercise_logs).group("exercises.id").order(:id)
     end
-
-    def log_count_by_name
-      qualifying_logs = logs?.select do |exercise|
-        exercise.logs.count > 2
-      end
-
-      qualifying_logs.map { |e| [e.name, e.logs.count] }
-    end
   end
 end
