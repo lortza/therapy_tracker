@@ -29,12 +29,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       # Add or replace dependency steps here
-      - name: Clean bootsnap cache and vendor bundle
-        run: rm -rf vendor/bundle tmp/cache
       - name: Install Ruby and gems
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
+      - name: Clean bootsnap cache and vendor bundle
+        run: rm -rf vendor/bundle tmp/cache || true
       # Add or replace database setup steps here
       - name: Set up database schema
         run: bin/rails db:schema:load
