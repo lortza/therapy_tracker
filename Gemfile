@@ -37,7 +37,7 @@ gem "net-imap", require: false
 gem "net-pop", require: false
 gem "net-smtp", require: false # Send internet mail via SMTP
 gem "sentry-rails"                      # Rails support for Sentry
-gem "sentry-ruby"                       # Error reporting to Sentry.io
+gem "sentry-ruby"  # Error reporting to Sentry.io
 gem "draper" # decorator facilitation
 
 group :development do

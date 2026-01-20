@@ -2,9 +2,6 @@ Sentry.init do |config|
   config.dsn = Rails.application.credentials.sentry_dsn
   config.enabled_environments = %w[production]
 
-  # enable performance monitoring
-  config.enable_tracing = true
-
   # get breadcrumbs from logs
   config.breadcrumbs_logger = [:active_support_logger, :http_logger]
 
