@@ -20,7 +20,7 @@ gem "sprockets-rails"
 gem "stimulus-rails"
 gem "turbo-rails"
 
-gem "bootsnap", ">= 1.7.7", require: false
+gem "bootsnap", ">= 1.21.1", require: false
 gem "chartkick", ">= 3.2.0" # chart rendering for ruby data
 gem "devise" # user authentication
 gem "groupdate" # grouping by dates. goes with chartkick
