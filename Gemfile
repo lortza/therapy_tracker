@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby File.read(".ruby-version").strip
 
-gem "rails", "7.2.2.1" # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem "rails", "7.2.3" # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem "puma", "~> 7.2" # Use Puma as the app server
 gem "pg", ">= 0.18", "< 2.0" # Use postgresql as the database for Active Record
 gem "sass-rails", "~> 6.0" # Use SCSS for stylesheets
@@ -26,12 +26,7 @@ gem "devise" # user authentication
 gem "groupdate" # grouping by dates. goes with chartkick
 gem "will_paginate", "~> 4.0.1" # pagination. Styles: http://mislav.github.io/will_paginate/
 gem "scss_lint", require: false
-# gem 'bcrypt', '~> 3.1.7' # Use ActiveModel has_secure_password
-# gem 'bootstrap3-datetimepicker-rails', '~> 4.14.30'
-# gem 'mini_magick', '~> 4.8' # Use ActiveStorage variant
-# gem 'mini_racer', platforms: :ruby # https://github.com/rails/execjs#readme
-# gem 'momentjs-rails', '>= 2.9.0'
-# gem 'redis', '~> 4.0' # Use Redis adapter to run Action Cable in production
+
 # gem 'turbolinks', '~> 5' # https://github.com/turbolinks/turbolinks
 gem "net-imap", require: false
 gem "net-pop", require: false
