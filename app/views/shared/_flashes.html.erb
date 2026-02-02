@@ -1,6 +1,6 @@
 <% flash.each do |type, message| %>
   <div class="mt-3 alert alert-<%= bootstrap_flash_class(type) %> fadein">
-    <button type="button" class="close" data-dismiss="alert"><span aria-hidden=true>&times;</span><span class="sr-only">Close</span></button>
+    <button type="button" class="close" data-dismiss="alert"><span class="sr-only">Close</span></button>
     <%= message %>
   </div>
 <% end %>

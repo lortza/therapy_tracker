@@ -11,6 +11,7 @@
       <%= link_to MaterialIconComponent.new(icon: 'timer_off', size: :medium ).render, logs_path, id: 'js-slit-timer-cancel-btn', class: 'pull-right' %>
       <div id='js-slit-timer' class='slit-timer-clock'></div>
     </div>
+    <div id='slit-timer-scripts'></div>
   <% end %>
 
   <% if current_user.enable_pt_session_tracking? && last_homework %>

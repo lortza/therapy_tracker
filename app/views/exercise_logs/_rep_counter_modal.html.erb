@@ -5,7 +5,7 @@
       <div class="modal-header">
         <h5 class="modal-title" id="repCounterModalLabel">Rep Counter</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Dismiss">
-          <span class="modal-dismiss">Close</span> <span aria-hidden="true">&times;</span>
+          <span class="modal-dismiss">Close</span>
         </button>
       </div>
       <div class="modal-body">
@@ -29,7 +29,19 @@
         <%= link_to '<i class="fas fa-stop"></i> Stop & Reset '.html_safe, cancel_url, id: 'stop_button', class: button_class('danger pull-right') %>
 
         <script>
-          counter(<%= sets %>, <%= reps %>, <%= rep_length %>)
+          // Initialize counter when modal is shown (not when page loads)
+          document.addEventListener('turbo:load', function() {
+            const modal = document.getElementById('repCounterModal');
+            if (modal && typeof window.counter === 'function') {
+              // Remove any previous listener
+              $(modal).off('shown.bs.modal');
+
+              // Initialize counter when modal opens
+              $(modal).on('shown.bs.modal', function () {
+                counter(<%= sets %>, <%= reps %>, <%= rep_length %>);
+              });
+            }
+          }, { once: true });
         </script>
       </div><!-- modal body -->
     </div>
