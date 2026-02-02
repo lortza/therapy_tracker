@@ -1,8 +1,10 @@
-<small class='text-muted'>Homework <i id='homework-list-toggle' class='fal fa-caret-right'></i> <br>
-  <ul id='homework-list' class='hidden'>
+<details class='text-muted'>
+  <summary><small>Homework</small></summary>
+
+  <ul>
     <p><%= homework[:notes] %></p>
     <% homework[:exercises].each do |exercise|  %>
       <li><%= exercise.name %></li>
     <% end %>
   </ul>
-</small>
+</details>

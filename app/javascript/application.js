@@ -13,5 +13,4 @@ import "Chart.bundle"
 // Import custom JavaScript files
 import "custom/cable"
 import "custom/exercise_logs"
-import "custom/logs"
 import "custom/pain_logs"
