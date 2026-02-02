@@ -53,10 +53,8 @@ class PainLogsController < ApplicationController
     respond_to do |format|
       if @pain_log.update(pain_log_params)
         format.html { redirect_to root_url }
-        format.json { render :show, status: :ok, location: @pain_log }
       else
         format.html { render :edit }
-        format.json { render json: @pain_log.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -65,7 +63,6 @@ class PainLogsController < ApplicationController
     @pain_log.destroy
     respond_to do |format|
       format.html { redirect_to root_url, notice: "Pain log was successfully destroyed." }
-      format.json { head :no_content }
     end
   end
 
