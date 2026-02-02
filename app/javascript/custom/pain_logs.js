@@ -1,5 +1,5 @@
 function painLevelDropdownSwitcher() {
-  document.addEventListener('DOMContentLoaded', function () {
+  document.addEventListener('turbo:load', function () {
     const painDropdown = document.getElementById('pain_log_pain_id');
     const painLevel = document.getElementById('pain_log_pain_level');
     const description = document.getElementById('pain_log_pain_description');
@@ -22,3 +22,6 @@ function painLevelDropdownSwitcher() {
     })
   });
 }
+
+// Export function to window for inline script access
+window.painLevelDropdownSwitcher = painLevelDropdownSwitcher;

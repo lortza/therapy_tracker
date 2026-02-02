@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('turbo:load', function () {
   const homeworkList = document.getElementById('homework-list')
   const homeworkToggle = document.getElementById('homework-list-toggle')
 

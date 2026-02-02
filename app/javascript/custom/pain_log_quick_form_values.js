@@ -1,5 +1,5 @@
 function painLogQuickFormValueListToggler() {
-  document.addEventListener('DOMContentLoaded', function () {
+  document.addEventListener('turbo:load', function () {
     let exerciseList = document.getElementById('quick-log-button-list')
 
     exerciseList.addEventListener('click', function (event) {
@@ -19,3 +19,6 @@ function painLogQuickFormValueListToggler() {
     });
   });
 }
+
+// Export function to window for inline script access
+window.painLogQuickFormValueListToggler = painLogQuickFormValueListToggler;

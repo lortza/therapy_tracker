@@ -1,5 +1,5 @@
 function listToggler() {
-  document.addEventListener('DOMContentLoaded', function () {
+  document.addEventListener('turbo:load', function () {
     let exerciseList = document.getElementById('exercise-list')
 
     exerciseList.addEventListener('click', function (event) {
@@ -22,7 +22,7 @@ function listToggler() {
 
 
 function exerciseDropdownSwitcher() {
-  document.addEventListener('DOMContentLoaded', function () {
+  document.addEventListener('turbo:load', function () {
     const exerciseDropdown = document.getElementById('exercise_log_exercise_id');
     const initialExerciseId = exerciseDropdown.options[exerciseDropdown.selectedIndex].value;
 
@@ -67,3 +67,7 @@ function exerciseDropdownSwitcher() {
     })
   });
 }
+
+// Export functions to window for inline script access
+window.listToggler = listToggler;
+window.exerciseDropdownSwitcher = exerciseDropdownSwitcher;
