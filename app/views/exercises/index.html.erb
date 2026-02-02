@@ -5,14 +5,14 @@
 <% if current_user.exercises.any? %>
   <%= render partial: 'shared/search_form', locals: { url: exercises_path } %>
 
-  <section id='exercise-list'>
+  <section>
     <% @exercises.each do |exercise| %>
-      <article class='index-list-item'>
-        <h3><%= link_to exercise.name, edit_exercise_path(exercise) %> <i class='exercise-description-toggle fal fa-chevron-down'></i></h3>
-        <p class='exercise-description hidden'><strong><%= exercise.default_sets %> sets of <%= exercise.default_reps %> with <%= exercise.default_rep_length %> sec hold <%= 'per side' if exercise.default_per_side %></strong><br>
+      <details class='index-list-item'>
+        <summary><%= link_to exercise.name, edit_exercise_path(exercise) %></summary>
+        <p class='exercise-description'><strong><%= exercise.default_sets %> sets of <%= exercise.default_reps %> with <%= exercise.default_rep_length %> sec hold <%= 'per side' if exercise.default_per_side %></strong><br>
           <%= exercise.description %>
         </p>
-      </article>
+      </details>
     <% end %>
   </section>
 
@@ -20,7 +20,3 @@
   <p>Create a New Exercise</p>
   <%= link_to 'New Exercise', new_exercise_path, class: button_class('primary btn-wide') %>
 <% end %>
-
-<script type="text/javascript">
-  listToggler();
-</script>

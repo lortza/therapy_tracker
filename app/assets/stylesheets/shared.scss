@@ -39,15 +39,43 @@ body { background-color: $dk-blue; }
   border-top: 1px solid $light-gray;
   color: $default-text;
   padding: .6rem;
+}
 
-  h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0;
-    a { color: $default-text; }
-    i { float: right; }
-  }
+.index-list-item summary {
+  font-size: 1.25rem;
+  margin-bottom: 0;
+  font-weight: 600;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
 
-  .exercise-description { margin-bottom: 0; }
+// Remove default marker in all browsers
+.index-list-item summary::marker,
+.index-list-item summary::-webkit-details-marker {
+  display: none;
+}
+
+// Add custom marker at the end
+.index-list-item summary::after {
+  content: '◀';
+  margin-left: auto;
+  transition: transform 0.2s ease;
+}
+
+// Rotate marker when details is open
+.index-list-item[open] summary::after {
+  transform: rotate(-90deg);
+}
+
+.index-list-item summary a {
+  color: $default-text;
+}
+
+.index-list-item .exercise-description {
+  margin-bottom: 0;
 }
 
 .highlight-yellow {

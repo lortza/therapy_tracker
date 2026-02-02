@@ -9,7 +9,10 @@ class ExercisesController < ApplicationController
   end
 
   def show
-    render json: @exercise, status: :ok
+    respond_to do |format|
+      format.html { render json: @exercise, status: :ok }
+      format.turbo_stream
+    end
   end
 
   def new

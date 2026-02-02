@@ -8,23 +8,21 @@
         :id,
         :name,
         { prompt: '--Select--' },
-        required: true,
-        class: 'form-control' %>
+        { required: true, class: 'form-control' } %>
   </div>
 
   <div class='field'>
     <%= render partial: 'shared/datetime_picker', locals: {form: form} %>
   </div>
 
-  <div class='field'>
+  <div class='field' data-controller="exercise-defaults">
     <%= form.label 'Exercise', class: 'required' %>
     <%= form.collection_select :exercise_id,
         current_user.exercises.by_name,
         :id,
         :name,
         { prompt: '--Select--' },
-        required: true,
-        class: 'form-control' %>
+        { required: true, class: 'form-control', data: { action: "change->exercise-defaults#change" } } %>
   </div>
 
   <div class='form-row'>

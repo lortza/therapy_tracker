@@ -14,6 +14,6 @@ RSpec.describe "exercises/index", type: :view do
 
     render
     assert_select "form"
-    assert_select "article>p>strong", text: "1 sets of 1 with 1 sec hold", count: 2
+    assert_select "details>p>strong", text: "1 sets of 1 with 1 sec hold", count: 2
   end
 end

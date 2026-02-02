@@ -1,0 +1,19 @@
+<%= turbo_stream.replace "exercise_log_sets" do %>
+  <input required="required" class="form-control" type="number" value="<%= @exercise.default_sets %>" name="exercise_log[sets]" id="exercise_log_sets">
+<% end %>
+
+<%= turbo_stream.replace "exercise_log_reps" do %>
+  <input required="required" class="form-control" type="number" value="<%= @exercise.default_reps %>" name="exercise_log[reps]" id="exercise_log_reps">
+<% end %>
+
+<%= turbo_stream.replace "exercise_log_rep_length" do %>
+  <input required="required" class="form-control" type="number" value="<%= @exercise.default_rep_length %>" name="exercise_log[rep_length]" id="exercise_log_rep_length">
+<% end %>
+
+<%= turbo_stream.replace "exercise_log_per_side" do %>
+  <input name="exercise_log[per_side]" type="hidden" value="0" autocomplete="off"><input class="form-control" type="checkbox" value="1" <%= "checked" if @exercise.default_per_side %> name="exercise_log[per_side]" id="exercise_log_per_side">
+<% end %>
+
+<%= turbo_stream.replace "exercise_log_resistance" do %>
+  <input class="form-control" type="text" value="<%= @exercise.default_resistance %>" name="exercise_log[resistance]" id="exercise_log_resistance">
+<% end %>
