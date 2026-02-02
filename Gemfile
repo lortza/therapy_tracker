@@ -5,27 +5,45 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby File.read(".ruby-version").strip
 
-gem "rails", "7.2.3" # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem "rails", "8.0.0"
 gem "puma", "~> 7.2" # Use Puma as the app server
 gem "pg", ">= 0.18", "< 2.0" # Use postgresql as the database for Active Record
-gem "sass-rails", "~> 6.0" # Use SCSS for stylesheets
-gem "uglifier", ">= 1.3.0" # Use Uglifier as compressor for JavaScript assets
+gem "dartsass-rails" # Use Dart Sass for stylesheets
 
 gem "hotwire-rails"
-gem "importmap-rails"
-gem "jbuilder", "~> 2.14" # https://github.com/rails/jbuilder
 gem "sdoc", "~> 2.6.1", group: :doc
-gem "rack-mini-profiler"
-gem "sprockets-rails"
-gem "stimulus-rails"
+
+gem "propshaft" # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
+
+# Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
+gem "importmap-rails"
+
+# Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
 
-gem "bootsnap", ">= 1.21.1", require: false
-gem "chartkick", ">= 3.2.0" # chart rendering for ruby data
+# Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
+gem "stimulus-rails"
+
+# Build JSON APIs with ease [https://github.com/rails/jbuilder]
+gem "jbuilder"
+
+gem "bootsnap", require: false
+gem "chartkick" # chart rendering for ruby data https://chartkick.com/
 gem "devise" # user authentication
 gem "groupdate" # grouping by dates. goes with chartkick
 gem "will_paginate", "~> 4.0.1" # pagination. Styles: http://mislav.github.io/will_paginate/
 gem "scss_lint", require: false
+
+# Use the database-backed adapters for Rails.cache, Active Job, and Action Cable
+gem "solid_cache"
+gem "solid_queue"
+gem "solid_cable"
+
+# Deploy this application anywhere as a Docker container [https://kamal-deploy.org]
+# gem "kamal", require: false
+
+# Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
+gem "thruster", require: false
 
 # gem 'turbolinks', '~> 5' # https://github.com/turbolinks/turbolinks
 gem "net-imap", require: false
@@ -34,8 +52,10 @@ gem "net-smtp", require: false # Send internet mail via SMTP
 gem "sentry-rails"                      # Rails support for Sentry
 gem "sentry-ruby"  # Error reporting to Sentry.io
 gem "draper" # decorator facilitation
+gem "bootstrap", "~> 4.1.3"
 
 group :development do
+  gem "rack-mini-profiler"
   # gem 'capistrano-rails' # Use Capistrano for deployment
   gem "rails-erd", require: false # generates ERD chart for your schema, run `bundle exec erd`
   gem "rubycritic", require: false # provides feedback on complexity and churns for your codebase
@@ -54,7 +74,7 @@ group :development, :test do
   gem "better_errors" # creates console in browser for errors
   gem "binding_of_caller" # goes with better_errors
   gem "bullet" # detects N+1 queries via config/initializers/bullet.rb
-  gem "byebug", platforms: %i[mri mingw x64_mingw]
+  gem "byebug", platforms: %i[mri windows]
   gem "capybara" # interacts with the browser
   gem "factory_bot_rails", "~> 6.5"
   gem "faker" # creates fake data for seeding
@@ -76,4 +96,4 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
+gem "tzinfo-data", platforms: %i[windows jruby]
