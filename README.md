@@ -10,6 +10,7 @@ This is an app to track physical therapy exercise logs.
 
 - Ruby
 - Rails
+- Turbo/Stimulus
 - Postgres
 - Devise
 - RSpec
