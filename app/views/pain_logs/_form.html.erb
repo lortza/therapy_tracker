@@ -1,4 +1,4 @@
-<%= form_with(model: pain_log, local: true, data: { controller: "pain-level" }) do |form| %>
+<%= form_with(model: pain_log, data: { controller: "pain-level" }) do |form| %>
   <%= render partial: 'shared/errors', locals: {object: pain_log} %>
 
   <div class='field'>

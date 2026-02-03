@@ -154,26 +154,14 @@ The app uses Hotwire (Turbo + Stimulus) for dynamic interactions. JavaScript fil
 - When building new features, write tests for all new code written.
 - Use standardrb formatting for ruby code. 
 - Convert to a Rails tag helper (ex: tag.div) instead of interpolating inside of an erb tag in HTML.
+- Do not modify production code just to accommodate tests.
 
 
 ## Current Projects
 
-### Convert legacy async JavaScript to Rails 8 Turbo Tooling
-
-#### Conversion approach in order of priority:
 1. Completed
 
-2. exercise_logs.js - Convert to Stimulus Controller
-Contains two functions:
-- counter() - A complex timer/counter for exercise reps with audio cues
-- burnDropdowns() - Creates dynamic dropdowns for burn sets/reps (currently commented out in views)
-
-Conversion approach:
-* Create app/javascript/controllers/exercise_counter_controller.js for the counter
-* Keep the core logic but wrap it in a Stimulus controller with proper lifecycle methods
-* Add data attributes to the modal in _rep_counter_modal.html.erb
-* Remove the burnDropdowns function entirely (it's commented out everywhere)
-* Estimated effort: 1-2 hours (counter is complex with audio, timers, and state management)
+2. Completed
 
 3. Determine css needs to become independent of Sass compiling. Do we need `gem "dartsass-rails"`, etc?
 
@@ -181,10 +169,6 @@ Conversion approach:
 4.a. Is this file idiomatic Rails 8 "app/views/slit_logs/quick_log_create.turbo_stream.erb"?
 
 5. Start Upgrade to Rails 8.1
-
-
-## Bugs discovered on staging
-* All Bugs are currently fixed
 
 
 

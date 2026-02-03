@@ -1,4 +1,4 @@
-<%= form_with(model: body_part, local: true) do |form| %>
+<%= form_with(model: body_part) do |form| %>
   <% if body_part.errors.any? %>
     <div id='error_explanation'>
       <h2><%= pluralize(body_part.errors.count, 'error') %> prohibited this body_part from being saved:</h2>

@@ -1,7 +1,7 @@
 <h2>Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+  <%= render partial: 'shared/errors', locals: {object: resource} %>
 
   <div class='field'>
     <%= f.label :email %><br />
