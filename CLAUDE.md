@@ -182,6 +182,89 @@ Conversion approach:
 
 
 ## Bugs discovered on staging
-1. Deleting a SLIT log causes a 404. Locally, the same action causes the server output "The action 'show' could not be found for SlitLogsController"
+* All Bugs are currently fixed
 
-2. Clicking the delete button on a PainLog takes the user to the show page and does not delete the log.
+
+
+## Deployment warnings
+Heroku gives warnings during the deployment process about changes that should be made. This is a list of items that Heroku has mentioned.
+
+1. Sass deprecations:
+```
+DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+       
+       More info and automated migrator: https://sass-lang.com/d/import
+       
+         ╷
+       4 │ @import "variables";
+         │         ^^^^^^^^^^^
+         ╵
+           app/assets/stylesheets/application.scss 4:9  root stylesheet
+       
+       DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+       
+       More info and automated migrator: https://sass-lang.com/d/import
+       
+         ╷
+       6 │ @import "bootstrap"; // Custom bootstrap variables must be set or imported *before* bootstrap.
+         │         ^^^^^^^^^^^
+         ╵
+           app/assets/stylesheets/application.scss 6:9  root stylesheet
+       
+       DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+       
+       More info and automated migrator: https://sass-lang.com/d/import
+       
+         ╷
+       9 │ @import "buttons";
+         │         ^^^^^^^^^
+         ╵
+           app/assets/stylesheets/application.scss 9:9  root stylesheet
+       
+       DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+       
+       More info and automated migrator: https://sass-lang.com/d/import
+       
+          ╷
+       10 │ @import "forms";
+          │         ^^^^^^^
+          ╵
+           app/assets/stylesheets/application.scss 10:9  root stylesheet
+       
+       DEPRECATION WARNING [import]: Sass @import rules are deprecated and will be removed in Dart Sass 3.0.0.
+       
+       More info and automated migrator: https://sass-lang.com/d/import
+       
+          ╷
+       11 │ @import "logs";
+          │         ^^^^^^
+          ╵
+           app/assets/stylesheets/application.scss 11:9  root stylesheet
+       
+       DEPRECATION WARNING [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+       Use color.adjust instead.
+       
+       More info and automated migrator: https://sass-lang.com/d/import
+       
+         ╷
+       8 │ $light-yellow: lighten($yellow, 30%);
+         │                ^^^^^^^^^^^^^^^^^^^^^
+         ╵
+           app/assets/stylesheets/_variables.scss 8:16  @import
+           app/assets/stylesheets/application.scss 4:9  root stylesheet
+       
+       DEPRECATION WARNING [color-functions]: lighten() is deprecated. Suggestions:
+       
+       color.scale($color, $lightness: 70.8333333333%)
+       color.adjust($color, $lightness: 30%)
+       
+       More info: https://sass-lang.com/d/color-functions
+       
+         ╷
+       8 │ $light-yellow: lighten($yellow, 30%);
+         │                ^^^^^^^^^^^^^^^^^^^^^
+         ╵
+           app/assets/stylesheets/_variables.scss 8:16  @import
+           app/assets/stylesheets/application.scss 4:9  root stylesheet
+       
+      ```
