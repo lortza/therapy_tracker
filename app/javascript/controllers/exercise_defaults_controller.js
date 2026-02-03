@@ -8,6 +8,7 @@ export default class extends Controller {
     if (exerciseId) {
       const url = `/exercises/${exerciseId}`
 
+      // Fetch the exercise defaults and update the form via Turbo Streams
       fetch(url, {
         headers: {
           Accept: "text/vnd.turbo-stream.html"

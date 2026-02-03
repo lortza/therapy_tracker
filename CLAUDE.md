@@ -153,6 +153,7 @@ The app uses Hotwire (Turbo + Stimulus) for dynamic interactions. JavaScript fil
 ## Development Practices
 - When building new features, write tests for all new code written.
 - Use standardrb formatting for ruby code. 
+- Convert to a Rails tag helper (ex: tag.div) instead of interpolating inside of an erb tag in HTML.
 
 
 ## Current Projects
