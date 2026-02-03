@@ -164,17 +164,16 @@ The app uses Hotwire (Turbo + Stimulus) for dynamic interactions. JavaScript fil
 #### Conversion approach in order of priority:
 1. Completed
 
-2. exercise_logs.js - Convert to Stimulus Controller
-Contains two functions:
-- counter() - A complex timer/counter for exercise reps with audio cues
-- burnDropdowns() - Creates dynamic dropdowns for burn sets/reps (currently commented out in views)
+2. Update all javascripts that are not idiomatic Rails 8 into stimulus and turbo tooling.
+  High Priority:
+  1. Done: Convert SLIT timer inline script to Stimulus controller
+  2. Fix bootstrap_controller.js event listener bug
 
-Conversion approach:
-* Create app/javascript/controllers/exercise_counter_controller.js for the counter
-* Keep the core logic but wrap it in a Stimulus controller with proper lifecycle methods
-* Add data attributes to the modal in _rep_counter_modal.html.erb
-* Remove the burnDropdowns function entirely (it's commented out everywhere)
-* Estimated effort: 1-2 hours (counter is complex with audio, timers, and state management)
+  Medium Priority:
+  3. Remove local: true from all forms
+
+  Low Priority:
+  4. Delete unused JavaScript files 
 
 3. Determine css needs to become independent of Sass compiling. Do we need `gem "dartsass-rails"`, etc?
 

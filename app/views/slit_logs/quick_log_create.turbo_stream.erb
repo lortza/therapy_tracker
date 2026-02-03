@@ -1,92 +1,9 @@
+<%# Insert the countdown timer %>
+<%= turbo_stream.update "slit_countdown_timer_container" do %>
+  <%= render partial: 'slit_logs/countdown_timer', locals: { timer_duration: SlitLog::COUNTDOWN_TIMER_DEFAULT_SECONDS } %>
+<% end %>
+
 <%# Prepend the new log to the logs list %>
 <%= turbo_stream.prepend "js-logs" do %>
   <%= render partial: 'slit_log', locals: { slit_log: @slit_log } %>
-<% end %>
-
-<%# Start the timer with inline script %>
-<%= turbo_stream.append "slit-timer-scripts" do %>
-  <script>
-    (function() {
-      const timerElement = document.getElementById('js-slit-timer');
-      let timerTimeout = null;
-      let isTimerStopped = false;
-
-      timerElement.innerHTML = "02:01";
-      startSlitTimer();
-
-      function startSlitTimer() {
-        if (isTimerStopped) {
-          console.log('Timer is stopped, not continuing');
-          return;
-        }
-
-        timerElement.parentElement.classList.remove('hidden');
-        var startTime = timerElement.innerHTML;
-        var timeArray = startTime.split(/[:]+/);
-        var min = timeArray[0];
-        var sec = checkSecond((timeArray[1] - 1));
-        if (sec == 59) { min = min - 1 }
-        if (min < 0) {
-          completeSlitTimer();
-          return
-        }
-
-        timerElement.innerHTML = min + ":" + sec;
-        console.log('Timer: ' + min)
-        timerTimeout = setTimeout(startSlitTimer, 1000);
-      }
-
-      function stopSlitTimer() {
-        isTimerStopped = true;
-        if (timerTimeout) {
-          clearTimeout(timerTimeout);
-          timerTimeout = null;
-        }
-        console.log('Timer stopped');
-      }
-
-      function checkSecond(sec) {
-        if (sec < 10 && sec >= 0) {sec = "0" + sec};
-        if (sec < 0) {sec = "59"};
-        return sec;
-      }
-
-      function completeSlitTimer() {
-        const soundExerciseComplete = new Audio('/sounds/exercise_complete.m4a');
-        const cancelButton = document.getElementById('js-slit-timer-cancel-btn');
-        const dismissButton = document.getElementById('js-slit-timer-dismiss');
-        cancelButton.classList.add('hidden');
-        dismissButton.classList.remove('hidden');
-        console.log('Timer ended')
-        soundExerciseComplete.play().catch(e => {
-          console.log(e);
-        });
-      }
-
-      // Set up dismiss button if not already set
-      const dismissButton = document.getElementById('js-slit-timer-dismiss');
-      const timerContainer = timerElement.parentElement;
-
-      if (dismissButton && !dismissButton.dataset.listenerAttached) {
-        dismissButton.dataset.listenerAttached = 'true';
-        dismissButton.addEventListener('click', function (event) {
-          event.preventDefault();
-          console.log('Dismiss clicked - stopping timer and hiding container');
-          stopSlitTimer();
-          timerContainer.classList.add('hidden');
-          console.log('Container hidden class added:', timerContainer.classList.contains('hidden'));
-        });
-      }
-
-      // Set up cancel button if not already set
-      const cancelButton = document.getElementById('js-slit-timer-cancel-btn');
-      if (cancelButton && !cancelButton.dataset.listenerAttached) {
-        cancelButton.dataset.listenerAttached = 'true';
-        cancelButton.addEventListener('click', function (event) {
-          event.preventDefault();
-          stopSlitTimer();
-        });
-      }
-    })();
-  </script>
 <% end %>
