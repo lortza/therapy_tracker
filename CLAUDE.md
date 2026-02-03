@@ -7,8 +7,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 Therapy Tracker is a Rails 8 application for tracking physical therapy exercises, pain logs, PT session notes, and sublingual immunotherapy (SLIT) adherence. The app is mobile-first and focuses on minimal data entry with features like an async JavaScript rep counter and charting via Chartkick.
 
 **Key Stack:**
-- Ruby 3.3.6
-- Rails 8.0.0
+- Ruby 3.3.10
+- Rails 8.1
 - PostgreSQL
 - Hotwire (Turbo + Stimulus)
 - RSpec for testing
