@@ -161,16 +161,15 @@ The app uses Hotwire (Turbo + Stimulus) for dynamic interactions. JavaScript fil
 
 ### Convert legacy async JavaScript to Rails 8 Turbo Tooling
 
-#### Conversion approach in order of priority:
 1. Completed
 
 2. Update all javascripts that are not idiomatic Rails 8 into stimulus and turbo tooling.
   High Priority:
   1. Done: Convert SLIT timer inline script to Stimulus controller
-  2. Fix bootstrap_controller.js event listener bug
+  2. Done: Fix bootstrap_controller.js event listener bug
 
   Medium Priority:
-  3. Remove local: true from all forms
+  3. Done: Remove local: true from all forms
 
   Low Priority:
   4. Delete unused JavaScript files 
@@ -181,10 +180,6 @@ The app uses Hotwire (Turbo + Stimulus) for dynamic interactions. JavaScript fil
 4.a. Is this file idiomatic Rails 8 "app/views/slit_logs/quick_log_create.turbo_stream.erb"?
 
 5. Start Upgrade to Rails 8.1
-
-
-## Bugs discovered on staging
-* All Bugs are currently fixed
 
 
 
