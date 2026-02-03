@@ -175,9 +175,10 @@ Conversion approach:
 * Remove the burnDropdowns function entirely (it's commented out everywhere)
 * Estimated effort: 1-2 hours (counter is complex with audio, timers, and state management)
 
-3. Determine css needs to become independent of Sass compiling.
+3. Determine css needs to become independent of Sass compiling. Do we need `gem "dartsass-rails"`, etc?
 
-4. Scan application for other legacy code that is not idiomatic Rails 8 and create a plan for replacement. An example (but not an exhaustive list of possible code patterns) is: any old links using the old Rails UJS style syntax.
+4. Scan application for other legacy code that is not idiomatic Rails 8 and create a plan for replacement. Some examples (but not an exhaustive list of possible code patterns) are: 1. update any old links using the old Rails UJS style syntax. 2. update any forms using "local: true".
+4.a. Is this file idiomatic Rails 8 "app/views/slit_logs/quick_log_create.turbo_stream.erb"?
 
 5. Start Upgrade to Rails 8.1
 

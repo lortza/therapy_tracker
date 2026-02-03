@@ -1,5 +1,8 @@
 import { Controller } from "@hotwired/stimulus"
 
+// The PainLevelController handles changes to the form when the pain type dropdown changes.
+// Primarily used to auto-fill pain level and description when "none" is selected.
+
 export default class extends Controller {
   static targets = ["painDropdown", "painLevel", "painDescription", "painTrigger"]
 
