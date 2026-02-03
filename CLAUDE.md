@@ -149,8 +149,10 @@ The app uses Hotwire (Turbo + Stimulus) for dynamic interactions. JavaScript fil
 - Mobile-first design philosophy
 - Focus on minimal data entry for ease of use during physical therapy
 
+
 ## Development Practices
-- When building a new feature, write tests for all new code written or new behaviors.                                                       
+- When building new features, write tests for all new code written.
+- Use standardrb formatting for ruby code. 
 
 
 ## Current Projects
@@ -174,6 +176,12 @@ Conversion approach:
 
 3. Determine css needs to become independent of Sass compiling.
 
-4. Scan application for other legacy code that is not idiomatic Rails 8 and create a plan for replacement.
+4. Scan application for other legacy code that is not idiomatic Rails 8 and create a plan for replacement. An example (but not an exhaustive list of possible code patterns) is: any old links using the old Rails UJS style syntax.
 
 5. Start Upgrade to Rails 8.1
+
+
+## Bugs discovered on staging
+1. Deleting a SLIT log causes a 404. Locally, the same action causes the server output "The action 'show' could not be found for SlitLogsController"
+
+2. Clicking the delete button on a PainLog takes the user to the show page and does not delete the log.

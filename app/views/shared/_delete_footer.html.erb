@@ -2,7 +2,7 @@
   <summary class='mt-4 border-top border-secondary'><h5 class="inline-block pt-3">Danger Zone</h5></summary>
   <footer>
     <p>Deleting this <%= object.class.name %> cannot be undone.
-      <%= link_to "Click to delete #{object.class.name}", delete_path,  method: :delete, data: { turbo_confirm: local_assigns[:message] ? message : 'Are you sure? This action cannot be undone.' }, class: "text-danger" %>.
+      <%= link_to "Click to delete #{object.class.name}", delete_path, data: { turbo_method: :delete, turbo_confirm: local_assigns[:message] ? message : 'Are you sure? This action cannot be undone.' }, class: "text-danger" %>.
     </p>
   </footer>
 </details>

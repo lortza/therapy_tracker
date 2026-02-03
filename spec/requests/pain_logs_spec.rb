@@ -105,5 +105,39 @@ RSpec.describe "PainLogs", type: :request do
 
       expect(response).to redirect_to root_url
     end
+
+    it "renders delete link with correct turbo attributes in edit page" do
+      sign_in(user)
+      get edit_pain_log_path(pain_log)
+
+      expect(response).to be_successful
+      expect(response.body).to include("data-turbo-method=\"delete\"")
+      expect(response.body).to include("data-turbo-confirm")
+      expect(response.body).to include("Click to delete")
+    end
+
+    it "actually deletes the pain log via DELETE request" do
+      sign_in(user)
+
+      expect {
+        delete pain_log_path(pain_log)
+      }.to change(PainLog, :count).by(-1)
+
+      expect(response).to redirect_to root_url
+      expect(PainLog.find_by(id: pain_log.id)).to be_nil
+    end
+
+    it "does not delete pain log with GET request to same path" do
+      sign_in(user)
+
+      # This should NOT delete - it should route to show or 404
+      expect {
+        get pain_log_path(pain_log)
+      }.not_to change(PainLog, :count)
+
+      # Should render show page, not delete
+      expect(response).to be_successful
+      expect(PainLog.find_by(id: pain_log.id)).to be_present
+    end
   end
 end
