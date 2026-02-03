@@ -159,20 +159,9 @@ The app uses Hotwire (Turbo + Stimulus) for dynamic interactions. JavaScript fil
 
 ## Current Projects
 
-### Convert legacy async JavaScript to Rails 8 Turbo Tooling
-
 1. Completed
 
-2. Update all javascripts that are not idiomatic Rails 8 into stimulus and turbo tooling.
-  High Priority:
-  1. Done: Convert SLIT timer inline script to Stimulus controller
-  2. Done: Fix bootstrap_controller.js event listener bug
-
-  Medium Priority:
-  3. Done: Remove local: true from all forms
-
-  Low Priority:
-  4. Delete unused JavaScript files 
+2. Completed
 
 3. Determine css needs to become independent of Sass compiling. Do we need `gem "dartsass-rails"`, etc?
 
