@@ -1,44 +1,40 @@
-@import 'variables';
-
-// https://developer.mozilla.org/en-US/docs/Web/CSS/columns#try_it
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/columns#try_it */
 .slit-report-data-container {
   columns: 3 auto;
 }
 
 .slit-report-data-row {
   align-items: center;
-  border-bottom: 1px solid $black;
-  border-left: 1px solid $black;
-  border-right: 1px solid $black;
+  border-bottom: 1px solid var(--black);
+  border-left: 1px solid var(--black);
+  border-right: 1px solid var(--black);
   display: flex;
   gap: 1rem;
   padding: .5rem;
 }
 
 .slit-report-data-header {
-  border: 1px solid $black;
+  border: 1px solid var(--black);
   font-weight: bold;
 }
 
-.slit-report-col-dose {
-  width: 3rem;
-}
+.slit-report-col-dose { width: 3rem; }
 
 .dose-skipped {
-  color: $red;
+  color: var(--red);
   margin-left: 3rem;
 }
 
 .slit-timer-container {
   text-align: center;
-  color: $brand-main-lt;
-  border: .125em solid $brand-main;
-  border-radius: $bootstrap-card-border-radius;
-  background-color: darken($brand-main, 20%);
+  color: var(--brand-main-lt);
+  border: .125em solid var(--brand-main);
+  border-radius: var(--bootstrap-card-border-radius);
+  background-color: #033f46; /* darken(brand-main, 20%) */
 }
 
 .slit-timer-container a {
-  color: $brand-main-lt;
+  color: var(--brand-main-lt);
 }
 
 .slit-timer-clock {
@@ -49,13 +45,14 @@
 
 .slit-timer-dismiss {
   float: right;
-  &:hover {
-    color: darken($brand-main, 10%);
-    cursor: pointer;
-  }
 }
 
-// MEDIA QUERIES
+.slit-timer-dismiss:hover {
+  color: #056773; /* darken(brand-main, 10%) */
+  cursor: pointer;
+}
+
+/* MEDIA QUERIES */
 @media (max-width: 576px) {
   .slit-report-data-container {
     columns: auto;
@@ -77,5 +74,3 @@
     padding: 0 2px;
   }
 }
-
-

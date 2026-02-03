@@ -1,0 +1,73 @@
+.add-log-buttons-container {
+  display: flex;
+  gap: .5rem;
+  justify-content: space-between;
+  margin: 1rem 0;
+}
+
+.add-log-button {
+  border-radius: 15px;
+  color: var(--white);
+  display: block;
+  height: 80px;
+  margin: 0;
+  min-width: 75px;
+  padding-top: .6rem;
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
+}
+
+.add-log-button:hover {
+  color: var(--white);
+  text-decoration: none;
+}
+
+.pain-button {
+  background-color: var(--pain-color);
+  border: 1px solid #d99518; /* darken(pain-color, 10%) */
+}
+
+.pain-button:hover {
+  background-color: #d99518; /* darken(pain-color, 10%) */
+}
+
+.exercise-button {
+  background-color: var(--exercise-color);
+  border: 1px solid #348853; /* darken(exercise-color, 10%) */
+}
+
+.exercise-button:hover {
+  background-color: #348853; /* darken(exercise-color, 10%) */
+}
+
+.therapy-button {
+  background-color: var(--therapy-color);
+  border: 1px solid #056773; /* darken(therapy-color, 10%) */
+}
+
+.therapy-button:hover {
+  background-color: #056773; /* darken(therapy-color, 10%) */
+}
+
+.slit-button {
+  background-color: var(--slit-color);
+  border: 1px solid #631db3; /* darken(slit-color, 10%) */
+}
+
+.slit-button:hover {
+  background-color: #631db3; /* darken(slit-color, 10%) */
+}
+
+.btn-wide {
+  display: block;
+  margin-bottom: 1rem;
+  width: 250px;
+}
+
+/* MEDIA QUERIES */
+@media (max-width: 576px) {
+  .btn-wide {
+    width: 100%;
+  }
+}
