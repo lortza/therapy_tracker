@@ -1,0 +1,24 @@
+.field label {
+  font-weight: bold;
+  margin-top: 1rem;
+  text-transform: capitalize;
+}
+
+.required::after {
+  color: var(--pain-color);
+  content: ' *';
+  font-size: .85rem;
+}
+
+.reset-link {
+  color: var(--medium-gray);
+}
+
+.reset-link:hover {
+  color: var(--light-gray);
+}
+
+.field_with_errors .form-control {
+  border: 1px solid var(--error);
+  border-radius: .25rem;
+}

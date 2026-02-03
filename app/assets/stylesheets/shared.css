@@ -1,21 +1,11 @@
-@import 'variables';
+body { background-color: var(--dk-blue); }
 
-body { background-color: $dk-blue; }
-
-.pull-right {
-  float: right;
-}
-
-.pull-left {
-  float: left;
-}
-
-.hidden {
-  display: none;
-}
+.pull-right { float: right; }
+.pull-left { float: left; }
+.hidden { display: none; }
 
 .white-container {
-  background-color: $white;
+  background-color: var(--white);
   border-radius: 10px;
   margin-top: 20px;
   padding: 1rem;
@@ -30,14 +20,14 @@ body { background-color: $dk-blue; }
 }
 
 .text-subtle {
-  color: $medium-gray;
+  color: var(--medium-gray);
   font-style: italic;
 }
 
-// Index Pages
+/* Index Pages */
 .index-list-item {
-  border-top: 1px solid $light-gray;
-  color: $default-text;
+  border-top: 1px solid var(--light-gray);
+  color: var(--default-text);
   padding: .6rem;
 }
 
@@ -52,26 +42,26 @@ body { background-color: $dk-blue; }
   cursor: pointer;
 }
 
-// Remove default marker in all browsers
+/* Remove default marker in all browsers */
 .index-list-item summary::marker,
 .index-list-item summary::-webkit-details-marker {
   display: none;
 }
 
-// Add custom marker at the end
+/* Add custom marker at the end */
 .index-list-item summary::after {
   content: '◀';
   margin-left: auto;
   transition: transform 0.2s ease;
 }
 
-// Rotate marker when details is open
+/* Rotate marker when details is open */
 .index-list-item[open] summary::after {
   transform: rotate(-90deg);
 }
 
 .index-list-item summary a {
-  color: $default-text;
+  color: var(--default-text);
 }
 
 .index-list-item .exercise-description {
@@ -79,29 +69,29 @@ body { background-color: $dk-blue; }
 }
 
 .highlight-yellow {
-  background-color: $yellow-highlighter;
+  background-color: var(--yellow-highlighter);
   margin: -10px -3px;
   padding: 0 3px;
 }
 
-// MATERIAL ICONS
-// https://fonts.google.com/icons
+/* MATERIAL ICONS */
+/* https://fonts.google.com/icons */
 
-// Options:
-// font-variation-settings:
-// 'FILL' 0,
-// 'wght' 400,
-// 'GRAD' 0,
-// 'opsz' 24
+/* Options: */
+/* font-variation-settings: */
+/* 'FILL' 0, */
+/* 'wght' 400, */
+/* 'GRAD' 0, */
+/* 'opsz' 24 */
 
 .icon-outlined { font-variation-settings: 'FILL' 0; }
 .icon-filled { font-variation-settings: 'FILL' 1; }
 
 .navbar-logo {
-  background-color: $brand-main;
-  border: 1px solid $brand-main;
+  background-color: var(--brand-main);
+  border: 1px solid var(--brand-main);
   border-radius: 50%;
-  color: $white;
+  color: var(--white);
   font-size: 1.25rem;
   height: 40px;
   margin-right: .5rem;
@@ -110,10 +100,9 @@ body { background-color: $dk-blue; }
   width: 40px;
 }
 
-
-// MEDIA QUERIES
+/* MEDIA QUERIES */
 @media print {
   .highlight-yellow {
-    border: .5px solid $black;
+    border: .5px solid var(--black);
   }
 }

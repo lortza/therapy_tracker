@@ -1,7 +1,5 @@
-@import 'variables';
-
 .counter-number-big {
-  color: $exercise-color;
+  color: var(--exercise-color);
   font-size: 6rem;
   font-weight: bold;
 }

@@ -1,0 +1,40 @@
+/* Pagination Links */
+/* modified digg_pagination from http://mislav.github.io/will_paginate/ */
+.pagination {
+  cursor: default;
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  margin-top: -1rem;
+}
+
+.pagination a,
+.pagination span,
+.pagination em {
+  border-radius: 5px;
+  display: block;
+  padding: .2em .5em;
+}
+
+.pagination .disabled {
+  visibility: hidden;
+}
+
+.pagination a {
+  border: 1px solid var(--brand-main);
+  color: var(--brand-main);
+  text-decoration: none;
+}
+
+.pagination a:hover,
+.pagination a:focus {
+  border-color: #077482; /* darken(brand-main, 5%) */
+  color: #077482; /* darken(brand-main, 5%) */
+}
+
+@media print {
+  .pagination {
+    display: none;
+  }
+}
