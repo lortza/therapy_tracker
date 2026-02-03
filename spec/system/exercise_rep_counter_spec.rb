@@ -41,12 +41,12 @@ RSpec.describe "Exercise rep counter", type: :system, js: true do
     expect(page).to have_css("#repCounterModal.show", wait: 2)
 
     # Verify start button has correct Stimulus attributes
-    start_button = find('a', text: /Start Timer/)
+    start_button = find("a", text: /Start Timer/)
     expect(start_button["data-exercise-counter-target"]).to eq("startButton")
     expect(start_button["data-action"]).to eq("click->exercise-counter#start")
 
     # Verify stop button has correct Stimulus attributes
-    stop_button = find('a', text: /Stop & Reset/)
+    stop_button = find("a", text: /Stop & Reset/)
     expect(stop_button["data-exercise-counter-target"]).to eq("stopButton")
     expect(stop_button["data-action"]).to eq("click->exercise-counter#stop")
   end
@@ -83,7 +83,7 @@ RSpec.describe "Exercise rep counter", type: :system, js: true do
 
     # Verify status indicator becomes visible and shows "Begin!"
     status_indicator = find('[data-exercise-counter-target="statusIndicator"]')
-    expect(status_indicator).not_to have_css('.hidden')
+    expect(status_indicator).not_to have_css(".hidden")
     expect(status_indicator.text).to eq("Begin!")
   end
 
@@ -99,7 +99,7 @@ RSpec.describe "Exercise rep counter", type: :system, js: true do
     sleep 0.5
 
     # Stop the counter - it navigates to the destination URL
-    stop_link = find('a', text: /Stop & Reset/)
+    stop_link = find("a", text: /Stop & Reset/)
     destination = stop_link[:href]
 
     click_link "Stop & Reset"
