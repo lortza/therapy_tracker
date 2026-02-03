@@ -39,7 +39,7 @@ end
 
 #------------------------------------------
 puts "Seeding Pains"
-pain_names = ["aching", "burning", "throbbing", "stabbing", "stiffness"]
+pain_names = ["none", "aching", "burning", "throbbing", "stabbing", "stiffness"]
 
 pain_names.each do |pain_name|
   FactoryBot.create(:pain, user_id: user.id, name: pain_name)

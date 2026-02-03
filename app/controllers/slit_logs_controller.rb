@@ -38,7 +38,7 @@ class SlitLogsController < ApplicationController
 
     respond_to do |format|
       if @slit_log.save!
-        format.js
+        format.turbo_stream
         format.html { redirect_to root_url }
       else
         format.html { render :new }

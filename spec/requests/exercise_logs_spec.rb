@@ -105,5 +105,39 @@ RSpec.describe "ExerciseLogs", type: :request do
 
       expect(response).to redirect_to root_url
     end
+
+    it "renders delete link with correct turbo attributes in edit page" do
+      sign_in(user)
+      get edit_exercise_log_path(exercise_log)
+
+      expect(response).to be_successful
+      expect(response.body).to include("data-turbo-method=\"delete\"")
+      expect(response.body).to include("data-turbo-confirm")
+      expect(response.body).to include("Click to delete")
+    end
+
+    it "actually deletes the exercise log via DELETE request" do
+      sign_in(user)
+
+      expect {
+        delete exercise_log_path(exercise_log)
+      }.to change(ExerciseLog, :count).by(-1)
+
+      expect(response).to redirect_to root_url
+      expect(ExerciseLog.find_by(id: exercise_log.id)).to be_nil
+    end
+
+    it "does not delete exercise log with GET request to same path" do
+      sign_in(user)
+
+      # This should NOT delete - it should route to show
+      expect {
+        get exercise_log_path(exercise_log)
+      }.not_to change(ExerciseLog, :count)
+
+      # Should render show page, not delete
+      expect(response).to be_successful
+      expect(ExerciseLog.find_by(id: exercise_log.id)).to be_present
+    end
   end
 end

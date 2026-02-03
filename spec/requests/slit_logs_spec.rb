@@ -99,5 +99,42 @@ RSpec.describe SlitLogsController, type: :request do
       expect(response).to redirect_to root_url
       expect(response.body).to_not include(slit_log.id.to_s)
     end
+
+    it "renders delete link with correct turbo attributes in edit page" do
+      get edit_slit_log_path(slit_log)
+
+      expect(response).to be_successful
+      expect(response.body).to include("data-turbo-method=\"delete\"")
+      expect(response.body).to include("data-turbo-confirm")
+      expect(response.body).to include("Click to delete")
+    end
+
+    it "actually deletes the slit log via DELETE request" do
+      # Ensure slit_log exists before the expect block
+      log_id = slit_log.id
+      expect(SlitLog.find_by(id: log_id)).to be_present
+
+      expect {
+        delete slit_log_path(slit_log)
+      }.to change(SlitLog, :count).by(-1)
+
+      expect(response).to redirect_to root_url
+      expect(SlitLog.find_by(id: log_id)).to be_nil
+    end
+
+    it "does not delete slit log with GET request to same path" do
+      # Ensure slit_log exists before the test
+      log_id = slit_log.id
+      expect(SlitLog.find_by(id: log_id)).to be_present
+
+      # This should NOT delete - SLIT logs don't have a show action, so it should error
+      expect {
+        get slit_log_path(slit_log)
+      }.not_to change(SlitLog, :count)
+
+      # Should get an error since there's no show action
+      expect(response).not_to be_successful
+      expect(SlitLog.find_by(id: log_id)).to be_present
+    end
   end
 end

@@ -25,10 +25,8 @@ class PtSessionLogs::ExerciseLogsController < PtSessionLogsController
     respond_to do |format|
       if @exercise_log.save
         format.html { redirect_to pt_session_log_exercise_log_url(@pt_session_log, @exercise_log) }
-        format.json { render :show, status: :created, location: @pt_session_log }
       else
         format.html { render :new }
-        format.json { render json: @exercise_log.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -37,10 +35,8 @@ class PtSessionLogs::ExerciseLogsController < PtSessionLogsController
     respond_to do |format|
       if @exercise_log.update(exercise_log_params)
         format.html { redirect_to pt_session_log_url(@pt_session_log) }
-        format.json { render :show, status: :ok, location: @pt_session_log }
       else
         format.html { render :edit }
-        format.json { render json: @exercise_log.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -49,7 +45,6 @@ class PtSessionLogs::ExerciseLogsController < PtSessionLogsController
     @exercise_log.destroy
     respond_to do |format|
       format.html { redirect_to pt_session_log_path(@pt_session_log), notice: "Exercise log was deleted." }
-      format.json { head :no_content }
     end
   end
 
