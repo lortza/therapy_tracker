@@ -3,19 +3,23 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="bootstrap"
 export default class extends Controller {
   connect() {
+    // Store bound function references so we can remove them later
+    this.boundInitializeDropdowns = this.initializeDropdowns.bind(this)
+
+    // Initialize dropdowns on connect
     this.initializeDropdowns()
 
     // Listen for Turbo events to reinitialize
-    document.addEventListener("turbo:load", this.initializeDropdowns.bind(this))
-    document.addEventListener("turbo:render", this.initializeDropdowns.bind(this))
-    document.addEventListener("turbo:frame-load", this.initializeDropdowns.bind(this))
+    document.addEventListener("turbo:load", this.boundInitializeDropdowns)
+    document.addEventListener("turbo:render", this.boundInitializeDropdowns)
+    document.addEventListener("turbo:frame-load", this.boundInitializeDropdowns)
   }
 
   disconnect() {
-    // Clean up event listeners
-    document.removeEventListener("turbo:load", this.initializeDropdowns.bind(this))
-    document.removeEventListener("turbo:render", this.initializeDropdowns.bind(this))
-    document.removeEventListener("turbo:frame-load", this.initializeDropdowns.bind(this))
+    // Clean up event listeners using the stored bound references
+    document.removeEventListener("turbo:load", this.boundInitializeDropdowns)
+    document.removeEventListener("turbo:render", this.boundInitializeDropdowns)
+    document.removeEventListener("turbo:frame-load", this.boundInitializeDropdowns)
   }
 
   initializeDropdowns() {
