@@ -159,17 +159,9 @@ The app uses Hotwire (Turbo + Stimulus) for dynamic interactions. JavaScript fil
 
 ## Current Projects to make codebase idiomatic Rails 8
 
-1. Completed
-2. Completed
 3. Rails 8 has moved towards a "no-build" CSS approach, defaulting to plain CSS and skipping preprocessors like Sass to simplify the developer experience. Let's convert all of our sass to CSS and remove any preprocessors
 
-Phase 1: Convert Custom SCSS → CSS (Do This First)
-- Convert your 11 custom .scss files to plain .css
-- Keep Bootstrap as-is temporarily (still using dartsass-rails)   
-- This removes 90% of the Sass complexity with minimal risk
-- Your custom styles are simple enough for clean conversion
-
-Phase 2: Bootstrap → Tailwind (After Phase 1)
+  Phase 2: Bootstrap → Tailwind (After Phase 1)
   Good news: Your concerns about navbar/modals are solvable!
   For Modals:
   - You already use Stimulus! Perfect for this.
@@ -190,8 +182,6 @@ Phase 2: Bootstrap → Tailwind (After Phase 1)
 
 4. Scan application for other legacy code that is not idiomatic Rails 8 and create a plan for replacement. Some examples (but not an exhaustive list of possible code patterns) are: 1. update any old links using the old Rails UJS style syntax. 2. update any forms using "local: true".
 4.a. Is this file idiomatic Rails 8 "app/views/slit_logs/quick_log_create.turbo_stream.erb"?
-
-5. Start Upgrade to Rails 8.1
 
 
 
