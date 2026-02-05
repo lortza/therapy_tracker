@@ -52,6 +52,7 @@ gem "draper" # decorator facilitation
 gem "bootstrap", "~> 4.1.3"
 
 group :development do
+  gem "annot8" # A fork of gem `annotate` that is Rails 8 compatible. Annotate models, routes, etc. with schema info
   gem "rack-mini-profiler"
   # gem 'capistrano-rails' # Use Capistrano for deployment
   gem "rails-erd", require: false # generates ERD chart for your schema, run `bundle exec erd`
