@@ -1,5 +1,31 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: pt_session_logs
+#
+#  id             :bigint           not null, primary key
+#  duration       :integer
+#  exercise_notes :text             default("")
+#  homework       :text             default("")
+#  occurred_at    :datetime
+#  questions      :text
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  body_part_id   :bigint
+#  user_id        :bigint
+#
+# Indexes
+#
+#  index_pt_session_logs_on_body_part_id  (body_part_id)
+#  index_pt_session_logs_on_occurred_at   (occurred_at)
+#  index_pt_session_logs_on_user_id       (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (body_part_id => body_parts.id)
+#  fk_rails_...  (user_id => users.id)
+#
 class PtSessionLog < ApplicationRecord
   extend Log
 

@@ -1,5 +1,27 @@
 # frozen_string_literal: true
 
+## == Schema Information
+#
+# Table name: slit_logs
+#
+#  id                 :bigint           not null, primary key
+#  dose_skipped       :boolean
+#  doses_remaining    :integer
+#  occurred_at        :datetime
+#  started_new_bottle :boolean          default(FALSE)
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  user_id            :bigint           not null
+#
+# Indexes
+#
+#  index_slit_logs_on_occurred_at  (occurred_at)
+#  index_slit_logs_on_user_id      (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
+#
 require "rails_helper"
 
 RSpec.describe SlitLog, type: :model do
