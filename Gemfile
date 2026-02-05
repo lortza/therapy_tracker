@@ -49,7 +49,7 @@ gem "net-smtp", require: false # Send internet mail via SMTP
 gem "sentry-rails"                      # Rails support for Sentry
 gem "sentry-ruby"  # Error reporting to Sentry.io
 gem "draper" # decorator facilitation
-gem "bootstrap", "~> 4.1.3"
+gem "bootstrap", "~> 5.3.8"
 
 group :development do
   gem "annot8" # A fork of gem `annotate` that is Rails 8 compatible. Annotate models, routes, etc. with schema info
