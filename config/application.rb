@@ -24,7 +24,9 @@ module TherapyTracker
     config.time_zone = "Eastern Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
-    # Don't generate system test files.
-    config.generators.system_tests = nil
+    config.generators do |g|
+      g.system_tests = nil # Don't generate system test files.
+      g.orm :active_record, primary_key_type: :uuid # Use UUIDs for primary keys.
+    end
   end
 end

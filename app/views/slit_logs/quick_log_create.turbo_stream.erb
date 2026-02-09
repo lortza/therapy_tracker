@@ -1,6 +1,6 @@
 <%# Insert the countdown timer %>
 <%= turbo_stream.update "slit_countdown_timer_container" do %>
-  <%= render partial: 'slit_logs/countdown_timer', locals: { timer_duration: SlitLog::COUNTDOWN_TIMER_DEFAULT_SECONDS } %>
+  <%= render partial: 'slit_logs/countdown_timer', locals: { timer_duration: current_user.slit_configuration&.hold_time_seconds } %>
 <% end %>
 
 <%# Prepend the new log to the logs list %>

@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   before_action :set_return_to_destination, only: [:edit]
 
   def edit
+    @user.build_slit_configuration unless @user.slit_configuration.present?
   end
 
   def update
@@ -26,6 +27,15 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:enable_slit_tracking, :enable_pt_session_tracking)
+    params.require(:user).permit(
+      :enable_slit_tracking,
+      :enable_pt_session_tracking,
+      slit_configuration_attributes: %i[
+        id
+        max_bottle_doses
+        hold_time_seconds
+        drops_dose_qty
+      ]
+    )
   end
 end
