@@ -39,7 +39,7 @@ class SlitLog < ApplicationRecord
     return if doses_remaining.present?
 
     if started_new_bottle?
-      self.doses_remaining = MAX_BOTTLE_DOSES
+      self.doses_remaining = user.slit_configuration&.max_bottle_doses || MAX_BOTTLE_DOSES
     else
       previous_balance = previous_log&.doses_remaining
       return nil if previous_balance.blank?
