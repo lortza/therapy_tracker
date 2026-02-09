@@ -31,7 +31,7 @@ class SlitLog < ApplicationRecord
   before_save :set_doses_remaining
 
   MAX_BOTTLE_DOSES = 45
-  COUNTDOWN_TIMER_DEFAULT_SECONDS = 121
+  COUNTDOWN_TIMER_DEFAULT_SECONDS = 120
 
   private
 

@@ -26,7 +26,7 @@ export default class extends Controller {
   start() {
     // Initialize state
     this.isTimerStopped = false
-    this.remainingSeconds = this.durationValue
+    this.remainingSeconds = parseInt(this.durationValue, 10) + 1 // Add 1 second to account for immediate decrement in tick()
 
     // Start counting
     this.updateDisplay()
