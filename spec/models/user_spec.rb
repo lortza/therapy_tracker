@@ -34,6 +34,7 @@ RSpec.describe User, type: :model do
     it { should have_many(:pain_logs) }
     it { should have_many(:pt_session_logs) }
     it { should have_many(:slit_logs) }
+    it { should have_one(:slit_configuration) }
   end
 
   context "attributes" do
