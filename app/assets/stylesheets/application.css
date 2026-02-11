@@ -1,15 +1,15 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+/* Application stylesheet entry point */
+/* Bootstrap 5 is now loaded via CDN in app/views/layouts/_head.html.erb */
+
+/* Import all custom stylesheets */
+@import url("variables.css");
+@import url("buttons.css");
+@import url("forms.css");
+@import url("logs.css");
+@import url("pagination_links.css");
+@import url("pt_sessions.css");
+@import url("rep_counter.css");
+@import url("search_bar.css");
+@import url("shared.css");
+@import url("slit.css");
+@import url("utilities.css");

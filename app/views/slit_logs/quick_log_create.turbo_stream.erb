@@ -1,0 +1,9 @@
+<%# Insert the countdown timer %>
+<%= turbo_stream.update "slit_countdown_timer_container" do %>
+  <%= render partial: 'slit_logs/countdown_timer', locals: { timer_duration: current_user.slit_configuration&.hold_time_seconds } %>
+<% end %>
+
+<%# Prepend the new log to the logs list %>
+<%= turbo_stream.prepend "js-logs" do %>
+  <%= render partial: 'slit_log', locals: { slit_log: @slit_log } %>
+<% end %>

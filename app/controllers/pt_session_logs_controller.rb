@@ -26,10 +26,8 @@ class PtSessionLogsController < ApplicationController
     respond_to do |format|
       if @pt_session_log.save
         format.html { redirect_to root_url }
-        format.json { render :show, status: :created, location: @pt_session_log }
       else
         format.html { render :new }
-        format.json { render json: @pt_session_log.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -38,10 +36,8 @@ class PtSessionLogsController < ApplicationController
     respond_to do |format|
       if @pt_session_log.update(pt_session_log_params)
         format.html { redirect_to root_url }
-        format.json { render :show, status: :ok, location: @pt_session_log }
       else
         format.html { render :edit }
-        format.json { render json: @pt_session_log.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -50,7 +46,6 @@ class PtSessionLogsController < ApplicationController
     @pt_session_log.destroy
     respond_to do |format|
       format.html { redirect_to root_url, notice: "PT log was successfully deleted." }
-      format.json { head :no_content }
     end
   end
 

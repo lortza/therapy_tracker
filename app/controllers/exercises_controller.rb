@@ -9,7 +9,10 @@ class ExercisesController < ApplicationController
   end
 
   def show
-    render json: @exercise, status: :ok
+    respond_to do |format|
+      format.html { render json: @exercise, status: :ok }
+      format.turbo_stream
+    end
   end
 
   def new
@@ -41,7 +44,6 @@ class ExercisesController < ApplicationController
     @exercise.destroy
     respond_to do |format|
       format.html { redirect_to exercises_url, notice: "Exercise was successfully destroyed." }
-      format.json { head :no_content }
     end
   end
 

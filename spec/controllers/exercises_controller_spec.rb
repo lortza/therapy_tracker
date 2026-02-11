@@ -78,7 +78,7 @@ RSpec.describe ExercisesController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) { build(:exercise, user_id: User.first, name: "updated name").attributes }
+      let(:new_attributes) { build(:exercise, user_id: User.order(:created_at).first, name: "updated name").attributes }
 
       it "updates the requested exercise" do
         exercise = Exercise.create! valid_attributes

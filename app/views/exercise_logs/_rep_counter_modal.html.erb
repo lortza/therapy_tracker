@@ -1,37 +1,56 @@
-<!-- Modal -->
-<div class="modal fade" id="repCounterModal" tabindex="-1" role="dialog" aria-labelledby="repCounterModalLabel" aria-hidden="true">
+<!-- Exercise Rep Counter Modal -->
+<%= tag.div id: "repCounterModal", class: "modal fade", tabindex: "1", role: "dialog",
+  "aria-labelledby": "repCounterModalLabel",
+  "aria-hidden": "true",
+  data: {
+    controller: "exercise-counter",
+    "exercise-counter-sets-value": sets,
+    "exercise-counter-reps-value": reps,
+    "exercise-counter-rep-length-value": rep_length
+  } do %>
+
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="repCounterModalLabel">Rep Counter</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Dismiss">
-          <span class="modal-dismiss">Close</span> <span aria-hidden="true">&times;</span>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Dismiss">
+          <span class="modal-dismiss">Close</span>
         </button>
       </div>
       <div class="modal-body">
         <h3>
-          <span id='begin-finished-indicator' class='hidden'></span>
+          <span data-exercise-counter-target="statusIndicator" class='hidden'></span>
         </h3>
         <div class='row'>
           <div class='col'>
             <p class='set-rep-row'>Set:<br>
-              <span id='set' class='counter-number-big'>0</span> of <%= sets %>
+              <span data-exercise-counter-target="setDisplay" class='counter-number-big'>0</span> of <%= sets %>
             </p>
           </div>
           <div class='col'>
             <p class='set-rep-row'>Rep: (Hold for <%= rep_length %>)<br>
-              <span id='rep' class='counter-number-big'>0</span> of <%= reps %><br>
+              <span data-exercise-counter-target="repDisplay" class='counter-number-big'>0</span> of <%= reps %><br>
             </p>
           </div>
         </div>
 
-        <%= link_to '<i class="fas fa-play"></i> Start Timer'.html_safe, '#', id: 'start_button', class: button_class('success') %>
-        <%= link_to '<i class="fas fa-stop"></i> Stop & Reset '.html_safe, cancel_url, id: 'stop_button', class: button_class('danger pull-right') %>
+        <%= link_to '#', class: button_class('success'), data: {
+              exercise_counter_target: "startButton",
+              action: "click->exercise-counter#start"
+            } do %>
+            <%= MaterialIconComponent.new(icon: "play_arrow", title: "Start Rep Counter", filled: true, size: :medium).render %>
+            Start Timer
+        <% end %>
 
-        <script>
-          counter(<%= sets %>, <%= reps %>, <%= rep_length %>)
-        </script>
+        <%= link_to cancel_url, class: button_class('danger pull-right'), data: {
+              exercise_counter_target: "stopButton",
+              action: "click->exercise-counter#stop"
+            } do %>
+            <%= MaterialIconComponent.new(icon: "stop", title: "Stop Rep Counter", filled: true, size: :medium).render %>
+            Stop & Reset
+        <% end %>
       </div><!-- modal body -->
     </div>
   </div>
-</div>
+<% end %>
+

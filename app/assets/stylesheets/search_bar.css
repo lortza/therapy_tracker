@@ -1,0 +1,18 @@
+/* Search bar */
+.search-icon {
+  color: var(--medium-gray);
+  float: right;
+  position: relative;
+  right: .5rem;
+  top: 1.75rem;
+}
+
+.clear-search {
+  font-size: 90%;
+  margin-bottom: 2em;
+  text-align: center;
+}
+
+.clear-search a {
+  color: var(--medium-gray);
+}

@@ -37,7 +37,6 @@ class BodyPartsController < ApplicationController
     @body_part.destroy
     respond_to do |format|
       format.html { redirect_to body_parts_url, notice: "#{@body_part.name} was successfully deleted." }
-      format.json { head :no_content }
     end
   end
 

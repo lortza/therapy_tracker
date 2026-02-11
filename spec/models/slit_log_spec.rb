@@ -1,5 +1,27 @@
 # frozen_string_literal: true
 
+## == Schema Information
+#
+# Table name: slit_logs
+#
+#  id                 :bigint           not null, primary key
+#  dose_skipped       :boolean
+#  doses_remaining    :integer
+#  occurred_at        :datetime
+#  started_new_bottle :boolean          default(FALSE)
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  user_id            :bigint           not null
+#
+# Indexes
+#
+#  index_slit_logs_on_occurred_at  (occurred_at)
+#  index_slit_logs_on_user_id      (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
+#
 require "rails_helper"
 
 RSpec.describe SlitLog, type: :model do
@@ -13,33 +35,53 @@ RSpec.describe SlitLog, type: :model do
 
   describe "before_save actions" do
     describe "private: set_doses_remaining" do
+      let(:user) { create(:user) }
+      let(:default_max_bottle_doses) { 2 }
       before do
-        user = create(:user)
         create(:slit_log, user: user, occurred_at: DateTime.current - 2.days, doses_remaining: previous_balance)
+        stub_const("SlitLog::MAX_BOTTLE_DOSES", default_max_bottle_doses)
       end
 
       context "when the new log contains a value for doses_remaining" do
-        let(:slit_log) { build(:slit_log, doses_remaining: 15) }
+        let(:incoming_doses_remaining) { 15 }
+        let(:slit_log) { build(:slit_log, user: user, doses_remaining: incoming_doses_remaining) }
         let(:previous_balance) { 30 }
 
         it "sets uses the existing doses_remaining value" do
           slit_log.send(:set_doses_remaining)
-          expect(slit_log.doses_remaining).to eq(15)
+          expect(slit_log.doses_remaining).to eq(incoming_doses_remaining)
         end
       end
 
       context "when starting a new bottle" do
-        let(:slit_log) { build(:slit_log, started_new_bottle: true) }
+        let(:slit_log) { build(:slit_log, user: user, started_new_bottle: true) }
         let(:previous_balance) { nil }
 
-        it "sets the doses_remaining to the default value" do
-          slit_log.send(:set_doses_remaining)
-          expect(slit_log.doses_remaining).to eq(SlitLog::MAX_BOTTLE_DOSES)
+        context "when the user has a slit_configuration" do
+          let(:user_config_max_bottle_doses) { 1 }
+          let(:slit_configuration) { create(:slit_configuration, user: user, max_bottle_doses: user_config_max_bottle_doses) }
+
+          before do
+            slit_configuration
+          end
+
+          it "sets the doses_remaining to the user's slit_configuration max_bottle" do
+            slit_log.send(:set_doses_remaining)
+            expect(slit_log.doses_remaining).to eq(user_config_max_bottle_doses)
+            expect(slit_log.doses_remaining).not_to eq(default_max_bottle_doses)
+          end
+        end
+
+        context "when the user does not have a slit_configuration set" do
+          it "sets the doses_remaining to the default value" do
+            slit_log.send(:set_doses_remaining)
+            expect(slit_log.doses_remaining).to eq(default_max_bottle_doses)
+          end
         end
       end
 
       context "when a previous log's doses_remaining is not available" do
-        let(:slit_log) { build(:slit_log) }
+        let(:slit_log) { build(:slit_log, user_id: user.id) }
         let(:previous_balance) { nil }
 
         it "sets the doses_remaining to nil" do
@@ -49,7 +91,7 @@ RSpec.describe SlitLog, type: :model do
       end
 
       context "when a previous log's doses_remaining is available" do
-        let(:slit_log) { build(:slit_log) }
+        let(:slit_log) { build(:slit_log, user_id: user.id) }
         let(:previous_balance) { 1 }
 
         it "calls calculate_doses_remaining" do

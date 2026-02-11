@@ -31,10 +31,8 @@ class ExerciseLogsController < ApplicationController
     respond_to do |format|
       if @exercise_log.save
         format.html { redirect_to exercise_log_path(@exercise_log) }
-        format.json { render :show, status: :created, location: @exercise_log }
       else
         format.html { render :new }
-        format.json { render json: @exercise_log.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -43,10 +41,8 @@ class ExerciseLogsController < ApplicationController
     respond_to do |format|
       if @exercise_log.update(exercise_log_params)
         format.html { redirect_to exercise_log_path(@exercise_log) }
-        format.json { render :show, status: :ok, location: @exercise_log }
       else
         format.html { render :edit }
-        format.json { render json: @exercise_log.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -55,7 +51,6 @@ class ExerciseLogsController < ApplicationController
     @exercise_log.destroy
     respond_to do |format|
       format.html { redirect_to root_url }
-      format.json { head :no_content }
     end
   end
 

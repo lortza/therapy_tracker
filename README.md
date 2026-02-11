@@ -10,6 +10,7 @@ This is an app to track physical therapy exercise logs.
 
 - Ruby
 - Rails
+- Turbo/Stimulus
 - Postgres
 - Devise
 - RSpec
@@ -25,12 +26,10 @@ Visit localhost:3000 on your browser!
 
 ### Linters
 
-This project uses [standard rb](https://github.com/standardrb/standard) (in support of the [VS Code extension](https://github.com/standardrb/vscode-standard-ruby?tab=readme-ov-file)) and [scss-lint](https://github.com/sds/scss-lint). Run them locally on your machine like this:
+This project uses [standard rb](https://github.com/standardrb/standard) (in support of the [VS Code extension](https://github.com/standardrb/vscode-standard-ruby?tab=readme-ov-file)). Run locally on your machine like this:
 
 ```
 bundle exec standardrb
-
-bundle exec scss-lint app/assets/stylesheets/**.scss
 ```
 
 ## Placeholder Tones

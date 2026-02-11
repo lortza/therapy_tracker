@@ -6,21 +6,17 @@
 <% if current_user.pain_log_quick_form_values.any? %>
   <%= render partial: 'shared/search_form', locals: { url: pain_log_quick_form_values_path } %>
 
-  <section id='quick-log-button-list'>
+  <section>
     <% @pain_log_quick_form_values.each do |pain_log_quick_form_value| %>
-      <article class='index-list-item'>
-        <h3><%= link_to pain_log_quick_form_value.name, edit_pain_log_quick_form_value_path(pain_log_quick_form_value) %> <i class='quick-log-button-description-toggle fal fa-chevron-down'></i></h3>
-        <p class='exercise-description hidden'>
+      <details class='index-list-item'>
+        <summary><%= link_to pain_log_quick_form_value.name, edit_pain_log_quick_form_value_path(pain_log_quick_form_value) %></summary>
+        <p class='exercise-description'>
           <%= pain_log_quick_form_value.pain.name %> of intensity <%= pain_log_quick_form_value.pain_level %> | <%= pain_log_quick_form_value.body_part.name %>
         </p>
-      </article>
+      </details>
     <% end %>
   </section>
 
 <% else %>
   <%= link_to 'Get Started!', new_pain_log_quick_form_value_path, class: button_class('primary btn-wide') %>
 <% end %>
-
-<script type="text/javascript">
-  painLogQuickFormValueListToggler();
-</script>

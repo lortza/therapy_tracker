@@ -1,6 +1,6 @@
   <% if current_user %>
   <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Log New
     </a>
     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -13,13 +13,13 @@
 
   <% if current_user.pain_log_quick_form_values.any? %>
   <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Quick Log
     </a>
     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-      <%= button_to 'SLIT dose', quick_log_create_path, method: :post, remote: true, class: 'dropdown-item' if current_user.enable_slit_tracking? %>
-      <%= button_to 'SLIT dose New Bottle', quick_log_create_path, params: {started_new_bottle: true}, method: :post, remote: true, class: 'dropdown-item' if current_user.enable_slit_tracking? %>
-      <% current_user.pain_log_quick_form_values.order(name: :asc).each do |attr| %>
+      <%= button_to 'SLIT dose', quick_log_create_path, method: :post, class: 'dropdown-item' if current_user.enable_slit_tracking? %>
+      <%= button_to 'SLIT dose New Bottle', quick_log_create_path, params: {started_new_bottle: true}, method: :post, class: 'dropdown-item' if current_user.enable_slit_tracking? %>
+       <% current_user.pain_log_quick_form_values.order(name: :asc).each do |attr| %>
         <%= button_to attr.name, create_pain_log_from_quick_form_path(content: attr), class: 'dropdown-item'  %>
       <% end %>
     </div>
@@ -27,7 +27,7 @@
   <% end %>
 
   <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       History
     </a>
     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -43,7 +43,7 @@
   </li>
 
   <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Manage
     </a>
     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -55,13 +55,13 @@
   </li>
 
   <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <%= current_user.email %>
     </a>
     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
       <%= link_to 'Edit My Settings', edit_user_settings_path, class: 'dropdown-item' %>
       <%= link_to 'Change My Password', edit_user_registration_path, class: 'dropdown-item' %>
-      <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
+      <%= link_to 'Log Out', destroy_user_session_path, data: { turbo_method: :delete }, class: 'dropdown-item' %>
     </div>
   </li>
 

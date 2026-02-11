@@ -1,0 +1,21 @@
+<%= tag.div class: 'slit-timer-container', 
+  data: { 
+    controller: 'slit-timer',
+    slit_timer_duration_value: timer_duration ||= SlitLog::COUNTDOWN_TIMER_DEFAULT_SECONDS
+    } do %>
+  <div data-slit-timer-target="dismissButton"
+       data-action="click->slit-timer#dismiss"
+       class="slit-timer-dismiss hidden">
+    <%= MaterialIconComponent.new(icon: 'close', size: :large ).render %>
+  </div>
+
+  SLIT hold time remaining:
+  <%= link_to MaterialIconComponent.new(icon: 'timer_off', size: :medium ).render,
+              '#',
+              data: {
+                slit_timer_target: "cancelButton",
+                action: "click->slit-timer#cancel"
+              },
+              class: 'pull-right' %>
+  <div data-slit-timer-target="clock" class='slit-timer-clock'></div>
+<% end %>

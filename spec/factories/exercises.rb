@@ -1,3 +1,28 @@
+# == Schema Information
+#
+# Table name: exercises
+#
+#  id                 :bigint           not null, primary key
+#  default_per_side   :boolean          default(FALSE)
+#  default_rep_length :integer
+#  default_reps       :integer
+#  default_resistance :string
+#  default_sets       :integer
+#  description        :text
+#  name               :string
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  user_id            :bigint
+#
+# Indexes
+#
+#  index_exercises_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
+#
+
 # frozen_string_literal: true
 
 FactoryBot.define do

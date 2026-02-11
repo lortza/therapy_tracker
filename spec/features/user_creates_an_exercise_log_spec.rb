@@ -39,14 +39,11 @@ describe "User creates an Exercise Log" do
     sign_in(user)
     visit new_exercise_log_path
     select exercise_name, from: "exercise_log[exercise_id]"
-    sets = find("#exercise_log_sets").value.to_i
-    reps = find("#exercise_log_reps").value.to_i
-    rep_length = find("#exercise_log_rep_length").value.to_i
-    per_side = find("#exercise_log_per_side").value
 
-    expect(sets).to eq(exercise.default_sets)
-    expect(reps).to eq(exercise.default_reps)
-    expect(rep_length).to eq(exercise.default_rep_length)
-    expect(per_side).to eq("1")
+    # Wait for the async fetch to complete and populate the fields
+    expect(page).to have_field("exercise_log[sets]", with: exercise.default_sets.to_s)
+    expect(page).to have_field("exercise_log[reps]", with: exercise.default_reps.to_s)
+    expect(page).to have_field("exercise_log[rep_length]", with: exercise.default_rep_length.to_s)
+    expect(page).to have_checked_field("exercise_log[per_side]")
   end
 end

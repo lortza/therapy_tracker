@@ -9,7 +9,7 @@ Bundler.require(*Rails.groups)
 module TherapyTracker
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 7.2
+    config.load_defaults 8.1
 
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
@@ -24,7 +24,9 @@ module TherapyTracker
     config.time_zone = "Eastern Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
-    # Don't generate system test files.
-    config.generators.system_tests = nil
+    config.generators do |g|
+      g.system_tests = nil # Don't generate system test files.
+      g.orm :active_record, primary_key_type: :uuid # Use UUIDs for primary keys.
+    end
   end
 end

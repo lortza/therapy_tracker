@@ -1,0 +1,108 @@
+body { background-color: var(--dk-blue); }
+
+.pull-right { float: right; }
+.pull-left { float: left; }
+.hidden { display: none; }
+
+.white-container {
+  background-color: var(--white);
+  border-radius: 10px;
+  margin-top: 20px;
+  padding: 1rem;
+}
+
+.modal-dismiss {
+  font-size: .75rem;
+  font-weight: normal;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+.text-subtle {
+  color: var(--medium-gray);
+  font-style: italic;
+}
+
+/* Index Pages */
+.index-list-item {
+  border-top: 1px solid var(--light-gray);
+  color: var(--default-text);
+  padding: .6rem;
+}
+
+.index-list-item summary {
+  font-size: 1.25rem;
+  margin-bottom: 0;
+  font-weight: 600;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Remove default marker in all browsers */
+.index-list-item summary::marker,
+.index-list-item summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Add custom marker at the end */
+.index-list-item summary::after {
+  content: '◀';
+  margin-left: auto;
+  transition: transform 0.2s ease;
+}
+
+/* Rotate marker when details is open */
+.index-list-item[open] summary::after {
+  transform: rotate(-90deg);
+}
+
+.index-list-item summary a {
+  color: var(--default-text);
+}
+
+.index-list-item .exercise-description {
+  margin-bottom: 0;
+}
+
+.highlight-yellow {
+  background-color: var(--yellow-highlighter);
+  margin: -10px -3px;
+  padding: 0 3px;
+}
+
+/* MATERIAL ICONS */
+/* https://fonts.google.com/icons */
+
+/* Options: */
+/* font-variation-settings: */
+/* 'FILL' 0, */
+/* 'wght' 400, */
+/* 'GRAD' 0, */
+/* 'opsz' 24 */
+
+.icon-outlined { font-variation-settings: 'FILL' 0; }
+.icon-filled { font-variation-settings: 'FILL' 1; }
+
+.navbar-logo {
+  background-color: var(--brand-main);
+  border: 1px solid var(--brand-main);
+  border-radius: 50%;
+  color: var(--white);
+  font-size: 1.25rem;
+  height: 40px;
+  margin-right: .5rem;
+  padding: 0 .5rem 0 .5rem;
+  text-align: center;
+  width: 40px;
+}
+
+/* MEDIA QUERIES */
+@media print {
+  .highlight-yellow {
+    border: .5px solid var(--black);
+  }
+}

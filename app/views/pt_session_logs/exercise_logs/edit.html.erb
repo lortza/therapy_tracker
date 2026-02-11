@@ -5,7 +5,3 @@
 <%= render '/exercise_logs/form', exercise_log: @exercise_log, url: pt_session_log_exercise_log_path(@pt_session_log) %>
 
 <%= render partial: 'shared/delete_footer', locals: { object: @exercise_log, delete_path: pt_session_log_exercise_log_path(@pt_session_log, @exercise_log), message: "Are you sure you want to delete #{@exercise_log.exercise_name}?" } %>
-
-<script>
-  // burnDropdowns(<%#= @exercise_log.sets %>, <%#= @exercise_log.reps %>)
-</script>

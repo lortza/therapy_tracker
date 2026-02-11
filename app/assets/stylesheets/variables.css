@@ -1,0 +1,26 @@
+:root {
+  /* Colors */
+  --white: #fff;
+  --black: #000;
+  --red: #c70039;
+  --orange: #ed553b;
+  --dk-blue: #112f41;
+  --yellow: #f2b134;
+  --light-yellow: #fcecc4; /* calculated from lighten(#f2b134, 30%) */
+
+  --default-text: #2b5f6e;
+  --brand-main: #0994a1;
+  --brand-main-lt: #afe8ed;
+  --secondary: #b1b1b1;
+  --light-gray: #f1f1f1;
+  --medium-gray: #ccc;
+  --error: var(--red);
+  --yellow-highlighter: #ff0;
+
+  --pain-color: var(--yellow);
+  --exercise-color: #48aa6c;
+  --therapy-color: #0994a1;
+  --slit-color: #8228d5;
+
+  --bootstrap-card-border-radius: 10px;
+}
