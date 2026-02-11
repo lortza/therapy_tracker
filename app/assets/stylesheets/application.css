@@ -1,0 +1,15 @@
+/* Application stylesheet entry point */
+/* Bootstrap 5 is now loaded via CDN in app/views/layouts/_head.html.erb */
+
+/* Import all custom stylesheets */
+@import url("variables.css");
+@import url("buttons.css");
+@import url("forms.css");
+@import url("logs.css");
+@import url("pagination_links.css");
+@import url("pt_sessions.css");
+@import url("rep_counter.css");
+@import url("search_bar.css");
+@import url("shared.css");
+@import url("slit.css");
+@import url("utilities.css");
