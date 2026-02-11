@@ -1,5 +1,5 @@
 <div class="card card--log-entry log-border border-color-<%= log.css_name %>">
-  <a href="<%= edit_path %>">
+  <a href="<%= edit_path %>" class="text-decoration-none">
     <div class="card--padding-clear flex">
       <div class="card--icon-container background-color-<%= log.css_name %> <%= 'background-color-error' if error_condition %>">
         <%= MaterialIconComponent.new(icon: log.icon_name, size: :medium).render %>
