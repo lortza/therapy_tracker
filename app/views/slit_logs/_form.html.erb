@@ -1,7 +1,7 @@
 <%= form_with(model: slit_log) do |form| %>
   <%= render partial: 'shared/errors', locals: {object: slit_log} %>
 
-  <div class='form-row'>
+  <div class='row'>
     <div class='col-12 col-md-6'>
       <div class='field'>
         <%= render partial: 'shared/datetime_picker', locals: {form: form} %>

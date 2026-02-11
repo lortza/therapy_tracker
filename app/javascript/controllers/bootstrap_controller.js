@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
+import { Dropdown } from "bootstrap"
 
 // Connects to data-controller="bootstrap"
 export default class extends Controller {
@@ -23,18 +24,20 @@ export default class extends Controller {
   }
 
   initializeDropdowns() {
-    // Bootstrap 4 requires jQuery
-    if (typeof $ !== 'undefined' && $.fn.dropdown) {
-      // Dispose of existing dropdown instances to prevent duplicates
-      $('[data-toggle="dropdown"]').each(function() {
-        const dropdown = $(this).data('bs.dropdown')
-        if (dropdown) {
-          dropdown.dispose()
-        }
-      })
+    // Bootstrap 5 doesn't require jQuery - use native JavaScript
+    const dropdownToggles = document.querySelectorAll('[data-bs-toggle="dropdown"]')
 
-      // Initialize all dropdowns
-      $('[data-toggle="dropdown"]').dropdown()
-    }
+    dropdownToggles.forEach(toggleElement => {
+      // Get existing dropdown instance if any
+      const existingDropdown = Dropdown.getInstance(toggleElement)
+
+      // Dispose of existing instance to prevent duplicates
+      if (existingDropdown) {
+        existingDropdown.dispose()
+      }
+
+      // Initialize new dropdown instance
+      new Dropdown(toggleElement)
+    })
   }
 }

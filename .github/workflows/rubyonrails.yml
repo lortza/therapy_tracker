@@ -58,8 +58,6 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-      #     - name: Lint CSS
-      #       run: bundle exec scss-lint app/assets/stylesheets/**.scss
       - name: Standard RB
         run: bundle exec standardrb
   #     #Add or replace any other lints here

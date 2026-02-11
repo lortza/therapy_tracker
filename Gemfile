@@ -8,7 +8,6 @@ ruby File.read(".ruby-version").strip
 gem "rails", "8.1.2"
 gem "puma", "~> 7.2" # Use Puma as the app server
 gem "pg", ">= 0.18", "< 2.0" # Use postgresql as the database for Active Record
-gem "dartsass-rails" # Use Dart Sass for stylesheets
 
 gem "hotwire-rails"
 gem "sdoc", "~> 2.6.1", group: :doc
@@ -29,7 +28,6 @@ gem "chartkick" # chart rendering for ruby data https://chartkick.com/
 gem "devise" # user authentication
 gem "groupdate" # grouping by dates. goes with chartkick
 gem "will_paginate", "~> 4.0.1" # pagination. Styles: http://mislav.github.io/will_paginate/
-gem "scss_lint", require: false
 
 # Use the database-backed adapters for Rails.cache, Active Job, and Action Cable
 gem "solid_cache"
@@ -49,7 +47,6 @@ gem "net-smtp", require: false # Send internet mail via SMTP
 gem "sentry-rails"                      # Rails support for Sentry
 gem "sentry-ruby"  # Error reporting to Sentry.io
 gem "draper" # decorator facilitation
-gem "bootstrap", "~> 4.1.3"
 
 group :development do
   gem "annot8" # A fork of gem `annotate` that is Rails 8 compatible. Annotate models, routes, etc. with schema info
