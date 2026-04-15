@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby File.read(".ruby-version").strip
 
-gem "rails", "8.1.2"
+gem "rails", "8.1.3"
 gem "puma", "~> 8.0" # Use Puma as the app server
 gem "pg", ">= 0.18", "< 2.0" # Use postgresql as the database for Active Record
 
@@ -40,10 +40,13 @@ gem "solid_cable"
 # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
 gem "thruster", require: false
 
-# gem 'turbolinks', '~> 5' # https://github.com/turbolinks/turbolinks
-gem "net-imap", require: false
-gem "net-pop", require: false
-gem "net-smtp", require: false # Send internet mail via SMTP
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem "tzinfo-data", platforms: %i[windows jruby]
+
+# gem "net-imap", require: false
+# gem "net-pop", require: false
+# gem "net-smtp", require: false # Send internet mail via SMTP
+
 gem "sentry-rails"                      # Rails support for Sentry
 gem "sentry-ruby"  # Error reporting to Sentry.io
 gem "draper" # decorator facilitation
@@ -89,6 +92,3 @@ group :test do
   gem "rails-controller-testing"
   gem "shoulda-matchers"
 end
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[windows jruby]
