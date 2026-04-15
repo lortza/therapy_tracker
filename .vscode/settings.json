@@ -1,1 +1,9 @@
-{}
+{
+  "editor.defaultFormatter": "testdouble.vscode-standard-ruby",
+  "[ruby]": {
+    "editor.defaultFormatter": "testdouble.vscode-standard-ruby"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}
