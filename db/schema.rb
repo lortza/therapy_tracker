@@ -199,6 +199,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_16_175044) do
   end
 
 
+  create_table "survey_score_ranges", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "name"
+    t.integer "range_max_value", null: false
+    t.integer "range_min_value", null: false
+    t.uuid "survey_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["survey_id"], name: "index_survey_score_ranges_on_survey_id"
+  end
+
   create_table "surveys", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.text "description"
