@@ -4,13 +4,13 @@ require "rails_helper"
 
 RSpec.describe Survey, type: :model do
   context "associations" do
-    it { should have_many(:survey_responses) }
+    it { should have_many(:survey_categories).dependent(:destroy) }
     it { should have_many(:questions).through(:survey_categories) }
-    it { should have_many(:survey_answer_options) }
-    it { should have_many(:survey_score_ranges) }
-    it { should have_many(:survey_enrollments) }
+    it { should have_many(:survey_answer_options).dependent(:destroy) }
+    it { should have_many(:survey_score_ranges).dependent(:destroy) }
+    it { should have_many(:survey_enrollments).dependent(:destroy) }
     it { should have_many(:users).through(:survey_enrollments) }
-    it { should have_many(:survey_responses) }
+    it { should have_many(:survey_responses).dependent(:destroy) }
   end
 
   context "validations" do
