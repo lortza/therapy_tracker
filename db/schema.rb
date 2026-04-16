@@ -189,6 +189,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_16_175044) do
     t.index ["survey_id"], name: "index_survey_categories_on_survey_id"
   end
 
+  create_table "survey_questions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "position", default: 0, null: false
+    t.uuid "survey_category_id", null: false
+    t.text "text", null: false
+    t.datetime "updated_at", null: false
+    t.index ["survey_category_id"], name: "index_survey_questions_on_survey_category_id"
+  end
+
 
   create_table "surveys", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
