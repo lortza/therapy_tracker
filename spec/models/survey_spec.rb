@@ -1,16 +1,38 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: surveys
+#
+#  id                  :uuid             not null, primary key
+#  available_to_public :boolean          default(FALSE), not null
+#  description         :text
+#  name                :string           not null
+#  published           :boolean          default(FALSE), not null
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  user_id             :bigint
+#
+# Indexes
+#
+#  index_surveys_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
+#
 require "rails_helper"
 
 RSpec.describe Survey, type: :model do
   context "associations" do
-    it { should have_many(:survey_categories).dependent(:destroy) }
-    it { should have_many(:questions).through(:survey_categories) }
-    it { should have_many(:survey_answer_options).dependent(:destroy) }
-    it { should have_many(:survey_score_ranges).dependent(:destroy) }
-    it { should have_many(:survey_enrollments).dependent(:destroy) }
-    it { should have_many(:users).through(:survey_enrollments) }
-    it { should have_many(:survey_responses).dependent(:destroy) }
+    it { should belong_to(:user).optional(true) }
+    it { should have_many(:categories).dependent(:destroy) }
+    it { should have_many(:questions).through(:categories) }
+    it { should have_many(:answer_options).dependent(:destroy) }
+    it { should have_many(:score_ranges).dependent(:destroy) }
+    it { should have_many(:enrollments).dependent(:destroy) }
+    it { should have_many(:users).through(:enrollments) }
+    it { should have_many(:responses).dependent(:destroy) }
   end
 
   context "validations" do
