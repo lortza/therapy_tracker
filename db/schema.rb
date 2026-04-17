@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_09_205457) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_16_175044) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
@@ -181,6 +181,89 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_09_205457) do
     t.index ["user_id"], name: "index_slit_logs_on_user_id"
   end
 
+  create_table "survey_answer_options", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "name", null: false
+    t.uuid "survey_id", null: false
+    t.datetime "updated_at", null: false
+    t.integer "value", null: false
+    t.index ["survey_id"], name: "index_survey_answer_options_on_survey_id"
+  end
+
+  create_table "survey_answers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.uuid "survey_answer_option_id", null: false
+    t.uuid "survey_question_id", null: false
+    t.uuid "survey_response_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["survey_answer_option_id"], name: "index_survey_answers_on_survey_answer_option_id"
+    t.index ["survey_question_id"], name: "index_survey_answers_on_survey_question_id"
+    t.index ["survey_response_id", "survey_question_id"], name: "idx_on_survey_response_id_survey_question_id_91571cee66"
+    t.index ["survey_response_id"], name: "index_survey_answers_on_survey_response_id"
+  end
+
+  create_table "survey_categories", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "name", null: false
+    t.integer "position", default: 0, null: false
+    t.uuid "survey_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["survey_id"], name: "index_survey_categories_on_survey_id"
+  end
+
+  create_table "survey_enrollments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.uuid "survey_id", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["survey_id"], name: "index_survey_enrollments_on_survey_id"
+    t.index ["user_id", "survey_id"], name: "index_survey_enrollments_on_user_id_and_survey_id"
+    t.index ["user_id"], name: "index_survey_enrollments_on_user_id"
+  end
+
+  create_table "survey_questions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "position", default: 0, null: false
+    t.uuid "survey_category_id", null: false
+    t.text "text", null: false
+    t.datetime "updated_at", null: false
+    t.index ["survey_category_id"], name: "index_survey_questions_on_survey_category_id"
+  end
+
+  create_table "survey_responses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.text "notes"
+    t.datetime "occurred_at", null: false
+    t.uuid "survey_id", null: false
+    t.integer "total_score", default: 0, null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["survey_id"], name: "index_survey_responses_on_survey_id"
+    t.index ["user_id", "survey_id", "occurred_at"], name: "idx_on_user_id_survey_id_occurred_at_2e691e6025"
+    t.index ["user_id"], name: "index_survey_responses_on_user_id"
+  end
+
+  create_table "survey_score_ranges", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "name"
+    t.integer "range_max_value", null: false
+    t.integer "range_min_value", null: false
+    t.uuid "survey_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["survey_id"], name: "index_survey_score_ranges_on_survey_id"
+  end
+
+  create_table "surveys", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.boolean "available_to_public", default: false, null: false
+    t.datetime "created_at", null: false
+    t.text "description"
+    t.string "name", null: false
+    t.boolean "published", default: false, null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_surveys_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.boolean "admin", default: false, null: false
     t.datetime "created_at", precision: nil, null: false
@@ -219,4 +302,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_09_205457) do
   add_foreign_key "pt_session_logs", "users"
   add_foreign_key "slit_configurations", "users"
   add_foreign_key "slit_logs", "users"
+  add_foreign_key "survey_answer_options", "surveys"
+  add_foreign_key "survey_answers", "survey_answer_options"
+  add_foreign_key "survey_answers", "survey_questions"
+  add_foreign_key "survey_answers", "survey_responses"
+  add_foreign_key "survey_categories", "surveys"
+  add_foreign_key "survey_enrollments", "surveys"
+  add_foreign_key "survey_enrollments", "users"
+  add_foreign_key "survey_questions", "survey_categories"
+  add_foreign_key "survey_responses", "surveys"
+  add_foreign_key "survey_responses", "users"
+  add_foreign_key "survey_score_ranges", "surveys"
+  add_foreign_key "surveys", "users"
 end
