@@ -208,6 +208,18 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_16_175044) do
     t.index ["survey_category_id"], name: "index_survey_questions_on_survey_category_id"
   end
 
+  create_table "survey_responses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.text "notes"
+    t.datetime "occurred_at", null: false
+    t.uuid "survey_id", null: false
+    t.integer "total_score", default: 0, null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["survey_id"], name: "index_survey_responses_on_survey_id"
+    t.index ["user_id", "survey_id", "occurred_at"], name: "idx_on_user_id_survey_id_occurred_at_2e691e6025"
+    t.index ["user_id"], name: "index_survey_responses_on_user_id"
+  end
 
   create_table "survey_score_ranges", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
