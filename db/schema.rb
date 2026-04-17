@@ -180,6 +180,19 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_16_175044) do
     t.index ["occurred_at"], name: "index_slit_logs_on_occurred_at"
     t.index ["user_id"], name: "index_slit_logs_on_user_id"
   end
+
+  create_table "survey_answers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.uuid "survey_answer_option_id", null: false
+    t.uuid "survey_question_id", null: false
+    t.uuid "survey_response_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["survey_answer_option_id"], name: "index_survey_answers_on_survey_answer_option_id"
+    t.index ["survey_question_id"], name: "index_survey_answers_on_survey_question_id"
+    t.index ["survey_response_id", "survey_question_id"], name: "idx_on_survey_response_id_survey_question_id_91571cee66"
+    t.index ["survey_response_id"], name: "index_survey_answers_on_survey_response_id"
+  end
+
   create_table "survey_categories", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "name", null: false
