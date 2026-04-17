@@ -181,6 +181,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_16_175044) do
     t.index ["user_id"], name: "index_slit_logs_on_user_id"
   end
 
+  create_table "survey_answer_options", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "name", null: false
+    t.uuid "survey_id", null: false
+    t.datetime "updated_at", null: false
+    t.integer "value", null: false
+    t.index ["survey_id"], name: "index_survey_answer_options_on_survey_id"
+  end
+
   create_table "survey_answers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.uuid "survey_answer_option_id", null: false
