@@ -1,15 +1,34 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: survey_categories
+#
+#  id         :uuid             not null, primary key
+#  name       :string           not null
+#  position   :integer          default(0), not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  survey_id  :uuid             not null
+#
+# Indexes
+#
+#  index_survey_categories_on_survey_id  (survey_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (survey_id => surveys.id)
+#
 require "rails_helper"
 
-RSpec.describe SurveyCategory, type: :model do
+RSpec.describe Survey::Category, type: :model do
   context "associations" do
     it { should belong_to(:survey) }
-    it { should have_many(:survey_questions).dependent(:destroy) }
+    it { should have_many(:questions).dependent(:destroy) }
   end
 
   context "validations" do
-    before { create(:survey_category) } # Ensure there's an existing survey for uniqueness validation
+    before { create(:survey_category) } # Ensure there's an existing record for uniqueness validation
     it { should validate_presence_of(:position) }
     it { should validate_numericality_of(:position).only_integer.is_greater_than_or_equal_to(0) }
     it { should validate_presence_of(:name) }

@@ -19,14 +19,14 @@
 #
 #  fk_rails_...  (survey_id => surveys.id)
 #
-class SurveyCategory < ApplicationRecord
+class Survey::Category < ApplicationRecord
   # Only Admins edit this table
-  # A SurveyCategory is a way to group related questions within a survey. For example, a
+  # A Survey::Category is a way to group related questions within a survey. For example, a
   # "Depression Survey" might have categories like "Feelings" and "Physical Symptoms",
   # Each category would then have specific questions related to that category.
 
-  belongs_to :survey
-  has_many :survey_questions, dependent: :destroy
+  belongs_to :survey, foreign_key: "survey_id"
+  has_many :questions, class_name: "Survey::Question", foreign_key: "survey_category_id", dependent: :destroy
 
   normalizes :name, with: ->(name) { name.strip.squish }
   validates :name,

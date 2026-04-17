@@ -20,7 +20,7 @@
 #  fk_rails_...  (survey_id => surveys.id)
 #
 FactoryBot.define do
-  factory :survey_category do
+  factory :survey_category, class: Survey::Category do
     survey
     sequence(:name) { |n| "survey_category#{n}" }
     sequence(:position) { |n| n - 1 }

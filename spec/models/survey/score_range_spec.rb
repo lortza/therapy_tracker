@@ -22,7 +22,7 @@
 #
 require "rails_helper"
 
-RSpec.describe SurveyScoreRange, type: :model do
+RSpec.describe Survey::ScoreRange, type: :model do
   context "associations" do
     it { should belong_to(:survey) }
   end

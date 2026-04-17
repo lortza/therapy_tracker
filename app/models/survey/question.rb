@@ -19,15 +19,15 @@
 #
 #  fk_rails_...  (survey_category_id => survey_categories.id)
 #
-class SurveyQuestion < ApplicationRecord
+class Survey::Question < ApplicationRecord
   # Only Admins edit this table
-  # A SurveyQuestion represents a single question within a survey. For example, in
+  # A Survey::Question represents a single question within a survey. For example, in
   # a "Depression Survey", a question might be "how often have you felt hopeless?" and
   # That question would belong to a SurveyCategory like "Feelings".
 
-  belongs_to :survey_category
-  delegate :survey, to: :survey_category
-  has_many :survey_answers, dependent: :destroy
+  belongs_to :category, class_name: "Survey::Category", foreign_key: "survey_category_id"
+  delegate :survey, to: :category
+  has_many :answers, class_name: "Survey::Answer", foreign_key: "survey_question_id", dependent: :destroy
 
   normalizes :text, with: ->(text) { text.strip.squish }
   validates :text,

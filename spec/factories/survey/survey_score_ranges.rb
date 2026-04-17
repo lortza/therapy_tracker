@@ -21,7 +21,7 @@
 #  fk_rails_...  (survey_id => surveys.id)
 #
 FactoryBot.define do
-  factory :survey_score_range do
+  factory :survey_score_range, class: Survey::ScoreRange do
     survey
     sequence(:name) { |n| "survey_score_range#{n}" }
     sequence(:range_min_value) { |n| n - 1 }

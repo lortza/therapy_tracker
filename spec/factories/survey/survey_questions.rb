@@ -20,8 +20,8 @@
 #  fk_rails_...  (survey_category_id => survey_categories.id)
 #
 FactoryBot.define do
-  factory :survey_question do
-    survey_category
+  factory :survey_question, class: Survey::Question do
+    association :category, factory: :survey_category
     sequence(:text) { |n| "survey_question#{n}" }
     sequence(:position) { |n| n - 1 }
   end
