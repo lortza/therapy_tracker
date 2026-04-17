@@ -20,7 +20,6 @@
 #  fk_rails_...  (survey_id => surveys.id)
 
 class Survey::AnswerOption < ApplicationRecord
-  # Only Admins edit this table
   # A Survey::AnswerOption represents a possible answer to a survey question for all questions in this survey.
   # For example, for the question "how often have you felt hopeless?", the answer options might be "Not at all",
   # "Several days", "More than half the days", and "Nearly every day".

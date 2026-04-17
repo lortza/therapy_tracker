@@ -21,7 +21,6 @@
 #  fk_rails_...  (survey_id => surveys.id)
 #
 class Survey::ScoreRange < ApplicationRecord
-  # Only Admins edit this table
   # A Survey::ScoreRange defines a range of scores for a survey and the corresponding interpretation.
   # For example, if a survey has a total score that can range from 0 to 30, you might have score
   # ranges like 0-10 = "Mild", 11-20 = "Moderate", and 21-30 = "Severe". This allows you to interpret

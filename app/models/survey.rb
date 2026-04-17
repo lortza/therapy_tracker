@@ -22,7 +22,6 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Survey < ApplicationRecord
-  # Only Admins edit this table
   # A Survey is a way for a user to track their symptoms on a specific topic over time.
   # For example, an admin might create a "Depression Survey" with questions about mood,
   # sleep, appetite, etc. The user can then fill out the survey on a regular basis to track
@@ -35,9 +34,9 @@ class Survey < ApplicationRecord
   has_many :answer_options, class_name: "Survey::AnswerOption", dependent: :destroy
   has_many :score_ranges, class_name: "Survey::ScoreRange", dependent: :destroy
 
-  has_many :enrollments, class_name: "Survey::Enrollment", dependent: :destroy
+  has_many :enrollments, class_name: "Survey::Enrollment", foreign_key: "survey_id", dependent: :destroy
   has_many :users, through: :enrollments
-  has_many :responses, class_name: "Survey::Response", dependent: :destroy
+  has_many :responses, class_name: "Survey::Response", foreign_key: "survey_id", dependent: :destroy
 
   normalizes :name, with: ->(name) { name.strip.squish }
   validates :name,

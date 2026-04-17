@@ -20,7 +20,6 @@
 #  fk_rails_...  (survey_category_id => survey_categories.id)
 #
 class Survey::Question < ApplicationRecord
-  # Only Admins edit this table
   # A Survey::Question represents a single question within a survey. For example, in
   # a "Depression Survey", a question might be "how often have you felt hopeless?" and
   # That question would belong to a SurveyCategory like "Feelings".

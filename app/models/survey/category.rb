@@ -20,7 +20,6 @@
 #  fk_rails_...  (survey_id => surveys.id)
 #
 class Survey::Category < ApplicationRecord
-  # Only Admins edit this table
   # A Survey::Category is a way to group related questions within a survey. For example, a
   # "Depression Survey" might have categories like "Feelings" and "Physical Symptoms",
   # Each category would then have specific questions related to that category.
