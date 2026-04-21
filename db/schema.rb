@@ -259,6 +259,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_16_175044) do
     t.text "description"
     t.string "name", null: false
     t.boolean "published", default: false, null: false
+    t.integer "question_max_points", null: false
+    t.integer "question_min_points", default: 0, null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.index ["user_id"], name: "index_surveys_on_user_id"
