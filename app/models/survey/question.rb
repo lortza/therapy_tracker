@@ -32,5 +32,5 @@ class Survey::Question < ApplicationRecord
   validates :text,
     presence: true,
     uniqueness: {scope: :survey_category_id, case_sensitive: false}
-  validates :position, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 0}
+  scope :ordered, -> { joins(:category).order("survey_categories.position, survey_questions.position") }
 end

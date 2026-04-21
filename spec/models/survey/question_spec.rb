@@ -49,4 +49,18 @@ RSpec.describe Survey::Question, type: :model do
       expect(survey_question.text).to eq("EXAMPLE question")
     end
   end
+
+  describe "scope: ordered" do
+    it "returns a collection of questions ordered by category position then question position" do
+      survey = create(:survey)
+      category_first = create(:survey_category, survey: survey, position: 0)
+      category_second = create(:survey_category, survey: survey, position: 1)
+
+      question_c = create(:survey_question, category: category_second, position: 0)
+      question_b = create(:survey_question, category: category_first, position: 1)
+      question_a = create(:survey_question, category: category_first, position: 0)
+
+      expect(Survey::Question.ordered).to eq([question_a, question_b, question_c])
+    end
+  end
 end
