@@ -29,11 +29,21 @@ RSpec.describe Survey::Question, type: :model do
   end
 
   context "validations" do
-    before { create(:survey_question) } # Ensure there's an existing record for uniqueness validation
-    it { should validate_presence_of(:position) }
-    it { should validate_numericality_of(:position).only_integer.is_greater_than_or_equal_to(0) }
-    it { should validate_presence_of(:text) }
-    it { should validate_uniqueness_of(:text).case_insensitive.scoped_to(:survey_category_id) }
+    context "presence" do
+      it { should validate_presence_of(:text) }
+      it { should validate_presence_of(:position) }
+    end
+
+    context "uniqueness" do
+      before { create(:survey_question) } # Ensure there's an existing record for uniqueness validation
+
+      it { should validate_uniqueness_of(:text).case_insensitive.scoped_to(:survey_category_id) }
+      it { should validate_uniqueness_of(:position).scoped_to(:survey_category_id) }
+    end
+
+    context "numericality" do
+      it { should validate_numericality_of(:position).only_integer.is_greater_than_or_equal_to(0) }
+    end
   end
 
   describe "text normalization" do
