@@ -48,4 +48,14 @@ RSpec.describe Survey::Category, type: :model do
       expect(survey_category.name).to eq("EXAMPLE category")
     end
   end
+
+  describe "scope: ordered" do
+    it "returns a collection ordered by its position, ascending" do
+      survey = create(:survey)
+      category_second = create(:survey_category, survey: survey, position: 1)
+      category_first = create(:survey_category, survey: survey, position: 0)
+
+      expect(Survey::Category.ordered).to eq([category_first, category_second])
+    end
+  end
 end
