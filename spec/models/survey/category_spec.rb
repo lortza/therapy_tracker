@@ -28,11 +28,15 @@ RSpec.describe Survey::Category, type: :model do
   end
 
   context "validations" do
-    before { create(:survey_category) } # Ensure there's an existing record for uniqueness validation
+    it { should validate_presence_of(:name) }
     it { should validate_presence_of(:position) }
     it { should validate_numericality_of(:position).only_integer.is_greater_than_or_equal_to(0) }
-    it { should validate_presence_of(:name) }
-    it { should validate_uniqueness_of(:name).case_insensitive.scoped_to(:survey_id) }
+
+    describe "uniqueness" do
+      before { create(:survey_category) } # Ensure there's an existing record for uniqueness validation
+
+      it { should validate_uniqueness_of(:name).case_insensitive.scoped_to(:survey_id) }
+    end
   end
 
   describe "name normalization" do
