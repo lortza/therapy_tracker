@@ -53,4 +53,9 @@ class User < ApplicationRecord
   def name_or_email
     full_name.presence || email
   end
+
+  # TODO: implement this when building the UX for enrolling in surveys
+  # def enrolled_in?(survey)
+  #   survey_enrollments.exists?(survey: survey)
+  # end
 end
