@@ -6,7 +6,7 @@
 #
 #  id                             :uuid             not null, primary key
 #  available_to_public            :boolean          default(FALSE), not null
-#  calculated_calculated_question_max_points :integer
+#  calculated_question_max_points :integer
 #  calculated_question_min_points :integer
 #  description                    :text
 #  name                           :string           not null

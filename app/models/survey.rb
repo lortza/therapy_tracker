@@ -50,7 +50,7 @@ class Survey < ApplicationRecord
     allow_nil: true
 
   validates :calculated_question_max_points,
-    numericality: {only_integer: true, greater_than_or_equal_to: :calculated_question_min_points},
+    numericality: {only_integer: true, greater_than_or_equal_to: ->(record) { record.calculated_question_min_points || 0 }},
     allow_nil: true
 
   scope :published, -> { where(published: true) }
