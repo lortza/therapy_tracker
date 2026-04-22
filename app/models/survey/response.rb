@@ -35,12 +35,11 @@ class Survey::Response < ApplicationRecord
 
   validates :occurred_at, presence: true
 
-  private
+  def total_score
+    @total_score ||= calculate_total_score
+  end
 
-  # TODO: populate this with a callback when all survey_answers are completed by the user
   def calculate_total_score
-    # Implement logic to calculate total score based on associated survey responses
-    # This is a placeholder implementation and should be replaced with actual logic
-    self.total_score = 0
+    answers.sum(&:answer_option_value)
   end
 end
