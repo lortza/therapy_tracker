@@ -27,9 +27,33 @@
 require "rails_helper"
 
 RSpec.describe Survey::Answer, type: :model do
-  context "associations" do
+  describe "associations" do
     it { should belong_to(:response) }
     it { should belong_to(:question) }
     it { should belong_to(:answer_option) }
+  end
+
+  describe "delegations" do
+    it { should delegate_method(:value).to(:answer_option).with_prefix }
+  end
+
+  describe "callbacks" do
+    describe "calculate_response_total_score" do
+      it "updates the response's total_score column after an answer is saved" do
+        survey = create(:survey)
+        category = create(:survey_category, survey: survey)
+        question_1 = create(:survey_question, category: category)
+        question_2 = create(:survey_question, category: category)
+        option_2 = create(:survey_answer_option, survey: survey, value: 2, name: "Two")
+        option_3 = create(:survey_answer_option, survey: survey, value: 3, name: "Three")
+        survey_response = create(:survey_response, survey: survey)
+
+        create(:survey_answer, response: survey_response, question: question_1, answer_option: option_2)
+        expect(survey_response.reload.read_attribute(:total_score)).to eq(2)
+
+        create(:survey_answer, response: survey_response, question: question_2, answer_option: option_3)
+        expect(survey_response.reload.read_attribute(:total_score)).to eq(5) # 2 + 3
+      end
+    end
   end
 end
