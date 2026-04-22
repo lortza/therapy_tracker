@@ -3,20 +3,31 @@
 namespace :db do
   namespace :seed do
     desc "Surveys"
-    task surveys: :environment do
+    # task surveys: :environment do
+    task :surveys, [:user_id] => [:environment] do |_task, args|
       puts "Seeding Surveys..."
       Survey::Answer.destroy_all
       Survey::Response.destroy_all
-      Survey::ScoreRange.destroy_all
+      Survey::ScoreRangeStep.destroy_all
       Survey::AnswerOption.destroy_all
       Survey::Question.destroy_all
       Survey::Category.destroy_all
       Survey.destroy_all
 
+      user = if args[:user_id].present?
+        args[:user_id]
+        User.find(args[:user_id])
+      else
+        existing_user = User.find_by(email: "admin@email.com", admin: true)
+        existing_user.present? ? existing_user : FactoryBot.create(:user, first_name: "Admin", last_name: "McAdmins", email: "admin@email.com", admin: true)
+      end
+
       survey = Survey.create!(
+        user_id: user.id,
         name: "Depression Checklist",
         description: "A survey to track symptoms of depression over time.",
-        published: true
+        published: true,
+        available_to_public: false
       )
 
       # Category & Questions for Thoughts
@@ -73,13 +84,14 @@ namespace :db do
       survey.answer_options.create!(value: 4, name: "Extremely")
 
       # Score Ranges for the survey
-      survey.score_ranges.create!(name: "No Depression", range_min_value: 0, range_max_value: 5)
-      survey.score_ranges.create!(name: "Normal but unhappy", range_min_value: 6, range_max_value: 10)
-      survey.score_ranges.create!(name: "Mild Depression", range_min_value: 11, range_max_value: 25)
-      survey.score_ranges.create!(name: "Moderate Depression", range_min_value: 26, range_max_value: 50)
-      survey.score_ranges.create!(name: "Severe Depression", range_min_value: 51, range_max_value: 75)
-      survey.score_ranges.create!(name: "Extreme Depression", range_min_value: 76, range_max_value: 100)
+      survey.score_range_steps.create!(name: "No Depression", position: 1)
+      survey.score_range_steps.create!(name: "Normal but unhappy", position: 2)
+      survey.score_range_steps.create!(name: "Mild Depression", position: 3)
+      survey.score_range_steps.create!(name: "Moderate Depression", position: 4)
+      survey.score_range_steps.create!(name: "Severe Depression", position: 5)
+      survey.score_range_steps.create!(name: "Extreme Depression", position: 6)
 
+      survey.calculate_score_range_steps_points
       puts "Finished seeding surveys."
     end
   end
