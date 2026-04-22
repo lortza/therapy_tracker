@@ -27,14 +27,19 @@ require "rails_helper"
 
 RSpec.describe User, type: :model do
   context "associations" do
-    it { should have_many(:body_parts) }
-    it { should have_many(:exercises) }
-    it { should have_many(:exercise_logs) }
-    it { should have_many(:pains) }
-    it { should have_many(:pain_logs) }
-    it { should have_many(:pt_session_logs) }
-    it { should have_many(:slit_logs) }
+    it { should have_many(:pain_log_quick_form_values).dependent(:destroy) }
+    it { should have_many(:body_parts).dependent(:destroy) }
+    it { should have_many(:exercises).dependent(:destroy) }
+    it { should have_many(:exercise_logs).dependent(:destroy) }
+    it { should have_many(:pains).dependent(:destroy) }
+    it { should have_many(:pain_logs).dependent(:destroy) }
+    it { should have_many(:pt_session_logs).dependent(:destroy) }
+    it { should have_many(:slit_logs).dependent(:destroy) }
     it { should have_one(:slit_configuration) }
+
+    it { should have_many(:surveys).dependent(:nullify) }
+    it { should have_many(:survey_enrollments).dependent(:destroy) }
+    it { should have_many(:survey_responses).dependent(:destroy) }
   end
 
   context "attributes" do

@@ -40,6 +40,10 @@ class User < ApplicationRecord
   has_one :slit_configuration, dependent: :destroy
   accepts_nested_attributes_for :slit_configuration
 
+  has_many :surveys, foreign_key: "user_id", dependent: :nullify
+  has_many :survey_enrollments, class_name: "Survey::Enrollment", foreign_key: "user_id", dependent: :destroy
+  has_many :survey_responses, class_name: "Survey::Response", foreign_key: "user_id", dependent: :destroy
+
   scope :with_slit_enabled, -> { where(enable_slit_tracking: true) }
 
   def full_name
@@ -49,4 +53,9 @@ class User < ApplicationRecord
   def name_or_email
     full_name.presence || email
   end
+
+  # TODO: implement this when building the UX for enrolling in surveys
+  # def enrolled_in?(survey)
+  #   survey_enrollments.exists?(survey: survey)
+  # end
 end
