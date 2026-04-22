@@ -21,8 +21,8 @@
 
 class Survey::AnswerOption < ApplicationRecord
   # A Survey::AnswerOption represents a possible answer to a survey question for all questions in this survey.
-  # For example, for the question "how often have you felt hopeless?", the answer options might be "Not at all",
-  # "Several days", "More than half the days", and "Nearly every day".
+  # For example, for the question "how often have you felt hopeless?", the answer options might be "0 - Not at all",
+  # "1 - Several days", "2 - More than half the days", and "3 - Nearly every day".
   # Each answer option has a value that can be used to calculate a score for the survey response.
 
   belongs_to :survey
@@ -37,4 +37,20 @@ class Survey::AnswerOption < ApplicationRecord
   validates :name,
     presence: true,
     uniqueness: {scope: :survey_id, case_sensitive: false}
+
+  scope :ordered, -> { order(value: :asc) }
+
+  after_save :update_survey_question_min_and_max_point_values
+
+  private
+
+  def update_survey_question_min_and_max_point_values
+    if survey.calculated_question_min_points.nil? || value < survey.calculated_question_min_points
+      survey.update!(calculated_question_min_points: value)
+    end
+
+    if survey.calculated_question_max_points.nil? || value > survey.calculated_question_max_points
+      survey.update!(calculated_question_max_points: value)
+    end
+  end
 end
