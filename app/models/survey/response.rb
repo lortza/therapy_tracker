@@ -27,7 +27,8 @@
 class Survey::Response < ApplicationRecord
   # A Survey::Response is an instance of the user responding to the survey.
   # It is the container for all of the user's answers to the survey questions,
-  # as well as any notes they may have added.
+  # as well as any notes they may have added. It is what receives a total score
+  # and what shows up in the user's logs.
 
   belongs_to :survey
   belongs_to :user

@@ -26,7 +26,8 @@
 
 class Survey::Answer < ApplicationRecord
   # A Survey::Answer represents a user's answer to a specific survey question
-  # as part of a survey response. It captures the user's selected answer for that question
+  # as part of a survey response. There is one survey_answer per survey_question.
+  # It captures the user's selected answer_option for that question
   # in the context of their overall response to the survey.
 
   belongs_to :response, class_name: "Survey::Response", foreign_key: "survey_response_id"

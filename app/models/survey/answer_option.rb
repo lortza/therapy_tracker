@@ -23,7 +23,7 @@ class Survey::AnswerOption < ApplicationRecord
   # A Survey::AnswerOption represents a possible answer to a survey question for all questions in this survey.
   # For example, for the question "how often have you felt hopeless?", the answer options might be "0 - Not at all",
   # "1 - Several days", "2 - More than half the days", and "3 - Nearly every day".
-  # Each answer option has a value that can be used to calculate a score for the survey response.
+  # Each answer option has a value that is referenced to calculate the overall score for the survey response.
 
   belongs_to :survey
   has_many :answers, class_name: "Survey::Answer", foreign_key: "survey_answer_option_id", dependent: :destroy
