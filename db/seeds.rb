@@ -59,5 +59,6 @@ Rake::Task["db:seed:slit_logs"].invoke(user.id, 90)
 #-------------------------------------------
 # Rake::Task["db:seed:surveys"].invoke
 Rake::Task["db:seed:surveys"].invoke(user.id)
+Rake::Task["db:seed:survey_responses"].invoke(user.id)
 
 puts "Finished Seeding."
