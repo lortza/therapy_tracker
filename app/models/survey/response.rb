@@ -43,4 +43,12 @@ class Survey::Response < ApplicationRecord
   def calculate_total_score
     answers.sum(&:answer_option_value)
   end
+
+  def score_range_step
+    @score_range_step ||= survey.score_range_steps.where("calculated_range_min_points <= ? AND calculated_range_max_points >= ?", total_score, total_score).first
+  end
+
+  def previous_response
+    @previous_response ||= survey.responses.where(user_id: user_id, occurred_at: ...occurred_at).order(:occurred_at).last
+  end
 end

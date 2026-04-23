@@ -63,4 +63,57 @@ RSpec.describe Survey::Response, type: :model do
       expect(survey_response.reload.calculate_total_score).to eq(5) # 2 + 3
     end
   end
+
+  describe "score_range_step" do
+    let(:survey) { create(:survey) }
+    let(:survey_response) { create(:survey_response, survey: survey) }
+
+    it "returns the score range step whose range includes the total score" do
+      matching_step = create(:survey_score_range_step, survey: survey, calculated_range_min_points: 0, calculated_range_max_points: 10)
+      create(:survey_score_range_step, survey: survey, calculated_range_min_points: 11, calculated_range_max_points: 20)
+
+      allow(survey_response).to receive(:total_score).and_return(5)
+
+      expect(survey_response.score_range_step).to eq(matching_step)
+    end
+
+    it "returns nil when no score range step covers the total score" do
+      create(:survey_score_range_step, survey: survey, calculated_range_min_points: 11, calculated_range_max_points: 20)
+
+      allow(survey_response).to receive(:total_score).and_return(5)
+
+      expect(survey_response.score_range_step).to be_nil
+    end
+  end
+
+  describe "previous_response" do
+    let(:survey) { create(:survey) }
+    let(:user) { create(:user) }
+
+    it "returns the most recent response for the same user and survey before the current response" do
+      older = create(:survey_response, survey: survey, user: user, occurred_at: 3.days.ago)
+      newer = create(:survey_response, survey: survey, user: user, occurred_at: 2.days.ago)
+      current = create(:survey_response, survey: survey, user: user, occurred_at: 1.day.ago)
+
+      expect(current.previous_response).to eq(newer)
+      expect(newer.previous_response).to eq(older)
+      expect(older.previous_response).to be_nil
+    end
+
+    it "does not return responses from a different user" do
+      other_user = create(:user)
+      create(:survey_response, survey: survey, user: other_user, occurred_at: 2.days.ago)
+      current = create(:survey_response, survey: survey, user: user, occurred_at: 1.day.ago)
+
+      expect(current.previous_response).to be_nil
+    end
+
+    it "does not return responses from a different survey" do
+      other_survey = create(:survey)
+      create(:survey_response, survey: other_survey, user: user, occurred_at: 2.days.ago)
+      current = create(:survey_response, survey: survey, user: user, occurred_at: 1.day.ago)
+
+      expect(current.previous_response).to be_nil
+    end
+  end
 end
