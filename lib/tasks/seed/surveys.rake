@@ -94,5 +94,41 @@ namespace :db do
       survey.calculate_score_range_steps_points
       puts "Finished seeding surveys."
     end
+
+    task :survey_responses, [:user_id, :survey_id] => [:environment] do |_task, args|
+      puts "Seeding Survey Responses..."
+      Survey::Response.destroy_all
+
+      user = if args[:user_id].present?
+        args[:user_id]
+        User.find(args[:user_id])
+      else
+        existing_user = User.find_by(email: "admin@email.com", admin: true)
+        existing_user.present? ? existing_user : FactoryBot.create(:user, first_name: "Admin", last_name: "McAdmins", email: "admin@email.com", admin: true)
+      end
+
+      survey = if args[:survey_id].present?
+        args[:survey_id]
+        Survey.find(args[:survey_id])
+      else
+        Survey.first
+      end
+
+      3.times do |i|
+        response = survey.responses.create!(
+          user_id: user.id,
+          occurred_at: (i * 5).days.ago
+        )
+
+        survey.questions.each do |question|
+          response.answers.create!(
+            survey_question_id: question.id,
+            survey_answer_option_id: survey.answer_options.sample.id
+          )
+        end
+      end
+
+      puts "Finished seeding survey responses."
+    end
   end
 end

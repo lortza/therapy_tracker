@@ -3,14 +3,13 @@
 module Log
   # class methods for querying logs
 
-  # TODO: decorate survey responses when displaying them in the log stream
   def self.all(user)
     logs = [
       user.pt_session_logs.decorate.to_a,
       user.pain_logs.decorate.to_a,
       user.exercise_logs.at_home.decorate.to_a,
-      user.slit_logs.decorate.to_a
-      # user.survey_responses.includes(:survey).decorate.to_a
+      user.slit_logs.decorate.to_a,
+      user.survey_responses.includes(:survey).decorate.to_a
     ]
 
     logs.flatten.sort_by { |a| a[:occurred_at] }.reverse!

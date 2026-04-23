@@ -1,0 +1,17 @@
+<% @log_content = capture do %>
+  <h5 class='card-title color-response'><%= response.survey.name.titleize %> Taken: <%= format_datetime(response.occurred_at) %></h5>
+  <p class="card-text">Score: <%= response.total_score %>/<%= response.survey.max_score %> <%= response.score_name %> <% if response.score_description %>: <%= response.score_description %><% end %><br>
+    <%= response.difference_from_previous_response %><br>
+    <small class="text-muted"><%= response.notes %></small>
+  </p>
+<% end %>
+
+<!-- TODO: Add link to view completed response -->
+<%= render partial: '/logs/log_component',
+  locals: {
+    log: response,
+    log_content: @log_content,
+    edit_path: "#",
+    error_condition: false
+  }
+%>

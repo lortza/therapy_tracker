@@ -105,6 +105,14 @@
   color: var(--slit-color);
 }
 
+.log-type-survey .log-icon-color {
+  color: var(--survey-color);
+}
+
+.log-type-survey .card-title {
+  color: var(--survey-color);
+}
+
 .color-exercise {
   color: var(--exercise-color);
 }
@@ -119,6 +127,10 @@
 
 .color-slit {
   color: var(--slit-color);
+}
+
+.color-survey {
+  color: var(--survey-color);
 }
 
 .background-color-exercise {
@@ -137,6 +149,10 @@
   background-color: var(--slit-color);
 }
 
+.background-color-survey {
+  background-color: var(--survey-color);
+}
+
 .border-color-exercise {
   border-color: var(--exercise-color);
 }
@@ -151,4 +167,8 @@
 
 .border-color-slit {
   border-color: var(--slit-color);
+}
+
+.border-color-survey {
+  border-color: var(--survey-color);
 }
