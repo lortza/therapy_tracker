@@ -17,7 +17,7 @@
     <div class="row border-bottom mb-0">
       <div class="col-2 py-1 px-2"><%= link_to survey.name, admin_survey_path(survey) %></div>
       <div class="col-4 py-1 px-2"><%= survey.description %></div>
-      <div class="col-1 py-1 px-2"><%= survey.published? ? "Published" : "Draft" %></div>
+      <div class="col-1 py-1 px-2"><%= survey.status %></div>
       <div class="col-2 py-1 px-2"><%= survey.responses.size %></div>
       <div class="col-3 py-1 px-2">
         <!-- TODO: use policies to display available action buttons -->

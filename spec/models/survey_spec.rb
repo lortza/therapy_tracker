@@ -10,7 +10,7 @@
 #  calculated_question_min_points :integer
 #  description                    :text
 #  name                           :string           not null
-#  published                      :boolean          default(FALSE), not null
+#  status                         :integer          default("draft"), not null
 #  created_at                     :datetime         not null
 #  updated_at                     :datetime         not null
 #  user_id                        :bigint
@@ -66,18 +66,6 @@ RSpec.describe Survey, type: :model do
       survey = build(:survey, name: "EXAMPLE survey")
       expect(survey.valid?).to be(true)
       expect(survey.name).to eq("EXAMPLE survey")
-    end
-  end
-
-  describe "scope: published" do
-    let(:subject) { Survey.published }
-
-    it "returns only surveys where published is true" do
-      published_survey = create(:survey, published: true)
-      unpublished_survey = create(:survey, published: false)
-
-      expect(subject).to eq([published_survey])
-      expect(subject).not_to include(unpublished_survey)
     end
   end
 

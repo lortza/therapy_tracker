@@ -1,6 +1,8 @@
 <% content_for(:title, @survey.name) %>
 
-<h1><%= @survey.name.titleize %> <span class="fs-6 text"><%= @survey.published? ? "(Published)" : "(Draft)" %></span></h1>
+<%= link_to 'back to surveys', admin_surveys_path %>
+
+<h1><%= @survey.name.titleize %> <span class="fs-6 text">(<%= @survey.status %>)</span></h1>
 <p><%= @survey.description %></p>    
 <div class="row">
   <div class="col-7">

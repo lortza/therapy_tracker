@@ -15,6 +15,6 @@ class Admin::SurveysController < AdminController
   end
 
   def survey_params
-    params.require(:survey).permit(:name, :description, :published, :available_to_public)
+    params.require(:survey).permit(:name, :description, :status, :available_to_public)
   end
 end

@@ -10,7 +10,7 @@
 #  calculated_question_min_points :integer
 #  description                    :text
 #  name                           :string           not null
-#  published                      :boolean          default(FALSE), not null
+#  status                         :integer          default("draft"), not null
 #  created_at                     :datetime         not null
 #  updated_at                     :datetime         not null
 #  user_id                        :bigint
@@ -29,7 +29,7 @@ FactoryBot.define do
     sequence(:description) { |n| "survey#{n} description" }
     calculated_question_min_points { nil }
     calculated_question_max_points { nil }
-    published { false }
+    status { :draft }
     available_to_public { false }
   end
 end
