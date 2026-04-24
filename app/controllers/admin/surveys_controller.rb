@@ -32,14 +32,14 @@ class Admin::SurveysController < AdminController
   end
 
   def make_private
-    authorize! @survey, :make_private?
+    authorize! @survey
 
     @survey.update(available_to_public: false)
     redirect_to admin_survey_path(@survey), notice: "Survey is now private."
   end
 
   def destroy
-    authorize! @survey, :destroy?
+    authorize! @survey
 
     @survey.destroy
     redirect_to admin_surveys_path, notice: "Survey deleted successfully."
