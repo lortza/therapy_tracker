@@ -12,6 +12,7 @@ require "rspec/rails"
 require "devise"
 require "capybara/rails"
 require "capybara/rspec"
+require "action_policy/rspec"
 
 require_relative "support/controller_macros"
 
