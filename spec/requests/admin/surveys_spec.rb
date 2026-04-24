@@ -12,10 +12,10 @@ RSpec.describe "Admin::Surveys", type: :request do
       expect(response).to redirect_to new_user_session_path
     end
 
-    # it "redirects show to sign in" do
-    #   get admin_survey_path(survey)
-    #   expect(response).to redirect_to new_user_session_path
-    # end
+    it "redirects show to sign in" do
+      get admin_survey_path(survey)
+      expect(response).to redirect_to new_user_session_path
+    end
 
     # it "redirects new to sign in" do
     #   get new_admin_survey_path
@@ -53,10 +53,10 @@ RSpec.describe "Admin::Surveys", type: :request do
       expect(response).to redirect_to root_path
     end
 
-    # it "redirects show to root" do
-    #   get admin_survey_path(survey)
-    #   expect(response).to redirect_to root_path
-    # end
+    it "redirects show to root" do
+      get admin_survey_path(survey)
+      expect(response).to redirect_to root_path
+    end
 
     # it "redirects new to root" do
     #   get new_admin_survey_path
@@ -75,13 +75,13 @@ RSpec.describe "Admin::Surveys", type: :request do
       end
     end
 
-    # describe "GET /admin/surveys/:id" do
-    #   it "renders successfully" do
-    #     get admin_survey_path(survey)
-    #     expect(response).to be_successful
-    #     expect(response).to render_template(:show)
-    #   end
-    # end
+    describe "GET /admin/surveys/:id" do
+      it "renders successfully" do
+        get admin_survey_path(survey)
+        expect(response).to be_successful
+        expect(response).to render_template(:show)
+      end
+    end
 
     # describe "GET /admin/surveys/new" do
     #   it "renders successfully" do
