@@ -10,7 +10,7 @@
 #  calculated_question_min_points :integer
 #  description                    :text
 #  name                           :string           not null
-#  published                      :boolean          default(FALSE), not null
+#  status                         :integer          default("draft"), not null
 #  created_at                     :datetime         not null
 #  updated_at                     :datetime         not null
 #  user_id                        :bigint
@@ -28,6 +28,8 @@ class Survey < ApplicationRecord
   # For example, an admin might create a "Depression Survey" with questions about mood,
   # sleep, appetite, etc. The user can then fill out the survey on a regular basis to track
   # their symptoms and share the results with their therapist.
+
+  enum :status, {draft: 0, published: 1, archived: 2}
 
   belongs_to :author, class_name: "User", optional: true, foreign_key: "user_id"
 
@@ -53,7 +55,7 @@ class Survey < ApplicationRecord
     numericality: {only_integer: true, greater_than_or_equal_to: ->(record) { record.calculated_question_min_points || 0 }},
     allow_nil: true
 
-  scope :published, -> { where(published: true) }
+  # This scope is to differentiate between surveys that users create for themselves vs ones created by admins for other users to take.
   scope :available_to_public, -> { where(available_to_public: true) }
 
   def max_score
