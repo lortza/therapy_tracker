@@ -2,8 +2,14 @@
 
 <%= link_to 'back to surveys', admin_surveys_path %>
 
-<h1><%= @survey.name.titleize %> <span class="fs-6 text">(<%= @survey.status %>)</span></h1>
-<p><%= @survey.description %></p>    
+<div class="d-flex justify-content-between">
+  <h1><%= @survey.name.titleize %> <span class="fs-6 text">(<%= @survey.status %>)</span></h1>
+  <div class="d-flex justify-content-end align-items-start gap-1">
+    <%= render partial: "action_buttons", locals: {survey: @survey} %>
+  </div>
+</div>
+<p><%= @survey.description %></p> 
+
 <div class="row">
   <div class="col-7">
     <h2 class="fs-4 text">Questions</h2>
@@ -26,10 +32,6 @@
     </ul>
   </div>
 </div>
-
-
-
-
 
 <h2 class="fs-4 text">Score Interpretation</h2>
 <ul>

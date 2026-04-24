@@ -19,12 +19,8 @@
       <div class="col-4 py-1 px-2"><%= survey.description %></div>
       <div class="col-1 py-1 px-2"><%= survey.status %></div>
       <div class="col-2 py-1 px-2"><%= survey.responses.size %></div>
-      <div class="col-3 py-1 px-2">
-        <!-- TODO: use policies to display available action buttons -->
-        <%#= link_to "Edit", edit_admin_survey_path(survey), class: "btn btn-sm btn-primary" %>
-        <%= link_to "Publish", '#', class: "btn btn-sm btn-primary" %>
-        <%= link_to "Archive", '#', class: "btn btn-sm btn-primary" %>
-        <%#= link_to "Delete", admin_survey_path(survey), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-danger" unless survey.published? %>
+      <div class="col-3 py-1 px-2 d-flex justify-content-start align-items-start gap-1">
+        <%= render partial: "action_buttons", locals: {survey: survey} %>
       </div>
     </div>
   <% end %>
