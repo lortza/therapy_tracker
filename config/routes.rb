@@ -15,7 +15,8 @@ Rails.application.routes.draw do
   root to: "logs#index"
 
   namespace :admin do
-    resources :users, only: [:index, :show]
+    resources :users, only: [:index, :show]  # existing
+    resources :surveys
   end
 
   resources :users, only: [:update]
@@ -42,4 +43,10 @@ Rails.application.routes.draw do
   post "/quick_log_create", to: "slit_logs#quick_log_create"
 
   resources :slit_log_reports, only: [:index, :new]
+
+  # NEW WIP ROUTES FOR SURVEYS
+  # resources :survey_enrollments, only: [:create, :destroy]
+  # resources :surveys, only: [:index, :show] do
+  #   resources :survey_responses, only: [:new, :create, :index, :show]
+  # end
 end

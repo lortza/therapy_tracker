@@ -33,47 +33,47 @@ namespace :db do
       # Category & Questions for Thoughts
       thoughts_category = survey.categories.create!(
         name: "Thoughts and Feelings",
-        position: 0
+        position: 1
       )
       thoughts_category.questions.create!(
         text: "I feel sad or down in the dumps.",
-        position: 0
+        position: 1
       )
       thoughts_category.questions.create!(
         text: "I have lost interest in my usual activities.",
-        position: 1
+        position: 2
       )
 
       # Category & Questions for Activities and Personal Relationships
       activities_category = survey.categories.create!(
         name: "Activities and Personal Relationships",
-        position: 1
+        position: 2
       )
 
       activities_category.questions.create!(
         text: "Loss of motivation or initiative.",
-        position: 0
+        position: 1
       )
 
       activities_category.questions.create!(
         text: "Loss of interest in family or friends",
-        position: 1
+        position: 2
       )
 
       # Category & Questions for Physical Symptoms
       physical_category = survey.categories.create!(
         name: "Physical Symptoms",
-        position: 2
+        position: 3
       )
 
       physical_category.questions.create!(
         text: "I have trouble sleeping at night.",
-        position: 0
+        position: 1
       )
 
       physical_category.questions.create!(
         text: "Worrying about health",
-        position: 1
+        position: 2
       )
 
       # Answer Options for all questions
@@ -84,12 +84,12 @@ namespace :db do
       survey.answer_options.create!(value: 4, name: "Extremely")
 
       # Score Ranges for the survey
-      survey.score_range_steps.create!(name: "No Depression", position: 1)
-      survey.score_range_steps.create!(name: "Normal but unhappy", position: 2)
-      survey.score_range_steps.create!(name: "Mild Depression", position: 3)
-      survey.score_range_steps.create!(name: "Moderate Depression", position: 4)
-      survey.score_range_steps.create!(name: "Severe Depression", position: 5)
-      survey.score_range_steps.create!(name: "Extreme Depression", position: 6)
+      survey.score_range_steps.create!(name: "No Depression", position: 1, description: "Your responses indicate that you are not currently experiencing symptoms of depression.")
+      survey.score_range_steps.create!(name: "Normal but unhappy", position: 2, description: "Your responses indicate that you are experiencing some negative feelings but not to a significant extent.")
+      survey.score_range_steps.create!(name: "Mild Depression", position: 3, description: "Your responses indicate that you are experiencing some symptoms of depression.")
+      survey.score_range_steps.create!(name: "Moderate Depression", position: 4, description: "Your responses indicate that you are experiencing moderate symptoms of depression.")
+      survey.score_range_steps.create!(name: "Severe Depression", position: 5, description: "Your responses indicate that you are experiencing severe symptoms of depression.")
+      survey.score_range_steps.create!(name: "Extreme Depression", position: 6, description: "Your responses indicate that you are experiencing extreme symptoms of depression.")
 
       survey.calculate_score_range_steps_points
       puts "Finished seeding surveys."
