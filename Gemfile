@@ -24,10 +24,14 @@ gem "turbo-rails"
 gem "stimulus-rails"
 
 gem "bootsnap", require: false
-gem "chartkick" # chart rendering for ruby data https://chartkick.com/
 gem "devise" # user authentication
+gem "action_policy" # authorization. see: https://github.com/palkan/action_policy
+
+# View helpers
+gem "chartkick" # chart rendering for ruby data https://chartkick.com/
 gem "groupdate" # grouping by dates. goes with chartkick
 gem "will_paginate", "~> 4.0.1" # pagination. Styles: http://mislav.github.io/will_paginate/
+gem "draper" # decorator facilitation
 
 # Use the database-backed adapters for Rails.cache, Active Job, and Action Cable
 gem "solid_cache"
@@ -49,7 +53,6 @@ gem "tzinfo-data", platforms: %i[windows jruby]
 
 gem "sentry-rails"                      # Rails support for Sentry
 gem "sentry-ruby"  # Error reporting to Sentry.io
-gem "draper" # decorator facilitation
 
 group :development do
   gem "annot8" # A fork of gem `annotate` that is Rails 8 compatible. Annotate models, routes, etc. with schema info

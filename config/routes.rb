@@ -16,7 +16,14 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users, only: [:index, :show]  # existing
-    resources :surveys
+    resources :surveys do
+      member do
+        post :publish
+        post :archive
+        post :make_public
+        post :make_private
+      end
+    end
   end
 
   resources :users, only: [:update]
