@@ -1,0 +1,5 @@
+<%= turbo_stream.update "js_survey_answer_option_form", "" %>
+
+<%= turbo_stream.replace "js_survey_answer_options_list" do %>
+  <%= render partial: 'admin/survey/answer_options/list', locals: {survey: @survey} %>
+<% end %>
