@@ -39,13 +39,11 @@
 </div>
 
 <h2 class="fs-4 text">Score Interpretation</h2>
-<%= link_to 'Add Score Range Step', new_admin_survey_survey_score_range_step_path(@survey), data: { turbo_stream: true }, class: button_class('primary') if allowed_to?(:edit?, @survey) %>
-<%= render partial: "admin/survey/score_range_steps/form", locals: {survey: @survey} %>
-<%= tag.div id: "js_survey_score_range_step_form", data: {controller: "clearable" } %>
-
-<ul>
-  <% @survey.score_range_steps.each do |step| %>
-    <li><strong><%= step.calculated_range_min_points %>-<%= step.calculated_range_max_points %>: <%= step.name %></strong> - <%= step.description %></li>
-  <% end %>
-</ul>
+<% if @survey.questions.any? %>
+  <%= link_to '+ Add', new_admin_survey_survey_score_range_step_path(@survey), data: { turbo_stream: true }, class: button_class('primary') if allowed_to?(:edit?, @survey) %>
+  <%= tag.div id: "js_survey_score_range_step_form", data: {controller: "clearable" } %>
+  <%= render partial: 'admin/survey/score_range_steps/list', locals: {survey: @survey} %>
+<% else %>
+  <p class="text">Add questions to the survey to enable score interpretation.</p>
+<% end %>
 
