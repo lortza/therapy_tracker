@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row border-top border-bottom mb-3">
     <div class="col p-2 border-end border-start bg-light">  
-      <%= form_with model: [:admin, survey, answer_option], html: { novalidate: true } do |form| %>
+      <%= form_with model: [:admin, answer_option], html: { novalidate: true } do |form| %>
         
         <%= render 'shared/errors', object: answer_option %>
         <%= form.hidden_field :survey_id, value: survey.id %>

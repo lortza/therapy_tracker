@@ -12,15 +12,15 @@
 <div class="row mb-3">
   <div class="col-7">
     <h2 class="fs-4 text">Questions</h2>
-    <%= link_to 'Add Question Category', new_admin_survey_survey_category_path(@survey), data: { turbo_stream: true }, class: button_class('primary') if allowed_to?(:edit?, @survey) %>
+    <%#= link_to 'Add Question Category', new_admin_survey_category_path(@survey), data: { turbo_stream: true }, class: button_class('primary') if allowed_to?(:edit?, @survey) %>
     <%= tag.div id: "js_survey_question_form", data: {controller: "clearable" } %>
 
-    <%= render partial: "admin/survey/categories/form", locals: {survey: @survey} %>
+    <%#= render partial: "admin/survey/categories/form", locals: {survey: @survey} %>
     
     <% @survey.categories.each do |category| %>
       <h3 class="fs-5 text"><%= category.name %></h3>
       <%= link_to 'Add Question', new_admin_survey_category_survey_question_path(@survey, category), data: { turbo_stream: true }, class: button_class('primary') if allowed_to?(:edit?, @survey) %>
-      <%= render partial: "admin/survey/questions/form", locals: {survey: @survey, category: category} %>
+      <%#= render partial: "admin/survey/questions/form", locals: {survey: @survey, category: category} %>
       
       <ul>
         <% category.questions.each do |question| %>
@@ -32,7 +32,7 @@
 
   <div class="col-5">
     <h2 class="fs-4 text">Answer Options</h2>
-    <%= link_to '+ Add', new_admin_survey_survey_answer_option_path(@survey), data: { turbo_stream: true }, class: button_class('primary') if allowed_to?(:edit?, @survey) %>
+    <%= link_to '+ Add', new_admin_survey_answer_option_path(@survey), data: { turbo_stream: true }, class: button_class('primary') if allowed_to?(:edit?, @survey) %>
     <%= tag.div id: "js_survey_answer_option_form", data: {controller: "clearable" } %>
     <%= render partial: 'admin/survey/answer_options/list', locals: {survey: @survey} %>
   </div>
@@ -40,7 +40,7 @@
 
 <h2 class="fs-4 text">Score Interpretation</h2>
 <% if @survey.questions.any? %>
-  <%= link_to '+ Add', new_admin_survey_survey_score_range_step_path(@survey), data: { turbo_stream: true }, class: button_class('primary') if allowed_to?(:edit?, @survey) %>
+  <%= link_to '+ Add', new_admin_survey_score_range_step_path(@survey), data: { turbo_stream: true }, class: button_class('primary') if allowed_to?(:edit?, @survey) %>
   <%= tag.div id: "js_survey_score_range_step_form", data: {controller: "clearable" } %>
   <%= render partial: 'admin/survey/score_range_steps/list', locals: {survey: @survey} %>
 <% else %>

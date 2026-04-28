@@ -20,27 +20,27 @@ RSpec.describe "Admin::Survey::ScoreRangeSteps", type: :request do
 
   describe "unauthenticated access" do
     it "redirects new to sign in" do
-      get new_admin_survey_survey_score_range_step_path(survey), headers: turbo_stream_headers
+      get new_admin_survey_score_range_step_path(survey), headers: turbo_stream_headers
       expect(response).to redirect_to new_user_session_path
     end
 
     it "redirects create to sign in" do
-      post admin_survey_survey_score_range_steps_path(survey), params: {survey_score_range_step: {name: "Mild", position: 1, survey_id: survey.id}}
+      post admin_survey_score_range_steps_path(survey), params: {survey_score_range_step: {name: "Mild", position: 1, survey_id: survey.id}}
       expect(response).to redirect_to new_user_session_path
     end
 
     it "redirects edit to sign in" do
-      get edit_admin_survey_survey_score_range_step_path(survey, score_range_step), headers: turbo_stream_headers
+      get edit_admin_survey_score_range_step_path(survey, score_range_step), headers: turbo_stream_headers
       expect(response).to redirect_to new_user_session_path
     end
 
     it "redirects update to sign in" do
-      patch admin_survey_survey_score_range_step_path(survey, score_range_step), params: {survey_score_range_step: {name: "Updated"}}
+      patch admin_survey_score_range_step_path(survey, score_range_step), params: {survey_score_range_step: {name: "Updated"}}
       expect(response).to redirect_to new_user_session_path
     end
 
     it "redirects destroy to sign in" do
-      delete admin_survey_survey_score_range_step_path(survey, score_range_step)
+      delete admin_survey_score_range_step_path(survey, score_range_step)
       expect(response).to redirect_to new_user_session_path
     end
   end
@@ -51,27 +51,27 @@ RSpec.describe "Admin::Survey::ScoreRangeSteps", type: :request do
     before { sign_in(non_admin) }
 
     it "redirects new to root" do
-      get new_admin_survey_survey_score_range_step_path(survey), headers: turbo_stream_headers
+      get new_admin_survey_score_range_step_path(survey), headers: turbo_stream_headers
       expect(response).to redirect_to root_path
     end
 
     it "redirects create to root" do
-      post admin_survey_survey_score_range_steps_path(survey), params: {survey_score_range_step: {name: "Mild", position: 1, survey_id: survey.id}}
+      post admin_survey_score_range_steps_path(survey), params: {survey_score_range_step: {name: "Mild", position: 1, survey_id: survey.id}}
       expect(response).to redirect_to root_path
     end
 
     it "redirects edit to root" do
-      get edit_admin_survey_survey_score_range_step_path(survey, score_range_step), headers: turbo_stream_headers
+      get edit_admin_survey_score_range_step_path(survey, score_range_step), headers: turbo_stream_headers
       expect(response).to redirect_to root_path
     end
 
     it "redirects update to root" do
-      patch admin_survey_survey_score_range_step_path(survey, score_range_step), params: {survey_score_range_step: {name: "Updated"}}
+      patch admin_survey_score_range_step_path(survey, score_range_step), params: {survey_score_range_step: {name: "Updated"}}
       expect(response).to redirect_to root_path
     end
 
     it "redirects destroy to root" do
-      delete admin_survey_survey_score_range_step_path(survey, score_range_step)
+      delete admin_survey_score_range_step_path(survey, score_range_step)
       expect(response).to redirect_to root_path
     end
   end
@@ -81,7 +81,7 @@ RSpec.describe "Admin::Survey::ScoreRangeSteps", type: :request do
 
     describe "GET new" do
       it "renders successfully" do
-        get new_admin_survey_survey_score_range_step_path(survey), headers: turbo_stream_headers
+        get new_admin_survey_score_range_step_path(survey), headers: turbo_stream_headers
         expect(response).to be_successful
       end
     end
@@ -90,7 +90,7 @@ RSpec.describe "Admin::Survey::ScoreRangeSteps", type: :request do
       context "with valid params" do
         it "creates the score range step and redirects to the survey" do
           expect {
-            post admin_survey_survey_score_range_steps_path(survey), params: {survey_score_range_step: {name: "Mild", position: 1, survey_id: survey.id}}
+            post admin_survey_score_range_steps_path(survey), params: {survey_score_range_step: {name: "Mild", position: 1, survey_id: survey.id}}
           }.to change(Survey::ScoreRangeStep, :count).by(1)
 
           expect(response).to redirect_to admin_survey_path(survey)
@@ -100,7 +100,7 @@ RSpec.describe "Admin::Survey::ScoreRangeSteps", type: :request do
       context "with invalid params" do
         it "does not create the score range step" do
           expect {
-            post admin_survey_survey_score_range_steps_path(survey), params: {survey_score_range_step: {name: "", position: nil, survey_id: survey.id}}
+            post admin_survey_score_range_steps_path(survey), params: {survey_score_range_step: {name: "", position: nil, survey_id: survey.id}}
           }.not_to change(Survey::ScoreRangeStep, :count)
         end
       end
@@ -108,7 +108,7 @@ RSpec.describe "Admin::Survey::ScoreRangeSteps", type: :request do
 
     describe "GET edit" do
       it "renders successfully" do
-        get edit_admin_survey_survey_score_range_step_path(survey, score_range_step), headers: turbo_stream_headers
+        get edit_admin_survey_score_range_step_path(survey, score_range_step), headers: turbo_stream_headers
         expect(response).to be_successful
       end
     end
@@ -116,7 +116,7 @@ RSpec.describe "Admin::Survey::ScoreRangeSteps", type: :request do
     describe "PATCH update" do
       context "with valid params" do
         it "updates the score range step and redirects to the survey" do
-          patch admin_survey_survey_score_range_step_path(survey, score_range_step), params: {survey_score_range_step: {name: "Updated Name"}}
+          patch admin_survey_score_range_step_path(survey, score_range_step), params: {survey_score_range_step: {name: "Updated Name"}}
 
           expect(score_range_step.reload.name).to eq("Updated Name")
           expect(response).to redirect_to admin_survey_path(survey)
@@ -126,7 +126,7 @@ RSpec.describe "Admin::Survey::ScoreRangeSteps", type: :request do
       context "with invalid params" do
         it "does not update the score range step" do
           original_name = score_range_step.name
-          patch admin_survey_survey_score_range_step_path(survey, score_range_step), params: {survey_score_range_step: {name: ""}}
+          patch admin_survey_score_range_step_path(survey, score_range_step), params: {survey_score_range_step: {name: ""}}
 
           expect(score_range_step.reload.name).to eq(original_name)
         end
@@ -138,7 +138,7 @@ RSpec.describe "Admin::Survey::ScoreRangeSteps", type: :request do
         step_to_delete = create(:survey_score_range_step, survey: survey)
 
         expect {
-          delete admin_survey_survey_score_range_step_path(survey, step_to_delete)
+          delete admin_survey_score_range_step_path(survey, step_to_delete)
         }.to change(Survey::ScoreRangeStep, :count).by(-1)
 
         expect(response).to redirect_to admin_survey_path(survey)
