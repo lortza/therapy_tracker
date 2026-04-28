@@ -1,8 +1,9 @@
 <% content_for(:title, "Manage Surveys") %>
 
-<%#= link_to 'New Survey', new_admin_survey_path, class: button_class('primary pull-right') %>
-
-<h1>Manage Surveys</h1>
+<div class="d-flex justify-content-between align-items-start mb-3">
+  <h1>Manage Surveys</h1>
+  <%= link_to 'New Survey', new_admin_survey_path, class: button_class('primary') %>
+</div>
 
 <div class="container w-100 overflow-x-scroll">
   <div class="row fw-bolder border-bottom border-top mb-0 text-bg-light">

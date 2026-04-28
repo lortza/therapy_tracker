@@ -1,0 +1,16 @@
+<%= form_with model: [:admin, @survey], turbo: false do |form| %>
+  <%= render partial: 'shared/errors', locals: {object: @survey} %>
+  <div class="mb-3">
+    <%= form.label :name, class: 'required' %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :description %>
+    <%= form.text_area :description, class: 'form-control' %>
+  </div>
+  <% if form.object.persisted? %>
+    <%= form.submit class: button_class('primary')  %>
+  <% else %>
+    <%= form.submit 'Continue', class: button_class('primary') %>
+  <% end %>
+<% end %>

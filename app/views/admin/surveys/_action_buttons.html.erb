@@ -3,4 +3,4 @@
 <%= button_to "Archive", archive_admin_survey_path(survey), method: :post, class: "btn btn-sm btn-primary" if allowed_to?(:archive?, survey) %>
 <%= button_to "Make Public", make_public_admin_survey_path(survey), method: :post, class: "btn btn-sm btn-primary" if allowed_to?(:make_public?, survey) %>
 <%= button_to "Make Private", make_private_admin_survey_path(survey), method: :post, class: "btn btn-sm btn-primary" if allowed_to?(:make_private?, survey) %>
-<%= link_to "Delete", admin_survey_path(survey), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-danger" if allowed_to?(:destroy?, survey) %>
+<%= button_to "Delete", admin_survey_path(survey), method: :delete, data: { turbo_confirm: "Are you sure you want to delete this survey?" }, class: "btn btn-sm btn-danger" if allowed_to?(:destroy?, survey) %>

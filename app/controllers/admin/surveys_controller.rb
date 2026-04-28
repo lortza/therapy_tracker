@@ -1,13 +1,49 @@
 class Admin::SurveysController < AdminController
-  before_action :set_survey, only: [:show, :publish, :archive, :make_public, :make_private, :destroy]
+  before_action :set_survey, only: [:show, :edit, :update, :publish, :archive, :make_public, :make_private, :destroy]
 
   def index
     @surveys = current_user.surveys.all
     @public_surveys = Survey.where(available_to_public: true).where.not(user_id: current_user.id)
   end
 
+  def new
+    @survey = current_user.surveys.new
+  end
+
+  def create
+    @survey = current_user.surveys.new(survey_params)
+    authorize! @survey
+
+    if @survey.save
+      redirect_to admin_survey_path(@survey)
+    else
+      render :new
+    end
+  end
+
   def show
     authorize! @survey
+  end
+
+  def edit
+    authorize! @survey
+  end
+
+  def update
+    authorize! @survey
+
+    if @survey.update(survey_params)
+      redirect_to admin_survey_path(@survey)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    authorize! @survey
+
+    @survey.destroy
+    redirect_to admin_surveys_path, notice: "Survey deleted successfully."
   end
 
   def publish
@@ -36,13 +72,6 @@ class Admin::SurveysController < AdminController
 
     @survey.update(available_to_public: false)
     redirect_to admin_survey_path(@survey), notice: "Survey is now private."
-  end
-
-  def destroy
-    authorize! @survey
-
-    @survey.destroy
-    redirect_to admin_surveys_path, notice: "Survey deleted successfully."
   end
 
   private

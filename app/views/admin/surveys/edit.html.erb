@@ -1,0 +1,8 @@
+<% content_for(:title, "Editing #{@survey.name}") %>
+
+
+<div class="d-flex justify-content-between align-items-start mb-3">
+  <h1>Editing <%= @survey.name.titleize %></h1>
+  <%= link_to 'Cancel', admin_surveys_path, class: button_class('secondary') %>
+</div>
+<%= render partial: 'admin/surveys/form', locals: { survey: @survey } %>

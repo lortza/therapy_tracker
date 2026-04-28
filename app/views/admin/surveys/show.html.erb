@@ -1,20 +1,27 @@
 <% content_for(:title, @survey.name) %>
 
-<%= link_to 'back to surveys', admin_surveys_path %>
-
 <div class="d-flex justify-content-between">
   <h1><%= @survey.name.titleize %> <span class="fs-6 text">(<%= @survey.status %>)</span></h1>
   <div class="d-flex justify-content-end align-items-start gap-1">
+    <%= link_to 'Back to Surveys', admin_surveys_path, class: button_class('secondary') %>
     <%= render partial: "action_buttons", locals: {survey: @survey} %>
   </div>
 </div>
 <p><%= @survey.description %></p> 
 
-<div class="row">
+<div class="row mb-3">
   <div class="col-7">
     <h2 class="fs-4 text">Questions</h2>
+    <%= link_to 'Add Question Category', new_admin_survey_survey_category_path(@survey), data: { turbo_stream: true }, class: button_class('primary') if allowed_to?(:edit?, @survey) %>
+    <%= tag.div id: "js_survey_question_form", data: {controller: "clearable" } %>
+
+    <%= render partial: "admin/survey/categories/form", locals: {survey: @survey} %>
+    
     <% @survey.categories.each do |category| %>
       <h3 class="fs-5 text"><%= category.name %></h3>
+      <%= link_to 'Add Question', new_admin_survey_category_survey_question_path(@survey, category), data: { turbo_stream: true }, class: button_class('primary') if allowed_to?(:edit?, @survey) %>
+      <%= render partial: "admin/survey/questions/form", locals: {survey: @survey, category: category} %>
+      
       <ul>
         <% category.questions.each do |question| %>
           <li><%= question.position %>: <%= question.text %></li>
@@ -25,15 +32,17 @@
 
   <div class="col-5">
     <h2 class="fs-4 text">Answer Options</h2>
-    <ul>
-      <% @survey.answer_options.each do |option| %>
-        <li><%= option.value %>: <%= option.name %></li>
-      <% end %>
-    </ul>
+    <%= link_to '+ Add', new_admin_survey_survey_answer_option_path(@survey), data: { turbo_stream: true }, class: button_class('primary') if allowed_to?(:edit?, @survey) %>
+    <%= tag.div id: "js_survey_answer_option_form", data: {controller: "clearable" } %>
+    <%= render partial: 'admin/survey/answer_options/list', locals: {survey: @survey} %>
   </div>
 </div>
 
 <h2 class="fs-4 text">Score Interpretation</h2>
+<%= link_to 'Add Score Range Step', new_admin_survey_survey_score_range_step_path(@survey), data: { turbo_stream: true }, class: button_class('primary') if allowed_to?(:edit?, @survey) %>
+<%= render partial: "admin/survey/score_range_steps/form", locals: {survey: @survey} %>
+<%= tag.div id: "js_survey_score_range_step_form", data: {controller: "clearable" } %>
+
 <ul>
   <% @survey.score_range_steps.each do |step| %>
     <li><strong><%= step.calculated_range_min_points %>-<%= step.calculated_range_max_points %>: <%= step.name %></strong> - <%= step.description %></li>
