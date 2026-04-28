@@ -1,0 +1,11 @@
+<div id="js_survey_answer_options_list">
+  <% @survey.answer_options.each do |option| %>
+    <div class="d-flex justify-content-between border-bottom py-2">
+      <div><%= option.value %>: <%= option.name %></div>
+      <div>
+        <%= link_to 'Edit', edit_admin_survey_survey_answer_option_path(@survey, option), data: { turbo_stream: true }, class: button_class('primary') if allowed_to?(:edit?, option) %>
+        <%= link_to "Delete", admin_survey_survey_answer_option_path(@survey, option), data: { turbo_method: :delete, turbo_stream: true, turbo_confirm: "Are you sure you want to delete this answer option?" }, class: "btn btn-sm btn-danger" if allowed_to?(:destroy?, option) %>
+      </div>
+    </div>
+  <% end %>
+</div>
