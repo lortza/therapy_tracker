@@ -20,7 +20,7 @@ Rails.application.routes.draw do
       resources :survey_categories, shallow: true do
         resources :survey_questions, shallow: true
       end
-      namespace :survey do
+      scope module: :survey do
         resources :answer_options
         resources :score_range_steps
       end
