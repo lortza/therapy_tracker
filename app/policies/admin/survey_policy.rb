@@ -17,6 +17,10 @@ class Admin::SurveyPolicy < ApplicationPolicy
     admin?
   end
 
+  def create?
+    admin?
+  end
+
   def show?
     admin? && owner_or_public?
   end

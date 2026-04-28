@@ -54,6 +54,28 @@ RSpec.describe Admin::SurveyPolicy, type: :policy do
     end
   end
 
+  describe "#create?" do
+    subject { policy.apply(:create?) }
+
+    let(:record) { build_stubbed(:survey) }
+
+    context "when the current_user is an admin" do
+      let(:current_user) { admin_user }
+
+      it "returns true" do
+        is_expected.to eq(true)
+      end
+    end
+
+    context "when the current_user is NOT an admin" do
+      let(:current_user) { other_user }
+
+      it "returns false" do
+        is_expected.to eq(false)
+      end
+    end
+  end
+
   describe "#show?" do
     subject { policy.apply(:show?) }
 

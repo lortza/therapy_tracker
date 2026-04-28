@@ -15,8 +15,15 @@ Rails.application.routes.draw do
   root to: "logs#index"
 
   namespace :admin do
-    resources :users, only: [:index, :show]  # existing
-    resources :surveys do
+    resources :users, only: [:index, :show]
+    resources :surveys, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
+      resources :survey_categories, shallow: true do
+        resources :survey_questions, shallow: true
+      end
+      namespace :survey do
+        resources :answer_options
+        resources :score_range_steps
+      end
       member do
         post :publish
         post :archive
