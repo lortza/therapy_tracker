@@ -102,7 +102,7 @@ GEM
     bindex (0.8.1)
     binding_of_caller (2.0.0)
       debug_inspector (>= 1.2.0)
-    bootsnap (1.24.0)
+    bootsnap (1.24.1)
       msgpack (~> 1.2)
     builder (3.3.0)
     bullet (8.1.1)
@@ -695,7 +695,7 @@ CHECKSUMS
   bigdecimal (4.1.2) sha256=53d217666027eab4280346fba98e7d5b66baaae1b9c3c1c0ffe89d48188a3fbd
   bindex (0.8.1) sha256=7b1ecc9dc539ed8bccfc8cb4d2732046227b09d6f37582ff12e50a5047ceb17e
   binding_of_caller (2.0.0) sha256=e53eebf8428a85587aede7b43a83e7419eb85b8b690938a96aa330d03052d517
-  bootsnap (1.24.0) sha256=34e6dea61ff4895101aa9c10894ce30186bec73fe2279e0eb52040d8d4cec297
+  bootsnap (1.24.1) sha256=d7faea1dc24aa5b22dacc049c9236b64ebf60b14dd49c615e15d8402375d39ef
   builder (3.3.0) sha256=497918d2f9dca528fdca4b88d84e4ef4387256d984b8154e9d5d3fe5a9c8835f
   bullet (8.1.1) sha256=3ddecdf3787c64a3f1e5b316256840bc034d60c1070b1b16d3fe5b5932d42b87
   byebug (13.0.0) sha256=d2263efe751941ca520fa29744b71972d39cbc41839496706f5d9b22e92ae05d
