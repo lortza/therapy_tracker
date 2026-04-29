@@ -1,0 +1,5 @@
+<%= turbo_stream.update "js_survey_category_form", "" %>
+
+<%= turbo_stream.replace "js_survey_categories_list" do %>
+  <%= render partial: 'admin/survey/categories/list', locals: {survey: @survey} %>
+<% end %>
