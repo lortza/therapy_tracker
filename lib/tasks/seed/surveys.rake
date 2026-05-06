@@ -91,7 +91,7 @@ namespace :db do
       survey.score_range_steps.create!(name: "Severe Depression", position: 5, description: "Your responses indicate that you are experiencing severe symptoms of depression.")
       survey.score_range_steps.create!(name: "Extreme Depression", position: 6, description: "Your responses indicate that you are experiencing extreme symptoms of depression.")
 
-      survey.calculate_score_range_steps_points
+      survey.calculate_score_range_steps_points!
       puts "Finished seeding surveys."
     end
 

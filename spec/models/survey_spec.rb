@@ -91,7 +91,7 @@ RSpec.describe Survey, type: :model do
     end
   end
 
-  describe "calculate_score_range_steps_points" do
+  describe "calculate_score_range_steps_points!" do
     let(:survey) { create(:survey) }
     let(:survey_category) { create(:survey_category, survey: survey) }
 
@@ -108,7 +108,7 @@ RSpec.describe Survey, type: :model do
 
       # Call the method under test
       survey.reload
-      survey.calculate_score_range_steps_points
+      survey.calculate_score_range_steps_points!
 
       expect(survey.score_range_steps.first.calculated_range_min_points).to eq(0)
       expect(survey.score_range_steps.first.calculated_range_max_points).to eq(6)
@@ -120,12 +120,19 @@ RSpec.describe Survey, type: :model do
       expect(survey.score_range_steps.third.calculated_range_max_points).to eq(20)
     end
 
-    it "raises an error if there are no score range steps" do
+    it "returns nil if there are no score range steps" do
       5.times { |v| create(:survey_answer_option, survey: survey, value: v, name: "Option #{v}") } # Creates values 0-4
       create_list(:survey_question, 5, category: survey_category) # 5 questions * max 4 points each = max score of 20 for the survey
 
       survey.score_range_steps.destroy_all
-      expect { survey.calculate_score_range_steps_points }.to raise_error(ArgumentError, "Survey is missing score range steps")
+      expect(survey.calculate_score_range_steps_points!).to be_nil
+    end
+
+    it "returns nil if there the survey has no max score" do
+      5.times { |v| create(:survey_answer_option, survey: survey, value: v, name: "Option #{v}") } # Creates values 0-4
+      create_list(:survey_question, 5, category: survey_category) # 5 questions * max 4 points each = max score of 20 for the survey
+      allow(survey).to receive(:max_score).and_return(nil)
+      expect(survey.calculate_score_range_steps_points!).to be_nil
     end
 
     context "when the available points for the survey is not evenly divisible by the number of score range steps" do
@@ -143,7 +150,7 @@ RSpec.describe Survey, type: :model do
       end
 
       it "divides the remainder amongst the first few range steps" do
-        survey.calculate_score_range_steps_points
+        survey.calculate_score_range_steps_points!
 
         first_step_distance = (survey.score_range_steps.first.calculated_range_min_points..survey.score_range_steps.first.calculated_range_max_points).to_a.length
         expect(first_step_distance).to eq(6) # 5 base points + 1 extra point from the remainder
@@ -156,14 +163,14 @@ RSpec.describe Survey, type: :model do
       end
 
       it "ensures the survey_max_score is the calculated_range_max_points for the last score range step" do
-        survey.calculate_score_range_steps_points
+        survey.calculate_score_range_steps_points!
         survey.reload
         expect(survey.score_range_steps.last.calculated_range_max_points).to eq(survey.max_score)
       end
 
       it "assigns min and max points to each of the survey's score_range_steps" do
         survey.reload
-        survey.calculate_score_range_steps_points
+        survey.calculate_score_range_steps_points!
 
         expect(survey.score_range_steps[0].calculated_range_min_points).to eq(0)
         expect(survey.score_range_steps[0].calculated_range_max_points).to eq(5)
