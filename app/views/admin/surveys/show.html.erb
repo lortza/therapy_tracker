@@ -3,7 +3,7 @@
 <div class="d-flex justify-content-between">
   <h1><%= @survey.name.titleize %> <span class="fs-6 text">(<%= @survey.status %>)</span></h1>
   <div class="d-flex justify-content-end align-items-start gap-1">
-    <%= link_to 'Back to Surveys', admin_surveys_path, class: button_class('secondary') %>
+    <%= link_to '← Back to Surveys', admin_surveys_path, class: button_class('secondary') %>
     <%= render partial: "action_buttons", locals: {survey: @survey} %>
   </div>
 </div>
@@ -13,7 +13,7 @@
   <div class="col-12 col-md-7">
     <div class="d-flex justify-content-between align-items-start">
       <h2 class="fs-4 text">Questions</h2>
-      <%= link_to '+ Add Category', new_admin_survey_category_path(@survey), data: { turbo_stream: true }, class: button_class('success') if allowed_to?(:edit?, @survey) %>
+      <%= link_to '+ Add Category', new_admin_survey_category_path(@survey), data: { turbo_stream: true }, class: button_class('primary') if allowed_to?(:edit?, @survey) %>
     </div>
     <%= tag.div id: "js_survey_category_form", data: {controller: "clearable" } %>
     <%= render partial: 'admin/survey/categories/list', locals: {survey: @survey} %>
@@ -22,7 +22,7 @@
   <div class="col-12 col-md-5">
     <div class="d-flex justify-content-between align-items-start">
       <h2 class="fs-4 text">Answer Options</h2>
-      <%= link_to '+ Add', new_admin_survey_answer_option_path(@survey), data: { turbo_stream: true }, class: button_class('success') if allowed_to?(:edit?, @survey) %>
+      <%= link_to '+ Add Option', new_admin_survey_answer_option_path(@survey), data: { turbo_stream: true }, class: button_class('primary') if allowed_to?(:edit?, @survey) %>
     </div>
     <%= tag.div id: "js_survey_answer_option_form", data: {controller: "clearable" } %>
     <%= render partial: 'admin/survey/answer_options/list', locals: {survey: @survey} %>
@@ -31,7 +31,7 @@
 
 <div class="d-flex justify-content-between align-items-start">
   <h2 class="fs-4 text">Score Interpretation</h2>
-  <%= link_to '+ Add', new_admin_survey_score_range_step_path(@survey), data: { turbo_stream: true }, class: button_class('success') if display_score_range_steps?(@survey) %>
+  <%= link_to '+ Add Step', new_admin_survey_score_range_step_path(@survey), data: { turbo_stream: true }, class: button_class('primary') if display_score_range_steps?(@survey) %>
 </div>
 <% if display_score_range_steps?(@survey) %>
   <%= tag.div id: "js_survey_score_range_step_form", data: {controller: "clearable" } %>
