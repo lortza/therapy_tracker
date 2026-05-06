@@ -1,1 +1,30 @@
-question form
+<div class="container">
+  <div class="row border-top border-bottom mb-3">
+    <div class="col p-2 border-end border-start bg-light">  
+      <%= form_with model: question, url: url, html: { novalidate: true } do |form| %>
+
+        <%= render 'shared/errors', object: question %>
+
+        <div class="row">
+          <div class="col-3">
+            <div class="mb-3">
+              <%= form.label :position, class: "required" %>
+              <%= form.number_field :position, required: true, class: 'form-control' %>
+            </div>
+          </div>
+          <div class="col-9">
+            <div class="mb-3">
+              <%= form.label :text, class: "required" %>
+              <%= form.text_area :text, required: true, class: 'form-control' %>
+            </div>
+          </div>
+        </div>
+
+        <div class="actions d-flex justify-content-end align-items-start gap-2">
+          <%= button_tag "Cancel", type: "button", data: { action: "clearable#clear" }, class: button_class('secondary') %>
+          <%= form.submit "Submit", class: button_class('success') %>      
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
