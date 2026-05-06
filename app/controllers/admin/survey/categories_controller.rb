@@ -53,6 +53,7 @@ class Admin::Survey::CategoriesController < AdminController
 
     respond_to do |format|
       if @category.destroy
+        @survey.calculate_score_range_steps_points!
         format.turbo_stream
         format.html { redirect_to admin_survey_path(@survey), notice: "#{@category.name} was successfully destroyed." }
       end
