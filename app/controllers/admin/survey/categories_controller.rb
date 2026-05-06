@@ -3,7 +3,7 @@ class Admin::Survey::CategoriesController < AdminController
   before_action :set_survey, only: [:new, :create, :edit, :update, :destroy]
 
   def new
-    @category = @survey.categories.new
+    @category = @survey.categories.new(position: calculated_category_position)
     authorize! @category
 
     respond_to do |format|
@@ -61,6 +61,10 @@ class Admin::Survey::CategoriesController < AdminController
   end
 
   private
+
+  def calculated_category_position
+    @survey.categories.maximum(:position).to_i + 1
+  end
 
   def set_survey
     @survey = Survey.find(params[:survey_id])
