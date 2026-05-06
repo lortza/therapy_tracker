@@ -3,3 +3,7 @@
 <%= turbo_stream.replace "js_survey_categories_list" do %>
   <%= render partial: 'admin/survey/categories/list', locals: {survey: @survey} %>
 <% end %>
+
+<%= turbo_stream.replace "js_survey_score_range_steps_list" do %>
+  <%= render partial: 'admin/survey/score_range_steps/list', locals: {survey: @survey} %>
+<% end %>

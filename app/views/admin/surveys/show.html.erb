@@ -31,9 +31,9 @@
 
 <div class="d-flex justify-content-between align-items-start">
   <h2 class="fs-4 text">Score Interpretation</h2>
-  <%= link_to '+ Add', new_admin_survey_score_range_step_path(@survey), data: { turbo_stream: true }, class: button_class('success') if allowed_to?(:new?, @survey.score_range_steps.new) %>
+  <%= link_to '+ Add', new_admin_survey_score_range_step_path(@survey), data: { turbo_stream: true }, class: button_class('success') if display_score_range_steps?(@survey) %>
 </div>
-<% if allowed_to?(:new?, @survey.score_range_steps.new) %>
+<% if display_score_range_steps?(@survey) %>
   <%= tag.div id: "js_survey_score_range_step_form", data: {controller: "clearable" } %>
   <%= render partial: 'admin/survey/score_range_steps/list', locals: {survey: @survey} %>
 <% else %>
