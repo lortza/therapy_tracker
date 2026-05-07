@@ -63,10 +63,8 @@ class Survey < ApplicationRecord
     @max_score ||= questions.size * calculated_question_max_points
   end
 
-  # TODO: determine when this method should be called and implement that.
-  # This should likely be called after any changes to questions, answer options, or score
-  # range steps, and should likely also be called as part of a publish action for the survey.
   def calculate_score_range_steps_points!
+    reload # required to ensure we have the latest associations
     score_range_steps.update_all(calculated_range_min_points: nil, calculated_range_max_points: nil)
     num_steps = score_range_steps.ordered.size
 
@@ -84,6 +82,13 @@ class Survey < ApplicationRecord
       step.update!(calculated_range_min_points: current_min, calculated_range_max_points: current_min + step_size - 1)
       current_min += step_size
     end
+  end
+
+  def calculate_min_and_max_points!
+    reload # required to ensure we have the latest associations
+    min_points = answer_options.minimum(:value)
+    max_points = answer_options.maximum(:value)
+    update!(calculated_question_min_points: min_points, calculated_question_max_points: max_points)
   end
 
   # TODO: determine what is required for a survey to be publishable and implement this method.

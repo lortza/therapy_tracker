@@ -41,16 +41,11 @@ class Survey::AnswerOption < ApplicationRecord
   scope :ordered, -> { order(value: :asc) }
 
   after_save :update_survey_question_min_and_max_point_values
+  after_destroy :update_survey_question_min_and_max_point_values
 
   private
 
   def update_survey_question_min_and_max_point_values
-    if survey.calculated_question_min_points.nil? || value < survey.calculated_question_min_points
-      survey.update!(calculated_question_min_points: value)
-    end
-
-    if survey.calculated_question_max_points.nil? || value > survey.calculated_question_max_points
-      survey.update!(calculated_question_max_points: value)
-    end
+    survey.calculate_min_and_max_points!
   end
 end

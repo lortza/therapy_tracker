@@ -4,6 +4,6 @@
   <%= render partial: 'admin/survey/categories/category', locals: {survey: @survey, category: @category} %>
 <% end %>
 
-<%= turbo_stream.replace "js_survey_score_range_steps_list" do %>
-  <%= render partial: 'admin/survey/score_range_steps/list', locals: {survey: @survey} %>
+<%= turbo_stream.replace "js_survey_score_interpretation_section" do %>  
+  <%= render partial: 'admin/surveys/score_interpretation', locals: {survey: @survey} %>
 <% end %>

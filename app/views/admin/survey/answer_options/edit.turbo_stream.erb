@@ -1,3 +1,3 @@
 <%= turbo_stream.update "js_survey_answer_option_form" do %>
-  <%= render partial: "admin/survey/answer_options/form", locals: {survey: @answer_option.survey, answer_option: @answer_option} %>
+  <%= render partial: "admin/survey/answer_options/form", locals: {survey: @answer_option.survey, answer_option: @answer_option, url: admin_survey_answer_option_path(@answer_option.survey, @answer_option)} %>
 <% end %>

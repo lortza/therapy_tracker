@@ -30,14 +30,4 @@
   </div>
 </div>
 
-<div class="d-flex justify-content-between align-items-start">
-  <h2 class="fs-4 text">Score Interpretation</h2>
-  <%= link_to '+ Add Step', new_admin_survey_score_range_step_path(@survey), data: { turbo_stream: true }, class: button_class('primary') if display_score_range_steps?(@survey) %>
-</div>
-<% if display_score_range_steps?(@survey) %>
-  <%= tag.div id: "js_survey_score_range_step_form", data: {controller: "clearable" } %>
-  <%= render partial: 'admin/survey/score_range_steps/list', locals: {survey: @survey} %>
-<% else %>
-  <p class="text">Add questions to the survey to enable score interpretation.</p>
-<% end %>
-
+<%= render partial: 'score_interpretation', locals: {survey: @survey} %>
