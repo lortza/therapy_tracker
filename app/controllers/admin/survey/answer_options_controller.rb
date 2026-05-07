@@ -17,6 +17,7 @@ class Admin::Survey::AnswerOptionsController < AdminController
 
     respond_to do |format|
       if @answer_option.save
+        @survey.calculate_score_range_steps_points!
         format.turbo_stream
         format.html { redirect_to admin_survey_path(@survey), notice: "Answer option was successfully created." }
       else
@@ -39,6 +40,7 @@ class Admin::Survey::AnswerOptionsController < AdminController
 
     respond_to do |format|
       if @answer_option.update(answer_option_params)
+        @survey.calculate_score_range_steps_points!
         format.turbo_stream
         format.html { redirect_to admin_survey_path(@survey), notice: "Answer option was successfully updated." }
       else
@@ -53,6 +55,7 @@ class Admin::Survey::AnswerOptionsController < AdminController
 
     respond_to do |format|
       if @answer_option.destroy
+        @survey.calculate_score_range_steps_points!
         format.turbo_stream
         format.html { redirect_to admin_survey_path(@survey), notice: "#{@answer_option.name} was successfully destroyed." }
       end
