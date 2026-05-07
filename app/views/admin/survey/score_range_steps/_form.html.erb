@@ -6,27 +6,37 @@
         <%= render 'shared/errors', object: score_range_step %>
         <%= form.hidden_field :survey_id, value: survey.id %>
 
-        <div class="row">
-          <div class="col-3">
-            <div class="mb-3">
-              <%= form.label :position, class: "required" %>
-              <%= form.number_field :position, required: true, class: 'form-control' %>
-            </div>
-          </div>
-          <div class="col-9">
-            <div class="mb-3">
-              <%= form.label :name, class: "required" %>
-              <%= form.text_field :name, required: true, class: 'form-control' %>
-            </div>
-          </div>
+        <div class="mb-3">
+          <%= form.label :position, class: "required" %>
+          <span class="form-text">The order this range should appear in the list of range steps</span>
+          <%= form.number_field :position, required: true, class: 'form-control' %>
         </div>
-        <div class="row">
-          <div class="col-12">
-            <div class="mb-3">
-              <%= form.label :description %>
-              <%= form.text_area :description, class: 'form-control' %>
+
+        <% unless survey.auto_calculate_score_range_steps? %>
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <div class="mb-3">
+                <%= form.label "Range Min Points", class: "required" %>
+                <%= form.number_field :calculated_range_min_points, required: true, class: 'form-control' %>
+              </div>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="mb-3">
+                <%= form.label "Range Max Points", class: "required" %>
+                <%= form.number_field :calculated_range_max_points, required: true, class: 'form-control' %>
+              </div>
             </div>
           </div>
+        <% end %>
+
+        <div class="mb-3">
+          <%= form.label :name, class: "required" %>
+          <%= form.text_field :name, required: true, class: 'form-control' %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :description %>
+          <%= form.text_area :description, class: 'form-control' %>
         </div>
 
         <div class="actions d-flex justify-content-end align-items-start gap-2">

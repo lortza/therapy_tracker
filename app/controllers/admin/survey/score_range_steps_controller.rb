@@ -77,6 +77,6 @@ class Admin::Survey::ScoreRangeStepsController < AdminController
   end
 
   def score_range_step_params
-    params.require(:survey_score_range_step).permit(:name, :position, :description, :survey_id)
+    params.require(:survey_score_range_step).permit(:name, :position, :description, :survey_id, :calculated_range_min_points, :calculated_range_max_points)
   end
 end
