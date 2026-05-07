@@ -4,7 +4,12 @@
       <h2 class="fs-4 text">Score Interpretation</h2>
       <%= link_to '+ Add Step', new_admin_survey_score_range_step_path(survey), data: { turbo_stream: true }, class: button_class('primary') if display_score_range_steps?(survey) %>
     </div>
-    <p>Add score range steps to help interpret the meaning of a score after taking this survey.</p>
+    <p>
+      Add score range steps to help interpret the meaning of a score after taking this survey.
+      <% if survey.auto_calculate_score_range_steps %>
+        The range min and max values will be automatically calculated based on the number of steps you add and the maximum possible score for this survey.
+      <% end %>
+    </p>
 
     <%= tag.div id: "js_survey_score_range_step_form", data: {controller: "clearable" } %>
     <%= render partial: 'admin/survey/score_range_steps/list', locals: {survey: survey} %>

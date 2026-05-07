@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_07_195551) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_07_202008) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
@@ -256,6 +256,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_07_195551) do
   end
 
   create_table "surveys", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.boolean "auto_calculate_score_range_steps", default: true, null: false
     t.boolean "available_to_public", default: false, null: false
     t.integer "calculated_question_max_points"
     t.integer "calculated_question_min_points"

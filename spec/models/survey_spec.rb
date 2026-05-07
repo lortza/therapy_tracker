@@ -4,17 +4,18 @@
 #
 # Table name: surveys
 #
-#  id                             :uuid             not null, primary key
-#  available_to_public            :boolean          default(FALSE), not null
-#  calculated_question_max_points :integer
-#  calculated_question_min_points :integer
-#  description                    :text
-#  instructions                   :text
-#  name                           :string           not null
-#  status                         :integer          default("draft"), not null
-#  created_at                     :datetime         not null
-#  updated_at                     :datetime         not null
-#  user_id                        :bigint
+#  id                               :uuid             not null, primary key
+#  auto_calculate_score_range_steps :boolean          default(TRUE), not null
+#  available_to_public              :boolean          default(FALSE), not null
+#  calculated_question_max_points   :integer
+#  calculated_question_min_points   :integer
+#  description                      :text
+#  instructions                     :text
+#  name                             :string           not null
+#  status                           :integer          default("draft"), not null
+#  created_at                       :datetime         not null
+#  updated_at                       :datetime         not null
+#  user_id                          :bigint
 #
 # Indexes
 #
@@ -100,6 +101,19 @@ RSpec.describe Survey, type: :model do
   describe "calculate_score_range_steps_points!" do
     let(:survey) { create(:survey) }
     let(:survey_category) { create(:survey_category, survey: survey) }
+
+    context "when auto_calculate_score_range_steps is false" do
+      it "returns without modifying score range steps" do
+        survey = create(:survey, auto_calculate_score_range_steps: false)
+        step = create(:survey_score_range_step, survey: survey)
+        step.update_columns(calculated_range_min_points: 5, calculated_range_max_points: 10)
+
+        survey.calculate_score_range_steps_points!
+
+        expect(step.reload.calculated_range_min_points).to eq(5)
+        expect(step.reload.calculated_range_max_points).to eq(10)
+      end
+    end
 
     it "assigns min and max points to each of the survey's score_range_steps" do
       5.times { |v| create(:survey_answer_option, survey: survey, value: v, name: "Option #{v}") } # Creates values 0-4
@@ -189,6 +203,12 @@ RSpec.describe Survey, type: :model do
 
         expect(survey.score_range_steps[-1].calculated_range_min_points).to eq(17)
         expect(survey.score_range_steps[-1].calculated_range_max_points).to eq(21)
+      end
+    end
+
+    context "when the auto_calculate_score_range_steps is set to false" do
+      it "returns nil" do
+        # TODO
       end
     end
   end

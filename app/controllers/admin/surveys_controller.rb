@@ -33,6 +33,7 @@ class Admin::SurveysController < AdminController
     authorize! @survey
 
     if @survey.update(survey_params)
+      @survey.calculate_score_range_steps_points!
       redirect_to admin_survey_path(@survey)
     else
       render :edit
@@ -81,6 +82,6 @@ class Admin::SurveysController < AdminController
   end
 
   def survey_params
-    params.require(:survey).permit(:name, :description, :instructions, :status, :available_to_public)
+    params.require(:survey).permit(:name, :description, :instructions, :status, :available_to_public, :auto_calculate_score_range_steps)
   end
 end

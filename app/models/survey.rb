@@ -4,17 +4,18 @@
 #
 # Table name: surveys
 #
-#  id                             :uuid             not null, primary key
-#  available_to_public            :boolean          default(FALSE), not null
-#  calculated_question_max_points :integer
-#  calculated_question_min_points :integer
-#  description                    :text
-#  instructions                   :text
-#  name                           :string           not null
-#  status                         :integer          default("draft"), not null
-#  created_at                     :datetime         not null
-#  updated_at                     :datetime         not null
-#  user_id                        :bigint
+#  id                               :uuid             not null, primary key
+#  auto_calculate_score_range_steps :boolean          default(TRUE), not null
+#  available_to_public              :boolean          default(FALSE), not null
+#  calculated_question_max_points   :integer
+#  calculated_question_min_points   :integer
+#  description                      :text
+#  instructions                     :text
+#  name                             :string           not null
+#  status                           :integer          default("draft"), not null
+#  created_at                       :datetime         not null
+#  updated_at                       :datetime         not null
+#  user_id                          :bigint
 #
 # Indexes
 #
@@ -65,6 +66,8 @@ class Survey < ApplicationRecord
   end
 
   def calculate_score_range_steps_points!
+    return unless auto_calculate_score_range_steps
+
     reload # required to ensure we have the latest associations
     score_range_steps.update_all(calculated_range_min_points: nil, calculated_range_max_points: nil)
     num_steps = score_range_steps.ordered.size

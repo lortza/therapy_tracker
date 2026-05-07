@@ -237,26 +237,31 @@ RSpec.describe "Admin::Surveys", type: :request do
     #   end
     # end
 
-    # describe "PATCH /admin/surveys/:id" do
-    #   context "with valid params" do
-    #     it "updates the survey and redirects to show" do
-    #       patch admin_survey_path(survey), params: {survey: {name: "Updated Name"}}
+    describe "PATCH /admin/surveys/:id" do
+      context "with valid params" do
+        it "updates the survey and redirects to show" do
+          patch admin_survey_path(survey), params: {survey: {name: "Updated Name"}}
 
-    #       expect(survey.reload.name).to eq("Updated Name")
-    #       expect(response).to redirect_to admin_survey_path(survey)
-    #     end
-    #   end
+          expect(survey.reload.name).to eq("Updated Name")
+          expect(response).to redirect_to admin_survey_path(survey)
+        end
 
-    #   context "with invalid params" do
-    #     it "does not update the survey and re-renders edit" do
-    #       original_name = survey.name
-    #       patch admin_survey_path(survey), params: {survey: {name: ""}}
+        it "calls calculate_score_range_steps_points!" do
+          expect_any_instance_of(Survey).to receive(:calculate_score_range_steps_points!)
+          patch admin_survey_path(survey), params: {survey: {name: "Updated Name"}}
+        end
+      end
 
-    #       expect(survey.reload.name).to eq(original_name)
-    #       expect(response).to render_template(:edit)
-    #     end
-    #   end
-    # end
+      context "with invalid params" do
+        it "does not update the survey and re-renders edit" do
+          original_name = survey.name
+          patch admin_survey_path(survey), params: {survey: {name: ""}}
+
+          expect(survey.reload.name).to eq(original_name)
+          expect(response).to render_template(:edit)
+        end
+      end
+    end
 
     # describe "DELETE /admin/surveys/:id" do
     #   it "destroys the survey and redirects to index" do
