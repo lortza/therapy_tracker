@@ -3,7 +3,7 @@ class Admin::Survey::ScoreRangeStepsController < AdminController
   before_action :set_survey, only: [:new, :create, :edit, :update, :destroy]
 
   def new
-    @score_range_step = @survey.score_range_steps.new
+    @score_range_step = @survey.score_range_steps.new(position: calculated_score_range_step_position)
     authorize! @score_range_step
 
     respond_to do |format|
@@ -63,6 +63,10 @@ class Admin::Survey::ScoreRangeStepsController < AdminController
   end
 
   private
+
+  def calculated_score_range_step_position
+    @survey.score_range_steps.maximum(:position).to_i + 1
+  end
 
   def set_survey
     @survey = Survey.find(params[:survey_id])
