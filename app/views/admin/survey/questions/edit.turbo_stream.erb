@@ -1,0 +1,3 @@
+<%= turbo_stream.update dom_id(@category, :js_question_form) do %>
+  <%= render partial: "admin/survey/questions/form", locals: {survey: @survey, category: @category, question: @question, url: admin_survey_category_question_path(@survey, @category, @question)} %>
+<% end %>

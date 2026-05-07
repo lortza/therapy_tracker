@@ -17,10 +17,10 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users, only: [:index, :show]
     resources :surveys, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
-      resources :survey_categories, shallow: true do
-        resources :survey_questions, shallow: true
-      end
       scope module: :survey do
+        resources :categories do
+          resources :questions
+        end
         resources :answer_options
         resources :score_range_steps
       end

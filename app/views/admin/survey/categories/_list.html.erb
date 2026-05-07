@@ -1,0 +1,8 @@
+<div id="js_survey_categories_list">
+  <% survey.categories.each do |category| %>
+    <%= render partial: "admin/survey/categories/category", locals: {survey: survey, category: category} %>
+  <% end %>
+</div>
+
+
+

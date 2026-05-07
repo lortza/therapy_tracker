@@ -59,18 +59,19 @@ class Survey < ApplicationRecord
   scope :available_to_public, -> { where(available_to_public: true) }
 
   def max_score
+    return nil if calculated_question_max_points.nil?
     @max_score ||= questions.size * calculated_question_max_points
   end
 
   # TODO: determine when this method should be called and implement that.
   # This should likely be called after any changes to questions, answer options, or score
   # range steps, and should likely also be called as part of a publish action for the survey.
-  def calculate_score_range_steps_points
+  def calculate_score_range_steps_points!
     score_range_steps.update_all(calculated_range_min_points: nil, calculated_range_max_points: nil)
     num_steps = score_range_steps.ordered.size
 
-    raise ArgumentError, "Survey is missing score range steps" if num_steps.zero?
-    raise ArgumentError, "Survey is missing a max score" if max_score.nil?
+    return nil if num_steps.zero?
+    return nil if max_score.nil?
 
     total_positions = max_score - calculated_question_min_points + 1
     base_size = total_positions / num_steps
