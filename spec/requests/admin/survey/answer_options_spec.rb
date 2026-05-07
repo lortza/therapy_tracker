@@ -87,6 +87,11 @@ RSpec.describe "Admin::Survey::AnswerOptions", type: :request do
 
           expect(response).to redirect_to admin_survey_path(survey)
         end
+
+        it "calls calculate_score_range_steps_points!" do
+          expect_any_instance_of(Survey).to receive(:calculate_score_range_steps_points!)
+          post admin_survey_answer_options_path(survey), params: {survey_answer_option: {name: "Mild", value: 1, survey_id: survey.id}}
+        end
       end
 
       context "with invalid params" do
@@ -113,6 +118,11 @@ RSpec.describe "Admin::Survey::AnswerOptions", type: :request do
           expect(answer_option.reload.name).to eq("Updated Name")
           expect(response).to redirect_to admin_survey_path(survey)
         end
+
+        it "calls calculate_score_range_steps_points!" do
+          expect_any_instance_of(Survey).to receive(:calculate_score_range_steps_points!)
+          patch admin_survey_answer_option_path(survey, answer_option), params: {survey_answer_option: {name: "Updated Name"}}
+        end
       end
 
       context "with invalid params" do
@@ -134,6 +144,12 @@ RSpec.describe "Admin::Survey::AnswerOptions", type: :request do
         }.to change(Survey::AnswerOption, :count).by(-1)
 
         expect(response).to redirect_to admin_survey_path(survey)
+      end
+
+      it "calls calculate_score_range_steps_points!" do
+        answer_option_to_delete = create(:survey_answer_option, survey: survey)
+        expect_any_instance_of(Survey).to receive(:calculate_score_range_steps_points!)
+        delete admin_survey_answer_option_path(survey, answer_option_to_delete)
       end
     end
   end
