@@ -8,7 +8,10 @@
 </div>
 
 <h1><%= @survey.name.titleize %> <span class="fs-6 text">(<%= @survey.status %>)</span></h1>
-<p><%= @survey.description %></p> 
+<p class="text-muted fst-italic"><%= @survey.description %></p> 
+
+<h2 class="fs-4 text">Instructions</h2>
+<p class="mb-5"><%= @survey.instructions %></p> 
 
 <div class="row mb-3">
   <div class="col-12 col-md-7">

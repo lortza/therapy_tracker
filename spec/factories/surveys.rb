@@ -9,6 +9,7 @@
 #  calculated_question_max_points :integer
 #  calculated_question_min_points :integer
 #  description                    :text
+#  instructions                   :text
 #  name                           :string           not null
 #  status                         :integer          default("draft"), not null
 #  created_at                     :datetime         not null
@@ -27,6 +28,7 @@ FactoryBot.define do
   factory :survey do
     sequence(:name) { |n| "survey#{n}" }
     sequence(:description) { |n| "survey#{n} description" }
+    sequence(:instructions) { |n| "survey#{n} instructions" }
     calculated_question_min_points { nil }
     calculated_question_max_points { nil }
     status { :draft }

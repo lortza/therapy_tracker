@@ -9,6 +9,7 @@
 #  calculated_question_max_points :integer
 #  calculated_question_min_points :integer
 #  description                    :text
+#  instructions                   :text
 #  name                           :string           not null
 #  status                         :integer          default("draft"), not null
 #  created_at                     :datetime         not null
