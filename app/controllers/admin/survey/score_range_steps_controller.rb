@@ -17,6 +17,7 @@ class Admin::Survey::ScoreRangeStepsController < AdminController
 
     respond_to do |format|
       if @score_range_step.save
+        @survey.calculate_score_range_steps_points!
         format.turbo_stream
         format.html { redirect_to admin_survey_path(@survey), notice: "Score range step was successfully created." }
       else
@@ -39,6 +40,7 @@ class Admin::Survey::ScoreRangeStepsController < AdminController
 
     respond_to do |format|
       if @score_range_step.update(score_range_step_params)
+        @survey.calculate_score_range_steps_points!
         format.turbo_stream
         format.html { redirect_to admin_survey_path(@survey), notice: "Score range step was successfully updated." }
       else
@@ -53,6 +55,7 @@ class Admin::Survey::ScoreRangeStepsController < AdminController
 
     respond_to do |format|
       if @score_range_step.destroy
+        @survey.calculate_score_range_steps_points!
         format.turbo_stream
         format.html { redirect_to admin_survey_path(@survey), notice: "#{@score_range_step.name} was successfully destroyed." }
       end
