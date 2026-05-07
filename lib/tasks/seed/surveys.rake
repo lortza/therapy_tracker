@@ -26,6 +26,7 @@ namespace :db do
         user_id: user.id,
         name: "Depression Checklist",
         description: "A survey to track symptoms of depression over time.",
+        instructions: "Please answer the following questions about your feelings and experiences over the past 4 days.",
         status: :published,
         available_to_public: false
       )
