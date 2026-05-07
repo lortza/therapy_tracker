@@ -8,6 +8,10 @@
     <%= form.label :description %>
     <%= form.text_area :description, class: 'form-control' %>
   </div>
+  <div class="mb-3">
+    <%= form.label :instructions %>
+    <%= form.text_area :instructions, class: 'form-control' %>
+  </div>
   <% if form.object.persisted? %>
     <%= form.submit class: button_class('primary')  %>
   <% else %>
