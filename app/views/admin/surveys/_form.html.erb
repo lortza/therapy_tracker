@@ -4,14 +4,23 @@
     <%= form.label :name, class: 'required' %>
     <%= form.text_field :name, class: 'form-control' %>
   </div>
+
   <div class="mb-3">
     <%= form.label :description %>
     <%= form.text_area :description, class: 'form-control' %>
   </div>
+
   <div class="mb-3">
     <%= form.label :instructions %>
     <%= form.text_area :instructions, class: 'form-control' %>
   </div>
+
+  <div class='form-check mb-3 px-4'>
+    <%= form.check_box :auto_calculate_score_range_steps, class: 'form-check-input' %>
+    <%= form.label 'Auto Calculate Score Range Steps?', class: 'form-check-label' %>
+    <p class="form-text">Checking this box will automatically calculate the min and max points for each score range step based on the answer options associated with the survey questions. This is recommended, but you can uncheck if you want to manually set min and max points for each score range step.</p>
+  </div>
+
   <% if form.object.persisted? %>
     <%= form.submit class: button_class('primary')  %>
   <% else %>
