@@ -1,6 +1,26 @@
-<%= link_to "Edit", edit_admin_survey_path(survey), class: "btn btn-sm btn-primary" if allowed_to?(:edit?, survey) %>
-<%= button_to "Publish", publish_admin_survey_path(survey), method: :post, class: "btn btn-sm btn-primary display-block" if allowed_to?(:publish?, survey) %>
-<%= button_to "Archive", archive_admin_survey_path(survey), method: :post, class: "btn btn-sm btn-primary" if allowed_to?(:archive?, survey) %>
-<%= button_to "Make Public", make_public_admin_survey_path(survey), method: :post, class: "btn btn-sm btn-primary" if allowed_to?(:make_public?, survey) %>
-<%= button_to "Make Private", make_private_admin_survey_path(survey), method: :post, class: "btn btn-sm btn-primary" if allowed_to?(:make_private?, survey) %>
-<%= button_to "Delete", admin_survey_path(survey), method: :delete, data: { turbo_confirm: "Are you sure you want to delete this survey?" }, class: "btn btn-sm btn-danger" if allowed_to?(:destroy?, survey) %>
+<% if allowed_to?(:publish?, survey) %>
+  <%= button_to publish_admin_survey_path(survey), method: :post, data: { turbo_confirm: "Are you sure? Once you publish, you can no longer edit a survey. You may only archive a survey if you wish to remove it." }, class: button_class("success display-block") do %>
+    <%= MaterialIconComponent.new(icon: :publish, title: 'Publish Survey').render %> Publish
+  <% end %>
+<% end %>
+
+<% if allowed_to?(:archive?, survey) %>
+  <%= button_to archive_admin_survey_path(survey), method: :post, class: button_class("secondary") do %>
+    <%= MaterialIconComponent.new(icon: :archive, title: 'Archive Survey').render %> Archive
+  <% end %>
+<% end %>
+
+<%= button_to "Make Public", make_public_admin_survey_path(survey), method: :post, class: button_class("secondary"), data: { turbo_confirm: "Are you sure? Once you make a survey public all users will be able to view and respond to it. Survey responses will only ever be visible to the user who submitted them. You may toggle this setting at any time." } if allowed_to?(:make_public?, survey) %>
+<%= button_to "Make Private", make_private_admin_survey_path(survey), method: :post, class: button_class("secondary"), data: { turbo_confirm: "Making a survey private means that only you will be able to see it. You may toggle this setting at any time." } if allowed_to?(:make_private?, survey) %>
+
+<% if allowed_to?(:edit?, survey) %>
+  <%= link_to edit_admin_survey_path(survey), class: button_class("secondary") do %>
+    <%= MaterialIconComponent.new(icon: :edit, title: 'Edit Survey').render %> Edit
+  <% end %>
+<% end %>
+
+<% if allowed_to?(:destroy?, survey) %>
+  <%= button_to admin_survey_path(survey), method: :delete, data: { turbo_confirm: "Are you sure you want to delete this survey?" }, class: button_class("danger") do %>
+    <%= MaterialIconComponent.new(icon: :delete, title: 'Delete Survey').render %> Delete
+  <% end %>
+<% end %>
