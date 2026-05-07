@@ -89,6 +89,11 @@ RSpec.describe Survey, type: :model do
 
       expect(survey.max_score).to eq(15) # 3 questions * 5 points each
     end
+
+    it "returns nil when calculated_question_max_points has not been set" do
+      survey = create(:survey)
+      expect(survey.max_score).to be_nil
+    end
   end
 
   describe "calculate_score_range_steps_points!" do
@@ -184,6 +189,26 @@ RSpec.describe Survey, type: :model do
         expect(survey.score_range_steps[-1].calculated_range_min_points).to eq(17)
         expect(survey.score_range_steps[-1].calculated_range_max_points).to eq(21)
       end
+    end
+  end
+
+  describe "calculate_min_and_max_points!" do
+    let(:survey) { create(:survey) }
+
+    it "sets calculated_question_min_points from the minimum answer option value" do
+      create(:survey_answer_option, survey: survey, value: 1, name: "Never")
+      create(:survey_answer_option, survey: survey, value: 2, name: "Sometimes")
+      create(:survey_answer_option, survey: survey, value: 3, name: "Always")
+      survey.calculate_min_and_max_points!
+      expect(survey.reload.calculated_question_min_points).to eq(1)
+    end
+
+    it "sets calculated_question_max_points from the maximum answer option value" do
+      create(:survey_answer_option, survey: survey, value: 1, name: "Never")
+      create(:survey_answer_option, survey: survey, value: 2, name: "Sometimes")
+      create(:survey_answer_option, survey: survey, value: 3, name: "Always")
+      survey.calculate_min_and_max_points!
+      expect(survey.reload.calculated_question_max_points).to eq(3)
     end
   end
 end
