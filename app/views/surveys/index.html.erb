@@ -18,8 +18,8 @@
         <p class="fw-bold"><%= survey.name %></p>
         <p class="text-muted fst-italic"><%= survey.description %></p>
       </div>
-      <div class="col-2 py-1 px-2"><%= survey.responses.where(user_id: current_user.id).size %></div>
-      <div class="col-2 py-1 px-2"><%= survey.responses.where(user_id: current_user.id).average(:total_score)&.round(2) %>/<%= survey.max_score %></div>
+      <div class="col-2 py-1 px-2"><%= survey_response_count_for_user(survey: survey, user: current_user) %></div>
+      <div class="col-2 py-1 px-2"><%= survey_response_avg_score_for_user(survey: survey, user: current_user) %>/<%= survey.max_score %></div>
       <div class="col-3 py-1 px-2 d-flex justify-content-start align-items-start gap-1">
         <%= render partial: "action_buttons", locals: {survey: survey} %>
       </div>

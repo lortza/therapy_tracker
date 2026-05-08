@@ -13,4 +13,12 @@ module SurveysHelper
 
     current_response.total_score - previous_response.total_score
   end
+
+  def survey_response_count_for_user(survey:, user:)
+    survey.responses.where(user: user).size
+  end
+
+  def survey_response_avg_score_for_user(survey:, user:)
+    survey.responses.where(user: user).average(:total_score)&.round(2)
+  end
 end
