@@ -58,9 +58,11 @@ Rails.application.routes.draw do
 
   resources :slit_log_reports, only: [:index, :new]
 
-  # NEW WIP ROUTES FOR SURVEYS
+  # TODO: expand survey feature to include enrollment in specific surveys
   # resources :survey_enrollments, only: [:create, :destroy]
-  # resources :surveys, only: [:index, :show] do
-  #   resources :survey_responses, only: [:new, :create, :index, :show]
-  # end
+  resources :surveys, only: [:index] do
+    scope module: :survey do
+      resources :responses, only: [:new, :create, :index]
+    end
+  end
 end
