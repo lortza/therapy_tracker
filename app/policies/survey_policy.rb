@@ -13,10 +13,6 @@ class SurveyPolicy < ApplicationPolicy
     admin?
   end
 
-  def show?
-    admin?
-  end
-
   private
 
   # Will be in-use when we allow non-admin users to create public surveys
