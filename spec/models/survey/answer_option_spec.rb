@@ -71,8 +71,8 @@ RSpec.describe Survey::AnswerOption, type: :model do
 
   describe "callbacks" do
     describe "update_survey_question_min_and_max_point_values" do
-      context "when both of the survey min and max calculated_question_points are nil" do
-        it "updates both values to this answer_option's value" do
+      context "when this is the only answer option on the survey" do
+        it "sets both the survey's min and max calculated_question_points to this answer_option's value" do
           survey = create(:survey)
           create(:survey_answer_option, survey: survey, value: 3, name: "Three")
 
@@ -81,61 +81,77 @@ RSpec.describe Survey::AnswerOption, type: :model do
         end
       end
 
-      context "when the survey.calculated_question_min_points is nil" do
-        it "updates the survey.calculated_question_min_points to this answer_option's value" do
-          survey = create(:survey, calculated_question_min_points: nil, calculated_question_max_points: 5)
+      context "when adding an answer option lower than the existing minimum" do
+        it "lowers the survey's calculated_question_min_points and leaves the max unchanged" do
+          survey = create(:survey)
+          create(:survey_answer_option, survey: survey, value: 5, name: "Five")
+          create(:survey_answer_option, survey: survey, value: 2, name: "Two")
+
+          expect(survey.reload.calculated_question_min_points).to eq(2)
+          expect(survey.reload.calculated_question_max_points).to eq(5)
+        end
+      end
+
+      context "when adding an answer option higher than the existing maximum" do
+        it "raises the survey's calculated_question_max_points and leaves the min unchanged" do
+          survey = create(:survey)
+          create(:survey_answer_option, survey: survey, value: 1, name: "One")
+          create(:survey_answer_option, survey: survey, value: 4, name: "Four")
+
+          expect(survey.reload.calculated_question_min_points).to eq(1)
+          expect(survey.reload.calculated_question_max_points).to eq(4)
+        end
+      end
+
+      context "when adding an answer option between the existing min and max" do
+        it "leaves the survey's calculated_question_min_points and calculated_question_max_points unchanged" do
+          survey = create(:survey)
+          create(:survey_answer_option, survey: survey, value: 1, name: "One")
+          create(:survey_answer_option, survey: survey, value: 5, name: "Five")
           create(:survey_answer_option, survey: survey, value: 3, name: "Three")
+
+          expect(survey.reload.calculated_question_min_points).to eq(1)
+          expect(survey.reload.calculated_question_max_points).to eq(5)
+        end
+      end
+
+      context "when destroying the answer option with the lowest value" do
+        it "raises the survey's calculated_question_min_points to the next-lowest value" do
+          survey = create(:survey)
+          lowest = create(:survey_answer_option, survey: survey, value: 1, name: "One")
+          create(:survey_answer_option, survey: survey, value: 3, name: "Three")
+          create(:survey_answer_option, survey: survey, value: 5, name: "Five")
+
+          lowest.destroy!
 
           expect(survey.reload.calculated_question_min_points).to eq(3)
           expect(survey.reload.calculated_question_max_points).to eq(5)
         end
       end
 
-      context "when the survey.calculated_question_min_points is higher than this answer_option's value" do
-        it "updates the survey.calculated_question_min_points to this answer_option's value" do
-          survey = create(:survey, calculated_question_min_points: 5, calculated_question_max_points: 5)
-          create(:survey_answer_option, survey: survey, value: 2, name: "Two")
+      context "when destroying the answer option with the highest value" do
+        it "lowers the survey's calculated_question_max_points to the next-highest value" do
+          survey = create(:survey)
+          create(:survey_answer_option, survey: survey, value: 1, name: "One")
+          create(:survey_answer_option, survey: survey, value: 3, name: "Three")
+          highest = create(:survey_answer_option, survey: survey, value: 5, name: "Five")
 
-          expect(survey.reload.calculated_question_min_points).to eq(2)
-        end
-      end
-
-      context "when the survey.calculated_question_min_points is lower than this answer_option's value" do
-        it "does not update the survey.calculated_question_min_points" do
-          survey = create(:survey, calculated_question_min_points: 1, calculated_question_max_points: 5)
-          create(:survey_answer_option, survey: survey, value: 2, name: "Two")
+          highest.destroy!
 
           expect(survey.reload.calculated_question_min_points).to eq(1)
-        end
-      end
-
-      context "when the survey.calculated_question_max_points is nil" do
-        it "updates the survey.calculated_question_max_points to this answer_option's value" do
-          survey = create(:survey, calculated_question_min_points: 0, calculated_question_max_points: nil)
-          create(:survey_answer_option, survey: survey, value: 3, name: "Three")
-
-          expect(survey.reload.calculated_question_min_points).to eq(0)
           expect(survey.reload.calculated_question_max_points).to eq(3)
         end
       end
 
-      context "when the survey.calculated_question_max_points is lower than this answer_option's value" do
-        it "updates the survey.calculated_question_max_points to this answer_option's value" do
-          survey = create(:survey, calculated_question_min_points: 0, calculated_question_max_points: 1)
-          create(:survey_answer_option, survey: survey, value: 2, name: "Two")
+      context "when destroying the only answer option on the survey" do
+        it "sets both the survey's calculated_question_min_points and calculated_question_max_points to nil" do
+          survey = create(:survey)
+          option = create(:survey_answer_option, survey: survey, value: 3, name: "Three")
 
-          expect(survey.reload.calculated_question_min_points).to eq(0)
-          expect(survey.reload.calculated_question_max_points).to eq(2)
-        end
-      end
+          option.destroy!
 
-      context "when the survey.calculated_question_max_points is higher than this answer_option's value" do
-        it "does not update the survey.calculated_question_max_points" do
-          survey = create(:survey, calculated_question_min_points: 1, calculated_question_max_points: 5)
-          create(:survey_answer_option, survey: survey, value: 2, name: "Two")
-
-          expect(survey.reload.calculated_question_min_points).to eq(1)
-          expect(survey.reload.calculated_question_max_points).to eq(5)
+          expect(survey.reload.calculated_question_min_points).to be_nil
+          expect(survey.reload.calculated_question_max_points).to be_nil
         end
       end
     end

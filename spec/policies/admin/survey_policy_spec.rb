@@ -309,34 +309,38 @@ RSpec.describe Admin::SurveyPolicy, type: :policy do
   describe "#publish?" do
     subject { policy.apply(:publish?) }
 
-    context "when the current_user is an admin and owns the survey and it is a draft" do
+    context "when the current_user is an admin and owns the survey and it is publishable" do
       let(:current_user) { admin_user }
       let(:record) { build_stubbed(:survey, status: :draft, available_to_public: false, user_id: admin_user.id) }
       it "returns true" do
+        allow(record).to receive(:publishable?).and_return(true)
         is_expected.to eq(true)
       end
     end
 
-    context "when the current_user is an admin and owns the survey and it is archived" do
+    context "when the current_user is an admin and owns the survey and it is not publishable" do
       let(:current_user) { admin_user }
-      let(:record) { build_stubbed(:survey, status: :archived, available_to_public: false, user_id: admin_user.id) }
-      it "returns true" do
-        is_expected.to eq(true)
+      let(:record) { build_stubbed(:survey, status: :draft, available_to_public: false, user_id: admin_user.id) }
+      it "returns false" do
+        allow(record).to receive(:publishable?).and_return(false)
+        is_expected.to eq(false)
       end
     end
 
-    context "when the current_user is an admin and does not own the survey but the survey is public and a draft" do
+    context "when the current_user is an admin and does not own the survey but the survey is public and it is publishable" do
       let(:current_user) { admin_user }
       let(:record) { build_stubbed(:survey, status: :draft, available_to_public: true, user_id: other_user.id) }
       it "returns true" do
+        allow(record).to receive(:publishable?).and_return(true)
         is_expected.to eq(true)
       end
     end
 
-    context "when the current_user is an admin but does not own the survey and the survey is not public" do
+    context "when the current_user is an admin but does not own the survey and the survey is not public but it is publishable" do
       let(:current_user) { admin_user }
       let(:record) { build_stubbed(:survey, status: :draft, available_to_public: false, user_id: other_user.id) }
       it "returns false" do
+        allow(record).to receive(:publishable?).and_return(true)
         is_expected.to eq(false)
       end
     end
@@ -345,14 +349,16 @@ RSpec.describe Admin::SurveyPolicy, type: :policy do
       let(:current_user) { admin_user }
       let(:record) { build_stubbed(:survey, status: :published, available_to_public: false, user_id: admin_user.id) }
       it "returns false" do
+        allow(record).to receive(:publishable?).and_return(false)
         is_expected.to eq(false)
       end
     end
 
-    context "when the current_user is not an admin" do
+    context "when the current_user is not an admin but the survey is publishable" do
       let(:current_user) { other_user }
       let(:record) { build_stubbed(:survey, status: :draft, available_to_public: true, user_id: other_user.id) }
       it "returns false" do
+        allow(record).to receive(:publishable?).and_return(true)
         is_expected.to eq(false)
       end
     end
@@ -361,26 +367,29 @@ RSpec.describe Admin::SurveyPolicy, type: :policy do
   describe "#archive?" do
     subject { policy.apply(:archive?) }
 
-    context "when the current_user is an admin and owns the survey and it is published" do
+    context "when the current_user is an admin and owns the survey and it is archivable" do
       let(:current_user) { admin_user }
       let(:record) { build_stubbed(:survey, status: :published, available_to_public: false, user_id: admin_user.id) }
       it "returns true" do
+        allow(record).to receive(:archivable?).and_return(true)
         is_expected.to eq(true)
       end
     end
 
-    context "when the current_user is an admin and does not own the survey but the survey is public and published" do
+    context "when the current_user is an admin and does not own the survey but the survey is public and archivable" do
       let(:current_user) { admin_user }
       let(:record) { build_stubbed(:survey, status: :published, available_to_public: true, user_id: other_user.id) }
       it "returns true" do
+        allow(record).to receive(:archivable?).and_return(true)
         is_expected.to eq(true)
       end
     end
 
-    context "when the current_user is an admin but does not own the survey and the survey is not public" do
+    context "when the current_user is an admin but does not own the survey and the survey is not public but it is archivable" do
       let(:current_user) { admin_user }
       let(:record) { build_stubbed(:survey, status: :published, available_to_public: false, user_id: other_user.id) }
       it "returns false" do
+        allow(record).to receive(:archivable?).and_return(true)
         is_expected.to eq(false)
       end
     end
