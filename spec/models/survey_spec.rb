@@ -213,6 +213,101 @@ RSpec.describe Survey, type: :model do
     end
   end
 
+  describe "#active?" do
+    it "returns true when the survey is published" do
+      survey = build(:survey, status: :published)
+      expect(survey.active?).to be(true)
+    end
+
+    it "returns false when the survey is a draft" do
+      survey = build(:survey, status: :draft)
+      expect(survey.active?).to be(false)
+    end
+
+    it "returns false when the survey is archived" do
+      survey = build(:survey, status: :archived)
+      expect(survey.active?).to be(false)
+    end
+  end
+
+  describe "#publishable?" do
+    let(:survey) { create(:survey, status: :draft) }
+    let(:survey_category) { create(:survey_category, survey: survey) }
+
+    def populate_survey(survey, survey_category)
+      create(:survey_question, category: survey_category)
+      create(:survey_answer_option, survey: survey)
+      create(:survey_score_range_step, survey: survey)
+    end
+
+    context "when the survey has all required associations" do
+      before { populate_survey(survey, survey_category) }
+
+      it "returns true when the survey is a draft" do
+        survey.draft!
+        expect(survey.publishable?).to be(true)
+      end
+
+      it "returns true when the survey is archived" do
+        survey.archived!
+        expect(survey.publishable?).to be(true)
+      end
+
+      it "returns false when the survey is already published" do
+        survey.published!
+        expect(survey.publishable?).to be(false)
+      end
+    end
+
+    context "when the survey is missing required associations" do
+      it "returns false when there are no categories" do
+        create(:survey_answer_option, survey: survey)
+        create(:survey_score_range_step, survey: survey)
+
+        expect(survey.publishable?).to be(false)
+      end
+
+      it "returns false when there are no questions" do
+        survey_category # ensure a category exists, but no questions under it
+        create(:survey_answer_option, survey: survey)
+        create(:survey_score_range_step, survey: survey)
+
+        expect(survey.publishable?).to be(false)
+      end
+
+      it "returns false when there are no answer_options" do
+        create(:survey_question, category: survey_category)
+        create(:survey_score_range_step, survey: survey)
+
+        expect(survey.publishable?).to be(false)
+      end
+
+      it "returns false when there are no score_range_steps" do
+        create(:survey_question, category: survey_category)
+        create(:survey_answer_option, survey: survey)
+
+        expect(survey.publishable?).to be(false)
+      end
+    end
+  end
+
+  describe "#archivable?" do
+    it "returns true when the survey is published" do
+      survey = build(:survey, status: :published)
+      expect(survey.archivable?).to be(true)
+    end
+
+    it "returns false when the survey is a draft" do
+      survey = build(:survey, status: :draft)
+      expect(survey.archivable?).to be(false)
+    end
+
+    it "returns false when the survey is archived" do
+      survey = build(:survey, status: :archived)
+      expect(survey.archivable?).to be(false)
+    end
+  end
+
   describe "calculate_min_and_max_points!" do
     let(:survey) { create(:survey) }
 

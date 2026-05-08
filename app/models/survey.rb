@@ -88,6 +88,10 @@ class Survey < ApplicationRecord
     end
   end
 
+  def active?
+    published?
+  end
+
   def calculate_min_and_max_points!
     reload # required to ensure we have the latest associations
     min_points = answer_options.minimum(:value)
@@ -95,8 +99,11 @@ class Survey < ApplicationRecord
     update!(calculated_question_min_points: min_points, calculated_question_max_points: max_points)
   end
 
-  # TODO: determine what is required for a survey to be publishable and implement this method.
-  # def publishable?
-  #   categories.any? && questions.any? && answer_options.any? && score_range_steps.any?
-  # end
+  def publishable?
+    categories.any? && questions.any? && answer_options.any? && score_range_steps.any? && (draft? || archived?)
+  end
+
+  def archivable?
+    published?
+  end
 end

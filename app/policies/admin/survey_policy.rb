@@ -38,11 +38,11 @@ class Admin::SurveyPolicy < ApplicationPolicy
   end
 
   def publish?
-    admin? && owner_or_public? && (record.draft? || record.archived?)
+    admin? && owner_or_public? && record.publishable?
   end
 
   def archive?
-    admin? && owner_or_public? && record.published?
+    admin? && owner_or_public? && record.archivable?
   end
 
   def make_public?
