@@ -37,4 +37,9 @@ class Survey::Category < ApplicationRecord
     numericality: {only_integer: true, greater_than_or_equal_to: 0}
 
   scope :ordered, -> { order(position: :asc) }
+
+  # TODO: This will be needed in the reporting stats
+  # def max_score
+  #   @max_score ||= (survey.calculated_question_max_points * questions.size)
+  # end
 end
