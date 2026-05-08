@@ -2,7 +2,7 @@
   <% if display_score_range_steps?(survey) %>
     <div class="d-flex justify-content-between align-items-start border-top pt-3 mt-5">
       <h2 class="fs-4 text">Score Interpretation</h2>
-      <%= link_to '+ Add Step', new_admin_survey_score_range_step_path(survey), data: { turbo_stream: true }, class: button_class('primary') if display_score_range_steps?(survey) %>
+      <%= link_to '+ Add Step', new_admin_survey_score_range_step_path(survey), data: { turbo_stream: true }, class: button_class('primary') if allowed_to?(:edit?, survey) %>
     </div>
     <p>
       Add score range steps to help interpret the meaning of a score after taking this survey.
