@@ -17,10 +17,10 @@
       <% next unless answer_form.object.question.category == category %>
       <%= answer_form.hidden_field :survey_question_id %>
       <div class="row mb-3">
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-4">
           <p><%= answer_form.object.question.text %></p>
         </div>
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-8">
           <% @survey.answer_options.ordered.each do |option| %>
             <div class="form-check form-check-inline">
               <%= answer_form.radio_button :survey_answer_option_id, option.id, class: "form-check-input" %>
@@ -41,4 +41,3 @@
     <%= form.submit "Submit", class: button_class('primary') %>
   </div>
 <% end %>
-
