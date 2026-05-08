@@ -1,0 +1,7 @@
+<%= link_to new_survey_response_path(survey), class: button_class("success") do %>
+  <%= MaterialIconComponent.new(icon: :quiz, title: 'Take Survey').render %> Take Survey
+<% end %>
+
+<%= link_to survey_responses_path(survey), class: button_class("secondary") do %>
+  <%= MaterialIconComponent.new(icon: :analytics, title: 'View Results').render %> View Results
+<% end %>
