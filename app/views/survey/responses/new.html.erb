@@ -1,0 +1,44 @@
+<%= form_with(model: @survey_response, url: survey_responses_path(@survey)) do |form| %>
+  <%= render 'shared/errors', object: @survey_response %>
+
+  <h1><%= @survey.name %></h1>
+  <p class="form-text"><%= @survey.description %></p>
+  <p><%= @survey.instructions %></p>
+
+  <!-- TODO: include occurred_at field for backfilling old responses, but hide for new responses and default to current time -->
+  <div class='field mb-5'>
+    <%= render partial: 'shared/datetime_picker', locals: {form: form, field_label: 'Check-in Date'} %>
+  </div>
+  <%#= form.hidden_field :occurred_at, value: Time.current %>
+  
+  <% @survey.categories.each do |category| %>
+    <h3 class="text-bg-light py-2"><%= category.name %></h3>
+    <%= form.fields_for :answers do |answer_form| %>
+      <% next unless answer_form.object.question.category == category %>
+      <%= answer_form.hidden_field :survey_question_id %>
+      <div class="row mb-3">
+        <div class="col-12 col-md-6">
+          <p><%= answer_form.object.question.text %></p>
+        </div>
+        <div class="col-12 col-md-6">
+          <% @survey.answer_options.ordered.each do |option| %>
+            <div class="form-check form-check-inline">
+              <%= answer_form.radio_button :survey_answer_option_id, option.id, class: "form-check-input" %>
+              <%= answer_form.label :"survey_answer_option_id_#{option.id}", option.name, class: "form-check-label" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+  
+  <hr class="my-4">
+  <%= form.label :notes, class: "form-label" %>
+  <p class="form-text">Please make note of any factors that influenced your answers today</p>
+  <%= form.text_area :notes, class: 'form-control' %>
+
+  <div class="actions d-flex justify-content-end align-items-start gap-2 mt-3">
+    <%= form.submit "Submit", class: button_class('primary') %>
+  </div>
+<% end %>
+

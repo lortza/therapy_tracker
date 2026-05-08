@@ -11,7 +11,7 @@
   locals: {
     log: response,
     log_content: @log_content,
-    edit_path: "#",
+    edit_path: survey_responses_path(response.survey),
     error_condition: false
   }
 %>
