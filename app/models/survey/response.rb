@@ -32,16 +32,16 @@ class Survey::Response < ApplicationRecord
 
   belongs_to :survey
   belongs_to :user
-  has_many :answers, class_name: "Survey::Answer", foreign_key: "survey_response_id", dependent: :destroy
-
+  has_many :answers, class_name: "Survey::Answer", foreign_key: "survey_response_id", inverse_of: :response, dependent: :destroy
+  accepts_nested_attributes_for :answers,
+    reject_if: :all_blank, # at least 1 answer should be present
+    allow_destroy: false # we don't want to allow destroying answers through the response form
   validates :occurred_at, presence: true
 
-  def total_score
-    @total_score ||= calculate_total_score
-  end
+  before_save :calculate_total_score
 
   def calculate_total_score
-    answers.sum(&:answer_option_value)
+    self.total_score = answers.sum(&:answer_option_value)
   end
 
   def score_range_step
