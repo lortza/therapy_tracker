@@ -5,11 +5,15 @@ class Survey::ResponsesController < ApplicationController
   # before_action :set_survey_response, only: [:show]
 
   def index
+    authorize! Survey::Response, to: :index?
+
     @survey_responses = current_user.survey_responses.where(survey: @survey).order(occurred_at: :desc)
   end
 
   def new
     @survey_response = @survey.responses.new
+    authorize! @survey_response
+
     @survey.questions.ordered.each do |question|
       @survey_response.answers.build(question: question)
     end
@@ -18,7 +22,7 @@ class Survey::ResponsesController < ApplicationController
   def create
     @survey_response = @survey.responses.new(survey_response_params)
     @survey_response.user = current_user
-    @survey_response.occurred_at = Time.current
+    authorize! @survey_response
 
     if @survey_response.save
       redirect_to survey_responses_path(@survey), notice: "Response submitted successfully."

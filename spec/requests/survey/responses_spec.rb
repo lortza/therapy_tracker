@@ -3,13 +3,17 @@
 require "rails_helper"
 
 RSpec.describe "Survey::Responses", type: :request do
-  let(:user) { create(:user) }
-  let(:other_user) { create(:user) }
+  let(:user) { create(:user, admin: true) }
+  let(:other_user) { create(:user, admin: true) }
+  let(:non_admin) { create(:user, admin: false) }
   let(:survey) { create(:survey, status: :published) }
   let(:survey_category) { create(:survey_category, survey: survey) }
   let!(:question_one) { create(:survey_question, category: survey_category) }
   let!(:question_two) { create(:survey_question, category: survey_category) }
   let!(:answer_option) { create(:survey_answer_option, survey: survey, value: 2) }
+  let!(:score_range_step) do
+    create(:survey_score_range_step, survey: survey, calculated_range_min_points: 0, calculated_range_max_points: 100)
+  end
 
   describe "unauthenticated access" do
     it "redirects index to sign in" do
@@ -28,7 +32,33 @@ RSpec.describe "Survey::Responses", type: :request do
     end
   end
 
-  describe "authenticated access" do
+  describe "non-admin access" do
+    before { sign_in(non_admin) }
+
+    # The feature is currently admin-only via Survey::ResponsePolicy.
+    # When access is broadened, flip these expectations to match the new policy.
+    it "denies index" do
+      expect {
+        get survey_responses_path(survey)
+      }.to raise_error(ActionPolicy::Unauthorized)
+    end
+
+    it "denies new" do
+      expect {
+        get new_survey_response_path(survey)
+      }.to raise_error(ActionPolicy::Unauthorized)
+    end
+
+    it "denies create and does not persist a response" do
+      expect {
+        expect {
+          post survey_responses_path(survey), params: {survey_response: {notes: "x"}}
+        }.to raise_error(ActionPolicy::Unauthorized)
+      }.not_to change(Survey::Response, :count)
+    end
+  end
+
+  describe "admin access" do
     before { sign_in(user) }
 
     describe "index: GET /surveys/:survey_id/responses" do
@@ -90,10 +120,12 @@ RSpec.describe "Survey::Responses", type: :request do
     end
 
     describe "create: POST /surveys/:survey_id/responses" do
+      let(:occurred_at) { Time.zone.local(2026, 5, 1, 9, 30) }
       let(:valid_params) do
         {
           survey_response: {
             notes: "feeling better today",
+            occurred_at: occurred_at,
             answers_attributes: [
               {survey_question_id: question_one.id, survey_answer_option_id: answer_option.id},
               {survey_question_id: question_two.id, survey_answer_option_id: answer_option.id}
@@ -118,12 +150,10 @@ RSpec.describe "Survey::Responses", type: :request do
           }.to change(Survey::Answer, :count).by(2)
         end
 
-        it "sets occurred_at to the current time" do
-          before_time = Time.current
+        it "persists the submitted occurred_at" do
           post survey_responses_path(survey), params: valid_params
-          after_time = Time.current
 
-          expect(Survey::Response.last.occurred_at).to be_between(before_time, after_time)
+          expect(Survey::Response.last.occurred_at).to be_within(1.second).of(occurred_at)
         end
 
         it "redirects to the responses index with a notice" do
