@@ -57,6 +57,8 @@ gem "sentry-ruby"  # Error reporting to Sentry.io
 group :development do
   gem "annot8" # A fork of gem `annotate` that is Rails 8 compatible. Annotate models, routes, etc. with schema info
   gem "rack-mini-profiler"
+  gem "better_errors" # creates console in browser for errors
+  gem "binding_of_caller" # goes with better_errors
   # gem 'capistrano-rails' # Use Capistrano for deployment
   gem "rails-erd", require: false # generates ERD chart for your schema, run `bundle exec erd`
   gem "rubycritic", require: false # provides feedback on complexity and churns for your codebase
@@ -72,8 +74,6 @@ end
 
 group :development, :test do
   gem "awesome_print"
-  gem "better_errors" # creates console in browser for errors
-  gem "binding_of_caller" # goes with better_errors
   gem "bullet" # detects N+1 queries via config/initializers/bullet.rb
   gem "byebug", platforms: %i[mri windows]
   gem "capybara" # interacts with the browser
