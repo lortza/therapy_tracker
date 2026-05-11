@@ -30,7 +30,7 @@ class Survey::Answer < ApplicationRecord
   # It captures the user's selected answer_option for that question
   # in the context of their overall response to the survey.
 
-  belongs_to :response, class_name: "Survey::Response", foreign_key: "survey_response_id"
+  belongs_to :response, class_name: "Survey::Response", foreign_key: "survey_response_id", inverse_of: :answers
   belongs_to :question, class_name: "Survey::Question", foreign_key: "survey_question_id"
   belongs_to :answer_option, class_name: "Survey::AnswerOption", foreign_key: "survey_answer_option_id"
 

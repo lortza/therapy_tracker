@@ -1,4 +1,4 @@
-class SurveyPolicy < ApplicationPolicy
+class Survey::ResponsePolicy < ApplicationPolicy
   # See https://actionpolicy.evilmartians.io/#/writing_policies
   #
   # Scoping
@@ -10,6 +10,14 @@ class SurveyPolicy < ApplicationPolicy
   # end
 
   def index?
+    admin?
+  end
+
+  def new?
+    admin?
+  end
+
+  def create?
     admin?
   end
 

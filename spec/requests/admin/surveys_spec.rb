@@ -138,6 +138,11 @@ RSpec.describe "Admin::Surveys", type: :request do
     describe "publish: POST /admin/surveys/:id/publish" do
       it "publishes a draft survey owned by the admin and redirects to show" do
         draft_survey = create(:survey, status: :draft, user_id: admin.id)
+        category = create(:survey_category, survey: draft_survey)
+        create(:survey_question, category: category)
+        create(:survey_answer_option, survey: draft_survey)
+        create(:survey_score_range_step, survey: draft_survey)
+
         post publish_admin_survey_path(draft_survey)
 
         expect(draft_survey.reload).to be_published

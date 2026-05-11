@@ -8,6 +8,7 @@
       <%= link_to '+ Pain Log', new_pain_log_path, class: 'dropdown-item' %>
       <%= link_to '+ PT Session', new_pt_session_log_path, class: 'dropdown-item' if current_user.enable_pt_session_tracking %>
       <%= link_to '+ SLIT Log', new_slit_log_path, class: 'dropdown-item' if current_user.enable_slit_tracking %>
+      <%= link_to 'Mental Health Check-in', surveys_path, class: 'dropdown-item' if current_user.admin? %>
     </div>
   </li>
 

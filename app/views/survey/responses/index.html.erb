@@ -1,0 +1,31 @@
+<% content_for(:title, "Manage Surveys") %>
+
+<div class="d-flex justify-content-between align-items-start mb-3">
+  <h1>Results for <%= @survey.name %></h1>
+  <div>
+    <%= link_to '← Back to Surveys', surveys_path, class: button_class('secondary') %>
+    <% if @survey.active? %>
+      <%= link_to new_survey_response_path(@survey), class: button_class("success") do %>
+        <%= MaterialIconComponent.new(icon: :quiz, title: 'Take Survey').render %> Take Survey
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<div class="container w-100 overflow-x-scroll">
+  <div class="row fw-bolder border-bottom border-top mb-0 text-bg-light">
+    <div class="col-4 py-1 px-2">Date Taken</div>
+    <div class="col-4 py-1 px-2">Score</div>
+    <div class="col-4 py-1 px-2">Change from Previous</div>
+  </div>
+  
+  <% @survey_responses.each do |response| %>
+    <div class="row border-bottom mb-0">
+      <div class="col-4 py-1 px-2">
+        <p><%= format_datetime(response.occurred_at) %></p>
+      </div>
+      <div class="col-4 py-1 px-2"><%= response.total_score %>/<%= response.survey.max_score %> <%= response.score_range_step.name %></div>
+      <div class="col-4 py-1 px-2"><%= (difference_from_previous_response_score(response)) %></div>
+    </div>
+  <% end %>
+</div>

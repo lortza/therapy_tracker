@@ -1,0 +1,28 @@
+<% content_for(:title, "Manage Surveys") %>
+
+<div class="d-flex justify-content-between align-items-start mb-3">
+  <h1>Mental Health Check-in Surveys</h1>
+</div>
+
+<div class="container w-100 overflow-x-scroll">
+  <div class="row fw-bolder border-bottom border-top mb-0 text-bg-light">
+    <div class="col-5 py-1 px-2">Name</div>
+    <div class="col-2 py-1 px-2">Responses</div>
+    <div class="col-2 py-1 px-2">Avg Score</div>
+    <div class="col-3 py-1 px-2">Actions</div>
+  </div>
+  
+  <% @surveys.each do |survey| %>
+    <div class="row border-bottom mb-0">
+      <div class="col-5 py-1 px-2">
+        <p class="fw-bold"><%= survey.name %></p>
+        <p class="text-muted fst-italic"><%= survey.description %></p>
+      </div>
+      <div class="col-2 py-1 px-2"><%= survey_response_count_for_user(survey: survey, user: current_user) %></div>
+      <div class="col-2 py-1 px-2"><%= survey_response_avg_score_for_user(survey: survey, user: current_user) %>/<%= survey.max_score %></div>
+      <div class="col-3 py-1 px-2 d-flex justify-content-start align-items-start gap-1">
+        <%= render partial: "action_buttons", locals: {survey: survey} %>
+      </div>
+    </div>
+  <% end %>
+</div>
