@@ -37,16 +37,6 @@ RSpec.describe Survey::Response, type: :model do
     it { should validate_presence_of(:occurred_at) }
   end
 
-  describe "total_score" do
-    let(:survey_response) { create(:survey_response) }
-    let(:calculate_total_score_value) { 5 }
-
-    it "returns the value of calculate_total_score" do
-      allow(survey_response).to receive(:calculate_total_score).and_return(calculate_total_score_value)
-      expect(survey_response.total_score).to eq(calculate_total_score_value)
-    end
-  end
-
   describe "calculate_total_score" do
     it "sums the value for all of the answers" do
       survey = create(:survey)

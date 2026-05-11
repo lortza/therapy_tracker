@@ -92,7 +92,9 @@ RSpec.describe "Admin::Survey::Categories", type: :request do
       context "with invalid params" do
         it "does not create the category" do
           expect {
-            post admin_survey_categories_path(survey), params: {survey_category: {name: "", position: 0, survey_id: survey.id}}
+            post admin_survey_categories_path(survey),
+              params: {survey_category: {name: "", position: 0, survey_id: survey.id}},
+              headers: turbo_stream_headers
           }.not_to change(Survey::Category, :count)
         end
       end
@@ -118,7 +120,9 @@ RSpec.describe "Admin::Survey::Categories", type: :request do
       context "with invalid params" do
         it "does not update the category" do
           original_name = category.name
-          patch admin_survey_category_path(survey, category), params: {survey_category: {name: ""}}
+          patch admin_survey_category_path(survey, category),
+            params: {survey_category: {name: ""}},
+            headers: turbo_stream_headers
 
           expect(category.reload.name).to eq(original_name)
         end

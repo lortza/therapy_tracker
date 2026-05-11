@@ -97,7 +97,9 @@ RSpec.describe "Admin::Survey::AnswerOptions", type: :request do
       context "with invalid params" do
         it "does not create the answer option" do
           expect {
-            post admin_survey_answer_options_path(survey), params: {survey_answer_option: {name: "", value: nil, survey_id: survey.id}}
+            post admin_survey_answer_options_path(survey),
+              params: {survey_answer_option: {name: "", value: nil, survey_id: survey.id}},
+              headers: turbo_stream_headers
           }.not_to change(Survey::AnswerOption, :count)
         end
       end
@@ -128,7 +130,9 @@ RSpec.describe "Admin::Survey::AnswerOptions", type: :request do
       context "with invalid params" do
         it "does not update the answer option" do
           original_name = answer_option.name
-          patch admin_survey_answer_option_path(survey, answer_option), params: {survey_answer_option: {name: ""}}
+          patch admin_survey_answer_option_path(survey, answer_option),
+            params: {survey_answer_option: {name: ""}},
+            headers: turbo_stream_headers
 
           expect(answer_option.reload.name).to eq(original_name)
         end

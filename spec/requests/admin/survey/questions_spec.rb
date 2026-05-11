@@ -93,7 +93,9 @@ RSpec.describe "Admin::Survey::Questions", type: :request do
       context "with invalid params" do
         it "does not create the question" do
           expect {
-            post admin_survey_category_questions_path(survey, category), params: {survey_question: {text: "", position: 0}}
+            post admin_survey_category_questions_path(survey, category),
+              params: {survey_question: {text: "", position: 0}},
+              headers: turbo_stream_headers
           }.not_to change(Survey::Question, :count)
         end
       end
@@ -119,7 +121,9 @@ RSpec.describe "Admin::Survey::Questions", type: :request do
       context "with invalid params" do
         it "does not update the question" do
           original_text = question.text
-          patch admin_survey_category_question_path(survey, category, question), params: {survey_question: {text: ""}}
+          patch admin_survey_category_question_path(survey, category, question),
+            params: {survey_question: {text: ""}},
+            headers: turbo_stream_headers
 
           expect(question.reload.text).to eq(original_text)
         end

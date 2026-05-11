@@ -3,8 +3,9 @@
 require "rails_helper"
 
 RSpec.describe "Surveys", type: :request do
-  let(:user) { create(:user) }
-  let(:other_user) { create(:user) }
+  let(:user) { create(:user, admin: true) }
+  let(:other_user) { create(:user, admin: true) }
+  let(:non_admin) { create(:user, admin: false) }
 
   describe "unauthenticated access" do
     it "redirects index to sign in" do
@@ -13,7 +14,19 @@ RSpec.describe "Surveys", type: :request do
     end
   end
 
-  describe "authenticated access" do
+  describe "non-admin access" do
+    before { sign_in(non_admin) }
+
+    # The feature is currently admin-only via SurveyPolicy.
+    # When access is broadened, flip this expectation to match the new policy.
+    it "denies index" do
+      expect {
+        get surveys_path
+      }.to raise_error(ActionPolicy::Unauthorized)
+    end
+  end
+
+  describe "admin access" do
     before { sign_in(user) }
 
     describe "index: GET /surveys" do

@@ -105,7 +105,9 @@ RSpec.describe "Admin::Survey::ScoreRangeSteps", type: :request do
       context "with invalid params" do
         it "does not create the score range step" do
           expect {
-            post admin_survey_score_range_steps_path(survey), params: {survey_score_range_step: {name: "", position: nil, survey_id: survey.id}}
+            post admin_survey_score_range_steps_path(survey),
+              params: {survey_score_range_step: {name: "", position: nil, survey_id: survey.id}},
+              headers: turbo_stream_headers
           }.not_to change(Survey::ScoreRangeStep, :count)
         end
       end
@@ -136,7 +138,9 @@ RSpec.describe "Admin::Survey::ScoreRangeSteps", type: :request do
       context "with invalid params" do
         it "does not update the score range step" do
           original_name = score_range_step.name
-          patch admin_survey_score_range_step_path(survey, score_range_step), params: {survey_score_range_step: {name: ""}}
+          patch admin_survey_score_range_step_path(survey, score_range_step),
+            params: {survey_score_range_step: {name: ""}},
+            headers: turbo_stream_headers
 
           expect(score_range_step.reload.name).to eq(original_name)
         end
