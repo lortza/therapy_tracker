@@ -40,7 +40,7 @@ jobs:
 
       # Add or replace test runners here
       - name: Run tests
-        run: bin/rails test
+        run: bundle exec rspec
 
   check_seeds:
     runs-on: ubuntu-latest
