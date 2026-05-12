@@ -7,7 +7,8 @@ class Survey::ResponsesController < ApplicationController
   def index
     authorize! Survey::Response, to: :index?
 
-    @survey_responses = current_user.survey_responses.where(survey: @survey).order(occurred_at: :desc)
+    response_collection = current_user.survey_responses.where(survey: @survey).order(occurred_at: :desc)
+    @survey_responses = Survey::ResponseDecorator.decorate_collection(response_collection)
   end
 
   def new
