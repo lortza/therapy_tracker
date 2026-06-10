@@ -66,6 +66,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
+          cache-version: 1 # Increment this to clear cache if needed
       # Add or replace database setup steps here
       - name: Set up database schema
         run: bin/rails db:schema:load
@@ -81,6 +82,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
+          cache-version: 1 # Increment this to clear cache if needed
       - name: Standard RB
         run: bundle exec standardrb
   #     #Add or replace any other lints here
