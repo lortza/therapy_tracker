@@ -28,8 +28,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
-
       # Add or replace dependency steps here
+      - name: Unfreeze Bundler for Dependabot
+        if: github.actor == 'dependabot[bot]'
+        run: bundle config set frozen false
       - name: Install Ruby and gems
         uses: ruby/setup-ruby@v1
         with:
@@ -60,8 +62,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
-
       # Add or replace dependency steps here
+      - name: Unfreeze Bundler for Dependabot
+        if: github.actor == 'dependabot[bot]'
+        run: bundle config set frozen false
       - name: Install Ruby and gems
         uses: ruby/setup-ruby@v1
         with:
@@ -77,7 +81,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
+      # Add or replace dependency steps here
+      - name: Unfreeze Bundler for Dependabot
+        if: github.actor == 'dependabot[bot]'
+        run: bundle config set frozen false
       - name: Install Ruby and gems
         uses: ruby/setup-ruby@v1
         with:
