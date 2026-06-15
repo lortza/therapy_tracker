@@ -1,55 +1,130 @@
-# This workflow uses actions that are not certified by GitHub.  They are
-# provided by a third-party and are governed by separate terms of service,
-# privacy policy, and support documentation.
-#
-# This workflow will install a prebuilt Ruby version, install dependencies, and
-# run tests and linters.
 name: "Ruby on Rails CI"
+
 on:
   push:
     branches: ["main"]
   pull_request:
     branches: ["main"]
+
 jobs:
+  # scan_ruby:
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v6
+
+  #     - name: Set up Ruby
+  #       uses: ruby/setup-ruby@v1
+  #       with:
+  #         ruby-version: .ruby-version
+  #         bundler-cache: true
+
+  #     - name: Scan for common Rails security vulnerabilities using static analysis
+  #       run: bin/brakeman --no-pager
+  #     - name: Security audit dependencies
+  #       run: bin/bundler-audit --update
+
+  scan_js:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+          cache-version: 1 # Increment this to clear cache if needed
+      - name: Unfreeze Bundler for Dependabot
+        if: github.actor == 'dependabot[bot]'
+        run: bundle config set frozen false
+
+      - name: Scan for security vulnerabilities in JavaScript dependencies
+        run: bin/importmap audit
+
+  lint_ruby:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+          cache-version: 1 # Increment this to clear cache if needed
+      - name: Unfreeze Bundler for Dependabot
+        if: github.actor == 'dependabot[bot]'
+        run: bundle config set frozen false
+
+      - name: Lint code for consistent style
+        run: bundle exec standardrb
+      # Add or replace any other linters here
+      # - name: Reek
+      #   run: bundle exec reek
+
   test:
     runs-on: ubuntu-latest
     services:
       postgres:
-        image: postgres:16-alpine
+        image: postgres:11-alpine
         ports:
           - "5432:5432"
         env:
           POSTGRES_DB: rails_test
           POSTGRES_USER: rails
           POSTGRES_PASSWORD: password
+      # redis:
+      #   image: redis
+      #   ports:
+      #     - 6379:6379
+      #   options: --health-cmd "redis-cli ping" --health-interval 10s --health-timeout 5s --health-retries 5
     env:
       RAILS_ENV: test
       DATABASE_URL: "postgres://rails:password@localhost:5432/rails_test"
     steps:
+      - name: Install packages
+        run: sudo apt-get update && sudo apt-get install --no-install-recommends -y google-chrome-stable curl libjemalloc2 libvips imagemagick sqlite3
+
       - name: Checkout code
         uses: actions/checkout@v6
-      # Add or replace dependency steps here
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+          cache-version: 1 # Increment this to clear cache if needed
       - name: Unfreeze Bundler for Dependabot
         if: github.actor == 'dependabot[bot]'
         run: bundle config set frozen false
-      - name: Install Ruby and gems
-        uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
-          cache-version: 1 # Increment this to clear cache if needed
-      # Add or replace database setup steps here
-      - name: Set up database schema
-        run: bin/rails db:schema:load
 
-      # Add or replace test runners here
-      - name: Run tests
-        run: bundle exec rspec
+      - name: Run testsgb
+        env:
+          RAILS_ENV: test
+        # REDIS_URL: redis://localhost:6379/0
+        run: bin/rails db:schema:load && bundle exec rspec
+
+      - name: Keep screenshots from failed system tests
+        uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: screenshots
+          path: ${{ github.workspace }}/tmp/screenshots
+          if-no-files-found: ignore
 
   check_seeds:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
     services:
       postgres:
-        image: postgres:16-alpine
+        image: postgres:11-alpine
         ports:
           - "5432:5432"
         env:
@@ -62,41 +137,18 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
+
       # Add or replace dependency steps here
-      - name: Unfreeze Bundler for Dependabot
-        if: github.actor == 'dependabot[bot]'
-        run: bundle config set frozen false
       - name: Install Ruby and gems
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
           cache-version: 1 # Increment this to clear cache if needed
+      - name: Unfreeze Bundler for Dependabot
+        if: github.actor == 'dependabot[bot]'
+        run: bundle config set frozen false
       # Add or replace database setup steps here
       - name: Set up database schema
         run: bin/rails db:schema:load
       - name: Check Seeds
         run: bundle exec rake db:seed
-
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v6
-      # Add or replace dependency steps here
-      - name: Unfreeze Bundler for Dependabot
-        if: github.actor == 'dependabot[bot]'
-        run: bundle config set frozen false
-      - name: Install Ruby and gems
-        uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
-          cache-version: 1 # Increment this to clear cache if needed
-      - name: Standard RB
-        run: bundle exec standardrb
-  #     #Add or replace any other lints here
-  #     - name: Reek
-  #       run: bundle exec reek
-  #     - name: Security audit dependencies
-  #       run: bin/bundler-audit --update
-  #     - name: Security audit application code
-  #       run: bin/brakeman -q -w2
