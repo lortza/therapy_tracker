@@ -27,13 +27,6 @@ class Survey::ResponseDecorator < ApplicationDecorator
     return nil unless previous_response
 
     points = total_score - previous_response.total_score
-    case points
-    when 0
-      "No change from previous response"
-    else
-      "#{"+" if points > 0}#{points} from previous response"
-    end
-
     if points == 0
       "No change from previous response"
     elsif points > 0
