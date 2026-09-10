@@ -7,8 +7,13 @@ class Survey::ResponsesController < ApplicationController
   def index
     authorize! Survey::Response, to: :index?
 
-    response_collection = current_user.survey_responses.where(survey: @survey).includes(:survey).order(occurred_at: :desc)
-    @survey_responses = Survey::ResponseDecorator.decorate_collection(response_collection)
+    response_collection = current_user.survey_responses.where(survey: @survey).includes(:survey)
+
+    @chart_data = response_collection.each_with_object({}) do |response, hash|
+      hash[response.occurred_at.to_date] = response.total_score
+    end
+
+    @survey_responses = Survey::ResponseDecorator.decorate_collection(response_collection.order(occurred_at: :desc))
   end
 
   def new
