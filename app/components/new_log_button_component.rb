@@ -14,7 +14,6 @@ class NewLogButtonComponent
 
   private
 
-  # rubocop:disable Rails/OutputSafety
   # Disabling is safe because this content ALWAYS comes from internal sources
   def button_text
     MaterialIconComponent.new(
@@ -22,7 +21,6 @@ class NewLogButtonComponent
       size: :large
     ).render + "<br>+#{computed_text}".html_safe
   end
-  # rubocop:enable Rails/OutputSafety
 
   def decorated_log
     @decorated_log ||= @log_klass.new.decorate
