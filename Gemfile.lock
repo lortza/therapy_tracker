@@ -119,7 +119,7 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
-    chartkick (5.2.1)
+    chartkick (5.3.0)
     childprocess (5.1.0)
       logger (~> 1.5)
     choice (0.2.0)
@@ -699,7 +699,7 @@ CHECKSUMS
   bullet (8.3.0) sha256=61a27261323e0f8557d87df3f03d9b175ccb8431f422876268de9b0c79d4fd14
   byebug (13.0.0) sha256=d2263efe751941ca520fa29744b71972d39cbc41839496706f5d9b22e92ae05d
   capybara (3.40.0) sha256=42dba720578ea1ca65fd7a41d163dd368502c191804558f6e0f71b391054aeef
-  chartkick (5.2.1) sha256=2848d7de87189f30f28d077eb0bbdebc8a1f0f6f81de1ded95008fe564369949
+  chartkick (5.3.0) sha256=19a2bba39decf54c4939d3f31460535f8814c85045672ba2ed616c6897325b00
   childprocess (5.1.0) sha256=9a8d484be2fd4096a0e90a0cd3e449a05bc3aa33f8ac9e4d6dcef6ac1455b6ec
   choice (0.2.0) sha256=a19617f7dfd4921b38a85d0616446620de685a113ec6d1ecc85bdb67bf38c974
   coderay (1.1.3) sha256=dc530018a4684512f8f38143cd2a096c9f02a1fc2459edcfe534787a7fc77d4b
