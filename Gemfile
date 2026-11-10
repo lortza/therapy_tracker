@@ -86,7 +86,7 @@ group :development, :test do
   gem "pry-awesome_print"
   gem "pry-byebug"
   gem "pry-rails"
-  gem "rspec-rails", "~> 8.0"
+  gem "rspec-rails", "~> 8.1"
   gem "selenium-webdriver"
 end
 
