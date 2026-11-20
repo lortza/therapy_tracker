@@ -6,7 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby File.read(".ruby-version").strip
 
 gem "rails", "8.1.4.1"
-gem "puma", "~> 8.0" # Use Puma as the app server
+gem "puma", "~> 8.1" # Use Puma as the app server
 gem "pg", ">= 0.18", "< 2.0" # Use postgresql as the database for Active Record
 
 gem "hotwire-rails"
